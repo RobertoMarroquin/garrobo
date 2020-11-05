@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+from empresas.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("cont/", include('contabilidad.urls',namespace='cont')),
+    path("emp/", include('empresas.urls',namespace='emp')),
+    path("", Home.as_view(), name="home"),
 ]

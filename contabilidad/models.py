@@ -1,4 +1,5 @@
 #django libs
+from django.contrib.admin.options import TabularInline
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 #self libs
@@ -23,7 +24,7 @@ class Periodo(models.Model):
     
 class Catalogo(models.Model):
     """Catalogo de cuentas contables de Empresa."""
-    empresa = models.OneToOneField('empresa.Empresa', verbose_name=("Empresa"), related_name='catalogo', on_delete=models.CASCADE)
+    empresa = models.OneToOneField('empresas.Empresa', verbose_name=("Empresa"), related_name='catalogo', on_delete=models.CASCADE)
     creado = models.DateField(("Creado"), auto_now=False, auto_now_add=True)
     class Meta:
         verbose_name = 'Catalogo'
@@ -43,15 +44,16 @@ class Cuenta(models.Model):
     class Meta:
         verbose_name = 'Cuenta'
         verbose_name_plural = 'Cuentas'
+        ordering = ("catalogo","codigo")
 
     def __str__(self):
-        return f"{self.catalogo}"
+        return f"{self.codigo}"
 
 
 class SubCuenta(models.Model):
     """Subcuentas del catalogo Contable."""
     catalogo = models.ForeignKey("contabilidad.Catalogo", verbose_name=("Catalogo de Cuentas"), on_delete=models.CASCADE)
-    codigo = models.CharField(("Codigo"), max_length=2)    
+    codigo = models.CharField(("Codigo"), max_length=12)    
     nombre = models.CharField(("Nombre"), max_length=150)
     cuenta_padre = models.ForeignKey('contabilidad.SubCuenta', verbose_name=("Cuenta Padre"),on_delete=models.CASCADE,blank=True, null=True)
     cuenta_principal = models.ForeignKey("contabilidad.Cuenta", verbose_name=("Cuenta Principal"), on_delete=models.CASCADE,blank=True, null=True)
@@ -61,9 +63,9 @@ class SubCuenta(models.Model):
     class Meta:
         verbose_name = 'SubCuenta'
         verbose_name_plural = 'SubCuentas'
-        ordering = ['codigo',]
+        ordering = ("catalogo","codigo")
     def __str__(self):
-        return self.codigo
+        return f'{self.codigo}'
 
 
 
@@ -79,7 +81,7 @@ class Libro(models.Model):
         verbose_name_plural = 'Libros'
 
     def __str__(self):
-        return self.mes
+        return f'{self.get_mes_display()} {self.periodo.ano} {self.periodo.empresa.num_registro}'
 
 
 class Partida(models.Model):
@@ -97,6 +99,7 @@ class Partida(models.Model):
 
 class Movimiento(models.Model):
     """Moviemientos transaccionales  de partidas."""
+    partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="Movimientos", on_delete=models.CASCADE)
     monto_deber = models.FloatField(("Monto Deudor"), blank=True, null=True,default=0.00)
     monto_haber = models.FloatField(("Monto Acreedor"), blank=True, null=True,default=0.00)
     cuenta = models.ForeignKey('contabilidad.Subcuenta',verbose_name="Cuenta", related_name='movimientos', on_delete=models.CASCADE)
@@ -113,3 +116,4 @@ class Movimiento(models.Model):
         elif self.monto_haber or self.monto_haber > 0.00:
             return f"{self.cuenta} - {self.monto_haber} H"
         else : return f"{self.cuenta}"
+    
