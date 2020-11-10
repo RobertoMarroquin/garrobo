@@ -23,13 +23,13 @@ class PeriodoForm(forms.ModelForm):
         )
 
 
-class Catalogo(forms.ModelForm):
+class CatalogoF(forms.ModelForm):
     class Meta:
         model = Catalogo
         fields = ["empresa",]
 
 
-class Cuenta(forms.ModelForm):
+class CuentaF(forms.ModelForm):
     class Meta:
         model = Cuenta
         fields = [ 
@@ -39,7 +39,7 @@ class Cuenta(forms.ModelForm):
         ]
 
 
-class SubCuenta(forms.ModelForm):
+class SubCuentaF(forms.ModelForm):
     class Meta:
         model = SubCuenta
         fields = [
@@ -50,13 +50,13 @@ class SubCuenta(forms.ModelForm):
         ]
 
 
-class Libro(forms.ModelForm):
+class LibroF(forms.ModelForm):
     class Meta:
         model = Libro
         fields = ["periodo","mes"]
 
 
-class Partida(forms.ModelForm):
+class PartidaF(forms.ModelForm):
     fecha = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
             widget=forms.DateInput(attrs={"data-mask":"00/00/00"}),
             required=True)
@@ -65,7 +65,7 @@ class Partida(forms.ModelForm):
         fields = ["fecha", "libro", "descripcion"]
 
 
-class Movimiento(forms.ModelForm):
+class MovimientoF(forms.ModelForm):
     class Meta:
         model = Movimiento
         fields = ["monto_haber","monto_deber","cuenta","descripcion"]

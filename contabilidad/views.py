@@ -1,6 +1,134 @@
+#python libs
+import datetime
+#django libs
+from contabilidad.forms import *
 from django.shortcuts import render
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
+from django.urls import reverse
+#self libs
+from .models import *
+from empresas.models import Empresa
 
-#Create views
+
+#vistas de Partida
+
+class PartidaCV(CreateView):
+    model = Partida
+    template_name = "contabilidad/modal.html"
+    form_class = PartidaF
+    def get_initial(self, **kwargs):
+        mes = Libro.objects.get(id=self.kwargs['libro']).mes
+        ano = Libro.objects.get(id=self.kwargs['libro']).periodo.ano
+        initial = super(PartidaCV,self).get_initial()
+        initial['libro'] = Libro.objects.get(id=self.kwargs['libro'])
+        initial["fecha"] = Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + datetime.timedelta(days=1) if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else datetime.datetime.strptime(f"01/{mes}/{ano}",'%d/%m/%Y')
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(PartidaCV, self).get_context_data(**kwargs)
+        context['direccion'] = 'cont:nueva_partida'
+        context['titulo']    = 'Crear Partida Nueva'
+        context['parametro'] = self.kwargs['libro']
+        context['obj_padre'] = Libro.objects.get(id=self.kwargs['libro'])
+        return context
+
+    def get_success_url(self,**kwargs):
+        return reverse("cont:lista_partida",args=[self.kwargs['libro'],])
+
+
+class PartidaLV(ListView):
+    model = Partida
+    template_name = "contabilidad/lpartida.html"
+    context_object_name = 'partidas'
+    ordering = ['-fecha',]
+
+    def get_context_data(self, **kwargs):
+        context = super(PartidaLV, self).get_context_data(**kwargs)
+        context["libro"] = Libro.objects.get(id=self.kwargs['libro'])
+        return context
+        
+    def get_queryset(self):
+        queryset = super(PartidaLV, self).get_queryset()
+        queryset = queryset.filter(libro__id = self.kwargs['libro']).order_by("fecha")
+        return queryset
+
+#Vistas de Libro
+
+class LibroCV(CreateView):
+    model = Libro
+    template_name = "contabilidad/modal.html"
+    form_class = LibroF
+    
+    def get_success_url(self,**kwargs):
+        return reverse("cont:lista_libro",args=[self.kwargs['pk'],])
+
+    def get_initial(self, **kwargs):
+        initial = super(LibroCV,self).get_initial()
+        initial['periodo'] = Periodo.objects.get(id=self.kwargs['pk'])
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(LibroCV, self).get_context_data(**kwargs)
+        context['direccion'] = 'cont:nuevo_libro'
+        context['titulo']    = 'Crear Libro Nuevo'
+        context['parametro'] = self.kwargs['pk']
+        context['obj_padre'] = Periodo.objects.get(id=self.kwargs['pk'])
+        return context
+
+class LibroLV(ListView):
+    model = Libro
+    template_name = "contabilidad/llibro.html"
+    context_object_name = 'libros'
+
+    def get_context_data(self, **kwargs):
+        context = super(LibroLV,self).get_context_data(**kwargs)
+        context["periodo"] = Periodo.objects.get(id=self.kwargs['periodo'])
+        return context
+
+    def get_queryset(self):
+        queryset = super(LibroLV, self).get_queryset()
+        queryset = queryset.filter(periodo__id = self.kwargs['periodo']).order_by('periodo','mes')
+        return queryset
+
+
+
+#vistas del Periodo 
+class PeriodoCV(CreateView):
+    model = Periodo
+    template_name = "contabilidad/modal.html"
+    form_class = PeriodoForm
+
+    def get_success_url(self,**kwargs):
+        return reverse("cont:lista_periodo",args=[self.kwargs['pk'],])
+
+    def get_context_data(self, **kwargs):
+        context = super(PeriodoCV, self).get_context_data(**kwargs)
+        context['direccion'] = 'cont:nuevo_periodo'
+        context['titulo']    = 'Crear Periodo Nuevo'
+        context['parametro'] = self.kwargs['pk']
+        context['obj_padre'] = Empresa.objects.get(id=self.kwargs['pk'])
+        return context
+
+    def get_initial(self, **kwargs):
+        initial = super(PeriodoCV,self).get_initial()
+        initial['empresa'] = Empresa.objects.get(id=self.kwargs['pk'])
+        return initial
+
+
+class PeriodoL(ListView):
+    model = Periodo
+    context_object_name = 'periodos'
+    template_name='contabilidad/lperiodo.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["empresa"] = Empresa.objects.get(id=self.kwargs['emp'])
+        return context
+    
+    def get_queryset(self):
+        q = super(PeriodoL,self).get_queryset()
+        q = q.filter(empresa__id=self.kwargs['emp'])
+        return q
 
 
 #Funcionalidades de las views

@@ -92,6 +92,7 @@ class Partida(models.Model):
     class Meta:
         verbose_name = 'Partida'
         verbose_name_plural = 'Partidas'
+        ordering = ['libro','fecha']
 
     def __str__(self):
         return f'{self.fecha}'
@@ -99,7 +100,7 @@ class Partida(models.Model):
 
 class Movimiento(models.Model):
     """Moviemientos transaccionales  de partidas."""
-    partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="Movimientos", on_delete=models.CASCADE)
+    partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="movimientos", on_delete=models.CASCADE)
     monto_deber = models.FloatField(("Monto Deudor"), blank=True, null=True,default=0.00)
     monto_haber = models.FloatField(("Monto Acreedor"), blank=True, null=True,default=0.00)
     cuenta = models.ForeignKey('contabilidad.Subcuenta',verbose_name="Cuenta", related_name='movimientos', on_delete=models.CASCADE)
