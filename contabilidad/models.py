@@ -36,7 +36,7 @@ class Catalogo(models.Model):
 
 class Cuenta(models.Model):
     """Cuentas Principales del Catalogo contable."""
-    catalogo = models.ForeignKey("contabilidad.Catalogo", verbose_name=("Catalogo de Cuentas"), on_delete=models.CASCADE)
+    catalogo = models.ForeignKey("contabilidad.Catalogo", related_name="cuentasp",verbose_name=("Catalogo de Cuentas"), on_delete=models.CASCADE)
     codigo = models.CharField(("Codigo"), max_length=2)    
     nombre = models.CharField(("Nombre"), max_length=150)
     creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)
@@ -52,11 +52,11 @@ class Cuenta(models.Model):
 
 class SubCuenta(models.Model):
     """Subcuentas del catalogo Contable."""
-    catalogo = models.ForeignKey("contabilidad.Catalogo", verbose_name=("Catalogo de Cuentas"), on_delete=models.CASCADE)
+    catalogo = models.ForeignKey("contabilidad.Catalogo", related_name="subcuentas", verbose_name=("Catalogo de Cuentas"), on_delete=models.CASCADE)
     codigo = models.CharField(("Codigo"), max_length=12)    
     nombre = models.CharField(("Nombre"), max_length=150)
-    cuenta_padre = models.ForeignKey('contabilidad.SubCuenta', verbose_name=("Cuenta Padre"),on_delete=models.CASCADE,blank=True, null=True)
-    cuenta_principal = models.ForeignKey("contabilidad.Cuenta", verbose_name=("Cuenta Principal"), on_delete=models.CASCADE,blank=True, null=True)
+    cuenta_padre = models.ForeignKey('contabilidad.SubCuenta',related_name="subcuentas", verbose_name=("Cuenta Padre"),on_delete=models.CASCADE,blank=True, null=True)
+    cuenta_principal = models.ForeignKey("contabilidad.Cuenta",related_name="subcuentasp", verbose_name=("Cuenta Principal"), on_delete=models.CASCADE,blank=True, null=True)
     creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)
     saldo = models.FloatField("Saldo", default=0.00)
     es_mayor = models.BooleanField(("Es Cuenta de Mayor"), default=False)
@@ -65,8 +65,7 @@ class SubCuenta(models.Model):
         verbose_name_plural = 'SubCuentas'
         ordering = ("catalogo","codigo")
     def __str__(self):
-        return f'{self.codigo}'
-
+        return f'{self.codigo}||{self.nombre}'
 
 
 meses = ((1,"Enero"),(2,"Febrero"),(3,"Marzo"),(4,"Abril"),(5,"Mayo"),(6,"Junio"),
@@ -90,8 +89,9 @@ class Partida(models.Model):
     libro = models.ForeignKey('contabilidad.Libro', related_name='partidas', on_delete=models.CASCADE)
     descripcion = models.CharField(("Descripcion"), max_length=200,blank=True, null=True, default="Movimientos diarios")
     class Meta:
-        verbose_name = 'Partida'
+        verbose_name = 'Partida' 
         verbose_name_plural = 'Partidas'
+        ordering = ['libro','fecha']
 
     def __str__(self):
         return f'{self.fecha}'
@@ -99,7 +99,7 @@ class Partida(models.Model):
 
 class Movimiento(models.Model):
     """Moviemientos transaccionales  de partidas."""
-    partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="Movimientos", on_delete=models.CASCADE)
+    partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="movimientos", on_delete=models.CASCADE)
     monto_deber = models.FloatField(("Monto Deudor"), blank=True, null=True,default=0.00)
     monto_haber = models.FloatField(("Monto Acreedor"), blank=True, null=True,default=0.00)
     cuenta = models.ForeignKey('contabilidad.Subcuenta',verbose_name="Cuenta", related_name='movimientos', on_delete=models.CASCADE)
@@ -116,4 +116,4 @@ class Movimiento(models.Model):
         elif self.monto_haber or self.monto_haber > 0.00:
             return f"{self.cuenta} - {self.monto_haber} H"
         else : return f"{self.cuenta}"
-    
+

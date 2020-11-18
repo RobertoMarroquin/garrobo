@@ -23,4 +23,5 @@ urlpatterns = [
     path("cont/", include('contabilidad.urls',namespace='cont')),
     path("emp/", include('empresas.urls',namespace='emp')),
     path("", Home.as_view(), name="home"),
+    path('searchableselect/', include('searchableselect.urls')),
 ]

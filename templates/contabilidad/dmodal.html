@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<form action="{% url 'cont:del_movimiento' mov%}" method="post">
+    {% csrf_token %}
+    <div class="alert alert-danger" role="alert">
+        Estas a punto de eliminar un registro ten cuidado!!!
+    </div>
+    <p>
+        <a name="" id="" class="btn btn-primary" href="{% url 'cont:movimientos' partida%}" role="button">Cancelar</a>
+        <button type="submit" class="btn btn-danger" value="Yes">Borrar</button>
+    </p>
+</form>
+{% endblock content %}

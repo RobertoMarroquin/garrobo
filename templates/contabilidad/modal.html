@@ -26,12 +26,11 @@
             </form>
     </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-{{ form.media }}
-
+<!--Select2 Filter JS-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
-    $('#document').ready(() => {
-        $('#39').style.width = '462.px'
+    $("#id_codigo").focusin(function() {
+        $(".select").select2();
     })
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
