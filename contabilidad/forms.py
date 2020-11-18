@@ -1,7 +1,12 @@
 #django libs
 from django import forms
+from django.forms import widgets
 #self libs
 from .models import *
+from .funciones import actualizacion_saldos
+#other Libs
+from searchableselect.widgets import SearchableSelect
+from .plantillaCuentas import pl_cuentas as pl
 
 
 class PeriodoForm(forms.ModelForm):
@@ -27,6 +32,13 @@ class CatalogoF(forms.ModelForm):
     class Meta:
         model = Catalogo
         fields = ["empresa",]
+        
+    def save(self,commit = True, *args, **kwargs):
+        cat = super().save(*args, **kwargs)
+        if commit:
+            cat.save()
+            pl(cat)
+        return cat
 
 
 class CuentaF(forms.ModelForm):
@@ -48,6 +60,16 @@ class SubCuentaF(forms.ModelForm):
             "nombre", 
             "cuenta_padre",
         ]
+        widgets = {
+            "codigo" : forms.TextInput(attrs={}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        catalogo = kwargs.pop('catalogo', None)
+        super(SubCuentaF, self).__init__(*args, **kwargs)
+        # restrict the queryset of 'Cuenta'
+        self.fields['catalogo'].queryset = self.fields['catalogo'].queryset.filter(id=catalogo.id)
+       
 
 
 class LibroF(forms.ModelForm):
@@ -66,6 +88,33 @@ class PartidaF(forms.ModelForm):
 
 
 class MovimientoF(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        catalogo = kwargs.pop('catalogo', None)
+        partida =  kwargs.pop('partida', None)
+        super(MovimientoF, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].label = False
+        # restrict the queryset of 'Cuenta'
+        self.fields['cuenta'].queryset = self.fields['cuenta'].queryset.filter(catalogo=catalogo,es_mayor=False)
+       
+
+    def save(self,commit = True, *args, **kwargs):
+        mov = super().save(*args, **kwargs)
+        if commit:
+            mov.save()
+            #actualizacion_saldos(movimiento=mov,cuenta=mov.cuenta)
+        return mov
+
+    
     class Meta:
         model = Movimiento
-        fields = ["monto_haber","monto_deber","cuenta","descripcion"]
+        fields = ["cuenta","descripcion","monto_haber","monto_deber",]
+        exclude = ["partida",]
+        widgets = {
+            "cuenta"     :   forms.Select(attrs={"required":"true","autofocus":"true"}),
+            "descripcion":  forms.TextInput(attrs={}),
+            "monto_haber":  forms.TextInput(attrs={"class":"money"}),
+            "monto_deber":  forms.TextInput(attrs={"class":"money"}),
+        }
+

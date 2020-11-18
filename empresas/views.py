@@ -42,7 +42,7 @@ class EmpresaUV(UpdateView):
     model = Empresa
     template_name = "empresas/modal.html"
     fields = [
-        "razon_social"
+        "razon_social",
         "direccion",
         "giro1",
         "giro2",

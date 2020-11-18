@@ -1,9 +1,12 @@
-{% extends "base.html" %} {% block title %} Periodos {% endblock title %} {% block css %}
+{% extends "base.html" %} {% block title %} Libros {{periodo.ano}} {% endblock title %} {% block css %}
 <!-- Data Table Css-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.css" /> {% endblock css %} {% block content %}
+<h3 class="text-center">Libros {{periodo.ano}}</h3>
+<h4 class="text-center">{{periodo.empresa.nombre}}</h4>
+<hr>
 <div class="row">
     <div class="col-md-2">
-        <a name="" id="" class="btn btn-primary" href="#" role="button">Periodos</a>
+        <a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_periodo' periodo.empresa.id %}" role="button">Periodos</a>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4"></div>
@@ -14,7 +17,7 @@
 <br>
 <!--Tabla de Periodos-->
 {% if libros %}
-<table class="table table-striped table-light" id="tabla">
+<table class="table table-striped table-light table-sm" id="tabla">
     <thead class="thead-dark">
         <tr class="text-center">
             <th>Año</th>
@@ -37,7 +40,7 @@
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
             {% endif %}
-            <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-file"></i></a></td>
+            <td><a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_partida' libro.id%}" role="button"><i class="fas fa-file"></i></a></td>
         </tr>
         {% endfor %}
     </tbody>

@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'bootstrap4',
     'crispy_forms',
     'django_extensions',
     'rest_framework',
     'empresas',
     'contabilidad',
+    'searchableselect',
+
 ]
 
 MIDDLEWARE = [

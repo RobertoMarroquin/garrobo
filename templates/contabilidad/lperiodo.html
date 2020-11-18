@@ -2,12 +2,20 @@
 <!-- Data Table Css-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.css" /> {% endblock css %} {% block content %}
 <h3 class='text-center'>{{empresa.nombre}}</h3>
+<h4 class='text-center'>Periodos Contables</h4>
 <hr/>
 <!--Botones de  accion-->
 <div class="row">
+    <div class="col-md-2">
+        <a name="" id="" class="btn btn-primary" href="{% url 'home' %}" role="button">Empresas</a>
+    </div>
+    <div class="col-md-4"></div>
     <div class="col-md-2"></div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2">
+        {% if not empresa.catalogo %}
+        <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_catalogo' empresa.id%}')">Nuevo Catalogo</button> {% else %}
+        <a name="" id="" class="btn btn-primary" href="{% url 'cont:detalle_catalogo' empresa.catalogo.id %}" role="button"> Ver Catalogo</a> {% endif %}
+    </div>
     <div class="col-md-2 align-items-right text-right">
         <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_periodo' empresa.id%}')">Nuevo Periodo</button>
     </div>
@@ -15,7 +23,7 @@
 <br>
 <!--Tabla de Periodos-->
 {% if periodos %}
-<table class="table table-striped table-light" id="tabla">
+<table class="table table-striped table-light table-sm" id="tabla">
     <thead class="thead-dark">
         <tr class="text-center">
             <th>Año</th>
@@ -31,7 +39,7 @@
             <td>{{periodo.fecha_inicio}}</td>
             <td>{{periodo.fecha_fin}}</td>
             {% if periodo %}
-            <td class="text-center"><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-book"></i></a></td>
+            <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_libro' periodo.id%}" role="button"><i class="fas fa-book"></i></a></td>
             {% else %}
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-book"></i></button></td>
             {% endif %}
