@@ -1,4 +1,5 @@
 #python libs
+from datetime import date
 import datetime
 #django libs
 from contabilidad.forms import *
@@ -291,8 +292,12 @@ class PeriodoCV(CreateView):
         return context
 
     def get_initial(self, **kwargs):
+       
         initial = super(PeriodoCV,self).get_initial()
         initial['empresa'] = Empresa.objects.get(id=self.kwargs['pk'])
+        initial['fecha_inicio'] = "{}".format(date(date.today().year, 1, 1).strftime("%dd/%mm/%yy")) if  not Empresa.objects.get(id=self.kwargs['pk']).periodos.exists() else "01/01/{}".format(str(Empresa.objects.get(id=self.kwargs['pk']).periodos.order_by("-ano")[0].ano+1)[-2:])
+        initial['fecha_fin'] = "{}".format(date(date.today().year, 12, 31).strftime("%dd/%mm/%yy")) if  not Empresa.objects.get(id=self.kwargs['pk']).periodos.exists() else "31/12/{}".format(str(Empresa.objects.get(id=self.kwargs['pk']).periodos.order_by("-ano")[0].ano+1)[-2:])
+        initial["ano"] = "{}".format(date.today().year) if  not Empresa.objects.get(id=self.kwargs['pk']).periodos.exists() else Empresa.objects.get(id=self.kwargs['pk']).periodos.order_by("-ano")[0].ano +1
         return initial
 
 

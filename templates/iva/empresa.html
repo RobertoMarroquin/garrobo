@@ -1,0 +1,15 @@
+{% extends 'base.html' %} 
+{% load static %} {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+{% load crispy_forms_tags %} 
+{% block tittle %} Nueva Empresa {% endblock tittle %}
+ {% block nav %}{% endblock nav %} 
+ 
+ {% block content %}
+<form action="" method="post">
+    {% csrf_token %} {{form|crispy}}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock content %} 
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+{% endblock extrajs %}

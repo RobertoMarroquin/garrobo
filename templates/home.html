@@ -32,7 +32,7 @@
             <td>{{empresa.nombre}}</td>
             <td>{{empresa.num_registro}}</td>
             <td>{{empresa.nit}}</td>
-            <td class="text-center"><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-chart-line"></i></a></td>
+            <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'iva:detalle_cliente' empresa.id %}" role="button"><i class="fas fa-chart-line"></i></a></td>
             {% if empresa.contabilidad %}
             <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_periodo' empresa.id%}" role="button"><i class="fas fa-chart-bar"></i></a></td>
             {% else %}

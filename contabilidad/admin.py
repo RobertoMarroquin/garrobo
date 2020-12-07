@@ -12,6 +12,7 @@ class PeriodoAdmin(admin.ModelAdmin):
         "ano",
         "empresa",
         "creado",
+        "id",
     )
 
 

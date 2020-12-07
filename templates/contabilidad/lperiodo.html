@@ -5,20 +5,31 @@
 <h4 class='text-center'>Periodos Contables</h4>
 <hr/>
 <!--Botones de  accion-->
+{% if not empresa.catalogo %}
+<div class="alert alert-warning text-center" role="alert">
+    Debes crear un catalogo de cuentas para comenzar a crear Periodos Contables
+</div>
+{% endif %}
 <div class="row">
     <div class="col-md-2">
         <a name="" id="" class="btn btn-primary" href="{% url 'home' %}" role="button">Empresas</a>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-2"></div>
-    <div class="col-md-2">
-        {% if not empresa.catalogo %}
-        <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_catalogo' empresa.id%}')">Nuevo Catalogo</button> {% else %}
-        <a name="" id="" class="btn btn-primary" href="{% url 'cont:detalle_catalogo' empresa.catalogo.id %}" role="button"> Ver Catalogo</a> {% endif %}
+
+    {% if not empresa.catalogo %}
+
+    <div class="col-md-4 text-right">
+        <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_catalogo' empresa.id%}')">Nuevo Catalogo</button>
     </div>
-    <div class="col-md-2 align-items-right text-right">
-        <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_periodo' empresa.id%}')">Nuevo Periodo</button>
-    </div>
+</div>
+{% else %}
+<div class="col-md-2">
+    <a name="" id="" class="btn btn-primary" href="{% url 'cont:detalle_catalogo' empresa.catalogo.id %}" role="button"> Ver Catalogo</a>
+</div>
+<div class="col-md-2 align-items-right text-right">
+    <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_periodo' empresa.id%}')">Nuevo Periodo</button>
+</div>
 </div>
 <br>
 <!--Tabla de Periodos-->
@@ -33,7 +44,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for periodo in periodos %}
+        {% for periodo in periodos|dictsort:"ano" %}
         <tr class="text-center">
             <td>{{periodo.ano}}</td>
             <td>{{periodo.fecha_inicio}}</td>
@@ -52,9 +63,10 @@
 <div class="alert alert-warning" role="alert">
     No hay registros por mostrar
 </div>
-{% endif %}
+{% endif %} {% endif %}
 <!--Formulario Modal-->
 <div class="modal fade" id="creacion" role="dialog"></div>
+
 {% endblock content %} {% block datatable %}
 <!--Data  Table JS-->
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.js"></script>

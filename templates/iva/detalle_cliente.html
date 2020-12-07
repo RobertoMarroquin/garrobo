@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %} {{cliente.nombre}} {% endblock title %} {% block content %}
+<h4 class="text-center">
+    {{cliente.nombre}}
+</h4>
+<hr>
+<div class="row">
+    <div class="col-sm-2">
+        <a name="home" id="home" class="btn btn-primary" href="{% url 'home' %}" role="button">Clientes</a>
+    </div>
+</div>
+<br>
+<div class="alert alert-info text-center" role="alert">
+    Este es el modulo de Iva de Garrobo. Puedes seleccionar el tipo de libro de iva a trabajar.
+</div>
+<div class="card-deck text-center">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title ">Libro Consumidor Final</h5>
+            <p class="card-text"><a name="" id="" class="btn btn-primary" href="{% url 'iva:lista_libro' cliente.id 1 %}" role="button">Ver Libros</a></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Libro Contribuyente</h5>
+            <p class="card-text"><a name="" id="" class="btn btn-primary" href="{% url 'iva:lista_libro' cliente.id 2 %}" role="button">Ver Libros</a></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Libro Compras</h5>
+            <p class="card-text"><a name="" id="" class="btn btn-primary" href="{% url 'iva:lista_libro' cliente.id 3 %}" role="button">Ver Libros</a></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

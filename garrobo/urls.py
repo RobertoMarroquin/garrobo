@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("cont/", include('contabilidad.urls',namespace='cont')),
     path("emp/", include('empresas.urls',namespace='emp')),
+    path("iva/", include('iva.urls',namespace='iva')),
     path("", Home.as_view(), name="home"),
     path('searchableselect/', include('searchableselect.urls')),
 ]

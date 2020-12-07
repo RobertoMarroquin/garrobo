@@ -27,7 +27,7 @@ SECRET_KEY = '2ckl(csmue+hyx2103-=#^dctjn3qcau7rjf6vhq__t#l)-u!5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0",]
 
 
 # Application definition
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'empresas',
     'contabilidad',
     'searchableselect',
-
+    'iva',
 ]
 
 MIDDLEWARE = [
@@ -126,10 +126,15 @@ TIME_ZONE = 'America/El_Salvador'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
+DECIMAL_SEPARATOR = '.'
+
+USE_THOUSAND_SEPARATOR = True
+
+THOUSAND_SEPARATOR = ","
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

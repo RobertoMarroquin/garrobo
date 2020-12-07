@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Facturas CF {{libro.get_mes_display}}/{{libro.ano}}
+{% endblock title %}
+{% block content %} 
+<h4 class="text-center">{{libro.cliente.nombre}}</h4>
+<h4 class="text-center">Facturas Consumidor Final {{libro.get_mes_display}}/{{libro.ano}}</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-2">
+        <a name="" id="" class="btn btn-primary" href="{% url 'iva:lista_libro' libro.cliente.id libro.tipo %}" role="button">Libros</a>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2 align-items-right text-right"></div>
+</div>
+<br>
+<h5>Registrar Nueva Factura</h5>
+        <form action="" method="post">
+                {% csrf_token %}
+                {{form.libro|as_crispy_field}}                
+                <div class="container">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                            {{form.correlativoInicial|as_crispy_field}}
+                            </div>
+                            <div class="col-sm-4">
+                            {{form.correlativoFinal|as_crispy_field}}
+                            </div>
+                            <div class="col-sm-4">
+                            {{form.fecha|as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                            {{form.exento|as_crispy_field}}
+                            </div>
+                            <div class="col-sm-4">
+                            {{form.locales|as_crispy_field}}
+                            </div>
+                            <div class="col-sm-4">
+                            {{form.exportaciones|as_crispy_field}}
+                            </div>                        
+                        </div>
+
+                        <div class="form-group row">
+                        <div class="col-sm-4">
+                            {{form.ventasNSujetas|as_crispy_field}}
+                        </div>
+                        <div class="col-sm-4">
+                            {{form.ventaTotal|as_crispy_field}}
+                        </div>
+                        <div class="col-sm-4">
+                            {{form.ventaCtaTerceros|as_crispy_field}}
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                </div>
+            </form>
+<br>
+<div class="table-responsive">
+<table id="tabla1" class="table table-striped table-sm">
+<caption>Facturas Registradas</caption>
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>Correlativo Inicial</th>
+            <th>Correlativo Final</th>
+            <th>Fecha</th>
+            <th>Exento</th>
+            <th>Locales</th>
+            <th>Exportaciones</th>
+            <th>Ventas No Sujetas</th>
+            <th>Venta Total</th>
+            <th>Venta Terceros</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for fact in libro.facturacf.all|dictsort:"correlativoInicial" %}
+                    <tr class="text-center" >
+                         <td>{{fact.correlativoInicial}}</td>
+                         <td>{{fact.correlativoFinal}}</td>
+                         <td>{{fact.fecha}}</td>
+                         <td>{{fact.exento}}</td>
+                         <td>{{fact.locales}}</td>
+                         <td>{{fact.exportaciones}}</td>
+                         <td>{{fact.ventasNSujetas}}</td>
+                         <td>{{fact.ventaTotal}}</td>
+                         <td>{{fact.ventaCtaTerceros}}</td>
+                    </tr> 
+            {% endfor %}
+            <tr class="table-info text-center">
+                <td><b>TOTALES</b></td>
+                <td></td>
+                <td></td>
+                {% for total in totales %}
+                    <td>{{total}}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+</table>    
+</div>
+<br>
+<br>
+{% endblock content %}
+{% block datatable %}
+<!--Data  Table JS-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tabla').DataTable({
+            "info": true,
+            "lengthChange": true,
+            "pageLength": 30,
+            "order": []
+        });
+    });
+
+    $.extend(true, $.fn.dataTable.defaults, {
+        "language": {
+            "decimal": ".",
+            "thousands": ",",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoPostFix": "",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "loadingRecords": "Cargando...",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "searchPlaceholder": "Término de búsqueda",
+            "zeroRecords": "No se encontraron resultados",
+            "emptyTable": "Ningún dato disponible en esta tabla",
+            "aria": {
+                "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Nuevo",
+                "edit": "Cambiar",
+                "remove": "Borrar",
+                "copy": "Copiar",
+                "csv": "fichero CSV",
+                "excel": "tabla Excel",
+                "pdf": "documento PDF",
+                "print": "Imprimir",
+                "colvis": "Visibilidad columnas",
+                "collection": "Colección",
+                "upload": "Seleccione fichero...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d filas seleccionadas',
+                    0: 'clic fila para seleccionar',
+                    1: 'una fila seleccionada'
+                }
+            }
+        }
+    });
+</script>
+{% endblock datatable %}
+{% block extrajs %}
+
+
+ <script>
+    function totalizado(){
+       total = parseFloat( $('#id_exportaciones').val())+parseFloat($('#id_ventasNSujetas').val())+parseFloat($('#id_locales').val())+parseFloat($('#id_exento').val()) 
+        return total.toFixed(2)
+    } 
+    $('#id_ventasNSujetas').change(()=>{
+        $('#id_ventaTotal').val(totalizado())
+    })
+    $('#id_exportaciones').change(()=>{
+        $('#id_ventaTotal').val(totalizado())
+    })
+    $('#id_locales').change(()=>{
+        $('#id_ventaTotal').val(totalizado())
+    })
+    $('#id_exento').change(()=>{
+        $('#id_ventaTotal').val(totalizado())
+    })
+ </script>
+{% endblock extrajs %}
