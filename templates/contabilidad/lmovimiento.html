@@ -48,7 +48,7 @@
                 </td>
             </form>
         </tr>
-        {% for movimiento in movimientos %}
+        {% for movimiento in movimientos|dictsort:"creado" %}
         <tr class="text-center">
             <td>{{movimiento.cuenta}}</td>
             <td>{{movimiento.descripcion}}</td>

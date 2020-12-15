@@ -74,7 +74,7 @@ class Libro(models.Model):
     """Libro de partidas contables."""
     periodo = models.ForeignKey("contabilidad.Periodo", verbose_name=("Periodo"),related_name="libros", on_delete=models.CASCADE)
     mes = models.IntegerField(("Mes"), choices=meses)
-
+    creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)
     class Meta:
         verbose_name = 'Libro'
         verbose_name_plural = 'Libros'
@@ -88,6 +88,7 @@ class Partida(models.Model):
     fecha = models.DateField(("Fecha"), auto_now=False, auto_now_add=False)
     libro = models.ForeignKey('contabilidad.Libro', related_name='partidas', on_delete=models.CASCADE)
     descripcion = models.CharField(("Descripcion"), max_length=200,blank=True, null=True, default="Movimientos diarios")
+    creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)
     class Meta:
         verbose_name = 'Partida' 
         verbose_name_plural = 'Partidas'
@@ -104,7 +105,7 @@ class Movimiento(models.Model):
     monto_haber = models.FloatField(("Monto Acreedor"), blank=True, null=True,default=0.00)
     cuenta = models.ForeignKey('contabilidad.Subcuenta',verbose_name="Cuenta", related_name='movimientos', on_delete=models.CASCADE)
     descripcion = models.CharField(("Descripcion"), max_length=200)
-
+    creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)
     class Meta:
         verbose_name = 'Movimiento'
         verbose_name_plural = 'Movimientos'

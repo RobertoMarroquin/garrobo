@@ -1,5 +1,6 @@
 #django libs
 from django import forms
+from django.db.models.aggregates import Count
 from django.forms import widgets
 #self libs
 from .models import *
@@ -96,7 +97,7 @@ class MovimientoF(forms.ModelForm):
         for field in self.fields:
             self.fields[field].label = False
         # restrict the queryset of 'Cuenta'
-        self.fields['cuenta'].queryset = self.fields['cuenta'].queryset.filter(catalogo=catalogo,es_mayor=False)
+        self.fields['cuenta'].queryset = self.fields['cuenta'].queryset.filter(catalogo=catalogo,es_mayor=False).annotate(subcuenta_existe=Count('subcuentas')).filter(subcuenta_existe=0).order_by("codigo")
        
 
     def save(self,commit = True, *args, **kwargs):

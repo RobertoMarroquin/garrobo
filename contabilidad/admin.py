@@ -37,7 +37,7 @@ class CuentaAdmin(admin.ModelAdmin):
 @admin.register(SubCuenta)
 class SubCuentaAdmin(admin.ModelAdmin):
     '''Admin View for SubCuenta'''
-    list_display = ("catalogo",
+    list_display = ("id","catalogo",
         "codigo",
         "nombre",
         "cuenta_padre",
@@ -55,6 +55,7 @@ class LibroAdmin(admin.ModelAdmin):
         "mes",
         "periodo",
     )
+    search_fields = ["mes","periodo__empresa__nombre","periodo__empresa__num_registro"]
 
 class MovimientoInline(admin.TabularInline):
     '''Tabular Inline View for Movimiento'''

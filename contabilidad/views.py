@@ -126,8 +126,8 @@ class MovimientoCV(CreateView):
         context = super(MovimientoCV, self).get_context_data(**kwargs)
         context['partida'] = Partida.objects.get(id=self.kwargs["partida"])
         context["movimientos"] = Movimiento.objects.filter(partida__id=self.kwargs["partida"]) 
-        context["haber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_haber'))["monto_haber__sum"]))   if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
-        context["deber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_deber'))["monto_deber__sum"]))   if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
+        context["haber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_haber'))["monto_haber__sum"])) if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
+        context["deber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_deber'))["monto_deber__sum"])) if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
         
         return context
 
@@ -185,7 +185,8 @@ class PartidaCV(CreateView):
         ano = Libro.objects.get(id=self.kwargs['libro']).periodo.ano
         initial = super(PartidaCV,self).get_initial()
         initial['libro'] = Libro.objects.get(id=self.kwargs['libro'])
-        initial["fecha"] = Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + datetime.timedelta(days=1) if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else datetime.datetime.strptime(f"01/{mes}/{ano}",'%d/%m/%Y')
+        initial["fecha"] = (Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + datetime.timedelta(days=1)).strftime('%d/%m/%y') if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else date(day=1,month=mes,year=ano).strftime('%d/%m/%y')
+        print(initial["fecha"])
         return initial
 
     def get_context_data(self, **kwargs):
