@@ -1,4 +1,5 @@
 #third party Libs
+from datetime import datetime
 import numpy as np
 import pandas as pd
 import openpyxl as ox
@@ -13,6 +14,7 @@ import os
 #django libs
 from django.utils.dateformat import DateFormat
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 #self libs
 from .models import *
@@ -30,20 +32,23 @@ def get_ruta_cuenta(cuenta_id):
         cuentas.append(cuenta.cuenta_principal.codigo)
     return cuentas
     
+
 def cuenta_largo(tamano,cadena):
     if len(cadena) == tamano:
         return True
     else:
         return False
+
+
 def imprimir_auxiliar(libro_id):
     libro = Libro.objects.get(id=libro_id)
-    partidas = libro.partidas.all()
     catalogo = libro.periodo.empresa.catalogo
     #Listado de movimientos por libro
     movimientos = Movimiento.objects.filter(partida__libro__id=libro_id).order_by("cuenta__codigo")
     todos = Movimiento.objects.filter(cuenta__catalogo = catalogo)
     #lista de codigos de los movimientos involucrados
     codigos = list(Movimiento.objects.filter(partida__libro__id=libro_id).distinct().values("cuenta__codigo"))
+    cuentas_mayores = list(catalogo.subcuentas.filter(es_mayor=True))
     #diccionario de codigos
     dic_c = {}
     for codigo in codigos:
@@ -65,19 +70,37 @@ def imprimir_auxiliar(libro_id):
     wb = writer.book
     ws = wb.create_sheet("auxiliar")
     dfs = []
+    
     for i in dic_c.items():
         df = pd.DataFrame(i[1])
         dfs.append(df)
     lista_cuentas = []    
     for i in movimientos:
         lista_cuentas += get_ruta_cuenta(i.cuenta.id)
+    for i in cuentas_mayores:
+        lista_cuentas += get_ruta_cuenta(i.id)
     lista_cuentas = sorted(set(lista_cuentas))
-    ws["A1"],ws["D1"],ws["C1"],ws["E1"],ws["F1"],ws["G1"],ws["H1"] = "Cuentas", "Descripcion","Fecha","Monto Anterior","Haber","Deber","Monto Actual"
-    row = 2
+    ws.merge_cells('A1:H1')
+    ws["A1"] = catalogo.empresa.nombre
+    ws.merge_cells('A2:H2')
+    ws["A2"] = f"Libro Auxiliar del mes de {libro.get_mes_display()} de {libro.periodo.ano}"
+    ws["A2"].border = Border(bottom=Side(border_style="thin", color="000000"))
+    ws["A3"],ws["E3"],ws["F3"],ws["G3"],ws["H3"] = "Cuentas","Monto Anterior","Haber","Deber","Monto Actual"
+    row = 4
     for i in lista_cuentas:
         ws[f"A{row}"] = i
         largo = len(i)
         row_aux = row
+        rd = ws.row_dimensions[row]
+        rd.height = 15
+        cd = ws.column_dimensions["B"]
+        cd.width = 30
+        cd = ws.column_dimensions["A"]
+        cd.width = 12
+        cd = ws.column_dimensions["C"]
+        cd.width = 5
+        cd = ws.column_dimensions["D"]
+        cd.width = 5
         if largo == 1:
             ws[f"B{row}"] = Cuenta.objects.get(catalogo=catalogo,codigo=i).nombre.upper()
             ws[f"A{row}"].border = Border(bottom=Side(style='thin'))
@@ -86,27 +109,40 @@ def imprimir_auxiliar(libro_id):
             ws[f"B{row}"] = SubCuenta.objects.get(catalogo=catalogo,codigo=i).nombre
         row+=1
         for movimiento in movimientos.filter(cuenta__codigo = i):
-            #ws.insert_rows(row+1,amount=1)
-            ws[f"C{row}"] = movimiento.partida.fecha
+            ws[f"A{row}"] = f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}"
+            ws[f"B{row}"] = movimiento.descripcion
             if movimiento.cuenta.codigo[0] in ("2",'3','5'):
-                ws[f"D{row}"] = movimiento.descripcion
                 celda = (todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_anterior = Sum("monto_haber")-Sum("monto_deber"))["monto_anterior"]) if (todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_anterior = Sum("monto_haber")-Sum("monto_deber"))["monto_anterior"]) is not None else 0.00
-                ws[f"E{row}"] = celda
-                ws[f"F{row}"] = movimiento.monto_haber
-                ws[f"G{row}"] = movimiento.monto_deber
+                ws[f"E{row}"] = "{0:.2f}".format(celda)
+                ws[f"F{row}"] = "{0:.2f}".format(movimiento.monto_haber)
+                ws[f"G{row}"] = "{0:.2f}".format(movimiento.monto_deber)
                 celda = (todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_actual = Sum("monto_haber")-Sum("monto_deber"))["monto_actual"]) if (todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_actual = Sum("monto_haber")-Sum("monto_deber"))["monto_actual"]) is not None else 0.00
-                ws[f"H{row}"] = celda + movimiento.monto_haber - movimiento.monto_deber
+                ws[f"H{row}"] = "{0:.2f}".format(celda + movimiento.monto_haber - movimiento.monto_deber)
             else:
-                ws[f"D{row}"] = movimiento.descripcion
                 celda = todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_anterior = Sum("monto_deber")-Sum("monto_haber"))["monto_anterior"] if todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_anterior = Sum("monto_deber")-Sum("monto_haber"))["monto_anterior"] is not None else 0.00
-                ws[f"E{row}"] = celda
-                ws[f"F{row}"] = movimiento.monto_haber
-                ws[f"G{row}"] = movimiento.monto_deber
+                ws[f"E{row}"] = "{0:.2f}".format(celda)
+                ws[f"F{row}"] = "{0:.2f}".format(movimiento.monto_haber)
+                ws[f"G{row}"] = "{0:.2f}".format(movimiento.monto_deber)
                 celda = todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_actual = Sum("monto_deber")-Sum("monto_haber"))["monto_actual"] if todos.filter(partida__fecha__lte=movimiento.partida.fecha,creado__lt=movimiento.creado,cuenta=movimiento.cuenta).aggregate(monto_actual = Sum("monto_deber")-Sum("monto_haber"))["monto_actual"] is not None else 0.00 
-                ws[f"H{row}"] = celda + movimiento.monto_deber - movimiento.monto_haber
+                ws[f"H{row}"] = "{0:.2f}".format(celda + movimiento.monto_deber - movimiento.monto_haber)
+            rd.height = 15    
             row+=1
+        if i[0] in ("1",'4','6'):
+            total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+            total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+            ws[f"E{row_aux}"] = "{0:.2f}".format(total_anterior)
+            ws[f"F{row_aux}"] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"])
+            ws[f"G{row_aux}"] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"])
+            ws[f"H{row_aux}"] = "{0:.2f}".format(total_actual)
+
+        else:
+            total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+            total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+            ws[f"E{row_aux}"] = "{0:.2f}".format(total_anterior)
+            ws[f"F{row_aux}"] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"])
+            ws[f"G{row_aux}"] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"])
+            ws[f"H{row_aux}"] = "{0:.2f}".format(total_actual)
     writer.save()
-    
     
 
 #-------------------------------------------------------------------------------------------#
@@ -231,7 +267,8 @@ def imprimir_balance(libro_id):
 
     writer.save()
 
-##-------------------------------------------------------------------------------------------------------------------##    
+
+#-------------------------------------------------------------------------------------------#    
 def imprimir_mayor(libro_id):
     libro = Libro.objects.get(id=libro_id)
     pass

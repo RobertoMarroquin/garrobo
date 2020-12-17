@@ -50,3 +50,7 @@ def actualizacion_saldos(cuenta, movimiento):
         cuenta_principal.save()
 
     return "Se Actualizaron todas las cuentas" 
+
+
+def cerrar_periodos():
+    pass
