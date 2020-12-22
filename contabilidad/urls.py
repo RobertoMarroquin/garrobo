@@ -32,5 +32,10 @@ urlpatterns = [
     path("actualizar/subcuenta/<int:pk>", SubCuentaUV.as_view(), name="act_subcuenta"),
     path("nueva/subcuenta/<int:catalogo>", SubCuentaCV.as_view(), name="nueva_subcuenta"),
     #----------------------------------------------------------------------------------#
+    #-----------------------------------Exportacion------------------------------------#
+    path("auxiliar/<int:id_libro>", Auxiliar.as_view(), name="auxiliar"),
+    path("diario_mayor/<int:id_libro>", DiarioMayorView.as_view(), name="diario"),
+    path("libro_mayor/<int:id_libro>", LibroMayorView.as_view(), name="mayor"),
+    #----------------------------------------------------------------------------------#
     #----------------------------------------------------------------------------------#
 ]

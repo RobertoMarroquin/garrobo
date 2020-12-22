@@ -7,12 +7,41 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
 from django.urls import reverse
 from django.db.models import Sum
+from django.http.response import FileResponse
 #self libs
 from .models import *
 from empresas.models import Empresa
+from .export import *
+
+#Vistas Exportacion
+class Auxiliar(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_auxiliar(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
+class DiarioMayorView(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_diario_mayor(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx.filename, 'rb'))
+        return response
+
+
+class LibroMayorView(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_mayor(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx.filename, 'rb'))
+        return response
+
 
 #Vistas Subcuenta
-
 class SubCuentaCV(CreateView):
     model = SubCuenta
     template_name = "contabilidad/modal.html"
