@@ -9,6 +9,7 @@ urlpatterns = [
     #------------------------------------periodo--------------------------------------#
     path("nuevo/periodo/<int:pk>/", PeriodoCV.as_view(), name="nuevo_periodo"),
     path("empresa/<int:emp>/periodos/", PeriodoL.as_view(), name="lista_periodo"),
+    path("cierre/<int:id_periodo>", Cierre.as_view(), name="cierre"),#cierre contable y exportacion de balance general
     #---------------------------------------------------------------------------------#
     #-------------------------------------libro---------------------------------------#
     path("nuevo/libro/<int:pk>/", LibroCV.as_view(), name="nuevo_libro"),

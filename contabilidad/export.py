@@ -122,22 +122,30 @@ def imprimir_diario_mayor(libro_id):
             
         else:
             ws.write(row_aux,1,SubCuenta.objects.get(catalogo=catalogo,codigo=i).nombre)
+        #bordes
+        bordes = wb.add_format()
+        if largo == 1:
+            bordes.set_bottom(2)
+        elif largo == 2:
+            bordes.set_bottom(1)
+        elif largo == 4:
+            bordes.set_bottom(3)
         #Montos
         if i[0] in ("1",'4','6'):
             total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
             total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
-            ws.write(row_aux,4,"${0:.2f}".format(total_anterior)) 
-            ws.write(row_aux,5, "${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]))
-            ws.write(row_aux,6, "${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]))
-            ws.write(row_aux,7, "${0:.2f}".format(total_actual))
-
+            ws.write(row_aux,4,"${0:.2f}".format(total_anterior),bordes) 
+            ws.write(row_aux,5, "${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
+            ws.write(row_aux,6, "${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)
+            ws.write(row_aux,7, "${0:.2f}".format(total_actual),bordes)
         else:
             total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
             total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
-            ws.write(row_aux,4,"${0:.2f}".format(total_anterior))
-            ws.write(row_aux,5,"${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]))
-            ws.write(row_aux,6,"${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]))
-            ws.write(row_aux,7,"${0:.2f}".format(total_actual))
+            ws.write(row_aux,4,"${0:.2f}".format(total_anterior),bordes)
+            ws.write(row_aux,5,"${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
+            ws.write(row_aux,6,"${0:.2f}".format(movimientos.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)
+            ws.write(row_aux,7,"${0:.2f}".format(total_actual),bordes)
+        #Resumen de cuentas
         if largo == 4:
             for partida in Partida.objects.filter(libro=libro):
                 totales = partida.movimientos.filter(cuenta__codigo__startswith=i).aggregate(haber=Coalesce(Sum("monto_haber"),0),deber=Coalesce(Sum("monto_deber"),0))
@@ -146,16 +154,6 @@ def imprimir_diario_mayor(libro_id):
                 if haber>0 or deber>0: 
                     row+=1
                     ws.set_row(row,20)
-                    if i[0] in ("2","3","5"):
-                        actual = Movimiento.objects.filter(partida__libro__periodo=libro.periodo, partida__fecha__lte=partida.fecha,cuenta__codigo__startswith=i).aggregate(actual=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["actual"]
-                        anterior = Movimiento.objects.filter(partida__libro__periodo=libro.periodo, partida__fecha__lt=partida.fecha,cuenta__codigo__startswith=i).aggregate(anterior=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["anterior"]
-                        ws.write(row,4,"${0:.2f}".format(anterior))
-                        ws.write(row,7,"${0:.2f}".format(actual))
-                    else:
-                        actual = Movimiento.objects.filter(partida__libro__periodo=libro.periodo, partida__fecha__lte=partida.fecha, cuenta__codigo__startswith=i).aggregate(actual=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["actual"]
-                        anterior = Movimiento.objects.filter(partida__libro__periodo=libro.periodo, partida__fecha__lt=partida.fecha, cuenta__codigo__startswith=i).aggregate(anterior=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["anterior"]
-                        ws.write(row,4,"${0:.2f}".format(anterior))
-                        ws.write(row,7,"${0:.2f}".format(actual))
                     ws.write(row,1,f"{partida.fecha.strftime('%d/%m/%Y')}")
                     ws.write(row,5,"${0:.2f}".format(haber))
                     ws.write(row,6,"${0:.2f}".format(deber))
@@ -189,7 +187,7 @@ def imprimir_auxiliar(libro_id):
         )
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_auxiliar.xlsx", 
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_AUXILIAR.xlsx", 
         engine='openpyxl')
     wb = writer.book
     ws = wb.create_sheet("auxiliar")
@@ -515,9 +513,131 @@ def imprimir_estado_resultado(periodo_id):
     pass
 
 
-def imprimir_balance_general(periodo_id):
+def imprimir_auxiliar_balance_general(periodo_id):
     periodo = Periodo.objects.get(id=periodo_id)
-    pass
+    catalogo = Catalogo.objects.get(empresa=periodo.empresa)
+    movimientos = Movimiento.objects.exclude(cuenta__codigo__startswith="4").exclude(cuenta__codigo__startswith="6").exclude(cuenta__codigo__startswith="5").filter(partida__libro__periodo=periodo)
+    #lista de cuentas
+    lista_cuentas = movimientos.values("cuenta__codigo")
+    lista_cuentas = list(lista_cuentas)
+    lista_limpia = []
+    for cuenta in lista_cuentas:
+        lista_limpia.append(cuenta['cuenta__codigo'])
+    lista_cuentas = sorted(set(lista_limpia))
+    lista_todas_cuentas = []
+    for cuenta in lista_cuentas:
+        ruta = get_ruta_cuenta(SubCuenta.objects.get(catalogo=catalogo.id,codigo=cuenta).id)
+        lista_todas_cuentas += ruta
+    lista_todas_cuentas = lista_cuentas + lista_todas_cuentas
+    lista_todas_cuentas = sorted(set(lista_todas_cuentas))
+    mas_larga = 0
+    for cuenta in lista_cuentas:
+        if len(cuenta) > mas_larga:
+            mas_larga = len(cuenta) 
+    #Apertura de Libro Excel
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/{periodo.empresa.nombre}_{periodo.ano}_Anexos_Balance_General.xlsx", 
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet("Anexos Balance Gnral")
+    #Configuracion de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10, 
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    ws.set_column(1,1,40)
+    ws.set_column(0,0,5)
+    #Escritura de cuerpo
+    row = 3
+    #Inicio de pocision de montos
+    if mas_larga == 12:
+        inicio = 4
+    elif mas_larga == 10:
+        inicio = 3
+    elif mas_larga == 8:
+        inicio = 2
+    elif mas_larga == 6:
+        inicio = 1
+    elif mas_larga == 4:
+        inicio = 0
+    else:
+        inicio = 0
+
+    for i in lista_todas_cuentas:
+        largo = len(i)
+        if largo == 1:
+            row += 1
+        #ws.write(row, 0,i)
+        row_aux = row
+        ws.set_row(row_aux,35)
+        cell_format = wb.add_format()
+        cell_format.set_text_wrap()
+        cell_format.set_font_size(10)
+        #Nombre de cuenta
+        if largo == 1:
+            ws.write(row_aux,1,Cuenta.objects.get(catalogo=catalogo,codigo=i).nombre.upper(),cell_format)
+            
+        else:
+            ws.write(row_aux,1,SubCuenta.objects.get(catalogo=catalogo,codigo=i).nombre,cell_format)
+        #bordes
+        ws.set_row(row_aux,20)
+        bordes = wb.add_format()
+        if largo == 1:
+            bordes.set_bottom(2)
+        elif largo == 2:
+            bordes.set_bottom(1)
+        elif largo == 4:
+            bordes.set_bottom(3)
+        #Montos
+        if i[0] in ("1",'4','6'):
+            total_cuenta = Movimiento.objects.filter(partida__libro__periodo=periodo,cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+        else:
+            total_cuenta = Movimiento.objects.filter(partida__libro__periodo=periodo,cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+        if largo == 1:
+            if total_cuenta > 0:
+                ws.write(row_aux,inicio+5,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio+5,"$({0:.2f})".format(total_cuenta),bordes)
+        elif largo == 2:
+            if total_cuenta > 0:
+                ws.write(row_aux,inicio+4,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio+4,"$({0:.2f})".format(total_cuenta),bordes)
+        elif largo == 4:
+            if total_cuenta > 0:
+                ws.write(row_aux,inicio+3,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio+3,"$({0:.2f})".format(total_cuenta),bordes)
+        elif largo == 6:
+            if total_cuenta > 0:  
+                ws.write(row_aux,inicio+2,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio+2,"$({0:.2f})".format(total_cuenta),bordes)
+        elif largo == 8:
+            if total_cuenta > 0:
+                ws.write(row_aux,inicio+1,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio+1,"$({0:.2f})".format(total_cuenta),bordes)
+        elif largo == 10:
+            if total_cuenta > 0:
+                ws.write(row_aux,inicio,"${0:.2f}".format(total_cuenta),bordes)
+            else:
+                ws.write(row_aux,inicio,"$({0:.2f})".format(total_cuenta),bordes)
+        row+=1
+    ws.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
+    ws.merge_range("A2:J2",f"ANEXOS AL BALANCE GENERAL AL 31 DE DICIEMBRE DE {periodo.ano}",header_format)
+    writer.save()
+    return writer.book
 
 
 def imprimir_estado_cambio_patrimonio(periodo_id):

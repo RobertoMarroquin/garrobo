@@ -12,6 +12,7 @@ class Periodo(models.Model):
     ano = models.IntegerField(("Año"),default=2020,validators=[MaxValueValidator(2100),MinValueValidator(2010)])
     empresa = models.ForeignKey('empresas.Empresa', related_name='periodos', on_delete=models.CASCADE)
     creado = models.DateField(("Creado"), auto_now=False, auto_now_add=True)
+    cerrado = models.BooleanField(("Cerrado"),default=False)
     class Meta:
         """Meta definition for Periodo."""
 
@@ -101,8 +102,8 @@ class Partida(models.Model):
 class Movimiento(models.Model):
     """Moviemientos transaccionales  de partidas."""
     partida = models.ForeignKey("contabilidad.Partida", verbose_name=("Partida"),related_name="movimientos", on_delete=models.CASCADE)
-    monto_deber = models.FloatField(("Monto Deudor"), blank=True, null=True,default=0.00)
-    monto_haber = models.FloatField(("Monto Acreedor"), blank=True, null=True,default=0.00)
+    monto_deber = models.FloatField(("Monto Debe"), blank=True, null=True,default=0.00)
+    monto_haber = models.FloatField(("Monto Habe"), blank=True, null=True,default=0.00)
     cuenta = models.ForeignKey('contabilidad.Subcuenta',verbose_name="Cuenta", related_name='movimientos', on_delete=models.CASCADE)
     descripcion = models.CharField(("Descripcion"), max_length=200)
     creado = models.DateTimeField(("Creado"),auto_now=False, auto_now_add=True)

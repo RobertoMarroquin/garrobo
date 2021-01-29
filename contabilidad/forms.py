@@ -1,6 +1,7 @@
 #django libs
 from django import forms
 from django.db.models.aggregates import Count
+from django.db.models import Sum
 from django.forms import widgets
 #self libs
 from .models import *
@@ -71,7 +72,6 @@ class SubCuentaF(forms.ModelForm):
         # restrict the queryset of 'Cuenta'
         self.fields['catalogo'].queryset = self.fields['catalogo'].queryset.filter(id=catalogo.id)
        
-
 
 class LibroF(forms.ModelForm):
     class Meta:

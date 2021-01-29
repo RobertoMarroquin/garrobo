@@ -18,7 +18,7 @@ class PeriodoAdmin(admin.ModelAdmin):
 
 class CatalogoAdmin(admin.ModelAdmin):
     list_display = ("empresa",
-        "creado",
+        "creado","id"
     )
 
 admin.site.register(Catalogo, CatalogoAdmin)

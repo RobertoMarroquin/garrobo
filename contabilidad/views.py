@@ -1,4 +1,5 @@
 #python libs
+from contabilidad.cierre import cierre
 from datetime import date
 import datetime
 #django libs
@@ -14,6 +15,15 @@ from empresas.models import Empresa
 from .export import *
 
 #Vistas Exportacion
+class Cierre(View):
+    def get(self, request, *args, **kwargs):
+        id_periodo = self.kwargs.get('id_periodo')
+        cierre(id_periodo)
+        libroEx = imprimir_auxiliar_balance_general(id_periodo)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx.filename, 'rb'))
+        return response
+
 class Auxiliar(View):
     def get(self, request, *args, **kwargs):
         id_libro = self.kwargs.get('id_libro')
@@ -288,6 +298,7 @@ class LibroCV(CreateView):
         context['obj_padre'] = Periodo.objects.get(id=self.kwargs['pk'])
         return context
 
+
 class LibroLV(ListView):
     model = Libro
     template_name = "contabilidad/llibro.html"
@@ -296,6 +307,7 @@ class LibroLV(ListView):
     def get_context_data(self, **kwargs):
         context = super(LibroLV,self).get_context_data(**kwargs)
         context["periodo"] = Periodo.objects.get(id=self.kwargs['periodo'])
+        context["diciembre"] = True if Libro.objects.filter(periodo=self.kwargs['periodo'],mes=12).exists() else False
         return context
 
     def get_queryset(self):

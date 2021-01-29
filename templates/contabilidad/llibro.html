@@ -9,7 +9,12 @@
         <a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_periodo' periodo.empresa.id %}" role="button">Periodos</a>
     </div>
     <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        {% if diciembre and not periodo.cerrado %}
+        <a name="" id="" class="btn btn-primary" href="{% url 'cont:cierre' periodo.id %}" role="button">Cerrar Periodo</a>
+        {% endif %}
+    </div>
     <div class="col-md-2 align-items-right text-right">
         <button class="btn btn-success" onclick="show_modal('{% url 'cont:nuevo_libro' periodo.id %}')">Nuevo Libro</button>
     </div>
@@ -26,7 +31,6 @@
             <th>Exportar Diario Mayor</th>
             <th>Exportar Libro Mayor</th>
             <th>Partidas</th>
-
         </tr>
     </thead>
     <tbody>
