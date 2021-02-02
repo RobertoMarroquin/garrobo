@@ -9,7 +9,9 @@ urlpatterns = [
     #------------------------------------periodo--------------------------------------#
     path("nuevo/periodo/<int:pk>/", PeriodoCV.as_view(), name="nuevo_periodo"),
     path("empresa/<int:emp>/periodos/", PeriodoL.as_view(), name="lista_periodo"),
-    path("cierre/<int:id_periodo>", Cierre.as_view(), name="cierre"),#cierre contable y exportacion de balance general
+    path("cierre/<int:id_periodo>", Cierre.as_view(), name="cierre"),#cierre contable
+    path("anexo/<int:id_periodo>", Anexos.as_view(), name="anexo"),#Anexos al balance
+    path("balance/<int:id_periodo>", Balance.as_view(), name="balance"),#Balance General
     #---------------------------------------------------------------------------------#
     #-------------------------------------libro---------------------------------------#
     path("nuevo/libro/<int:pk>/", LibroCV.as_view(), name="nuevo_libro"),

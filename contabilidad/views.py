@@ -23,6 +23,24 @@ class Cierre(View):
         # create the HttpResponse object ...
         response = FileResponse(open(libroEx.filename, 'rb'))
         return response
+        
+class Anexos(View):
+    def get(self, request, *args, **kwargs):
+        id_periodo = self.kwargs.get('id_periodo')
+        libroEx = imprimir_auxiliar_balance_general(id_periodo)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx.filename, 'rb'))
+        return response
+
+
+class Balance(View):
+    def get(self, request, *args, **kwargs):
+        id_periodo = self.kwargs.get('id_periodo')
+        libroEx = imprimir_balance_general(id_periodo)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx.filename, 'rb'))
+        return response
+
 
 class Auxiliar(View):
     def get(self, request, *args, **kwargs):

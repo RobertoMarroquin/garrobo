@@ -13,6 +13,7 @@ class PeriodoAdmin(admin.ModelAdmin):
         "empresa",
         "creado",
         "id",
+        "cerrado",
     )
 
 

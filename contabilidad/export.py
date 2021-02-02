@@ -513,6 +513,110 @@ def imprimir_estado_resultado(periodo_id):
     pass
 
 
+def imprimir_balance_general(periodo_id):
+    periodo = Periodo.objects.get(id=periodo_id)
+    catalogo = Catalogo.objects.get(empresa=periodo.empresa)
+    movimientos = Movimiento.objects.exclude(cuenta__codigo__startswith="4").exclude(cuenta__codigo__startswith="6").exclude(cuenta__codigo__startswith="5").filter(partida__libro__periodo=periodo)
+    #lista de cuentas
+    lista_cuentas = movimientos.values("cuenta__codigo")
+    lista_cuentas = list(lista_cuentas)
+    lista_limpia = []
+    for cuenta in lista_cuentas:
+        lista_limpia.append(cuenta['cuenta__codigo'])
+    lista_cuentas = sorted(set(lista_limpia))
+    lista_todas_cuentas = []
+    for cuenta in lista_cuentas:
+        ruta = get_ruta_cuenta(SubCuenta.objects.get(catalogo=catalogo.id,codigo=cuenta).id)
+        lista_todas_cuentas += ruta
+    lista_todas_cuentas = lista_cuentas + lista_todas_cuentas
+    lista_todas_cuentas = sorted(set(lista_todas_cuentas))
+    mas_larga = 0
+    for cuenta in lista_cuentas:
+        if len(cuenta) > mas_larga:
+            mas_larga = len(cuenta) 
+    #Apertura de Libro Excel
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/{periodo.empresa.nombre}_{periodo.ano}_Balance_General.xlsx", 
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet("Balance General")
+    #Configuracion de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10, 
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    ws.set_column(1,1,40)
+    ws.set_column(0,0,5)
+    #Escritura de cuerpo
+    row = 3
+    #Inicio de pocision de montos
+    inicio = 3
+    
+    for i in lista_todas_cuentas:
+        largo = len(i)
+        if largo <= 4:
+            if largo == 1:
+                row += 1
+            #ws.write(row, 0,i)
+            row_aux = row
+            ws.set_row(row_aux,35)
+            cell_format = wb.add_format()
+            cell_format.set_text_wrap()
+            cell_format.set_font_size(10)
+            #Nombre de cuenta
+            if largo == 1:
+                ws.write(row_aux,1,Cuenta.objects.get(catalogo=catalogo,codigo=i).nombre.upper(),cell_format)
+                
+            else:
+                ws.write(row_aux,1,SubCuenta.objects.get(catalogo=catalogo,codigo=i).nombre,cell_format)
+            #bordes
+            ws.set_row(row_aux,20)
+            bordes = wb.add_format()
+            if largo == 1:
+                bordes.set_bottom(2)
+            elif largo == 2:
+                bordes.set_bottom(1)
+            elif largo == 4:
+                bordes.set_bottom(3)
+            #Montos
+            if i[0] in ("1",'4','6'):
+                total_cuenta = Movimiento.objects.filter(partida__libro__periodo=periodo,cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+            else:
+                total_cuenta = Movimiento.objects.filter(partida__libro__periodo=periodo,cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+            if largo == 1:
+                if total_cuenta > 0:
+                    ws.write(row_aux,inicio+2,"${0:.2f}".format(total_cuenta),bordes)
+                else:
+                    ws.write(row_aux,inicio+2,"$({0:.2f})".format(total_cuenta),bordes)
+            elif largo == 2:
+                if total_cuenta > 0:
+                    ws.write(row_aux,inicio+1,"${0:.2f}".format(total_cuenta),bordes)
+                else:
+                    ws.write(row_aux,inicio+1,"$({0:.2f})".format(total_cuenta),bordes)
+            elif largo == 4:
+                if total_cuenta > 0:
+                    ws.write(row_aux,inicio,"${0:.2f}".format(total_cuenta),bordes)
+                else:
+                    ws.write(row_aux,inicio,"$({0:.2f})".format(total_cuenta),bordes)
+            
+            row+=1
+    ws.merge_range("A1:G1",f"{catalogo.empresa.nombre}",header_format)
+    ws.merge_range("A2:G2",f"BALANCE GENERAL AL 31 DE DICIEMBRE DE {periodo.ano}",header_format)
+    writer.save()
+    return writer.book
+
+
+
 def imprimir_auxiliar_balance_general(periodo_id):
     periodo = Periodo.objects.get(id=periodo_id)
     catalogo = Catalogo.objects.get(empresa=periodo.empresa)

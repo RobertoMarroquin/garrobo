@@ -54,13 +54,13 @@
             <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_libro' periodo.id%}" role="button"><i class="fas fa-book"></i></a></td>
             {% else %}
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-book"></i></button></td>
-            {% endif %}
-            {% if periodo.cerrado %}
-            <td class="text-center"><a name="" id="" class="btn btn-success" href="{% url 'cont:cierre' periodo.id%}" role="button"><i class="fas fa-check-circle"></i></a></td>
+            {% endif %} {% if periodo.cerrado %}
+            <td class="text-center"><a name="" id="" class="btn btn-success" href="{% url 'cont:anexo' periodo.id%}" role="button"><i class="fas fa-check-circle">Anexos</i></a>
+                <a name="" id="" class="btn btn-success" href="{% url 'cont:balance' periodo.id%}" role="button"><i class="fas fa-check-circle">Balance</i></a></td>
             {% else %}
-            <td class="text-center"><button type="button" class="btn btn-outline-danger" disabled><i class="fas fa-times-circle"></i></button></td>  
+            <td class="text-center"><button type="button" class="btn btn-outline-danger" disabled><i class="fas fa-times-circle"></i></button></td>
             {% endif %}
-            
+
         </tr>
         {% endfor %}
     </tbody>
@@ -82,7 +82,7 @@
         $('#tabla').DataTable({
             "info": true,
             "lengthChange": true,
-            "pageLength": 25,
+            "pageLength": 10,
             "order": []
         });
     });
