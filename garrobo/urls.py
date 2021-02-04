@@ -19,10 +19,10 @@ from django.urls.conf import include
 from empresas.views import Home
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("cont/", include('contabilidad.urls',namespace='cont')),
-    path("emp/", include('empresas.urls',namespace='emp')),
-    path("iva/", include('iva.urls',namespace='iva')),
-    path("", Home.as_view(), name="home"),
+    path('garrobo/admin/', admin.site.urls),
+    path("garrobo/cont/", include('contabilidad.urls',namespace='cont')),
+    path("garrobo/emp/", include('empresas.urls',namespace='emp')),
+    path("garrobo/iva/", include('iva.urls',namespace='iva')),
+    path("garrobo/", Home.as_view(), name="home"),
     path('searchableselect/', include('searchableselect.urls')),
 ]
