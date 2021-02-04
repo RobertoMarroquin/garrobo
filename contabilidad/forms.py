@@ -29,6 +29,13 @@ class PeriodoForm(forms.ModelForm):
             "ano",
         )
 
+    def __init__(self, *args, **kwargs):
+        empresa = kwargs.pop('empresa', None)
+        super(PeriodoForm, self).__init__(*args, **kwargs)
+        # restrict the queryset of 'Cuenta'
+        self.fields['empresa'].queryset = self.fields['empresa'].queryset.filter(id=empresa.id)
+       
+
 
 class CatalogoF(forms.ModelForm):
     class Meta:
@@ -41,6 +48,12 @@ class CatalogoF(forms.ModelForm):
             cat.save()
             pl(cat)
         return cat
+    
+    def __init__(self, *args, **kwargs):
+        empresa = kwargs.pop('empresa', None)
+        super(CatalogoF, self).__init__(*args, **kwargs)
+        # restrict the queryset of 'Cuenta'
+        self.fields['empresa'].queryset = self.fields['empresa'].queryset.filter(id=empresa.id)
 
 
 class CuentaF(forms.ModelForm):

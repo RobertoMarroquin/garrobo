@@ -9,6 +9,7 @@ class EmpresaForm(forms.ModelForm):
         exclude = ['creado']
         fields = '__all__'
         widgets = {
+            "nombre":  forms.TextInput(attrs={"autofocus":"true"}),
             "nit"   :  forms.TextInput(attrs={'data-mask':"0000-000000-000-0"}),
             "telefono" :forms.TextInput(attrs={'data-mask':"0000-0000"}),
         }

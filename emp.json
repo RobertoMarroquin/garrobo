@@ -1,0 +1,6284 @@
+[
+    {
+        "model": "iva.empresa",
+        "pk": 4,
+        "fields": {
+            "nRegistro": "4114-9",
+            "nombre": "ORLANDO GONZALEZ ORELLANA",
+            "nit": "0614-211246-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 5,
+        "fields": {
+            "nRegistro": "268543-5",
+            "nombre": "FLORES DE CANJURA GEORGINA ELIZABETH",
+            "nit": "0614-231273-112-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 8,
+        "fields": {
+            "nRegistro": "221681-1",
+            "nombre": "TRANSITO DE JESUS JURADO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 9,
+        "fields": {
+            "nRegistro": "152120-2",
+            "nombre": "INVERSIONES DOSVF SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 11,
+        "fields": {
+            "nRegistro": "283191-3",
+            "nombre": "YOMIRA YANETH MORAN SANDOVAL",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 12,
+        "fields": {
+            "nRegistro": "55225-9",
+            "nombre": "CARLOS ERNESTO REYES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 13,
+        "fields": {
+            "nRegistro": "193912-8",
+            "nombre": "INVERSIONES MENDEZ SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 14,
+        "fields": {
+            "nRegistro": "159490-2",
+            "nombre": "EPIC SURF SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 15,
+        "fields": {
+            "nRegistro": "216692-1",
+            "nombre": "AMADEO MEDRANO ESCOBAR",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 19,
+        "fields": {
+            "nRegistro": "244132-0",
+            "nombre": "JOSE CANDELARIO HERRERA MOLINA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 20,
+        "fields": {
+            "nRegistro": "288382-7",
+            "nombre": "ELSA MARIA HERNANDEZ DE SEGOVIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 21,
+        "fields": {
+            "nRegistro": "2124-5",
+            "nombre": "TOMZA GAS DE EL SALVADOR SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 22,
+        "fields": {
+            "nRegistro": "74929-0",
+            "nombre": "O. S. CONSTRUCTORES SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 24,
+        "fields": {
+            "nRegistro": "0-0",
+            "nombre": "ANULADO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 25,
+        "fields": {
+            "nRegistro": "56427-3",
+            "nombre": "COSASE SA DE CV",
+            "nit": "0614-010791-103-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 26,
+        "fields": {
+            "nRegistro": "41-8",
+            "nombre": "FREUND SA DECV",
+            "nit": "0614-010858-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 27,
+        "fields": {
+            "nRegistro": "23175-4",
+            "nombre": "TELEMOVIL EL SALVADOR SA DE CV",
+            "nit": "0614-230391-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 28,
+        "fields": {
+            "nRegistro": "264267-2",
+            "nombre": "IRIS YOLANDA ALFARO DE GONZALEZ",
+            "nit": "0614-091247-005-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 29,
+        "fields": {
+            "nRegistro": "213-5",
+            "nombre": "SISA",
+            "nit": "0614-120262-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 30,
+        "fields": {
+            "nRegistro": "125639-2",
+            "nombre": "RAMIREZ VENTURA SA DE CV",
+            "nit": "0614-190900-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 31,
+        "fields": {
+            "nRegistro": "151256-8",
+            "nombre": "COMLUB SA DE CV",
+            "nit": "0614-160903-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 32,
+        "fields": {
+            "nRegistro": "236369-5",
+            "nombre": "ACTIVIDADES PETROLERAS DE EL SALVADOR SA DE CV",
+            "nit": "0614-241014-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 33,
+        "fields": {
+            "nRegistro": "2-7",
+            "nombre": "ALMACENES VIDRI SA DE CV",
+            "nit": "0210-191171-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 34,
+        "fields": {
+            "nRegistro": "125262-2",
+            "nombre": "MOPTVDU",
+            "nit": "0614-170800-105-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 35,
+        "fields": {
+            "nRegistro": "558-4",
+            "nombre": "REPUESTOS DIDEA SA DE CV",
+            "nit": "0614-310762-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 36,
+        "fields": {
+            "nRegistro": "210464-5",
+            "nombre": "GRUPO ROPACA, S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 37,
+        "fields": {
+            "nRegistro": "139108-2",
+            "nombre": "ASOCIACION DE DESARROLLO COMUNITARIO EL CUCO",
+            "nit": "1216-020899-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 38,
+        "fields": {
+            "nRegistro": "90597-6",
+            "nombre": "EMPRESA ELECTRICA DE ORIENTE",
+            "nit": "0614-161195-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 39,
+        "fields": {
+            "nRegistro": "194728-7",
+            "nombre": "LA TORTUGA VERDE, S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 40,
+        "fields": {
+            "nRegistro": "285641-0",
+            "nombre": "FELICITO MARADIAGA CHAVARRIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 41,
+        "fields": {
+            "nRegistro": "138261-9",
+            "nombre": "DILMA EUNICE RIVERA BONILLA",
+            "nit": "1217-160973-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 42,
+        "fields": {
+            "nRegistro": "248929-2",
+            "nombre": "ECSA OPERADORA EL SALVADOR SA DE CV",
+            "nit": "0614-140316-103-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 43,
+        "fields": {
+            "nRegistro": "99993-8",
+            "nombre": "MAGNUM SECURITY AND RESEARCH, S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 44,
+        "fields": {
+            "nRegistro": "620-3",
+            "nombre": "INDUPAL SA DE CV",
+            "nit": "0614-010184-002-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 45,
+        "fields": {
+            "nRegistro": "97895-7",
+            "nombre": "COMPAÑIA DE TELECOMUNICACIONES DE EL SALVADOR SA DE CV",
+            "nit": "0614-210297-104-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 46,
+        "fields": {
+            "nRegistro": "216413-7",
+            "nombre": "LUISSA",
+            "nit": "0614-180212-103-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 47,
+        "fields": {
+            "nRegistro": "80-9",
+            "nombre": "UNO EL SALVADOR SA",
+            "nit": "0614-040460-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 48,
+        "fields": {
+            "nRegistro": "211681-1",
+            "nombre": "TRANSITO DE JESUS JURADO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 49,
+        "fields": {
+            "nRegistro": "268734-4",
+            "nombre": "MANUEL ANTONIO ROMERO ZULETA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 50,
+        "fields": {
+            "nRegistro": "2386-8",
+            "nombre": "EMBOTELLADORA ELECTROPURA, S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 51,
+        "fields": {
+            "nRegistro": "83647-8",
+            "nombre": "HERNANDEZ EXPRES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 52,
+        "fields": {
+            "nRegistro": "221727-6",
+            "nombre": "ORU SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 53,
+        "fields": {
+            "nRegistro": "138401-0",
+            "nombre": "INVERISIONES EL CARACOL SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 54,
+        "fields": {
+            "nRegistro": "134801-0",
+            "nombre": "INVERSIONES EL CARACOL SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 55,
+        "fields": {
+            "nRegistro": "270899-4",
+            "nombre": "SERVICIOS MULTIPLES ORIENTALES SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 56,
+        "fields": {
+            "nRegistro": "258356-7",
+            "nombre": "VENTUS SA DE CV",
+            "nit": "0614-020217-107-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 57,
+        "fields": {
+            "nRegistro": "207996-3",
+            "nombre": "MERCADOS ARTESANALES SA DE CV",
+            "nit": "0614-080311-104-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 58,
+        "fields": {
+            "nRegistro": "165925-8",
+            "nombre": "ROMICAPS COLLECTION SA DE CV",
+            "nit": "0614-030505-103-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 59,
+        "fields": {
+            "nRegistro": "200-3",
+            "nombre": "COPLASA",
+            "nit": "0614-110478-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 60,
+        "fields": {
+            "nRegistro": "201297-6",
+            "nombre": "JUAN CARLOS MENJIVAR DIAZ",
+            "nit": "0614-180288-120-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 61,
+        "fields": {
+            "nRegistro": "408-1",
+            "nombre": "ALPINA SA DE CV",
+            "nit": "0614-230277-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 62,
+        "fields": {
+            "nRegistro": "96372-0",
+            "nombre": "EDWARD LEONIDAS GUTIERREZ PORTILLO",
+            "nit": "0614-250573-109-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 63,
+        "fields": {
+            "nRegistro": "6897-7",
+            "nombre": "SEGUROS DEL PACIFICO SA",
+            "nit": "0614-290385-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 64,
+        "fields": {
+            "nRegistro": "275-5",
+            "nombre": "SUPER REPUESTOS SA DE CV",
+            "nit": "0614-151172-002-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 65,
+        "fields": {
+            "nRegistro": "124829-2",
+            "nombre": "UNICOMER",
+            "nit": "0614-110800-103-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 66,
+        "fields": {
+            "nRegistro": "117537-6",
+            "nombre": "DLC SA DE CV",
+            "nit": "0614-161299-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 67,
+        "fields": {
+            "nRegistro": "112491-9",
+            "nombre": "JOSE DOÑAN",
+            "nit": "0614-310163-005-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 68,
+        "fields": {
+            "nRegistro": "120489-3",
+            "nombre": "CARLOS DENIS RAMIREZ VENTURA",
+            "nit": "1407-050365-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 69,
+        "fields": {
+            "nRegistro": "145-7",
+            "nombre": "VIDUC SA DE CV",
+            "nit": "0614-080645-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 70,
+        "fields": {
+            "nRegistro": "27025-3",
+            "nombre": "EDITORIAL ALTAMIRANO MADRIZ",
+            "nit": "0614-231157-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 71,
+        "fields": {
+            "nRegistro": "111612-6",
+            "nombre": "ROCELI CONSULTORES SA DE CV",
+            "nit": "0614-030795-105-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 72,
+        "fields": {
+            "nRegistro": "187476-7",
+            "nombre": "JEY LI PAI",
+            "nit": "9899-181277-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 73,
+        "fields": {
+            "nRegistro": "215499-8",
+            "nombre": "BOMBOM SA DE CV",
+            "nit": "0614-240212-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 74,
+        "fields": {
+            "nRegistro": "138949-6",
+            "nombre": "SALVADOR ANTONIO DURAN ESCOBAR",
+            "nit": "0614-230577-117-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 75,
+        "fields": {
+            "nRegistro": "111410-7",
+            "nombre": "JOSE LUIS VILLALTA CARCAMO",
+            "nit": "0821-050766-002-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 76,
+        "fields": {
+            "nRegistro": "164929-0",
+            "nombre": "AMERICAN IMPORTS SA DE CV",
+            "nit": "0614-120405-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 77,
+        "fields": {
+            "nRegistro": "279-8",
+            "nombre": "LA CASA DEL SOLDADOR SA DE CV",
+            "nit": "0614-160180-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 78,
+        "fields": {
+            "nRegistro": "226898-2",
+            "nombre": "MOTORES Y VEHICULOS SA DE CV",
+            "nit": "0614-120813-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 79,
+        "fields": {
+            "nRegistro": "193102-9",
+            "nombre": "INVERSIONES RAMIREZ QUINTANILLA, S.A. DE C.V.",
+            "nit": "0614-260407-106-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 80,
+        "fields": {
+            "nRegistro": "142201-0",
+            "nombre": "MARIO ALBERTO MIRANDA FONSECA",
+            "nit": "0614-020767-004-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 81,
+        "fields": {
+            "nRegistro": "190088-8",
+            "nombre": "FERRETERIA EPA S.A. DE C.V.",
+            "nit": "0614-021008-105-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 82,
+        "fields": {
+            "nRegistro": "30668-1",
+            "nombre": "TRANSPORTE PESADOS SA DE CV",
+            "nit": "0614-100890-102-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 83,
+        "fields": {
+            "nRegistro": "22848-6",
+            "nombre": "TRANSPORT SA DE CV",
+            "nit": "0614-131088-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 84,
+        "fields": {
+            "nRegistro": "252503-1",
+            "nombre": "TODOTRANFER SA DE CV",
+            "nit": "0614-120716-111-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 85,
+        "fields": {
+            "nRegistro": "145152-7",
+            "nombre": "MARIO ERNESTO MENDOZA MOLINA",
+            "nit": "0612-020675-102-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 86,
+        "fields": {
+            "nRegistro": "237845-5",
+            "nombre": "MELVIN ISAAC CORNEJO MARTINEZ",
+            "nit": "1002-160888-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 87,
+        "fields": {
+            "nRegistro": "270247-0",
+            "nombre": "AUDIO MALDITO SA DE CV",
+            "nit": "0614-050418-108-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 88,
+        "fields": {
+            "nRegistro": "88004-3",
+            "nombre": "COMUNICACION CREATIVA SA DE CV",
+            "nit": "0614-070995-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 89,
+        "fields": {
+            "nRegistro": "019603-5",
+            "nombre": "ICON CREATIVOS SA DE CV",
+            "nit": "0614-270709-105-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 90,
+        "fields": {
+            "nRegistro": "241605-5",
+            "nombre": "AMPERSAND SA DE CV",
+            "nit": "0614-120615-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 91,
+        "fields": {
+            "nRegistro": "44-2",
+            "nombre": "PUBLICIDAD COMERCIAL SA DE CV",
+            "nit": "0614-010959-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 92,
+        "fields": {
+            "nRegistro": "301-8",
+            "nombre": "ALMACENES SIMAN SA DE CV",
+            "nit": "0614-170266-001-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 93,
+        "fields": {
+            "nRegistro": "550-9",
+            "nombre": "AEROMAN",
+            "nit": "0614-300983-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 94,
+        "fields": {
+            "nRegistro": "190169-8",
+            "nombre": "RIVERA  Y  RIVERA SA DE CV",
+            "nit": "0614-290908-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 95,
+        "fields": {
+            "nRegistro": "225052-6",
+            "nombre": "CENTRO DE GRAVACIONES PROFESIONALES SA DE CV",
+            "nit": "0614-290513-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 96,
+        "fields": {
+            "nRegistro": "270247-2",
+            "nombre": "AUDIO MALDITO SA DE CV",
+            "nit": "0614-050418-108-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 97,
+        "fields": {
+            "nRegistro": "256433-2",
+            "nombre": "UNIY RENTALS SA DE CV",
+            "nit": "0614-120117-102-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 98,
+        "fields": {
+            "nRegistro": "259325-2",
+            "nombre": "GRUPO DE ASESORES CONSULTORES ESPECIALIZADOS SA DE CV",
+            "nit": "0614-200417-104-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 99,
+        "fields": {
+            "nRegistro": "205919-3",
+            "nombre": "DESARROLLOS CULTURALES SALVADOREÑOS SA DE CV",
+            "nit": "0614-051110-107-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 100,
+        "fields": {
+            "nRegistro": "175969-9",
+            "nombre": "RODRIGO ANTONIO ARGUETA ECHEGOYEN",
+            "nit": "0614-181261-011-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 101,
+        "fields": {
+            "nRegistro": "3454-1",
+            "nombre": "JOSE ELIAS ESCOBAR ROMERO",
+            "nit": "0407-080260-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 102,
+        "fields": {
+            "nRegistro": "163522-1",
+            "nombre": "DISAGRO SA DE CV",
+            "nit": "0614-230205-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 103,
+        "fields": {
+            "nRegistro": "116377-1",
+            "nombre": "AGROQUIMICA INTERNACIONAL SA DE CV",
+            "nit": "0614-031199-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 104,
+        "fields": {
+            "nRegistro": "1208-4",
+            "nombre": "MARTA LUZ DE TORRES",
+            "nit": "0702-230259-003-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 105,
+        "fields": {
+            "nRegistro": "538-0",
+            "nombre": "LA CASA DEL REPUESTO SA DE CV",
+            "nit": "0614-300178-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 106,
+        "fields": {
+            "nRegistro": "1674-8",
+            "nombre": "BANCO HIPOTECARIO",
+            "nit": "0614-290135-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 107,
+        "fields": {
+            "nRegistro": "81765-1",
+            "nombre": "INGENIO LA MAGDALENA SA DE CV",
+            "nit": "0614-071194-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 108,
+        "fields": {
+            "nRegistro": "579-7",
+            "nombre": "GRUPO Q EL SALVADOR",
+            "nit": "1217-130668-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 109,
+        "fields": {
+            "nRegistro": "54-0",
+            "nombre": "MUNFRE SA DE CV",
+            "nit": "0614-020481-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 110,
+        "fields": {
+            "nRegistro": "32314-4",
+            "nombre": "REPSA",
+            "nit": "1217-250990-102-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 111,
+        "fields": {
+            "nRegistro": "220080-2",
+            "nombre": "DOUGLAS RENATO PONCE DURAN",
+            "nit": "1008-071270-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 112,
+        "fields": {
+            "nRegistro": "250755-1",
+            "nombre": "COFEL SA DE CV",
+            "nit": "0821-210416-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 113,
+        "fields": {
+            "nRegistro": "192100-1",
+            "nombre": "POCHTECA EL SALVADOR SA DE CV",
+            "nit": "0614-080109-108-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 114,
+        "fields": {
+            "nRegistro": "57617-4",
+            "nombre": "ASOCIACION COOPERATIVA AGROPECUARIA EL TERCIO DE RL",
+            "nit": "1108-090680-002-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 115,
+        "fields": {
+            "nRegistro": "204145-7",
+            "nombre": "NSV SA DE CV",
+            "nit": "0614-270810-105-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 116,
+        "fields": {
+            "nRegistro": "109631-1",
+            "nombre": "GERARDO ANTONIO BAIRES RODRIGUEZ",
+            "nit": "0805-070670-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 117,
+        "fields": {
+            "nRegistro": "187604-7",
+            "nombre": "GUILLERMO E MIGUEL B",
+            "nit": "0614-240750-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 118,
+        "fields": {
+            "nRegistro": "51524-8",
+            "nombre": "BENITO EUGENIO QUAN DIAZ",
+            "nit": "0614-310155-007-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 119,
+        "fields": {
+            "nRegistro": "139396-8",
+            "nombre": "VIDAL DE JESUS HERNANDEZ RIVAS",
+            "nit": "1108-010257-002-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 120,
+        "fields": {
+            "nRegistro": "193-7",
+            "nombre": "CALLEJAS SA DE CV",
+            "nit": "6141-101690-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 121,
+        "fields": {
+            "nRegistro": "27210-8",
+            "nombre": "VILLAVAR SA DE CV",
+            "nit": "0614-210186-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 122,
+        "fields": {
+            "nRegistro": "21938-0",
+            "nombre": "TECNICA UNIVERSAL SALVADOREÑA SA DE CV",
+            "nit": "0614-061175-005-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 123,
+        "fields": {
+            "nRegistro": "81681-7",
+            "nombre": "ROQUE ADALBERTO PINEDA",
+            "nit": "0821-121064-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 124,
+        "fields": {
+            "nRegistro": "476-6",
+            "nombre": "COMPAÑIA GENERAL DE EQUIPOS SA DE CV",
+            "nit": "0614-261160-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 125,
+        "fields": {
+            "nRegistro": "221339-6",
+            "nombre": "AGRICOLA LAS CAÑAS",
+            "nit": "0614-041212-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 126,
+        "fields": {
+            "nRegistro": "221395-3",
+            "nombre": "INVERSORES DIVERSOS SA DE CV",
+            "nit": "0614-041212-102-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 127,
+        "fields": {
+            "nRegistro": "205159-0",
+            "nombre": "PLATANARES SA DE CV",
+            "nit": "0614-011010-106-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 128,
+        "fields": {
+            "nRegistro": "205158-1",
+            "nombre": "CHARAMENACO SA DE CV",
+            "nit": "0614-151010-106-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 129,
+        "fields": {
+            "nRegistro": "221399-6",
+            "nombre": "AGRICOLA LAS CAÑAS SA DE CV",
+            "nit": "0614-041212-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 130,
+        "fields": {
+            "nRegistro": "156163-7",
+            "nombre": "JOSE MARIO LOVO",
+            "nit": "1108-280831-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 131,
+        "fields": {
+            "nRegistro": "193587-2",
+            "nombre": "PETACONES SA DE CV",
+            "nit": "0614-160409-105-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 132,
+        "fields": {
+            "nRegistro": "193390-4",
+            "nombre": "DESARROLLO DE PROYECTOS AGROPECUARIOS",
+            "nit": "0614-160409-106-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 133,
+        "fields": {
+            "nRegistro": "90567-4",
+            "nombre": "INGENIO JIBOA",
+            "nit": "0614-181095-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 134,
+        "fields": {
+            "nRegistro": "70622-1",
+            "nombre": "DIPARVEL",
+            "nit": "1217-160992-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 135,
+        "fields": {
+            "nRegistro": "113981-9",
+            "nombre": "JULIO ADALBERTO AGUIRRE VIANA",
+            "nit": "0101-100168-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 136,
+        "fields": {
+            "nRegistro": "136975-9",
+            "nombre": "DIAGRI SA DE CV",
+            "nit": "0614-181001-103-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 137,
+        "fields": {
+            "nRegistro": "21019-6",
+            "nombre": "MAPFRE",
+            "nit": "0614-160715-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 138,
+        "fields": {
+            "nRegistro": "173195-1",
+            "nombre": "GARANTIA EN DIRECCION EMPRESARIAL SA DE CV",
+            "nit": "0614-030605-104-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 139,
+        "fields": {
+            "nRegistro": "200818-0",
+            "nombre": "SERVICIOS Y LOGISTICA DE CARGA WALNYS SA DE CV",
+            "nit": "0614-250110-107-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 140,
+        "fields": {
+            "nRegistro": "29594-9",
+            "nombre": "INVERSIONES FERRETERAS SA DE CV",
+            "nit": "0614-250189-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 141,
+        "fields": {
+            "nRegistro": "142834-2",
+            "nombre": "MAURICIO ERNESTO URIAS",
+            "nit": "0906-010480-102-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 142,
+        "fields": {
+            "nRegistro": "271078-9",
+            "nombre": "ERICK RIGOBERTO MACHADO CAMPOS",
+            "nit": "1123-100987-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 143,
+        "fields": {
+            "nRegistro": "34437-0",
+            "nombre": "HUGO EDGARDO CASTANEDA COTO",
+            "nit": "0105-270155-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 144,
+        "fields": {
+            "nRegistro": "132067-2",
+            "nombre": "JOSE MARIA DIMAS CASTELLANOS HERNANDEZ",
+            "nit": "0907-270559-002-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 145,
+        "fields": {
+            "nRegistro": "94424-6",
+            "nombre": "MEDINA SA DE CV",
+            "nit": "0614-240796-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 146,
+        "fields": {
+            "nRegistro": "108057-1",
+            "nombre": "OSCAR ARMANDO BARILLAS GOMEZ",
+            "nit": "0203-230167-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 147,
+        "fields": {
+            "nRegistro": "103509-6",
+            "nombre": "AREZA",
+            "nit": "0515-131192-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 148,
+        "fields": {
+            "nRegistro": "185727-8",
+            "nombre": "FIDE SA DE CV",
+            "nit": "1123-040308-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 149,
+        "fields": {
+            "nRegistro": "239662-0",
+            "nombre": "ANA YESENIA SALAZAR BARRERA",
+            "nit": "0203-140979-105-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 150,
+        "fields": {
+            "nRegistro": "75588-5",
+            "nombre": "LLANRESAL",
+            "nit": "0614-220993-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 151,
+        "fields": {
+            "nRegistro": "108199-3",
+            "nombre": "MIGUEL ROBERTO AVILES NOVOA",
+            "nit": "0210-110771-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 152,
+        "fields": {
+            "nRegistro": "184405-2",
+            "nombre": "LA CASA DE LAS BATERIAS SA DE CV",
+            "nit": "0614-030108-103-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 153,
+        "fields": {
+            "nRegistro": "84415-2",
+            "nombre": "INGENIO CHAPARRASTIQUE SA DE CV",
+            "nit": "0614-230395-104-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 154,
+        "fields": {
+            "nRegistro": "111508-1",
+            "nombre": "PRICESMART EL SALVADOR SA DE CV",
+            "nit": "0614-160399-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 155,
+        "fields": {
+            "nRegistro": "283377-4",
+            "nombre": "JORDY ALEXIS ORANTES DIAZ",
+            "nit": "0614-270601-145-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 156,
+        "fields": {
+            "nRegistro": "183203-5",
+            "nombre": "OD EL SALVADOR LIMITADA DE CV",
+            "nit": "0614-071107-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 157,
+        "fields": {
+            "nRegistro": "182250-5",
+            "nombre": "AEROCASILLAS DE EL SALVADOR SA DE CV",
+            "nit": "0614-011007-102-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 158,
+        "fields": {
+            "nRegistro": "158694-4",
+            "nombre": "VENDICIO SA DE CV",
+            "nit": "0614-300804-105-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 159,
+        "fields": {
+            "nRegistro": "155562-8",
+            "nombre": "MARIA CLELIA LOPEZ",
+            "nit": "0409-270559-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 160,
+        "fields": {
+            "nRegistro": "77122-8",
+            "nombre": "EMMANUEL SA DE CV",
+            "nit": "0614-111193-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 161,
+        "fields": {
+            "nRegistro": "97894-9",
+            "nombre": "TELEFONICA MOVILES EL SALVADOR SA DE CV",
+            "nit": "0614-210297-103-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 162,
+        "fields": {
+            "nRegistro": "100064-0",
+            "nombre": "INNOVACION DIGITAL SA DE CV",
+            "nit": "0614-130797-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 163,
+        "fields": {
+            "nRegistro": "121723-0",
+            "nombre": "ROCIO DE LOS ANGELES ROBLES PERLA",
+            "nit": "1217-180769-102-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 164,
+        "fields": {
+            "nRegistro": "70923-9",
+            "nombre": "SERFINSA",
+            "nit": "0614-281092-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 165,
+        "fields": {
+            "nRegistro": "83086-0",
+            "nombre": "BANCO PROMERICA",
+            "nit": "0511-040295-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 166,
+        "fields": {
+            "nRegistro": "243-7",
+            "nombre": "CEPA",
+            "nit": "0614-140237-007-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 167,
+        "fields": {
+            "nRegistro": "191063-0",
+            "nombre": "SERVICES AND REPRESENTATIONS SA DE CV",
+            "nit": "0614-181108-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 168,
+        "fields": {
+            "nRegistro": "181481-0",
+            "nombre": "EDITORA BAVARIA SA DE CV",
+            "nit": "0614-200807-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 169,
+        "fields": {
+            "nRegistro": "108567-0",
+            "nombre": "CTE TELECOM SA DE CV",
+            "nit": "0614-261098-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 170,
+        "fields": {
+            "nRegistro": "271447-3",
+            "nombre": "SKIN & BEAUTY SA DE CV",
+            "nit": "0614-090718-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 171,
+        "fields": {
+            "nRegistro": "196607-2",
+            "nombre": "CENTRO AMERICA COMERCIAL SA DE CV",
+            "nit": "0614-230709-106-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 172,
+        "fields": {
+            "nRegistro": "242364-2",
+            "nombre": "DGALA EVENTS SA DE CV",
+            "nit": "0614-250615-102-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 173,
+        "fields": {
+            "nRegistro": "157946-4",
+            "nombre": "FARMACEUTICOS EQUIVALENTES SA DE CV",
+            "nit": "0614-270704-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 174,
+        "fields": {
+            "nRegistro": "143254-1",
+            "nombre": "DISEÑARTE SA DE CV",
+            "nit": "0614-090702-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 175,
+        "fields": {
+            "nRegistro": "393-0",
+            "nombre": "INFRASAL",
+            "nit": "0614-220277-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 176,
+        "fields": {
+            "nRegistro": "258-5",
+            "nombre": "LA IBERICA SA DE CV",
+            "nit": "0614-150159-001-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 177,
+        "fields": {
+            "nRegistro": "65141-9",
+            "nombre": "ELECTROLAB MEDIC",
+            "nit": "0614-130792-105-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 178,
+        "fields": {
+            "nRegistro": "20299-1",
+            "nombre": "CIEN MIL LLAVES SA DE CV",
+            "nit": "0614-030289-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 179,
+        "fields": {
+            "nRegistro": "102651-8",
+            "nombre": "OPERADORA DEL SUR SA DE CV",
+            "nit": "0614-310797-109-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 180,
+        "fields": {
+            "nRegistro": "290-9",
+            "nombre": "LIBRERIA CERVANTES SA DE CV",
+            "nit": "0614-160677-002-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 181,
+        "fields": {
+            "nRegistro": "102624-0",
+            "nombre": "FARMACIAS UNO SA DE CV",
+            "nit": "0614-231097-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 182,
+        "fields": {
+            "nRegistro": "500-2",
+            "nombre": "ACSA",
+            "nit": "0614-280373-005-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 183,
+        "fields": {
+            "nRegistro": "205169-9",
+            "nombre": "BTL EL SALVADOR SA DE CV",
+            "nit": "0503-251010-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 184,
+        "fields": {
+            "nRegistro": "194214-5",
+            "nombre": "INTERNACIONAL SA DE CV",
+            "nit": "0614-150509-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 185,
+        "fields": {
+            "nRegistro": "145047-9",
+            "nombre": "SUCOM",
+            "nit": "0614-050902-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 186,
+        "fields": {
+            "nRegistro": "84357-1",
+            "nombre": "XENIA MAYBELLE SORTO DE VASQUEZ",
+            "nit": "1408-190464-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 187,
+        "fields": {
+            "nRegistro": "208275-8",
+            "nombre": "EMILIO MAXIMILIANO GONZALEZ GIRON",
+            "nit": "0614-040284-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 188,
+        "fields": {
+            "nRegistro": "182528-3",
+            "nombre": "SFMQ SA DE CV",
+            "nit": "0614-021007-104-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 189,
+        "fields": {
+            "nRegistro": "0-1",
+            "nombre": "ADUANA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 190,
+        "fields": {
+            "nRegistro": "202826-5",
+            "nombre": "SEMEGSA",
+            "nit": "9483-290510-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 191,
+        "fields": {
+            "nRegistro": "552-5",
+            "nombre": "BANCO AGRICOLA SA",
+            "nit": "0614-310155-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 192,
+        "fields": {
+            "nRegistro": "456-1",
+            "nombre": "SCOTIABANK EL SALVADOR",
+            "nit": "0614-251172-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 193,
+        "fields": {
+            "nRegistro": "154-6",
+            "nombre": "CREDOMATIC EL SALVADOR",
+            "nit": "0614-080982-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 194,
+        "fields": {
+            "nRegistro": "83293-6",
+            "nombre": "HOTEL CASA BERLIN SA DE CV",
+            "nit": "0614-210794-103-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 195,
+        "fields": {
+            "nRegistro": "40860-3",
+            "nombre": "PRODINA",
+            "nit": "0614-280188-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 196,
+        "fields": {
+            "nRegistro": "233893-0",
+            "nombre": "GREEN CARGO EL SALVADOR SA DE CV",
+            "nit": "0614-160614-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 197,
+        "fields": {
+            "nRegistro": "278780-0",
+            "nombre": "JOSE ROBERTO MONGE SOL",
+            "nit": "9483-220788-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 198,
+        "fields": {
+            "nRegistro": "146445-3",
+            "nombre": "MAX DONALD ALAS TOBAR",
+            "nit": "0614-160772-119-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 199,
+        "fields": {
+            "nRegistro": "54221-0",
+            "nombre": "MANUEL DE JESUS HERNANDEZ RODRIGUEZ",
+            "nit": "0811-090159-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 200,
+        "fields": {
+            "nRegistro": "252834-7",
+            "nombre": "IRENE CONCEPCION CARBALLO DE BETANCOURT",
+            "nit": "0614-281273-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 201,
+        "fields": {
+            "nRegistro": "169923-5",
+            "nombre": "JOVENMODA SA DE CV",
+            "nit": "0614-040106-105-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 202,
+        "fields": {
+            "nRegistro": "79235-7",
+            "nombre": "INVERSIONES TEXTILES MAS SA DE CV",
+            "nit": "0614-240594-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 203,
+        "fields": {
+            "nRegistro": "157989-5",
+            "nombre": "SHOPPING CENTER SA DE CV",
+            "nit": "0614-180604-103-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 204,
+        "fields": {
+            "nRegistro": "188946-0",
+            "nombre": "VARIEDADES GENESIS SA DE CV",
+            "nit": "0614-230308-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 205,
+        "fields": {
+            "nRegistro": "228510-6",
+            "nombre": "PRONEGOCIOS SA DE CV Q",
+            "nit": "0614-091013-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 206,
+        "fields": {
+            "nRegistro": "2949-1",
+            "nombre": "VIVEROS SANTA MARIA SA DE CV",
+            "nit": "0614-130289-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 207,
+        "fields": {
+            "nRegistro": "28273-1",
+            "nombre": "UCA",
+            "nit": "0614-150965-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 208,
+        "fields": {
+            "nRegistro": "253384-3",
+            "nombre": "TECNONASA SA DE CV",
+            "nit": "0614-090816-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 209,
+        "fields": {
+            "nRegistro": "526-6",
+            "nombre": "TIENDA MORENA SA DE CV",
+            "nit": "0614-290472-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 241,
+        "fields": {
+            "nRegistro": "251288-4",
+            "nombre": "VERTICAL FILM SA DE CV",
+            "nit": "0614-140616-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 242,
+        "fields": {
+            "nRegistro": "220658-0",
+            "nombre": "D OFFICE SA DE CV",
+            "nit": "0614-301012-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 243,
+        "fields": {
+            "nRegistro": "262564-6",
+            "nombre": "LUIS ROBERTO PINEDA MARTINEZ",
+            "nit": "0617-200191-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 244,
+        "fields": {
+            "nRegistro": "249115-1",
+            "nombre": "INTERACCION CREATIVA SA DE CV",
+            "nit": "0614-310316-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 245,
+        "fields": {
+            "nRegistro": "140429-2",
+            "nombre": "MERPUBLIC SA DE CV",
+            "nit": "0614-150302-104-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 246,
+        "fields": {
+            "nRegistro": "190832-3",
+            "nombre": "ERNESTO CORNEJO MARTINEZ",
+            "nit": "0202-260175-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 247,
+        "fields": {
+            "nRegistro": "49000-8",
+            "nombre": "DE EMPAUQE SA DE CV",
+            "nit": "0614-070691-105-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 248,
+        "fields": {
+            "nRegistro": "249831-7",
+            "nombre": "LINKEDUPGROUP SA DE CV",
+            "nit": "0614-010116-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 249,
+        "fields": {
+            "nRegistro": "271009-3",
+            "nombre": "EDUARDO CARLOS SCHONENBERG QUIÑONEZ",
+            "nit": "9450-050787-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 250,
+        "fields": {
+            "nRegistro": "79303-5",
+            "nombre": "PROMEFAR SA DE CV",
+            "nit": "0614-060794-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 251,
+        "fields": {
+            "nRegistro": "1439-7",
+            "nombre": "RECINOS SCHONBORN S.A. DE C.V.",
+            "nit": "0614-120484-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 252,
+        "fields": {
+            "nRegistro": "192173-0",
+            "nombre": "MANIYA SA DE CV",
+            "nit": "0614-260109-106-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 253,
+        "fields": {
+            "nRegistro": "26565-9",
+            "nombre": "JOSE OMAR ALVARENGA GUEVARA",
+            "nit": "0614-270156-007-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 254,
+        "fields": {
+            "nRegistro": "23661-6",
+            "nombre": "JORGE ANTONIO CERVANTES",
+            "nit": "0213-040268-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 255,
+        "fields": {
+            "nRegistro": "345-0",
+            "nombre": "DIREYA S.A. DE C.V.",
+            "nit": "0614-190581-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 256,
+        "fields": {
+            "nRegistro": "82558-1",
+            "nombre": "GODOFREDO RAUDA PINEDA",
+            "nit": "0513-150572-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 257,
+        "fields": {
+            "nRegistro": "40960-0",
+            "nombre": "JAVIER DANILO RUIZ MORALES",
+            "nit": "1416-271066-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 258,
+        "fields": {
+            "nRegistro": "249265-7",
+            "nombre": "GRUPO ROMEN SA DE CV",
+            "nit": "0614-080416-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 259,
+        "fields": {
+            "nRegistro": "72100-0",
+            "nombre": "FRANCISCO JAVIER PORTILLO",
+            "nit": "0614-200866-002-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 260,
+        "fields": {
+            "nRegistro": "172046-3",
+            "nombre": "ALBA PETROLEOS",
+            "nit": "0614-050406-103-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 261,
+        "fields": {
+            "nRegistro": "7650-6",
+            "nombre": "BANCO DE AMERICA CENTRAL",
+            "nit": "0614-031993-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 262,
+        "fields": {
+            "nRegistro": "317-4",
+            "nombre": "BANCO DAVIVIENDA EL SALVADOR",
+            "nit": "0614-170994-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 263,
+        "fields": {
+            "nRegistro": "84864-6",
+            "nombre": "BANCO ATLANTIDA EL SALVADOR",
+            "nit": "1111-070661-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 264,
+        "fields": {
+            "nRegistro": "149293-5",
+            "nombre": "TESSA SA DE CV",
+            "nit": "0614-020503-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 265,
+        "fields": {
+            "nRegistro": "241-0",
+            "nombre": "IMPRESSA SA DE CV",
+            "nit": "0614-131285-003-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 266,
+        "fields": {
+            "nRegistro": "131617-6",
+            "nombre": "G I SA DE CV",
+            "nit": "0614-300501-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 267,
+        "fields": {
+            "nRegistro": "139835-5",
+            "nombre": "RAFAEL RENE CANALES",
+            "nit": "1217-190652-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 268,
+        "fields": {
+            "nRegistro": "76503-1",
+            "nombre": "BANCO DE AMERICA CENTRAL SA",
+            "nit": "0614-031293-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 269,
+        "fields": {
+            "nRegistro": "4619-1",
+            "nombre": "ALUVISA SA DE CV",
+            "nit": "0614-091287-002-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 270,
+        "fields": {
+            "nRegistro": "39863-2",
+            "nombre": "CAJA DE CREDITO DE TONACATEPEQUE",
+            "nit": "0618-180543-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 271,
+        "fields": {
+            "nRegistro": "32306-3",
+            "nombre": "DROGUERIA HERLETT SA DE CV",
+            "nit": "0614-020985-002-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 272,
+        "fields": {
+            "nRegistro": "142091-2",
+            "nombre": "NOE RIGOBERTO MARTINEZ",
+            "nit": "0614-160273-116-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 273,
+        "fields": {
+            "nRegistro": "187637-9",
+            "nombre": "GRUPO DECONKTE SA DE CV",
+            "nit": "0614-040608-104-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 274,
+        "fields": {
+            "nRegistro": "222648-3",
+            "nombre": "CARMEN MARGARITA ORTEGA PALMA",
+            "nit": "0414-140474-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 275,
+        "fields": {
+            "nRegistro": "240984-9",
+            "nombre": "PAPELERA EL PITAL S.A. DE C.V.",
+            "nit": "0501-260613-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 276,
+        "fields": {
+            "nRegistro": "199418-2",
+            "nombre": "DISTRIBUIDORA DE PRODUCTOS DE PETROLEOS DE EL SALVADOR SA DE CV",
+            "nit": "0614-200110-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 277,
+        "fields": {
+            "nRegistro": "21853-7",
+            "nombre": "JOSE GERARDO REYES ROMERO",
+            "nit": "1217-190860-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 278,
+        "fields": {
+            "nRegistro": "191-0",
+            "nombre": "SALVAPLASTIC S.A. DE C.V.",
+            "nit": "0614-101264-003-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 279,
+        "fields": {
+            "nRegistro": "9231-2",
+            "nombre": "FERRETERIA LA PALMA S.A. DE C.V.",
+            "nit": "0614-140256-001-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 280,
+        "fields": {
+            "nRegistro": "118174-9",
+            "nombre": "DAGOBERTO DIAZ QUINTANILLA",
+            "nit": "0619-210355-002-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 281,
+        "fields": {
+            "nRegistro": "57841-0",
+            "nombre": "TONY ALBERTO PEREZ",
+            "nit": "0512-030563-002-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 282,
+        "fields": {
+            "nRegistro": "24558-5",
+            "nombre": "PRODIMCO SA DE CV",
+            "nit": "0614-041091-103-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 283,
+        "fields": {
+            "nRegistro": "71300-7",
+            "nombre": "IMPORTADORA RAMIREZ SA DE CV",
+            "nit": "0614-300992-106-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 284,
+        "fields": {
+            "nRegistro": "205824-1",
+            "nombre": "PROMODA S.A. DE C.V.",
+            "nit": "0614-131010-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 285,
+        "fields": {
+            "nRegistro": "275425-2",
+            "nombre": "RICARDO ALVAREZ MENJIVAR",
+            "nit": "0609-140260-002-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 286,
+        "fields": {
+            "nRegistro": "265378-0",
+            "nombre": "DANIEL ALEXANDER GALIANO SANCHEZ",
+            "nit": "0614-300574-114-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 287,
+        "fields": {
+            "nRegistro": "213241-5",
+            "nombre": "CICOMUNICA S.A. DE C.V.",
+            "nit": "0614-241111-104-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 288,
+        "fields": {
+            "nRegistro": "6946-9",
+            "nombre": "TV PRODUCCIONES S.A. DE C.V.",
+            "nit": "0614-230491-105-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 289,
+        "fields": {
+            "nRegistro": "283361-6",
+            "nombre": "JOSE VILLATORO FLORES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 290,
+        "fields": {
+            "nRegistro": "125666-5",
+            "nombre": "LUIS HERBER CARDONA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 291,
+        "fields": {
+            "nRegistro": "2676-0",
+            "nombre": "RUIZ REYES MIGUEL ANGEL",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 292,
+        "fields": {
+            "nRegistro": "203669-7",
+            "nombre": "JOSE WILFREDO GARCIA COLORADO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 293,
+        "fields": {
+            "nRegistro": "162900-6",
+            "nombre": "JOSE ISMAEL DIAZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 294,
+        "fields": {
+            "nRegistro": "17883-0",
+            "nombre": "NUILA CANTON ALVARO ERNESTO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 295,
+        "fields": {
+            "nRegistro": "279072-7",
+            "nombre": "JOSE FRANCIS CASTELLON PALACIOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 296,
+        "fields": {
+            "nRegistro": "47557-2",
+            "nombre": "MERCOSAL SA",
+            "nit": "0614-110692-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 297,
+        "fields": {
+            "nRegistro": "13-2",
+            "nombre": "HERNANDEZ HERMANOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 298,
+        "fields": {
+            "nRegistro": "140656-5",
+            "nombre": "CARLOS ERNESTO CORRALES LOPEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 299,
+        "fields": {
+            "nRegistro": "126812-8",
+            "nombre": "CONSTRUCTORA CHAVEZ RAMOS SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 300,
+        "fields": {
+            "nRegistro": "233238-7",
+            "nombre": "DISTRIBUIDORA EXITO SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 301,
+        "fields": {
+            "nRegistro": "89590-3",
+            "nombre": "SEGUROS FUTUROS AC DE RL",
+            "nit": "0614-210594-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 302,
+        "fields": {
+            "nRegistro": "148052-0",
+            "nombre": "NANCY ESTHER SORTO DE RIVERA",
+            "nit": "1202-200474-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 303,
+        "fields": {
+            "nRegistro": "121710-6",
+            "nombre": "ANA GLADYS CORDOVA LOPEZ",
+            "nit": "0614-240377-005-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 304,
+        "fields": {
+            "nRegistro": "171210-6",
+            "nombre": "ANA GLADYS CORDOVA LOPEZ",
+            "nit": "0614-240377-005-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 305,
+        "fields": {
+            "nRegistro": "27-2",
+            "nombre": "TALLER DIDEA SA DE CV",
+            "nit": "0614-010462-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 306,
+        "fields": {
+            "nRegistro": "102743-3",
+            "nombre": "MULTI TECNOLOGIA SA DE CV",
+            "nit": "0614-181197-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 307,
+        "fields": {
+            "nRegistro": "6473-4",
+            "nombre": "KOORMAOS SA DE CV",
+            "nit": "0601-141190-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 308,
+        "fields": {
+            "nRegistro": "126231-8",
+            "nombre": "NELSON ANTONIO DOÑAN",
+            "nit": "0614-010167-005-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 309,
+        "fields": {
+            "nRegistro": "140548-2",
+            "nombre": "A.S.T.I.C.",
+            "nit": "0614-180102-109-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 310,
+        "fields": {
+            "nRegistro": "117875-6",
+            "nombre": "RENOSA",
+            "nit": "0511-241199-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 311,
+        "fields": {
+            "nRegistro": "261-5",
+            "nombre": "GALVANISSA",
+            "nit": "0614-150185-005-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 312,
+        "fields": {
+            "nRegistro": "147220-5",
+            "nombre": "DISPOSITIVOS INTELIGENTES DE SEGURIDAD SA DE CV",
+            "nit": "0614-050400-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 313,
+        "fields": {
+            "nRegistro": "131316-9",
+            "nombre": "MARIO ANTONIO NOUBLEAU VALENCIA",
+            "nit": "0603-170854-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 314,
+        "fields": {
+            "nRegistro": "191316-9",
+            "nombre": "MARIO ANTONIO NOUBLEAU VALENCIA",
+            "nit": "0603-170854-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 315,
+        "fields": {
+            "nRegistro": "38-8",
+            "nombre": "COPA S.A.",
+            "nit": "0614-010671-004-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 316,
+        "fields": {
+            "nRegistro": "164121-4",
+            "nombre": "JEA S.A. DE C.V.",
+            "nit": "0614-140205-109-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 317,
+        "fields": {
+            "nRegistro": "216630-0",
+            "nombre": "GUERRA LOPEZ S.A. DE C.V.",
+            "nit": "0614-100512-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 318,
+        "fields": {
+            "nRegistro": "245769-6",
+            "nombre": "EDWIN FRANCISCO ORTIZ FIGUEROA",
+            "nit": "0614-250673-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 319,
+        "fields": {
+            "nRegistro": "580-0",
+            "nombre": "CREDI Q S.A. DE C.V.",
+            "nit": "1217-180567-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 320,
+        "fields": {
+            "nRegistro": "252778-6",
+            "nombre": "ANGREY S.A. DE C.V.",
+            "nit": "0614-120816-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 321,
+        "fields": {
+            "nRegistro": "229706-7",
+            "nombre": "MARIO E. ALVAREZ A.",
+            "nit": "0614-011266-013-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 322,
+        "fields": {
+            "nRegistro": "232696-4",
+            "nombre": "HILDA ALICIA VASQUEZ SERRANO",
+            "nit": "0805-050357-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 323,
+        "fields": {
+            "nRegistro": "244396-8",
+            "nombre": "DUARTE EMANUEL S.A. DE C.V.",
+            "nit": "0614-240915-104-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 324,
+        "fields": {
+            "nRegistro": "4171-8",
+            "nombre": "MARIA YOLANDA BARRIOS DE GUTIERREZ",
+            "nit": "1010-230848-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 325,
+        "fields": {
+            "nRegistro": "108885-2",
+            "nombre": "ING CLAUDIA RIVAS",
+            "nit": "0614-280266-009-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 326,
+        "fields": {
+            "nRegistro": "4252-8",
+            "nombre": "SERVICIOS E INMUEBLES S.A. DE C.V.",
+            "nit": "0614-010778-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 327,
+        "fields": {
+            "nRegistro": "266342-5",
+            "nombre": "MILTON  ULISES NAVARRETE",
+            "nit": "0614-230169-009-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 328,
+        "fields": {
+            "nRegistro": "283595-0",
+            "nombre": "COMINTERSAL S.A. DE C.V.",
+            "nit": "0614-230819-108-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 329,
+        "fields": {
+            "nRegistro": "261823-0",
+            "nombre": "GOOD DAY GREEN S.A. DE C.V.",
+            "nit": "0614-030117-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 330,
+        "fields": {
+            "nRegistro": "4190-4",
+            "nombre": "DIMSAL S.A. DE C.V.",
+            "nit": "0614-151088-002-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 331,
+        "fields": {
+            "nRegistro": "40946-4",
+            "nombre": "RAUL ANTONIO TEJADA",
+            "nit": "0401-200763-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 332,
+        "fields": {
+            "nRegistro": "164620-6",
+            "nombre": "NUEVA VISION S.A. DE C.V.",
+            "nit": "0512-100405-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 333,
+        "fields": {
+            "nRegistro": "243625-5",
+            "nombre": "W.N. CONSTRUCCIONES S.A. DE C.V.",
+            "nit": "0512-170815-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 334,
+        "fields": {
+            "nRegistro": "127060-0",
+            "nombre": "ATUR 168 S.A. DE C.V.",
+            "nit": "0512-060608-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 335,
+        "fields": {
+            "nRegistro": "1221-1",
+            "nombre": "RAFAEL BAIRES",
+            "nit": "0815-070152-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 336,
+        "fields": {
+            "nRegistro": "145940-1",
+            "nombre": "DATA & GRAPHICS S. A. DE C.V.",
+            "nit": "0614-141002-105-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 337,
+        "fields": {
+            "nRegistro": "3488-5",
+            "nombre": "LABORATORIO CLINICO MORAN",
+            "nit": "0614-200747-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 338,
+        "fields": {
+            "nRegistro": "147944-6",
+            "nombre": "ECOIDESA S.A. DE C.V.",
+            "nit": "0614-230103-106-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 339,
+        "fields": {
+            "nRegistro": "208886-0",
+            "nombre": "DOCUMENTOS INTELIGENTES S.A. DE C.V.",
+            "nit": "0614-220610-105-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 340,
+        "fields": {
+            "nRegistro": "75203-7",
+            "nombre": "AUGUSTO CESAR ALTAMIRANO",
+            "nit": "0614-081247-005-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 341,
+        "fields": {
+            "nRegistro": "282012-8",
+            "nombre": "GSM PARTES S.A. DE C.V.",
+            "nit": "0614-010319-111-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 342,
+        "fields": {
+            "nRegistro": "23033-9",
+            "nombre": "SPACECIRCUS S.A. DE C.V.",
+            "nit": "0614-111114-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 343,
+        "fields": {
+            "nRegistro": "108885-3",
+            "nombre": "CLAUDIA RIVAS MEJIA",
+            "nit": "0614-280266-009-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 344,
+        "fields": {
+            "nRegistro": "78767-1",
+            "nombre": "EDUFUTURO S.A. DE C.V.",
+            "nit": "0614-270594-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 345,
+        "fields": {
+            "nRegistro": "35894-0",
+            "nombre": "ACOPRASA DE RL",
+            "nit": "0502-200580-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 346,
+        "fields": {
+            "nRegistro": "4399-9",
+            "nombre": "REMO S.A. DE C.V.",
+            "nit": "0614-150286-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 347,
+        "fields": {
+            "nRegistro": "4116-5",
+            "nombre": "ZOILA YOLANDA VENTURA DE FLORES",
+            "nit": "1415-220946-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 348,
+        "fields": {
+            "nRegistro": "89310-2",
+            "nombre": "HOWARD GUTIERREZ",
+            "nit": "0614-041166-004-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 349,
+        "fields": {
+            "nRegistro": "3153-4",
+            "nombre": "MONOLIT",
+            "nit": "0614-061187-002-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 350,
+        "fields": {
+            "nRegistro": "89472-9",
+            "nombre": "MARIA CONCEPCION PALACIOS DE MARTIR",
+            "nit": "0210-120538-003-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 351,
+        "fields": {
+            "nRegistro": "146804-9",
+            "nombre": "LUIGEMI SA DE CV",
+            "nit": "0614-161202-104-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 352,
+        "fields": {
+            "nRegistro": "217718-9",
+            "nombre": "CORINA MARGARITA SOSA DE HERNANDEZ",
+            "nit": "0614-301287-107-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 353,
+        "fields": {
+            "nRegistro": "119432-7",
+            "nombre": "JOSE ANTONIO MOLINA VILLANOVA",
+            "nit": "0511-170363-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 354,
+        "fields": {
+            "nRegistro": "5912-9",
+            "nombre": "JOSE MARIA SALINAS DERAS",
+            "nit": "0601-081168-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 355,
+        "fields": {
+            "nRegistro": "199605-9",
+            "nombre": "ANA CECILIA FIGUEROA V",
+            "nit": "0614-140182-122-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 356,
+        "fields": {
+            "nRegistro": "21861-8",
+            "nombre": "RENE DAGOBERTO ALVARADO",
+            "nit": "0301-110263-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 357,
+        "fields": {
+            "nRegistro": "135816-1",
+            "nombre": "HECTOR ANTONIO CALVIO URRUTIA",
+            "nit": "0512-210972-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 358,
+        "fields": {
+            "nRegistro": "158320-8",
+            "nombre": "JOAQUIN ALEXANDER SANCHEZ",
+            "nit": "0602-110177-106-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 359,
+        "fields": {
+            "nRegistro": "111478-6",
+            "nombre": "ULISES OLMEDO SANCHEZ",
+            "nit": "0604-030265-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 360,
+        "fields": {
+            "nRegistro": "560-6",
+            "nombre": "CASA AMA SA DE CV",
+            "nit": "0614-310767-001-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 361,
+        "fields": {
+            "nRegistro": "81145-9",
+            "nombre": "JOSE FRANCISCO ALVARADO ESCOBAR",
+            "nit": "0617-020763-013-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 362,
+        "fields": {
+            "nRegistro": "299-2",
+            "nombre": "CORPORACION EL TRIUNFO SA DE CV",
+            "nit": "0614-170161-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 394,
+        "fields": {
+            "nRegistro": "137700-5",
+            "nombre": "JOSE ALEJANDRO MONTOYA CASTRO",
+            "nit": "0210-211051-004-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 395,
+        "fields": {
+            "nRegistro": "165789-5",
+            "nombre": "PROAGROFE SA DE CV",
+            "nit": "0614-300505-106-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 396,
+        "fields": {
+            "nRegistro": "241232-8",
+            "nombre": "JOSUE ALEXANDER RIVERA CORNEJO",
+            "nit": "0614-230188-103-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 397,
+        "fields": {
+            "nRegistro": "147735-5",
+            "nombre": "CENTRO INDUSTRIAL DE MANGUERAS SA DE CV",
+            "nit": "0614-300103-106-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 398,
+        "fields": {
+            "nRegistro": "33459-6",
+            "nombre": "MARIO ALONSO BAIRES RODRIGUEZ",
+            "nit": "0805-020968-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 399,
+        "fields": {
+            "nRegistro": "223679-0",
+            "nombre": "JACQUELINE ELIZABETH ALMENDAREZ RIVAS",
+            "nit": "0614-021187-114-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 400,
+        "fields": {
+            "nRegistro": "4332-0",
+            "nombre": "MARIO\"S AUTOPARTS SA DE CV",
+            "nit": "0614-210390-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 401,
+        "fields": {
+            "nRegistro": "92796-1",
+            "nombre": "MARGARITA GUZMAN DE BAIRES",
+            "nit": "0903-100671-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 402,
+        "fields": {
+            "nRegistro": "188553-5",
+            "nombre": "CESAR ALEXANDER ANCHETA SALINAS",
+            "nit": "0614-150179-117-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 403,
+        "fields": {
+            "nRegistro": "199580-0",
+            "nombre": "INSAGRO SA DE CV",
+            "nit": "0614-161209-107-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 404,
+        "fields": {
+            "nRegistro": "249808-7",
+            "nombre": "GRUPO FERRESAL Y JM CONSTRUCCIONES SA DE CV",
+            "nit": "0614-140416-104-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 405,
+        "fields": {
+            "nRegistro": "254327-4",
+            "nombre": "ROBERTO JIMENEZ",
+            "nit": "0107-251268-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 406,
+        "fields": {
+            "nRegistro": "179759-3",
+            "nombre": "FARMACIAS EUROPEAS SA DE CV",
+            "nit": "0614-110607-102-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 407,
+        "fields": {
+            "nRegistro": "122980-1",
+            "nombre": "INVERSIONES MEJIA SA DE CV",
+            "nit": "0602-260992-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 408,
+        "fields": {
+            "nRegistro": "112137-5",
+            "nombre": "INTERNACIONAL DE REPUESTOS SA DE CV",
+            "nit": "0614-170399-105-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 409,
+        "fields": {
+            "nRegistro": "48490-3",
+            "nombre": "ASIA",
+            "nit": "0614-010960-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 410,
+        "fields": {
+            "nRegistro": "103092-2",
+            "nombre": "BENJAMIN ORESTES PERES PALACIOS",
+            "nit": "0614-180467-102-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 411,
+        "fields": {
+            "nRegistro": "313-1",
+            "nombre": "LEMUSIMUN PUBLICIDAD SA DE CV",
+            "nit": "0614-170872-001-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 412,
+        "fields": {
+            "nRegistro": "71315-5",
+            "nombre": "MARIO ISABEL SALINAS CHAVEZ",
+            "nit": "1011-151053-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 413,
+        "fields": {
+            "nRegistro": "6192-1",
+            "nombre": "HUMRO S.A. DE C.V.",
+            "nit": "0511-010189-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 414,
+        "fields": {
+            "nRegistro": "22730-7",
+            "nombre": "JORGE ALBERTO ARDON VALLE",
+            "nit": "0431-031055-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 415,
+        "fields": {
+            "nRegistro": "234829-7",
+            "nombre": "EL GRAN IMPERIO SA DE CV",
+            "nit": "0614-100814-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 416,
+        "fields": {
+            "nRegistro": "169291-2",
+            "nombre": "KARLA GUADALUPE GOMEZ MARTINEZ",
+            "nit": "0614-290484-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 417,
+        "fields": {
+            "nRegistro": "208691-3",
+            "nombre": "CORPORACION LEMUS SA DE CV",
+            "nit": "0614-120511-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 418,
+        "fields": {
+            "nRegistro": "123562-0",
+            "nombre": "INVERSIONES LEMUS SA DE CV",
+            "nit": "0614-140700-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 419,
+        "fields": {
+            "nRegistro": "258196-3",
+            "nombre": "MADERAS LA ORIENTAL SA DE CV",
+            "nit": "0614-150217-112-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 420,
+        "fields": {
+            "nRegistro": "240012-9",
+            "nombre": "JULIO ERNESTO RAMIREZ ESCRICH",
+            "nit": "0614-241288-104-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 421,
+        "fields": {
+            "nRegistro": "123130-7",
+            "nombre": "LINEA EJECUTIVA SA DE CV",
+            "nit": "0614-160500-104-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 422,
+        "fields": {
+            "nRegistro": "135140-0",
+            "nombre": "IMPORTADORA MANHATAN SA DE CV",
+            "nit": "0614-170901-103-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 423,
+        "fields": {
+            "nRegistro": "213681-1",
+            "nombre": "PUBLIMAX PROMO SA DE CV",
+            "nit": "0614-281211-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 424,
+        "fields": {
+            "nRegistro": "200413-0",
+            "nombre": "ALEJANDRA MARIA SABRINA PASCUAL DE MARTELL",
+            "nit": "0614-200584-106-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 425,
+        "fields": {
+            "nRegistro": "254791-9",
+            "nombre": "CORPORACION LETS MOVE SA DE CV",
+            "nit": "0614-281016-103-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 426,
+        "fields": {
+            "nRegistro": "266432-6",
+            "nombre": "SIGFREDO ERNESTO PACHECO MENDOZA",
+            "nit": "0210-260589-103-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 427,
+        "fields": {
+            "nRegistro": "209296-5",
+            "nombre": "ERICK RICARDO ORELLANA MINA",
+            "nit": "0413-231179-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 428,
+        "fields": {
+            "nRegistro": "99217-8",
+            "nombre": "DURACION DE ELECTRODOMESTICOS SA DE CV",
+            "nit": "0614-200397-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 429,
+        "fields": {
+            "nRegistro": "47192-5",
+            "nombre": "PLASTICOS DIVERSOS SA DE CV",
+            "nit": "0614-040987-004-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 430,
+        "fields": {
+            "nRegistro": "203913-2",
+            "nombre": "CORPORACION MM SA DE CV",
+            "nit": "0614-190710-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 431,
+        "fields": {
+            "nRegistro": "97992-9",
+            "nombre": "ALYMO S.A. DE C.V.",
+            "nit": "0614-170595-105-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 432,
+        "fields": {
+            "nRegistro": "151519-6",
+            "nombre": "RZ S.A. DE C.V.",
+            "nit": "0614-230803-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 433,
+        "fields": {
+            "nRegistro": "187991-4",
+            "nombre": "CORPORACION DE SERVICIOS DE SALUD S.A. DE C.V.",
+            "nit": "0614-300508-106-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 434,
+        "fields": {
+            "nRegistro": "276056-9",
+            "nombre": "COMPETROL S.A. DE C.V.",
+            "nit": "0614-311018-112-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 435,
+        "fields": {
+            "nRegistro": "450-2",
+            "nombre": "CALTEC S.A. DE C.V.",
+            "nit": "0614-250789-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 436,
+        "fields": {
+            "nRegistro": "272520-9",
+            "nombre": "UNIGRAFICA S.A. DE C.V.",
+            "nit": "0614-170818-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 437,
+        "fields": {
+            "nRegistro": "48144-0",
+            "nombre": "MERVEDES VANEGAS BARAHONA",
+            "nit": "0614-140941-003-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 438,
+        "fields": {
+            "nRegistro": "81285-4",
+            "nombre": "PEVONIA FACIAL S.A. DE C.V.",
+            "nit": "0614-170994-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 439,
+        "fields": {
+            "nRegistro": "150422-7",
+            "nombre": "ROMY PERLA DE RL",
+            "nit": "0614-050503-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 440,
+        "fields": {
+            "nRegistro": "3488-6",
+            "nombre": "LABORATORIO CLINICO MORAN",
+            "nit": "0614-200747-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 441,
+        "fields": {
+            "nRegistro": "252903-1",
+            "nombre": "GLOBAL FREIGHT SERVICE S.A. DE C.V.",
+            "nit": "0614-200616-111-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 442,
+        "fields": {
+            "nRegistro": "47391-0",
+            "nombre": "DISTRIBUIDORA JAR SA DE CV",
+            "nit": "0614-060792-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 443,
+        "fields": {
+            "nRegistro": "102590-2",
+            "nombre": "LUIS ALFREDO VENTURA ELVIR",
+            "nit": "1408-050636-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 444,
+        "fields": {
+            "nRegistro": "998-9",
+            "nombre": "DE JR CHEVEZ",
+            "nit": "1102-120252-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 445,
+        "fields": {
+            "nRegistro": "259061-6",
+            "nombre": "JACQUELINE MAGALY CORTEZ MARTINEZ",
+            "nit": "0614-270593-137-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 446,
+        "fields": {
+            "nRegistro": "190988-8",
+            "nombre": "FARRAR SA DE CV",
+            "nit": "0614-271008-102-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 447,
+        "fields": {
+            "nRegistro": "78261-0",
+            "nombre": "MOISES AMILCAR TAMACAS CORNELIO",
+            "nit": "0509-131163-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 448,
+        "fields": {
+            "nRegistro": "204370-3",
+            "nombre": "REYNALDO ERNESTO GUADRON TORRES",
+            "nit": "0614-271277-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 449,
+        "fields": {
+            "nRegistro": "59-0",
+            "nombre": "MARINA INDUSTRIAL SA DE CV",
+            "nit": "0614-020971-400-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 450,
+        "fields": {
+            "nRegistro": "211682-8",
+            "nombre": "DAVID ROMERO",
+            "nit": "1319-010366-001-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 451,
+        "fields": {
+            "nRegistro": "101430-7",
+            "nombre": "MAXIMILIANA ESMERALDA MARTINEZ DE HERNANDEZ",
+            "nit": "0614-281163-014-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 452,
+        "fields": {
+            "nRegistro": "120116-5",
+            "nombre": "ALEXI MENDEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 453,
+        "fields": {
+            "nRegistro": "332-8",
+            "nombre": "POLLO CAMPERO DE EL SALVADOR S.A DE C.V",
+            "nit": "0614-181171-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 454,
+        "fields": {
+            "nRegistro": "203703-3",
+            "nombre": "DISTRIBUCION SALVADOREÑA S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 455,
+        "fields": {
+            "nRegistro": "161541-0",
+            "nombre": "PORTILLO CASTRO CARLOS ANDRES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 456,
+        "fields": {
+            "nRegistro": "249216-0",
+            "nombre": "AMAYA MARTINEZ MILAGRO DE LA PAZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 457,
+        "fields": {
+            "nRegistro": "8427-1",
+            "nombre": "OLGA EDITH MELANI ORILLO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 458,
+        "fields": {
+            "nRegistro": "151973-1",
+            "nombre": "LOPEZ RAMIREZ BALMORE",
+            "nit": "0301-060173-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 459,
+        "fields": {
+            "nRegistro": "213249-0",
+            "nombre": "INDUSTRIAS IDRIAZEN",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 460,
+        "fields": {
+            "nRegistro": "201488-5",
+            "nombre": "MANUEL DE JESUS MARTINEZ SEGOVIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 461,
+        "fields": {
+            "nRegistro": "273409-5",
+            "nombre": "LEMUS PABLO JOSE",
+            "nit": "0614-071294-127-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 462,
+        "fields": {
+            "nRegistro": "147080-0",
+            "nombre": "PRODUCCION TERRESTRE Y MARITIMA S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 463,
+        "fields": {
+            "nRegistro": "258147-6",
+            "nombre": "CARLOS EDUARDO MALDONADO PEREZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 464,
+        "fields": {
+            "nRegistro": "233678-3",
+            "nombre": "JOSE JOEL ROMERO GIRON",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 465,
+        "fields": {
+            "nRegistro": "218164-2",
+            "nombre": "CODOSAT  EL SALVADOR S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 466,
+        "fields": {
+            "nRegistro": "250702-4",
+            "nombre": "CARPINTERIA Y TAPICERIA GONZALEZ S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 467,
+        "fields": {
+            "nRegistro": "177220-0",
+            "nombre": "SOCIEDAD APOLO S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 468,
+        "fields": {
+            "nRegistro": "278286-8",
+            "nombre": "CAMPOS DE ALVARADO ADELA",
+            "nit": "1217-230672-104-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 469,
+        "fields": {
+            "nRegistro": "255621-6",
+            "nombre": "UDP VIBBO",
+            "nit": "0614-151116-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 470,
+        "fields": {
+            "nRegistro": "117076-4",
+            "nombre": "VASQUEZ PORTILLO S.A DE C.V",
+            "nit": "1217-291099-102-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 471,
+        "fields": {
+            "nRegistro": "263193-6",
+            "nombre": "LUIS ALBERTO PINEDA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 472,
+        "fields": {
+            "nRegistro": "202531-3",
+            "nombre": "SANTOS ADIN GARCIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 473,
+        "fields": {
+            "nRegistro": "9067-0",
+            "nombre": "TURISTICAS DE ORIENTE SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 474,
+        "fields": {
+            "nRegistro": "217475-9",
+            "nombre": "PRODISAN SA DE CV",
+            "nit": "0614-280512-106-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 475,
+        "fields": {
+            "nRegistro": "292205-5",
+            "nombre": "ESCAPE SURF TRAVEL SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 476,
+        "fields": {
+            "nRegistro": "279992-5",
+            "nombre": "OSCAR BALMORE CASTRO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 477,
+        "fields": {
+            "nRegistro": "228481-8",
+            "nombre": "SUPERVISION IJS SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 478,
+        "fields": {
+            "nRegistro": "177383-0",
+            "nombre": "ALVARO ERNESTO NUILA CANTON",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 479,
+        "fields": {
+            "nRegistro": "221416-9",
+            "nombre": "GRUPO TIA SIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 480,
+        "fields": {
+            "nRegistro": "287628-0",
+            "nombre": "INDUSTRIAS TECNICAS Y TELECOMUNICACIONES SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 481,
+        "fields": {
+            "nRegistro": "175729-2",
+            "nombre": "ASPESCU",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 482,
+        "fields": {
+            "nRegistro": "207433-4",
+            "nombre": "JAIRO GUILLERMO MONTOYA VELASQUEZ",
+            "nit": "0000-000000-000-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 483,
+        "fields": {
+            "nRegistro": "110924-3",
+            "nombre": "INTELFON SA DE CV",
+            "nit": "0614-160498-104-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 484,
+        "fields": {
+            "nRegistro": "25214-0",
+            "nombre": "COMERCIAL RONA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 485,
+        "fields": {
+            "nRegistro": "20259-5",
+            "nombre": "MARIA DEL TRANSITO GARAY DE GARAY",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 486,
+        "fields": {
+            "nRegistro": "208107-0",
+            "nombre": "FRANCISCO PALACIOS DERAS",
+            "nit": "0614-300168-111-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 487,
+        "fields": {
+            "nRegistro": "188914-7",
+            "nombre": "POWER SUPPLY, S.A. DE C.V.",
+            "nit": "0614-020708-103-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 488,
+        "fields": {
+            "nRegistro": "270727-4",
+            "nombre": "ANA LILIAN MEJIA GRANADEÑO",
+            "nit": "1011-290367-102-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 489,
+        "fields": {
+            "nRegistro": "262082-8",
+            "nombre": "SORIANO IBARRA KARLA MELISSA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 490,
+        "fields": {
+            "nRegistro": "218139-6",
+            "nombre": "PROYECTOS Y MANTENIMIENTOS RIVERA VASQUEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 491,
+        "fields": {
+            "nRegistro": "212735-8",
+            "nombre": "DON POLLO, S.A. DE C.V.",
+            "nit": "0614-090911-105-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 492,
+        "fields": {
+            "nRegistro": "196651-9",
+            "nombre": "AVENTURA SPORTS TOURS S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 493,
+        "fields": {
+            "nRegistro": "111183-3",
+            "nombre": "ISRAEL ALCIDES RODRIGUEZ SANCHEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 494,
+        "fields": {
+            "nRegistro": "192301-0",
+            "nombre": "MARKETING SOPPORT S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 495,
+        "fields": {
+            "nRegistro": "858-3",
+            "nombre": "AUTOCONSA S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 496,
+        "fields": {
+            "nRegistro": "167492-9",
+            "nombre": "GRUPO FLORES S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 497,
+        "fields": {
+            "nRegistro": "261277-9",
+            "nombre": "REINA DE LA PAZ LOPEZ DE NUÑEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 498,
+        "fields": {
+            "nRegistro": "105184-9",
+            "nombre": "GUADALUPE RAFAEL MARTINEZ PACAS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 499,
+        "fields": {
+            "nRegistro": "276008-0",
+            "nombre": "CARLOS ALBERTO AGUIRRE FUENTES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 500,
+        "fields": {
+            "nRegistro": "223734-2",
+            "nombre": "IVAN RODRIGO ARGUETA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 501,
+        "fields": {
+            "nRegistro": "749290",
+            "nombre": "O.S CONSTRUCTORES S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 502,
+        "fields": {
+            "nRegistro": "199099-3",
+            "nombre": "ALVARO RODRIGUEZ BONILLA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 503,
+        "fields": {
+            "nRegistro": "237291-8",
+            "nombre": "EPC REGIONAL SOCIEDAD ANONIMA DE C. VARIABLE",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 504,
+        "fields": {
+            "nRegistro": "257915-1",
+            "nombre": "MEDIA S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 505,
+        "fields": {
+            "nRegistro": "140977-1",
+            "nombre": "MONFIO INGENIEROS S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 506,
+        "fields": {
+            "nRegistro": "252429-9",
+            "nombre": "JUAN CARLOS MORENO COLATO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 507,
+        "fields": {
+            "nRegistro": "257662-2",
+            "nombre": "SANTIAGO ALEXANDER VASQUEZ PEREZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 508,
+        "fields": {
+            "nRegistro": "262831-4",
+            "nombre": "QUINTEROS DE CISNEROS DORA ALICIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 509,
+        "fields": {
+            "nRegistro": "224094-8",
+            "nombre": "SEGOVIA SALGADO JOSE ANTONIO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 510,
+        "fields": {
+            "nRegistro": "151122-8",
+            "nombre": "MANFREDO ACEVEDO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 511,
+        "fields": {
+            "nRegistro": "114795-1",
+            "nombre": "JOSE BLADIMIR RUBIO REYES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 512,
+        "fields": {
+            "nRegistro": "193721-9",
+            "nombre": "GLADYS YAMILETH JOVEL DE MORENO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 513,
+        "fields": {
+            "nRegistro": "256704-3",
+            "nombre": "CONSTRUIMOR S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 514,
+        "fields": {
+            "nRegistro": "271313-3",
+            "nombre": "PAULA ROBERTA ESCOBAR DE GONZZALEZ",
+            "nit": "1401-220278-102-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 515,
+        "fields": {
+            "nRegistro": "114776-1",
+            "nombre": "MANPOWER EL SALVADOR S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 516,
+        "fields": {
+            "nRegistro": "92308-7",
+            "nombre": "CASTELLON SANDRA AZUCENA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 517,
+        "fields": {
+            "nRegistro": "133843-2",
+            "nombre": "ESCARRSA S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 518,
+        "fields": {
+            "nRegistro": "234129-7",
+            "nombre": "BICIGARLO S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 519,
+        "fields": {
+            "nRegistro": "191023-3",
+            "nombre": "ERAK CONSULTORES S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 520,
+        "fields": {
+            "nRegistro": "248168-0",
+            "nombre": "ARQ TEC SOCIEDAD ANONIMA DE CAPITA VARIABLE",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 521,
+        "fields": {
+            "nRegistro": "182376-2",
+            "nombre": "DANIEL ALBERTO LOPEZ LOPEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 522,
+        "fields": {
+            "nRegistro": "340-9",
+            "nombre": "PRODUCTOS AGROQUIMICOS DE CENTRO AMERICA SA",
+            "nit": "0614-190273-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 523,
+        "fields": {
+            "nRegistro": "202075-2",
+            "nombre": "CRISTIAN ALEXANDER ASMIDIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 524,
+        "fields": {
+            "nRegistro": "279962-8",
+            "nombre": "QUINTEROS OTERO RHINA ELIZZABETH",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 525,
+        "fields": {
+            "nRegistro": "127529-5",
+            "nombre": "AMC DE K.L DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 526,
+        "fields": {
+            "nRegistro": "259465-9",
+            "nombre": "BESSY RADIBIA BONILLA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 527,
+        "fields": {
+            "nRegistro": "259552-5",
+            "nombre": "SANTIAGO FRANCIS MENJIVAR ARRUE",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 528,
+        "fields": {
+            "nRegistro": "187226-1",
+            "nombre": "PAPELERIA INTERNACIONAL EL SALVADOR S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 529,
+        "fields": {
+            "nRegistro": "277244-4",
+            "nombre": "ILIANA GABRIELA MARTINEZ DE PEREZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 530,
+        "fields": {
+            "nRegistro": "166301-8",
+            "nombre": "LUIS ALONSO RAMIREZ QUINTANILLA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 531,
+        "fields": {
+            "nRegistro": "74949-0",
+            "nombre": "O.S CONSTRUCTORES S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 532,
+        "fields": {
+            "nRegistro": "125884-7",
+            "nombre": "MAURICIO DE JESUS BURVEZ VELASQUEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 533,
+        "fields": {
+            "nRegistro": "360-3",
+            "nombre": "ALMACENES PACIFICO JORGE PACIFICO HASBUN S.A DE C.V",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 534,
+        "fields": {
+            "nRegistro": "146239-7",
+            "nombre": "C.G INVERSIONES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 535,
+        "fields": {
+            "nRegistro": "147577-8",
+            "nombre": "SAGRIP S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 536,
+        "fields": {
+            "nRegistro": "25666-5",
+            "nombre": "LUIS HERBER CARDONA TREJO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 537,
+        "fields": {
+            "nRegistro": "173001-7",
+            "nombre": "ACOMAM DE R.L.",
+            "nit": "1314-090106-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 538,
+        "fields": {
+            "nRegistro": "199733-0",
+            "nombre": "SERVICIOS DE INGENIERIA ELECTRICA Y TELECOMUNICACIONES S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 539,
+        "fields": {
+            "nRegistro": "31852-3",
+            "nombre": "PESCA PELASICAS AURORA S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 540,
+        "fields": {
+            "nRegistro": "259212-9",
+            "nombre": "FLOR IDALIA PENADO PEREZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 541,
+        "fields": {
+            "nRegistro": "235113-0",
+            "nombre": "IDEAS ARQUITECTONICA S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 542,
+        "fields": {
+            "nRegistro": "258172-2",
+            "nombre": "HABANA COURMET  S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 543,
+        "fields": {
+            "nRegistro": "166987-0",
+            "nombre": "CESAR JAVIER ESCOBAR",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 544,
+        "fields": {
+            "nRegistro": "192722-6",
+            "nombre": "JORGE ARMANDO REYES URQUIS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 545,
+        "fields": {
+            "nRegistro": "116998-8",
+            "nombre": "CARLOS MARIO GARCIA BARRIOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 546,
+        "fields": {
+            "nRegistro": "206327-7",
+            "nombre": "DICOLSA SA DE CV",
+            "nit": "0614-061210-104-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 547,
+        "fields": {
+            "nRegistro": "231-3",
+            "nombre": "OETO S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 548,
+        "fields": {
+            "nRegistro": "279918-1",
+            "nombre": "CAÑAS PORTILLO ROMEO ENRIQUE",
+            "nit": "1204-020599-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 549,
+        "fields": {
+            "nRegistro": "225766-8",
+            "nombre": "ESPACIOS RC. ARQUITECTOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 550,
+        "fields": {
+            "nRegistro": "205881-1",
+            "nombre": "SELECTRONICA S.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 551,
+        "fields": {
+            "nRegistro": "130367-0",
+            "nombre": "JUAN CARLOS BRIAVELA REYES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 552,
+        "fields": {
+            "nRegistro": "120900-7",
+            "nombre": "FRANCISCO GARCIA VILLATORO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 553,
+        "fields": {
+            "nRegistro": "285179-2",
+            "nombre": "AYALA BELTRAN MIRNA CARLOTA",
+            "nit": "0616-260883-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 554,
+        "fields": {
+            "nRegistro": "192641-6",
+            "nombre": "LEMUS MENDOZA S.A. DE .C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 555,
+        "fields": {
+            "nRegistro": "256114-2",
+            "nombre": "CONSULTORES CISNEROS MORENO S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 556,
+        "fields": {
+            "nRegistro": "268497-3",
+            "nombre": "JOSUE DE JESUS CHICAS GUTIERRES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 557,
+        "fields": {
+            "nRegistro": "260856-1",
+            "nombre": "IRIS LISBETH ROMERO DE ALFARO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 558,
+        "fields": {
+            "nRegistro": "201286-9",
+            "nombre": "LOPEZ DE MAYORGA NORMA ALICIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 559,
+        "fields": {
+            "nRegistro": "117076-6",
+            "nombre": "VASQUEZ PORTILLO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 560,
+        "fields": {
+            "nRegistro": "182615-0",
+            "nombre": "LOGIX S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 561,
+        "fields": {
+            "nRegistro": "54498-1",
+            "nombre": "COSAMI S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 562,
+        "fields": {
+            "nRegistro": "285902-1",
+            "nombre": "SANCHEZ RIVAS JASON LUCIANO",
+            "nit": "1217-100399-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 563,
+        "fields": {
+            "nRegistro": "178680-6",
+            "nombre": "ROBERTO ENRIQUE PERES ORTIZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 564,
+        "fields": {
+            "nRegistro": "147083-4",
+            "nombre": "TOBAR S.V. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 565,
+        "fields": {
+            "nRegistro": "234735-3",
+            "nombre": "PLASTICOS MORENO S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 566,
+        "fields": {
+            "nRegistro": "250467-7",
+            "nombre": "MARIA BEATRIZ MEDRANO DE JANDRES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 567,
+        "fields": {
+            "nRegistro": "0-2",
+            "nombre": "SIN REGISTRO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 568,
+        "fields": {
+            "nRegistro": "237862-8",
+            "nombre": "METRO CUADRADO SERU. PROF. DE INGENIERIA Y ARQ. S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 569,
+        "fields": {
+            "nRegistro": "275069-1",
+            "nombre": "COROBAN GROUP. S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 570,
+        "fields": {
+            "nRegistro": "267516-1",
+            "nombre": "EARNING SYSTEM S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 571,
+        "fields": {
+            "nRegistro": "272877-1",
+            "nombre": "INGENIERIA Y DESARROLLO DE ESPACIOS ARQUITECTONICO S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 572,
+        "fields": {
+            "nRegistro": "285064-2",
+            "nombre": "MOLINA DE CERNA KENY MARISOL",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 573,
+        "fields": {
+            "nRegistro": "5305-8",
+            "nombre": "CLUB SALINITAS S.A. DE C.V.",
+            "nit": "0614-300876-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 574,
+        "fields": {
+            "nRegistro": "54711-5",
+            "nombre": "LIZAMA SALAVERRIA MARIA SUSANA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 575,
+        "fields": {
+            "nRegistro": "182217-6",
+            "nombre": "NEGOCIOS GUEVARA BENITEZ S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 576,
+        "fields": {
+            "nRegistro": "201829-9",
+            "nombre": "JOSE ESTEBAN MORATAYA PEREIRA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 577,
+        "fields": {
+            "nRegistro": "94475-0",
+            "nombre": "EDIFICA BYB S.A. DE C.V.",
+            "nit": "1217-111292-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 578,
+        "fields": {
+            "nRegistro": "260648-9",
+            "nombre": "EDITH MARLENE RIVAS DE HERRERA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 579,
+        "fields": {
+            "nRegistro": "253807-5",
+            "nombre": "PROYECTO CANALES AMAYA S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 580,
+        "fields": {
+            "nRegistro": "202-0",
+            "nombre": "HENRIQUEZ S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 581,
+        "fields": {
+            "nRegistro": "226597-4",
+            "nombre": "QUALA EL SALVADOR S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 582,
+        "fields": {
+            "nRegistro": "173214-0",
+            "nombre": "OMAR SAUL AYALA DIAZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 583,
+        "fields": {
+            "nRegistro": "203610-8",
+            "nombre": "MOLIA DE CRUZ NORMA DILCIA",
+            "nit": "1211-200767-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 584,
+        "fields": {
+            "nRegistro": "244816-5",
+            "nombre": "DISTRIBUIDORA Y LOGISTICA S.A. DE C.V.",
+            "nit": "1217-191015-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 585,
+        "fields": {
+            "nRegistro": "111031-4",
+            "nombre": "JOSE DEL TRANSITO VENTURA CORALES",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 586,
+        "fields": {
+            "nRegistro": "95821-2",
+            "nombre": "NUMAN PONPILIO SALGADO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 587,
+        "fields": {
+            "nRegistro": "165162-0",
+            "nombre": "GRANADOS CRUZ MAURICIO ANTONIO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 588,
+        "fields": {
+            "nRegistro": "173721-9",
+            "nombre": "GLADYS YAMILETH JOVEL DE MORENO",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 589,
+        "fields": {
+            "nRegistro": "213491-0",
+            "nombre": "EXPRESS EL SALVADOR S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 590,
+        "fields": {
+            "nRegistro": "287522-1",
+            "nombre": "LUIS ERNESTO PERLA CHAVEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 591,
+        "fields": {
+            "nRegistro": "284041-9",
+            "nombre": "GRUPO PROGEN SOCIEDAD ANONIMA DE CAPITAL VARIABLE",
+            "nit": "0614-210819-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 592,
+        "fields": {
+            "nRegistro": "185894-7",
+            "nombre": "ADONAY ALONSO NAVARRETE",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 593,
+        "fields": {
+            "nRegistro": "251200-6",
+            "nombre": "VEXPORT",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 594,
+        "fields": {
+            "nRegistro": "233041-9",
+            "nombre": "COPROSER S.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 595,
+        "fields": {
+            "nRegistro": "265822-6",
+            "nombre": "GUTIERRES ESTRADA S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 596,
+        "fields": {
+            "nRegistro": "164557-0",
+            "nombre": "INTER LOGISTIC S..A.DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 597,
+        "fields": {
+            "nRegistro": "149799-4",
+            "nombre": "ACOGUADALUPANA DE RL.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 598,
+        "fields": {
+            "nRegistro": "251841-0",
+            "nombre": "HOTELERIA Y TURISMO S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 599,
+        "fields": {
+            "nRegistro": "289976-1",
+            "nombre": "BARRIOS ALVARADO GUILLERMO JOSUE",
+            "nit": "0614-230990-103-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 600,
+        "fields": {
+            "nRegistro": "202539-3",
+            "nombre": "ADIN GARCIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 601,
+        "fields": {
+            "nRegistro": "112037-9",
+            "nombre": "CPA AUDITORES S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 602,
+        "fields": {
+            "nRegistro": "152120-20",
+            "nombre": "INVERSIONES DOSF S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 603,
+        "fields": {
+            "nRegistro": "158403-4",
+            "nombre": "ESCOBAR MARTINEZ FREDY RENE",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 604,
+        "fields": {
+            "nRegistro": "243464-3",
+            "nombre": "DISMA S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 605,
+        "fields": {
+            "nRegistro": "7279-6",
+            "nombre": "MIGUEL ANGEL MARTINEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 606,
+        "fields": {
+            "nRegistro": "134170-6",
+            "nombre": "INDUSTRIAS MAGAÑA SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 607,
+        "fields": {
+            "nRegistro": "191002-7",
+            "nombre": "URRUTIA VASQUEZ CARLOS LISANDRO JAVIER",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 608,
+        "fields": {
+            "nRegistro": "109263-4",
+            "nombre": "ALMACENES  DURAN TURCIOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 609,
+        "fields": {
+            "nRegistro": "237778-7",
+            "nombre": "DANIS WILIAN CARCAMO LEON",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 610,
+        "fields": {
+            "nRegistro": "268898-1",
+            "nombre": "OMAR ERNESTO URRUTIA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 611,
+        "fields": {
+            "nRegistro": "277504-8",
+            "nombre": "CRUZ DE SANCHEZ KARINA ESMERALDA",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 612,
+        "fields": {
+            "nRegistro": "25834-2",
+            "nombre": "GARCIA DE TREJO BELLA GUADALUPE",
+            "nit": "0821-020154-002-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 613,
+        "fields": {
+            "nRegistro": "249908-7",
+            "nombre": "BRANOSTAR SA DE CV",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 614,
+        "fields": {
+            "nRegistro": "208859-2",
+            "nombre": "INVERSIONES Y SERVICIOS QUINTEROS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 615,
+        "fields": {
+            "nRegistro": "129366-9",
+            "nombre": "JUAN GILBERTO VIDES RIVERA",
+            "nit": "0509-190373-103"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 616,
+        "fields": {
+            "nRegistro": "273125-0",
+            "nombre": "ROSA LINA LINARES DE QUINTANILLA",
+            "nit": "0509-050967-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 617,
+        "fields": {
+            "nRegistro": "161270-9",
+            "nombre": "ATL SA DE CV",
+            "nit": "0509-111104-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 618,
+        "fields": {
+            "nRegistro": "145663-4",
+            "nombre": "LA CONSTANCIA LTDA DE CV",
+            "nit": "0614-251002-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 619,
+        "fields": {
+            "nRegistro": "263360-4",
+            "nombre": "MIGUEL MORALES RAUDA",
+            "nit": "0420-221270-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 620,
+        "fields": {
+            "nRegistro": "31-0",
+            "nombre": "SERVICIO AGRICOLA SALVADORE;O SA DE CV",
+            "nit": "0614-010468-002-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 621,
+        "fields": {
+            "nRegistro": "147242-0",
+            "nombre": "LA CENTROAMERICANA SA DE CV",
+            "nit": "0614-240103-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 622,
+        "fields": {
+            "nRegistro": "72856-0",
+            "nombre": "MARTA IRENE HENRIQUEZ CHAVEZ",
+            "nit": "0614-051161-023-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 623,
+        "fields": {
+            "nRegistro": "291090-5",
+            "nombre": "KATHERINE YESENIA MARTINEZ CRUZ",
+            "nit": "0614-150294-141-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 624,
+        "fields": {
+            "nRegistro": "289528-2",
+            "nombre": "MONSEL S.A. DE C.V.",
+            "nit": "0618-050220-102-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 625,
+        "fields": {
+            "nRegistro": "224129-5",
+            "nombre": "ROBERTO FRANCISCO ESCOBAR HUMBERSTONE",
+            "nit": "0614-091062-002-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 626,
+        "fields": {
+            "nRegistro": "89895-3",
+            "nombre": "DISTRIBUIDORA  DE ELECTRICIDAD DEL SUR",
+            "nit": "0614-161195-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 627,
+        "fields": {
+            "nRegistro": "142614-4",
+            "nombre": "GUTICIA DE EL SALVADOR SA DE CV",
+            "nit": "0614-090702-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 628,
+        "fields": {
+            "nRegistro": "2921-1",
+            "nombre": "SUMER SA DE CV",
+            "nit": "0511-210590-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 629,
+        "fields": {
+            "nRegistro": "94808-0",
+            "nombre": "MIGUEL E. ZABLAH HASBUN",
+            "nit": "0614-260664-002-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 630,
+        "fields": {
+            "nRegistro": "88100-7",
+            "nombre": "MARIA TRANSITO FIGUEROA",
+            "nit": "0715-150843-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 631,
+        "fields": {
+            "nRegistro": "102143-5",
+            "nombre": "AUTOMAX SA DE CV",
+            "nit": "0614-071097-105-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 632,
+        "fields": {
+            "nRegistro": "236321-3",
+            "nombre": "PORTOKALI SA DE CV",
+            "nit": "0614-231014-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 633,
+        "fields": {
+            "nRegistro": "272884-6",
+            "nombre": "JUANA MIRIAN VELASCO DE MAYORGA",
+            "nit": "0905-240658-001-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 634,
+        "fields": {
+            "nRegistro": "178730-0",
+            "nombre": "VISOR SA DE CV",
+            "nit": "0614-240307-103-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 635,
+        "fields": {
+            "nRegistro": "94600-1",
+            "nombre": "EUGENIO GALVEZ",
+            "nit": "0821-080659-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 636,
+        "fields": {
+            "nRegistro": "149955-5",
+            "nombre": "FERRUSAL SA DE CV",
+            "nit": "0614-200603-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 637,
+        "fields": {
+            "nRegistro": "78421-4",
+            "nombre": "JOMIGA S.A. DE C.V.",
+            "nit": "0614-250494-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 638,
+        "fields": {
+            "nRegistro": "167594-5",
+            "nombre": "ALEJANDRO FRANCISCO MONTOYA GIRON",
+            "nit": "0210-180976-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 639,
+        "fields": {
+            "nRegistro": "155661-0",
+            "nombre": "EL IMPERIO USA S.A. DE C.V.",
+            "nit": "0614-100204-106-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 640,
+        "fields": {
+            "nRegistro": "191248-2",
+            "nombre": "GEO CRISDAY S.A. DE C.V.",
+            "nit": "0614-121008-102-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 641,
+        "fields": {
+            "nRegistro": "220533-1",
+            "nombre": "ALASHIR S.A. DE C.V.",
+            "nit": "0614-161012-102-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 642,
+        "fields": {
+            "nRegistro": "254747-2",
+            "nombre": "CORPORACION SAN JOSE S.A. DE C.V.",
+            "nit": "0614-281016-102-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 643,
+        "fields": {
+            "nRegistro": "82136-5",
+            "nombre": "BIANCHI & ASOCIADOS S.A. DE C.V.",
+            "nit": "0614-181194-105-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 644,
+        "fields": {
+            "nRegistro": "161107-2",
+            "nombre": "CORPORACION DE TIENDAS INTERNACIONALES SA DE CV",
+            "nit": "0614-201204-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 645,
+        "fields": {
+            "nRegistro": "9649-0",
+            "nombre": "MARLON ERNESTO ELIAS PEREZ",
+            "nit": "0511-040762-002-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 646,
+        "fields": {
+            "nRegistro": "193695-5",
+            "nombre": "SALVADOR ENRIQUE HERNANDEZ LOPEZ",
+            "nit": "0614-060864-015-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 647,
+        "fields": {
+            "nRegistro": "146-5",
+            "nombre": "BANCO CUSCATLAN, SA",
+            "nit": "0614-080672-001-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 648,
+        "fields": {
+            "nRegistro": "244426-4",
+            "nombre": "JOSE LUIS HERNANDEZ CEA",
+            "nit": "0619-130585-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 649,
+        "fields": {
+            "nRegistro": "98147-8",
+            "nombre": "DIDEA USADOS SA DE CV",
+            "nit": "0614-200297-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 650,
+        "fields": {
+            "nRegistro": "264533-2",
+            "nombre": "DISTRIBUIDORA RINO SA DE CV",
+            "nit": "0210-261017-102-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 651,
+        "fields": {
+            "nRegistro": "23113-4",
+            "nombre": "CO AEAS DE RL",
+            "nit": "0614-310381-002-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 652,
+        "fields": {
+            "nRegistro": "281012-0",
+            "nombre": "GSM PARTES SA DE CV",
+            "nit": "0614-010319-111-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 653,
+        "fields": {
+            "nRegistro": "53389-5",
+            "nombre": "CARLOS ARTURO ZALDAÑA RAMIREZ",
+            "nit": "0614-070255-004-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 654,
+        "fields": {
+            "nRegistro": "189949-6",
+            "nombre": "ZOILA B. CRUZ",
+            "nit": "0431-290381-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 655,
+        "fields": {
+            "nRegistro": "243080-9",
+            "nombre": "JOSARA,  SA DE CV",
+            "nit": "0614-191214-109-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 656,
+        "fields": {
+            "nRegistro": "33080-9",
+            "nombre": "MERLIN FABRICIO ORTIZ ALVARENGA",
+            "nit": "1217-200167-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 657,
+        "fields": {
+            "nRegistro": "240548-5",
+            "nombre": "DOMINGO BENJAMIN GUZMAN FRANCO",
+            "nit": "0903-080882-101-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 658,
+        "fields": {
+            "nRegistro": "143745-0",
+            "nombre": "VICTOR MANUEL MADRID FLORES",
+            "nit": "1416-161262-001-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 659,
+        "fields": {
+            "nRegistro": "74024-1",
+            "nombre": "ZURITA SA DE CV",
+            "nit": "0614-141292-113-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 660,
+        "fields": {
+            "nRegistro": "108411-9",
+            "nombre": "CORPORACION CME SA DE CV",
+            "nit": "0614-280998-104-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 661,
+        "fields": {
+            "nRegistro": "94439-1",
+            "nombre": "ALBA ROSA MARROQUIN",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 662,
+        "fields": {
+            "nRegistro": "108284-1",
+            "nombre": "FREMARCA SA DE CV",
+            "nit": "0614-061098-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 663,
+        "fields": {
+            "nRegistro": "101176-6",
+            "nombre": "CORPORACION DE CONTADORES DE EL SALVADOR",
+            "nit": "0614-051030-003-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 664,
+        "fields": {
+            "nRegistro": "4040-1",
+            "nombre": "FORMULARIOS STANDARD SA DE CV",
+            "nit": "0614-030289-102-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 665,
+        "fields": {
+            "nRegistro": "121717-4",
+            "nombre": "MOTARSA, SA DE CV",
+            "nit": "0614-310300-120-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 666,
+        "fields": {
+            "nRegistro": "266874-9",
+            "nombre": "GRUPO ANTARES SA DE CV",
+            "nit": "0614-110118-111-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 667,
+        "fields": {
+            "nRegistro": "90624-7",
+            "nombre": "ELMER AUDIEL LOPEZ GUEVARA",
+            "nit": "0614-161148-003-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 668,
+        "fields": {
+            "nRegistro": "4202-1",
+            "nombre": "CASA RIVAS SA DE CV",
+            "nit": "0614-010769-002-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 669,
+        "fields": {
+            "nRegistro": "216723-6",
+            "nombre": "REPRESENTACIONES GUMOL SA DE CV",
+            "nit": "0614-300312-104-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 670,
+        "fields": {
+            "nRegistro": "244022-1",
+            "nombre": "TEMAS FLEXIBLES SA DE CV",
+            "nit": "0614-210815-106-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 671,
+        "fields": {
+            "nRegistro": "239867-1",
+            "nombre": "GRUPO SAN FRANCISCO SA DE CV",
+            "nit": "0614-060315-103-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 672,
+        "fields": {
+            "nRegistro": "220760-4",
+            "nombre": "INDY MOTOS, SA DE CV",
+            "nit": "0614-261012-101-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 673,
+        "fields": {
+            "nRegistro": "156864-5",
+            "nombre": "FELIX ARTURO ALTAMIRANO PEREZ",
+            "nit": "0614-040759-005-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 674,
+        "fields": {
+            "nRegistro": "277001-3",
+            "nombre": "JOSE GABRIEL BLANCO VELASQUEZ",
+            "nit": "0614-110993-165-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 675,
+        "fields": {
+            "nRegistro": "269528-9",
+            "nombre": "BLANCA ESTELA HERNANDEZ MARTINEZ",
+            "nit": "0702-120971-104-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 676,
+        "fields": {
+            "nRegistro": "38829-7",
+            "nombre": "JOSE EDUARDO MELENDEZ HERNANDEZ",
+            "nit": "0909-110552-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 677,
+        "fields": {
+            "nRegistro": "221152-2",
+            "nombre": "JUAN JOSE HERNANDEZ CALDERON",
+            "nit": "0614-190673-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 678,
+        "fields": {
+            "nRegistro": "199989-4",
+            "nombre": "ASOCIACION DE AUDITORES INDEPENDIENTES DE EL SALVADOR",
+            "nit": "0614-210705-107-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 679,
+        "fields": {
+            "nRegistro": "253422-2",
+            "nombre": "CARMEN MELGAR DE ABARCA",
+            "nit": "0816-180776-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 680,
+        "fields": {
+            "nRegistro": "278599-1",
+            "nombre": "GREEN TONER SA DE CV",
+            "nit": "0614-040419-102-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 681,
+        "fields": {
+            "nRegistro": "4369-9`",
+            "nombre": "REPUESTOS MONACO SA DE CV",
+            "nit": "0614-150286-002-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 682,
+        "fields": {
+            "nRegistro": "23731-0",
+            "nombre": "ALSEDI SA DE CV",
+            "nit": "0315-271288-101-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 683,
+        "fields": {
+            "nRegistro": "44986-5",
+            "nombre": "IMPORT CARS SA DE CV",
+            "nit": "0614-220892-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 684,
+        "fields": {
+            "nRegistro": "257377-2",
+            "nombre": "MOTORCARS, SA DE CV",
+            "nit": "0614-140117-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 685,
+        "fields": {
+            "nRegistro": "148235-6",
+            "nombre": "IMPRENTA NACIONAL",
+            "nit": "0614-060203-103-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 686,
+        "fields": {
+            "nRegistro": "23857-0",
+            "nombre": "EDITORA EL MUNDO, SA",
+            "nit": "0614-151167-002-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 687,
+        "fields": {
+            "nRegistro": "229823-0",
+            "nombre": "JULIA IDUVINA MARTINEZ SANCHEZ",
+            "nit": "0616-220573-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 688,
+        "fields": {
+            "nRegistro": "257003-6",
+            "nombre": "MEGA AUTOPARTS",
+            "nit": "0614-190716-111-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 689,
+        "fields": {
+            "nRegistro": "224463-2",
+            "nombre": "MIRNA CRISTINA PINEDA DE MEJIA",
+            "nit": "0815-170871-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 690,
+        "fields": {
+            "nRegistro": "88930-0",
+            "nombre": "SANDRA DE NAVARRETE",
+            "nit": "0614-160555-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 723,
+        "fields": {
+            "nRegistro": "112873-6",
+            "nombre": "ROXANA VERENICE AVALOS MARTELL",
+            "nit": "0614-240756-010-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 724,
+        "fields": {
+            "nRegistro": "183097-0",
+            "nombre": "INGENIERIA E INVERSIONES DE CENROAMERICA S.A. DE C.V.",
+            "nit": "0614-071007-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 725,
+        "fields": {
+            "nRegistro": "189280-9",
+            "nombre": "REINALDO ANTONIO CORTEZ MARQUEZ",
+            "nit": "1108-250876-102-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 726,
+        "fields": {
+            "nRegistro": "109353-3",
+            "nombre": "PETRONA ZELAYA DE MARTINEZ",
+            "nit": "1408-130559-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 727,
+        "fields": {
+            "nRegistro": "280621-7",
+            "nombre": "REINALDO ANTONIO CORTEZ HERNANDEZ",
+            "nit": "1108-021299-104-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 728,
+        "fields": {
+            "nRegistro": "111225-2",
+            "nombre": "INDUSTRIAS VICAL S.A. DE C.V.",
+            "nit": "0614-301298-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 729,
+        "fields": {
+            "nRegistro": "87275-0",
+            "nombre": "FRANKLIN P SERRANO",
+            "nit": "0614-070663-003-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 730,
+        "fields": {
+            "nRegistro": "3527-0",
+            "nombre": "RICARDO HERNANDEZ S.A. DE CV.",
+            "nit": "0614-030473-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 731,
+        "fields": {
+            "nRegistro": "152184-0",
+            "nombre": "JOY S.A. DE C.V.",
+            "nit": "0614-291003-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 732,
+        "fields": {
+            "nRegistro": "76-0",
+            "nombre": "TERMOENCOGIBLES S.A. DE C.V.",
+            "nit": "0614-040271-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 733,
+        "fields": {
+            "nRegistro": "176830-9",
+            "nombre": "PI CREATIVOS S.A. DE C.V.",
+            "nit": "0614-201206-106-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 734,
+        "fields": {
+            "nRegistro": "116795-3",
+            "nombre": "DIGICEL S.A. DE C.V.",
+            "nit": "0614-181298-101-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 735,
+        "fields": {
+            "nRegistro": "522-3",
+            "nombre": "METROCENTRO, S.A. DE C.V.",
+            "nit": "0614-290360-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 736,
+        "fields": {
+            "nRegistro": "88004-1",
+            "nombre": "COMUNICACION CREATIVA S.A. DE C.V.",
+            "nit": "0614-070995-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 737,
+        "fields": {
+            "nRegistro": "221651-1",
+            "nombre": "TRANCITO DE JESUS JURADO DIAZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 738,
+        "fields": {
+            "nRegistro": "55117-1",
+            "nombre": "COMDI S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 739,
+        "fields": {
+            "nRegistro": "161108-0",
+            "nombre": "JUAN CARLOS AVELAR GOMEZ",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 740,
+        "fields": {
+            "nRegistro": "268079-7",
+            "nombre": "JEGSA INTERNACIONAL S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 741,
+        "fields": {
+            "nRegistro": "126870-6",
+            "nombre": "SALVADOR GALEAS CEDILLOS",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 742,
+        "fields": {
+            "nRegistro": "216698-1",
+            "nombre": "JOSE ARMANDO MEDRANO ESCOBAR",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 743,
+        "fields": {
+            "nRegistro": "219998-4",
+            "nombre": "MORALES LOPES S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 744,
+        "fields": {
+            "nRegistro": "5501-8",
+            "nombre": "SAVONA S.A. DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 745,
+        "fields": {
+            "nRegistro": "268076-7",
+            "nombre": "JEGSA INTERNACIONAL S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 746,
+        "fields": {
+            "nRegistro": "129255-1",
+            "nombre": "LOMED S.A DE C.V.",
+            "nit": "0614-300300-126-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 747,
+        "fields": {
+            "nRegistro": "181355-5",
+            "nombre": "GRUPO ENTUSIASMO S.A. DE C.V.",
+            "nit": "0614-170807-103-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 748,
+        "fields": {
+            "nRegistro": "130839-0",
+            "nombre": "JIBSA S.A. DE C.V.",
+            "nit": "0511-300401-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 749,
+        "fields": {
+            "nRegistro": "72994-9",
+            "nombre": "SIDNEY EDUARDO VALLADARES",
+            "nit": "0210-220663-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 750,
+        "fields": {
+            "nRegistro": "3484-6",
+            "nombre": "LABORATORIO CLINICO MORAN",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 751,
+        "fields": {
+            "nRegistro": "296140-4",
+            "nombre": "MARIA VANESA MENA",
+            "nit": "0511-220786-102-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 752,
+        "fields": {
+            "nRegistro": "260958-8",
+            "nombre": "ROXANA ARACELY SAAVEDRA SOLANO DE CIENFUEGOS",
+            "nit": "0202-230459-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 753,
+        "fields": {
+            "nRegistro": "217487-4",
+            "nombre": "PARTS PLUS S.A. DE C.V.",
+            "nit": "0614-100412-107-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 754,
+        "fields": {
+            "nRegistro": "173612-4",
+            "nombre": "JAP MOTOR'S S.A. DE C.V.",
+            "nit": "0614-060706-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 755,
+        "fields": {
+            "nRegistro": "241164-1",
+            "nombre": "PANA AUTOPARTS S.A DE C.V.",
+            "nit": "0614-250515-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 756,
+        "fields": {
+            "nRegistro": "264682-0",
+            "nombre": "ITEMS INDUSTRIALES, S.A DE C.V.",
+            "nit": "0614-171017-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 757,
+        "fields": {
+            "nRegistro": "149413-2",
+            "nombre": "KAESER COMPRESORES DE EL SALVADOR, LTD DE C.V.",
+            "nit": "0614-140503-102-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 758,
+        "fields": {
+            "nRegistro": "251306",
+            "nombre": "SERVICIOS JURIDICOS CORPORATIVOS S.A DE C.V.",
+            "nit": "0614-270616-104-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 759,
+        "fields": {
+            "nRegistro": "212023-2",
+            "nombre": "REDES TELEFONICAS, DISEÑO, CONSTRUCCION Y MANTENIMIENTO S.A DE C.V.",
+            "nit": "0210-010911-102-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 760,
+        "fields": {
+            "nRegistro": "333-6",
+            "nombre": "TEXTUFIL, S.A DE C.V.",
+            "nit": "0614-181171-003-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 761,
+        "fields": {
+            "nRegistro": "253272-8",
+            "nombre": "NEGOCIOS AUTOMOTRICES, S.A DE C.V.",
+            "nit": "0614-050916-102-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 762,
+        "fields": {
+            "nRegistro": "233655-0",
+            "nombre": "TOAUTO, S.A DE C.V.",
+            "nit": "0315-270214-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 763,
+        "fields": {
+            "nRegistro": "174869-8",
+            "nombre": "CENTRO DE RADIOLOGIA MEDICA S.A DE C.V.",
+            "nit": null
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 796,
+        "fields": {
+            "nRegistro": "129226-2",
+            "nombre": "RENE ROLANDO SERRANO ARTEAGA",
+            "nit": "06122003731014"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 797,
+        "fields": {
+            "nRegistro": "53737-3",
+            "nombre": "JORGE LOPEZ HIDALGO",
+            "nit": "0111-090142-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 798,
+        "fields": {
+            "nRegistro": "215592-0",
+            "nombre": "LA POTENZA, S.A DE C.V.",
+            "nit": "0511-190112-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 799,
+        "fields": {
+            "nRegistro": "209194-9",
+            "nombre": "GRAFICA FENIX S.A DE C.V.",
+            "nit": "0614-190511-102-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 800,
+        "fields": {
+            "nRegistro": "270832-2",
+            "nombre": "CECILIA VERONICA ROMEO MEJIA",
+            "nit": "1114-020595-101-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 801,
+        "fields": {
+            "nRegistro": "4721-0",
+            "nombre": "ING. A.  VILLAVICENCIO  G.",
+            "nit": "0614-020291-102-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 802,
+        "fields": {
+            "nRegistro": "244886-9",
+            "nombre": "ALAM ABRAHAM, MEJIA FLORES",
+            "nit": "0501-231085-101-5"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 803,
+        "fields": {
+            "nRegistro": "241401-2",
+            "nombre": "LORENA MARISOL GONZALEZ DE HENRIQUEZ",
+            "nit": "1108-140784-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 804,
+        "fields": {
+            "nRegistro": "424-3",
+            "nombre": "ALUMICENTRO DE EL SALVADOR, S.A DE C.V",
+            "nit": "0614-230987-001-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 805,
+        "fields": {
+            "nRegistro": "39758-0",
+            "nombre": "PATRICIA ELENA FORTIN HUEZO",
+            "nit": "0210-190954-002-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 806,
+        "fields": {
+            "nRegistro": "213225-0",
+            "nombre": "HECTOR MAURICIO HERRERA MARTINEZ",
+            "nit": "0614-251163-005-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 807,
+        "fields": {
+            "nRegistro": "225108-0",
+            "nombre": "P + P   ARQUITECTOS  S.A DE C.V",
+            "nit": "0614-240113-110-9"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 808,
+        "fields": {
+            "nRegistro": "78862-7",
+            "nombre": "JORGE ALBERTO CUADRA",
+            "nit": "0506-161052-001-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 809,
+        "fields": {
+            "nRegistro": "251311-3",
+            "nombre": "ZD, S.A DE C.V.",
+            "nit": "0511-060616-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 810,
+        "fields": {
+            "nRegistro": "415-4",
+            "nombre": "FERROCENTRO, S.A. DE C.V.",
+            "nit": "0614-230688-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 811,
+        "fields": {
+            "nRegistro": "215960-7",
+            "nombre": "GUSTAVO ADOLFO SALINAS",
+            "nit": "0614-150189-134-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 812,
+        "fields": {
+            "nRegistro": "5810-6",
+            "nombre": "LA CENTAL DE SEGUROS Y FIANZAS, S.A",
+            "nit": "0614-140783-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 813,
+        "fields": {
+            "nRegistro": "231038-5",
+            "nombre": "RICARDO E. G. SANTOS",
+            "nit": "0204-030556-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 814,
+        "fields": {
+            "nRegistro": "386-7",
+            "nombre": "PAPELERA SANREY, S.A DE C.V",
+            "nit": "0614-211070-001-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 815,
+        "fields": {
+            "nRegistro": "32754-9",
+            "nombre": "R.G. NIETO S.A DE C.V.",
+            "nit": "0614-151282-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 816,
+        "fields": {
+            "nRegistro": "148690-0",
+            "nombre": "IVONNE EDITH MORENO FRANCO",
+            "nit": "1123-030572-103-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 817,
+        "fields": {
+            "nRegistro": "204762-0",
+            "nombre": "RUFINO EDGARDO CONSTANZA ESCOBAR",
+            "nit": "0614-291169-108-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 818,
+        "fields": {
+            "nRegistro": "54458-2",
+            "nombre": "RICARDO ANTONIO  PEÑATE",
+            "nit": "0210-150763-004-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 819,
+        "fields": {
+            "nRegistro": "164047-1",
+            "nombre": "SAUL POCASANGRE ESCOBAR",
+            "nit": "0904-300761-001-8"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 820,
+        "fields": {
+            "nRegistro": "237430-5",
+            "nombre": "ARQ. CARLOS ROBERTO CRUZ",
+            "nit": "0101-240282-106-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 821,
+        "fields": {
+            "nRegistro": "401-4",
+            "nombre": "EMPRESA ADOC  S.A.  DE C.V.",
+            "nit": "0614-220952-001-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 822,
+        "fields": {
+            "nRegistro": "92720-1",
+            "nombre": "OSLIMA S.A.  DE  C.V.",
+            "nit": "0614-090196-108-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 823,
+        "fields": {
+            "nRegistro": "279110-6",
+            "nombre": "JOSE DANIEL VILLANUEVA ESCOBAR",
+            "nit": "0608-290895-103-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 824,
+        "fields": {
+            "nRegistro": "81795-3",
+            "nombre": "SYSTRONICS, S.A DE C.V.",
+            "nit": "0614-291094-101-2"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 825,
+        "fields": {
+            "nRegistro": "195-3",
+            "nombre": "A&A COMERCIAL  S.A.  DE  C.V.",
+            "nit": "0614-110184-003-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 826,
+        "fields": {
+            "nRegistro": "110781-0",
+            "nombre": "JORGE ALBERTO RODRIGUEZ ROMERO",
+            "nit": "0614-260762-017-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 827,
+        "fields": {
+            "nRegistro": "172083-5",
+            "nombre": "ENERGIA Y COMBUSTIBLES EL SALVADOR, S.A DE C.V",
+            "nit": "9501-240406-101-1"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 828,
+        "fields": {
+            "nRegistro": "1174574",
+            "nombre": "ASEGURADORA VIVIR, S.A",
+            "nit": "0614-221299-101-6"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 829,
+        "fields": {
+            "nRegistro": "84417-9",
+            "nombre": "TELAS PLASTICAS, S.A DE C.V.",
+            "nit": "0614-060495-101-0"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 830,
+        "fields": {
+            "nRegistro": "96-5",
+            "nombre": "PROYECTOS INDUSTRIALES, S.A DE C.V.",
+            "nit": "0614-051056-001-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 831,
+        "fields": {
+            "nRegistro": "77388-3",
+            "nombre": "MARCOS ANTONIO GUTIERREZ",
+            "nit": "0819-100451-001-4"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 832,
+        "fields": {
+            "nRegistro": "72907-8",
+            "nombre": "POLICLINICA VETERINARIA, S.A DE C.V",
+            "nit": "0614-061192-103-7"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 833,
+        "fields": {
+            "nRegistro": "91800-8",
+            "nombre": "SALVADOR ALEJANDRO EVA GARCIA",
+            "nit": "0614-130363-015-3"
+        }
+    },
+    {
+        "model": "iva.empresa",
+        "pk": 834,
+        "fields": {
+            "nRegistro": "145720-3",
+            "nombre": "GRUPO 3 INVERSIONES, S.A. DE C.V.",
+            "nit": "0614-041002-104-6"
+        }
+    }
+]

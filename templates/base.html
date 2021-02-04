@@ -48,7 +48,16 @@
         <hr/> {% block content %} {% endblock content %}
     </div>
     <!--Pie de pagina-->
-    {% block footer %} {% endblock footer %}
+    {% block footer %}
+    <hr>
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+          © 2021 Copyright: Despacho Gonzalez Orellana
+        </div>
+        <!-- Copyright -->
+      </footer>
+    {% endblock footer %}
     <!--Bloque de librerias js-->
     {% block scripts %}
     <!--Data Mask, mascaras para inputs-->

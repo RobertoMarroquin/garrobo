@@ -124,6 +124,11 @@ class CatalogoCV(CreateView):
     template_name = "contabilidad/modal.html"
     form_class = CatalogoF
 
+    def get_form_kwargs(self):
+        kwargs = super(CatalogoCV,self).get_form_kwargs()
+        kwargs['empresa'] = Empresa.objects.get(id=self.kwargs['empresa'])
+        return kwargs
+
     def get_success_url(self,**kwargs):
         return reverse("cont:lista_periodo",args=(self.kwargs["empresa"],))
 
@@ -339,6 +344,11 @@ class PeriodoCV(CreateView):
     model = Periodo
     template_name = "contabilidad/modal.html"
     form_class = PeriodoForm
+
+    def get_form_kwargs(self):
+        kwargs = super(PeriodoCV,self).get_form_kwargs()
+        kwargs['empresa'] = Empresa.objects.get(id=self.kwargs['pk'])
+        return kwargs
 
     def get_success_url(self,**kwargs):
         return reverse("cont:lista_periodo",args=[self.kwargs['pk'],])
