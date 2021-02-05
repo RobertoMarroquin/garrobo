@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '2ckl(csmue+hyx2103-=#^dctjn3qcau7rjf6vhq__t#l)-u!5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in']
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'contabilidad',
     'searchableselect',
     'iva',
+    'inventario',
 ]
 
 MIDDLEWARE = [
