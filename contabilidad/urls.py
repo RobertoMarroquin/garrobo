@@ -34,6 +34,7 @@ urlpatterns = [
     #------------------------------------Subcuenta-------------------------------------#
     path("actualizar/subcuenta/<int:pk>", SubCuentaUV.as_view(), name="act_subcuenta"),
     path("nueva/subcuenta/<int:catalogo>", SubCuentaCV.as_view(), name="nueva_subcuenta"),
+    path("nueva/subcuenta/<int:catalogo>/<int:cuenta>", SubCuentaCV.as_view(), name="nueva_subcuenta2"),
     #----------------------------------------------------------------------------------#
     #-----------------------------------Exportacion------------------------------------#
     path("auxiliar/<int:id_libro>", Auxiliar.as_view(), name="auxiliar"),

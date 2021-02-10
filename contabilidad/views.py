@@ -1,6 +1,6 @@
 #python libs
 from contabilidad.cierre import cierre
-from datetime import date
+from datetime import date, datetime, timedelta
 import datetime
 #django libs
 from contabilidad.forms import *
@@ -21,7 +21,7 @@ class Cierre(View):
         cierre(id_periodo)
         libroEx = imprimir_auxiliar_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 class Anexos(View):
@@ -29,7 +29,7 @@ class Anexos(View):
         id_periodo = self.kwargs.get('id_periodo')
         libroEx = imprimir_auxiliar_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -38,7 +38,7 @@ class Balance(View):
         id_periodo = self.kwargs.get('id_periodo')
         libroEx = imprimir_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -56,7 +56,8 @@ class DiarioMayorView(View):
         id_libro = self.kwargs.get('id_libro')
         libroEx = imprimir_diario_mayor(id_libro)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        #print(libroEx.filename['name'])
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -65,7 +66,7 @@ class LibroMayorView(View):
         id_libro = self.kwargs.get('id_libro')
         libroEx = imprimir_mayor(id_libro)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -82,6 +83,9 @@ class SubCuentaCV(CreateView):
     def get_initial(self, **kwargs):
         initial = super(SubCuentaCV,self).get_initial()
         initial["catalogo"] =  Catalogo.objects.get(id=self.kwargs["catalogo"]).id
+        if "cuenta" in self.kwargs:
+            initial["cuenta_padre"] = SubCuenta.objects.get(id=self.kwargs["cuenta"]).id
+            initial["codigo"] = SubCuenta.objects.get(id=self.kwargs["cuenta"]).codigo
         return initial
 
 
@@ -247,7 +251,7 @@ class PartidaCV(CreateView):
         ano = Libro.objects.get(id=self.kwargs['libro']).periodo.ano
         initial = super(PartidaCV,self).get_initial()
         initial['libro'] = Libro.objects.get(id=self.kwargs['libro'])
-        initial["fecha"] = (Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + datetime.timedelta(days=1)).strftime('%d/%m/%y') if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else date(day=1,month=mes,year=ano).strftime('%d/%m/%y')
+        initial["fecha"] = (Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + timedelta(days=1)).strftime('%d/%m/%y') if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else date(day=1,month=mes,year=ano).strftime('%d/%m/%y')
         print(initial["fecha"])
         return initial
 

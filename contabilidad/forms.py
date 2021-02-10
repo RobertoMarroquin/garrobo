@@ -129,7 +129,7 @@ class MovimientoF(forms.ModelForm):
         widgets = {
             "cuenta"     :   forms.Select(attrs={"required":"true","autofocus":"true"}),
             "descripcion":  forms.TextInput(attrs={}),
-            "monto_haber":  forms.TextInput(attrs={"class":"money"}),
-            "monto_deber":  forms.TextInput(attrs={"class":"money"}),
+            #"monto_haber":  forms.TextInput(attrs={"class":"money"}),
+            #"monto_deber":  forms.TextInput(attrs={"class":"money"}),
         }
 
