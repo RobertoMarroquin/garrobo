@@ -89,12 +89,17 @@ WSGI_APPLICATION = 'garrobo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',#'django.db.backends.postgresql',
-        'NAME': 'despaogo$contabilidad',#'contabilidad',
-        'USER': 'despaogo',#'roma',
-        'PASSWORD': '986753421R',#'986753421',
-        'HOST': 'despaogo.mysql.pythonanywhere-services.com',#'127.0.0.1',
-        #'PORT': #'5432',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE':'django.db.backends.postgresql',
+        #'NAME': 'despaogo$contabilidad',
+        'NAME':'contabilidad',
+        #'USER': 'despaogo',
+        'USER':'roma',
+        #'PASSWORD': '986753421R',
+        'PASSWORD':'986753421',
+        #'HOST': 'despaogo.mysql.pythonanywhere-services.com',
+        'HOST':'127.0.0.1',
+        'PORT': '5432',
     }
 }
 
