@@ -131,7 +131,7 @@ class LibroCV(CreateView):
         context["tipo"] = self.kwargs["tipo"]
         context["parametro"] = self.kwargs['empresa']
         context["parametro2"] = self.kwargs['tipo']
-        
+
         return context
 
     def get_initial(self, **kwargs):
@@ -172,7 +172,7 @@ class EmpresaCV(CreateView):
     model = Empresa
     template_name = "iva/empresa.html"
     form_class = EmpresaF
-    
+
     def get_context_data(self, **kwargs):
         context = super(EmpresaCV,self).get_context_data(**kwargs)
         context['direccion'] = 'cont:nuevo_empresa'
@@ -185,7 +185,7 @@ class EmpresaDetail(DetailView):
     template_name='empresaJson.html'
     def get(self,request,*args, **kwarg ):
         empresa = Empresa.objects.get(nRegistro = self.kwargs['nReg'])
-        empresa = serialize('json',[empresa,]) 
+        empresa = serialize('json',[empresa,])
         return HttpResponse(empresa,'application/json')
 
 #Exportacion
@@ -194,7 +194,7 @@ class ExportarView(View):
         tipo = self.kwargs.get('tipo')
         id_libro = self.kwargs.get('id_libro')
         libro = Libro.objects.get(id=id_libro)
-        
+
         if tipo == 1:
             tipol = "Consumidor"
             libroEx = export_libroCF(id_libro)
@@ -206,5 +206,5 @@ class ExportarView(View):
             libroEx = export_librocm(id_libro)
         print(libro)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
