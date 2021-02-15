@@ -616,7 +616,6 @@ def imprimir_balance_general(periodo_id):
     return BASE_DIR/f"libros_contables/{periodo.empresa.nombre}_{periodo.ano}_Balance_General.xlsx"
 
 
-
 def imprimir_auxiliar_balance_general(periodo_id):
     periodo = Periodo.objects.get(id=periodo_id)
     catalogo = Catalogo.objects.get(empresa=periodo.empresa)
@@ -752,3 +751,111 @@ def imprimir_estado_cambio_patrimonio(periodo_id):
 def imprimir_estado_flujo_efectivo(periodo_id):
     periodo = Periodo.objects.get(id=periodo_id)
     pass
+
+
+def imprimir_partida(partida_id):
+    partida = Partida.objects.get(id=partida_id)
+    movimientos = partida.movimientos.all()
+    catalogo = partida.libro.periodo.empresa.catalogo
+    cuentas = movimientos.values("cuenta__id")
+    print(cuentas)
+    lista_cuentas = []
+    #lista de cuentas  involucradas
+    for cuenta in cuentas:
+        ruta = get_ruta_cuenta(cuenta["cuenta__id"])
+        lista_cuentas += ruta
+    lista_cuentas = sorted(set(lista_cuentas))
+
+    print(lista_cuentas)
+    
+    #Ceacion de objeto Excel
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/{catalogo.empresa.nombre}_Partida_{partida.fecha.strftime('%d-%m-%Y')}.xlsx",
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet(f"partida {partida.fecha.strftime('%d-%m-%Y')}")
+    #Configuracion de pagina
+    ws.set_landscape()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")   
+    header_format.set_align("vcenter")
+    #Formato de cuerpo
+    body = wb.add_format({
+        'text_wrap': True,
+        "font_size": 8,
+    })
+    body.set_align("left")
+    body.set_align("vcenter")
+    #Escritura de cuerpo del Archivo
+    ws.merge_range("A1:F1",f"{partida.libro.periodo.empresa.nombre}",header_format)
+    ws.merge_range("A2:F2",f"Fecha {partida.fecha.strftime('%d/%m/%Y')}",header_format)
+    ws.merge_range("A3:F3",f"{partida.descripcion.upper()}",header_format)
+    ws.merge_range("A5:B5","CUENTA",body)
+    ws.write("E5","DEBER",body)
+    ws.write("F5","HABER",body)
+    ws.write("C5","DESCRIPCION",body)
+    row = 5
+    ws.set_column(0,0,8)
+    ws.set_column(1,1,25)
+    ws.set_column(2,2,20)
+    ws.set_column(3,3,3)
+    ws.set_column(4,6,10)
+    ws.set_column(7,7,3)
+    for i in lista_cuentas:
+        row_aux = row
+        ws.set_row(row_aux,20)
+        largo = len(i)
+        ws.write(row_aux,0,i,body)
+        #nombre de cuenta
+        if largo == 1:
+            cuenta = Cuenta.objects.get(catalogo=catalogo,codigo=i)
+            ws.write(row_aux,1,cuenta.nombre.upper(),body)
+        else:
+            cuenta = SubCuenta.objects.get(catalogo=catalogo,codigo=i)
+            ws.write(row_aux,1,cuenta.nombre,body)
+        #filtrado de movimientos por codigo inicial
+        movs = movimientos.filter(cuenta__codigo__startswith=i)
+        #Obtencion de montos totales para saldos de cuenta
+        total_haber = movs.aggregate(total=Coalesce(Sum("monto_haber"),0))
+        total_deber = movs.aggregate(total=Coalesce(Sum("monto_deber"),0))
+        if i[0] in ("1","4","6"):
+            total = total_deber["total"] - total_haber["total"]
+        else:
+            total = total_haber["total"] - total_deber["total"]
+        #escritura de linea de cuenta
+        ws.write(row_aux,4,"${0:.2f}".format(total_deber["total"]),body)
+        ws.write(row_aux,5,"${0:.2f}".format(total_haber["total"]),body)
+        
+        row +=1
+        #escritura de movimientos
+        for mov in movs.filter(cuenta__codigo=i):
+            ws.write(row,2,mov.descripcion,body)
+            ws.write(row,4,"${0:.2f}".format(mov.monto_deber),body)
+            ws.write(row,5,"${0:.2f}".format(mov.monto_haber),body)
+            row+=1
+    total_deber = movimientos.aggregate(total=Coalesce(Sum("monto_deber"),0))['total']
+    total_haber = movimientos.aggregate(total=Coalesce(Sum("monto_haber"),0))['total']
+    row +=1
+    tbody = wb.add_format({
+        'text_wrap': True,
+        "font_size": 8,
+    })
+    tbody.set_align("left")
+    tbody.set_align("vcenter")
+    tbody.set_bottom(3)
+    ws.merge_range(f"A{row}:F{row}","",tbody)
+    ws.merge_range(f"A{row+1}:D{row+1}","TOTAL",tbody)
+    ws.write(row,4,"${0:.2f}".format(total_deber),tbody)
+    ws.write(row,5,"${0:.2f}".format(total_haber),tbody)
+    writer.save()
+    return BASE_DIR/f"libros_contables/{catalogo.empresa.nombre}_Partida_{partida.fecha.strftime('%d-%m-%Y')}.xlsx"

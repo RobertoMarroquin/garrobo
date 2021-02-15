@@ -75,6 +75,7 @@ class PartidaAdmin(admin.ModelAdmin):
     list_display = ("fecha",
         "libro",
         "descripcion",
+        "id",
     )
     inlines = [MovimientoInline,]
 

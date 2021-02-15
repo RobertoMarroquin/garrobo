@@ -27,8 +27,8 @@ def cierre(periodo):
         monto5 = Movimiento.objects.exclude(partida=partida[0]).filter(partida__libro__periodo=periodo,cuenta__codigo__startswith="5").aggregate(total_deber=Coalesce(Sum("monto_deber"),0), total_haber=Coalesce(Sum("monto_haber"),0))
         
         #Movimientos para cierre
-        Movimiento.objects.get_or_create(partida=partida[0],monto_deber=total5, monto_haber=0,cuenta=cuenta,descripcion="Cierre contable cuenta 4")
-        Movimiento.objects.get_or_create(partida=partida[0],monto_deber=0, monto_haber=total4,cuenta=cuenta,descripcion="Cierre contable cuenta 5")
+        Movimiento.objects.get_or_create(partida=partida[0],monto_deber=0, monto_haber=total5,cuenta=cuenta,descripcion="Cierre contable cuenta 5")
+        Movimiento.objects.get_or_create(partida=partida[0],monto_deber=total4, monto_haber=0,cuenta=cuenta,descripcion="Cierre contable cuenta 4")
         
         #Movimientos de cuentas 4 y 5
         lista_movs = Movimiento.objects.exclude(partida=partida[0]).filter(cuenta__catalogo=catalogo, cuenta__codigo__startswith ="5", partida__libro__periodo=periodo) | Movimiento.objects.exclude(partida=partida[0]).filter(cuenta__catalogo=catalogo, cuenta__codigo__startswith ="4", partida__libro__periodo=periodo)
