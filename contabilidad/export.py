@@ -391,121 +391,246 @@ def imprimir_balance(libro_id):
     partidas = libro.partidas.all()
     catalogo = libro.periodo.empresa.catalogo
     #Listado de movimientos por libro
-    movimientos = Movimiento.objects.filter(partida__libro__id=libro_id).order_by("cuenta__codigo")
-    #lista de codigos de los movimientos involucrados
-    codigos = list(Movimiento.objects.filter(partida__libro__id=libro_id).distinct().values("cuenta__codigo"))
-    #diccionario de codigos
-    dic_c = {}
-    for codigo in codigos:
-        dic_c[codigo["cuenta__codigo"]] = list(movimientos.filter(cuenta__codigo=codigo["cuenta__codigo"]).values(
-            "id",
-            "partida_id",
-            "partida__fecha",
-            "monto_deber",
-            "monto_haber",
-            "cuenta_id",
-            "cuenta__codigo",
-            "descripcion",
-            "creado",
-            )
-        )
+    if libro.mes in (1,3,5,7,8,10,12):
+        movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-31")
+    elif libro.mes in (4,6,9,11):
+        movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-30")
+    else:
+        if libro.periodo.ano%4 ==0:
+            movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-29")
+        else:
+            movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-28")
+    
+    cuentas = movs.values("cuenta__id")
+    lista_cuentas = []
+    for i in cuentas:
+        lista_cuentas += get_ruta_cuenta(i["cuenta__id"])
+    lista_cuentas = sorted(set(lista_cuentas))
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
-        BASE_DIR/f"./{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_auxiliar.xlsx",
-        engine='openpyxl')
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Balance_comprobacion.xlsx",
+        engine='xlsxwriter')
     wb = writer.book
-    ws = wb.create_sheet("auxiliar")
-    dfs = []
-    for i in dic_c.items():
-        df = pd.DataFrame(i[1])
-        dfs.append(df)
-    lista_cuentas = []
-    for i in movimientos:
-        lista_cuentas += get_ruta_cuenta(i.cuenta.id)
-    lista_cuentas = sorted(set(lista_cuentas))
-    row = 2
-
+    #Creacion de hoja
+    ws = wb.add_worksheet("mayor")
+    #Configuracion de pagina
+    ws.set_landscape()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("center")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #escritura de cabecera
+    ws.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
+    ws.merge_range("A2:J2",f"Balance de comprobacion del mes de {libro.get_mes_display()} del año {libro.periodo.ano}".upper(),header_format)
+    ws.merge_range("A3:J3",f"",header_format)
+    ws.merge_range("A5:B5","Cuentas",body_format)
+    ws.merge_range("D5:I5","Parciales",body_format)
+    ws.write("J5","Totales",body_format)
+    #Estructura de tabla
+    ws.set_column(0,0,10)
+    ws.set_column(1,1,25)
+    ws.set_column(2,2,3)
+    ws.set_column(3,10,10)
+    #Escritura de tabla
+    row = 5
     for i in lista_cuentas:
-        ws[f"A{row}"] = i
+        ws.set_row(row,25)
         largo = len(i)
-        row_aux = row
         if largo == 1:
-            ws[f"B{row}"] = Cuenta.objects.get(catalogo=catalogo,codigo=i).nombre.upper()
-            ws[f"A{row}"].border = Border(bottom=Side(style='thin'))
-            ws[f"B{row}"].border = Border(bottom=Side(style='thin'))
+            cuenta = Cuenta.objects.get(catalogo=catalogo,codigo=i)
         else:
-            ws[f"B{row}"] = SubCuenta.objects.get(catalogo=catalogo,codigo=i).nombre
-        row+=1
-        for movimiento in movimientos.filter(cuenta__codigo = i):
-            #ws.insert_rows(row+1,amount=1)
-            ws[f"C{row}"] = movimiento.partida.fecha
-            if largo == 1:
-                ws[f"D{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"E{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 2:
-                ws[f"F{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"G{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 4:
-                ws[f"H{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"I{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 6:
-                ws[f"J{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"K{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 8:
-                ws[f"L{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"M{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 10:
-                ws[f"N{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"O{row}"] = "{0:.2f}".format(movimiento.monto_deber)
-            elif largo == 12:
-                ws[f"P{row}"] = "{0:.2f}".format(movimiento.monto_haber)
-                ws[f"Q{row}"] = "{0:.2f}".format(movimiento.monto_deber)
+            cuenta = SubCuenta.objects.get(catalogo=catalogo,codigo=i)
+        ws.write(row,0,cuenta.codigo,body_format)
+        ws.write(row,1,cuenta.nombre,body_format)
+        #Totalizacion de cuentas
+        if i[0] in ("1",'4','6'):
+            total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))['total']
+        else:
+            total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))['total']
 
-            row+=1
-        #print(f"{row - row_aux}"
-        if largo == 1  :
-            ws[f'D{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'E{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'D{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'E{row_aux}'].border = Border(bottom=Side(style='thin'))
+        if total >= 0:
+            total = "{0:.2f}".format(total)
+        else:
+            total = "({0:.2f})".format(total)
 
-        elif largo == 2 :
-            ws[f'F{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'G{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'F{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'G{row_aux}'].border = Border(bottom=Side(style='thin'))
-
-        elif largo == 4 :
-            ws[f'H{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'I{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'H{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'I{row_aux}'].border = Border(bottom=Side(style='thin'))
-
-        elif largo == 6 :
-            ws[f'J{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'K{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'J{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'K{row_aux}'].border = Border(bottom=Side(style='thin'))
-
-        elif largo == 8 :
-            ws[f'L{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'M{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'L{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'M{row_aux}'].border = Border(bottom=Side(style='thin'))
-
-        elif largo == 10 :
-            ws[f'N{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'O{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'N{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'O{row_aux}'].border = Border(bottom=Side(style='thin'))
-
-        elif largo == 12 :
-            ws[f'P{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_haber'))["total"])
-            ws[f'Q{row_aux}'] = "{0:.2f}".format(movimientos.filter(cuenta__codigo__startswith = i).aggregate(total=Sum('monto_deber'))["total"])
-            ws[f'P{row_aux}'].border = Border(bottom=Side(style='thin'))
-            ws[f'Q{row_aux}'].border = Border(bottom=Side(style='thin'))
-
+        if largo == 1:
+            ws.write(f"J{row+1}",f"${total}",body_format)
+        elif largo == 2:
+            ws.write(f"I{row+1}",f"${total}",body_format)
+        elif largo == 4:
+            ws.write(f"H{row+1}",f"${total}",body_format)
+        elif largo == 6:
+            ws.write(f"G{row+1}",f"${total}",body_format)
+        elif largo == 8:
+            ws.write(f"F{row+1}",f"${total}",body_format)
+        elif largo == 10:
+            ws.write(f"E{row+1}",f"${total}",body_format)
+        elif largo == 12:
+            ws.write(f"D{row+1}",f"${total}",body_format)
+        row +=1
+    
+    activo = movs.filter(cuenta__codigo__startswith="4").filter(cuenta__codigo__startswith="1").aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+    pasivo = movs.filter(cuenta__codigo__startswith="2").filter(cuenta__codigo__startswith="5").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    capital = movs.filter(cuenta__codigo__startswith="3").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
+    ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
+    ws.merge_range(f"I{row+3}:J{row+3}","${0:.2f}".format(activo),foot_format)
+    ws.merge_range(f"A{row+4}:H{row+4}","Total Pasivo",foot_format)
+    ws.merge_range(f"I{row+4}:J{row+4}","${0:.2f}".format(pasivo),foot_format)
+    ws.merge_range(f"A{row+5}:H{row+5}","Total Capital",foot_format)
+    ws.merge_range(f"I{row+5}:J{row+5}","${0:.2f}".format(capital),foot_format)
     writer.save()
+    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Balance_comprobacion.xlsx"
+
+
+def imprimir_auxiliar_balace_com(libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    partidas = libro.partidas.all()
+    catalogo = libro.periodo.empresa.catalogo
+    #Listado de movimientos por libro
+    if libro.mes in (1,3,5,7,8,10,12):
+        movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-31")
+    elif libro.mes in (4,6,9,11):
+        movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-30")
+    else:
+        if libro.periodo.ano%4 ==0:
+            movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-29")
+        else:
+            movs = Movimiento.objects.filter(partida__libro__periodo=libro.periodo,partida__fecha__lte=f"{libro.periodo.ano}-{libro.mes}-28")
+    
+    cuentas = movs.values("cuenta__id")
+    lista_cuentas = []
+    for i in cuentas:
+        lista_cuentas += get_ruta_cuenta(i["cuenta__id"])
+    lista_cuentas = sorted(set(lista_cuentas))
+    print(lista_cuentas)
+    #Ceacion de objeto Excel
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Auxiliar_Balance_comprobacion.xlsx",
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet("mayor")
+    #Configuracion de pagina
+    ws.set_landscape()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("center")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #escritura de cabecera
+    ws.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
+    ws.merge_range("A2:J2",f"Balance de comprobacion del mes de {libro.get_mes_display()} del año {libro.periodo.ano}".upper(),header_format)
+    ws.merge_range("A3:J3",f"",header_format)
+    ws.merge_range("A5:B5","Cuentas",body_format)
+    ws.merge_range("D5:I5","Parciales",body_format)
+    ws.write("J5","Totales",body_format)
+    #Estructura de tabla
+    ws.set_column(0,0,10)
+    ws.set_column(1,1,25)
+    ws.set_column(2,2,3)
+    ws.set_column(3,10,10)
+    #Escritura de tabla
+    row = 5
+    for i in lista_cuentas:
+        ws.set_row(row,25)
+        largo = len(i)
+        if largo == 1:
+            cuenta = Cuenta.objects.get(catalogo=catalogo,codigo=i)
+        else:
+            cuenta = SubCuenta.objects.get(catalogo=catalogo,codigo=i)
+        ws.write(row,0,cuenta.codigo,body_format)
+        ws.write(row,1,cuenta.nombre,body_format)
+        #Totalizacion de cuentas
+        if i[0] in ("1",'4','6'):
+            total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))['total']
+        else:
+            total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))['total']
+
+        if total >= 0:
+            total = "{0:.2f}".format(total)
+        else:
+            total = "({0:.2f})".format(total)
+
+        if largo == 1:
+            ws.write(f"J{row+1}",f"${total}",body_format)
+        elif largo == 2:
+            ws.write(f"I{row+1}",f"${total}",body_format)
+        elif largo == 4:
+            ws.write(f"H{row+1}",f"${total}",body_format)
+        elif largo == 6:
+            ws.write(f"G{row+1}",f"${total}",body_format)
+        elif largo == 8:
+            ws.write(f"F{row+1}",f"${total}",body_format)
+        elif largo == 10:
+            ws.write(f"E{row+1}",f"${total}",body_format)
+        elif largo == 12:
+            ws.write(f"D{row+1}",f"${total}",body_format)
+        row +=1
+        for movimiento in movs.filter(cuenta__codigo=i):
+            ws.write(row,0,f"{movimiento.partida.fecha}",body_format)
+            ws.write(row,1,f"{movimiento.descripcion}",body_format)
+            ws.write(row,3,"{0:.2f}".format(movimiento.monto_deber),body_format)
+            ws.write(row,4,"{0:.2f}".format(movimiento.monto_haber),body_format)
+            row +=1
+    
+    activo = movs.filter(cuenta__codigo__startswith="4").filter(cuenta__codigo__startswith="1").aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+    pasivo = movs.filter(cuenta__codigo__startswith="2").filter(cuenta__codigo__startswith="5").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    capital = movs.filter(cuenta__codigo__startswith="3").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
+    ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
+    ws.merge_range(f"I{row+3}:J{row+3}","${0:.2f}".format(activo),foot_format)
+    ws.merge_range(f"A{row+4}:H{row+4}","Total Pasivo",foot_format)
+    ws.merge_range(f"I{row+4}:J{row+4}","${0:.2f}".format(pasivo),foot_format)
+    ws.merge_range(f"A{row+5}:H{row+5}","Total Capital",foot_format)
+    ws.merge_range(f"I{row+5}:J{row+5}","${0:.2f}".format(capital),foot_format)
+    writer.save()
+    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Auxiliar_Balance_comprobacion.xlsx"
 
 
 def imprimir_estado_resultado(periodo_id):
@@ -516,7 +641,7 @@ def imprimir_estado_resultado(periodo_id):
 def imprimir_balance_general(periodo_id):
     periodo = Periodo.objects.get(id=periodo_id)
     catalogo = Catalogo.objects.get(empresa=periodo.empresa)
-    movimientos = Movimiento.objects.exclude(cuenta__codigo__startswith="4").exclude(cuenta__codigo__startswith="6").exclude(cuenta__codigo__startswith="5").filter(partida__libro__periodo=periodo)
+    movimientos = Movimiento.objects.exclude(cuenta__codigo__startswith="6").exclude(cuenta__codigo__startswith="5").exclude(cuenta__codigo__startswith="4").filter(partida__libro__periodo=periodo)
     #lista de cuentas
     lista_cuentas = movimientos.values("cuenta__codigo")
     lista_cuentas = list(lista_cuentas)

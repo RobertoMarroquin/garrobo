@@ -16,7 +16,25 @@ from empresas.models import Empresa
 from .export import *
 
 #Vistas Exportacion
-class Partida(View):
+class AuxiliarBalanceComprobacion(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_auxiliar_balace_com(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
+class BalanceComprobacion(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_balance(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
+class PartidaE(View):
     def get(self, request, *args, **kwargs):
         id_partida = self.kwargs.get('id_partida')
         libroEx = imprimir_partida(id_partida)

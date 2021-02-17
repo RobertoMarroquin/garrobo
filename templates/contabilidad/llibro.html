@@ -27,6 +27,8 @@
         <tr class="text-center">
             <th>Año</th>
             <th>Mes</th>
+            <th>Exportar Auxiliar Balance</th>
+            <th>Exportar Balance</th>
             <th>Exportar Auxiliar Diario Mayor</th>
             <th>Exportar Diario Mayor</th>
             <th>Exportar Libro Mayor</th>
@@ -39,10 +41,14 @@
             <td>{{periodo.ano}}</td>
             <td>{{libro.get_mes_display}}</td>
             {% if libro.partidas.all|length > 0 %}
+            <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:acomprobacion' libro.id %}" role="button"><i class="fas fa-file-export"></i></a></td>
+            <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:comprobacion' libro.id %}" role="button"><i class="fas fa-file-export"></i></a></td>
             <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:auxiliar' libro.id %}" role="button"><i class="fas fa-file-export"></i></a></td>
             <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:diario' libro.id %}" role="button"><i class="fas fa-file-export"></i></a></td>
             <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:mayor' libro.id %}" role="button"><i class="fas fa-file-export"></i></a></td>
             {% else %}
+            <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
+            <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
             <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-file-export"></i></button></td>
