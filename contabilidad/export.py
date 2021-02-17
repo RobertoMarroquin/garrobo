@@ -466,7 +466,7 @@ def imprimir_balance(libro_id):
         ws.write(row,0,cuenta.codigo,body_format)
         ws.write(row,1,cuenta.nombre,body_format)
         #Totalizacion de cuentas
-        if i[0] in ("1",'4','6'):
+        if i[0] in ("2",'5','3'):
             total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))['total']
         else:
             total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))['total']
@@ -587,7 +587,7 @@ def imprimir_auxiliar_balace_com(libro_id):
         ws.write(row,0,cuenta.codigo,body_format)
         ws.write(row,1,cuenta.nombre,body_format)
         #Totalizacion de cuentas
-        if i[0] in ("1",'4','6'):
+        if i[0] in ("2",'3','5'):
             total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))['total']
         else:
             total = movs.filter(cuenta__codigo__startswith=i).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))['total']
