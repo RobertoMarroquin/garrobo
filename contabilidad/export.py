@@ -492,8 +492,11 @@ def imprimir_balance(libro_id):
             ws.write(f"D{row+1}",f"${total}",body_format)
         row +=1
     
-    activo = movs.filter(cuenta__codigo__startswith="4").filter(cuenta__codigo__startswith="1").aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
-    pasivo = movs.filter(cuenta__codigo__startswith="2").filter(cuenta__codigo__startswith="5").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="5")
+    activo = activo.aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+    pasivo = movs.filter(cuenta__codigo__startswith="2") | movs.filter(cuenta__codigo__startswith="5")
+    pasivo = pasivo.aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+
     capital = movs.filter(cuenta__codigo__startswith="3").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
     ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
     ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
@@ -618,9 +621,10 @@ def imprimir_auxiliar_balace_com(libro_id):
             ws.write(row,3,"{0:.2f}".format(movimiento.monto_deber),body_format)
             ws.write(row,4,"{0:.2f}".format(movimiento.monto_haber),body_format)
             row +=1
-    
-    activo = movs.filter(cuenta__codigo__startswith="4").filter(cuenta__codigo__startswith="1").aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
-    pasivo = movs.filter(cuenta__codigo__startswith="2").filter(cuenta__codigo__startswith="5").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="5")
+    activo = activo.aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+    pasivo = movs.filter(cuenta__codigo__startswith="2") | movs.filter(cuenta__codigo__startswith="5")
+    pasivo = pasivo.aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
     capital = movs.filter(cuenta__codigo__startswith="3").aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
     ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
     ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
