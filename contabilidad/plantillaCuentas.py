@@ -1,4 +1,18 @@
+#python libs
+import os
+import csv
+
+#3rd party libs
+import pandas as pd
+
+#Self
 from .models import Cuenta, SubCuenta, Catalogo
+from empresas.models import Empresa
+from garrobo.settings import BASE_DIR
+
+
+
+
 # Crear plantilla de cuentas
 def  pl_cuentas(catalogo):
     #cuentas principales
@@ -180,3 +194,39 @@ def  pl_cuentas(catalogo):
         cod = sc[0][0:4]
         subuenta = SubCuenta(codigo=sc[0],nombre=sc[1],catalogo=catalogo,cuenta_padre=SubCuenta.objects.get(codigo=cod,catalogo=catalogo))
         subuenta.save()
+
+
+def pl_cuentas2(archivo,empresa_id=1):
+    catalogo = Catalogo.objects.get_or_create(empresa_id=empresa_id)[0]
+    with open(os.path.join(BASE_DIR,archivo)) as f:
+        documento = csv.reader(f,delimiter=',',dialect='excel')
+        next(documento, None)
+        documento = list(documento)
+        for linea in documento:
+            codigo, nombre = list(linea)
+            codigo = str(codigo)
+            if len(codigo) == 1:
+                cuenta = Cuenta.objects.get_or_create(
+                    catalogo_id=catalogo.id,
+                    codigo=codigo,
+                    nombre=nombre
+                    )
+                cuenta[0].save()
+                
+            elif len(codigo) == 2:
+                cuenta = SubCuenta.objects.get_or_create(
+                    catalogo=catalogo,
+                    codigo=codigo,
+                    nombre=nombre,
+                    cuenta_principal=(Cuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0]))
+                    )
+                cuenta[0].save()
+
+            else:
+                cuenta = SubCuenta.objects.get_or_create(
+                    catalogo=catalogo,
+                    codigo=codigo,
+                    nombre=nombre,
+                    cuenta_padre=(SubCuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0:-2]))
+                    )
+                cuenta[0].save()
