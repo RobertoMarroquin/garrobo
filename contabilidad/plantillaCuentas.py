@@ -196,7 +196,7 @@ def  pl_cuentas(catalogo):
         subuenta.save()
 
 
-def pl_cuentas2(archivo,empresa_id=1):
+def pl_cuentas2(archivo,empresa_id):
     catalogo = Catalogo.objects.get_or_create(empresa_id=empresa_id)[0]
     with open(os.path.join(BASE_DIR,archivo)) as f:
         documento = csv.reader(f,delimiter=',',dialect='excel')
