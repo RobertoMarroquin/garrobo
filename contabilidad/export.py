@@ -406,7 +406,7 @@ def imprimir_balance(libro_id):
     #Creacion de libro
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Anexos_Balance_Comprobacion.xlsx",
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Balance_Comprobacion.xlsx",
         engine='xlsxwriter')
     wb = writer.book
     #Creacion de hoja
@@ -561,7 +561,7 @@ def imprimir_balance(libro_id):
     ws2.merge_range(f"I{row+3}:J{row+3}","${0:.2f}".format(pasivo),foot_format)
     writer.save()
     
-    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Anexos_Balance_Comprobacion.xlsx"
+    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Balance_Comprobacion.xlsx"
 
 #Arreglado
 def imprimir_auxiliar_balace_com(libro_id):
@@ -599,7 +599,7 @@ def imprimir_auxiliar_balace_com(libro_id):
     #Creacion de libro
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Balance_comprobacion.xlsx",
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Anexos_Balance_comprobacion.xlsx",
         engine='xlsxwriter')
     wb = writer.book
     #Creacion de hoja
