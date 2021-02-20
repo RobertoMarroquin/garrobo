@@ -395,14 +395,14 @@ def imprimir_balance(libro_id):
     for i in cuentas_activo:
         lista_cuentas_activo += get_ruta_cuenta(i["cuenta__id"])
     lista_cuentas_activo = sorted(set(lista_cuentas_activo))
-    
+    print (lista_cuentas_activo)
     #listas de cuentas pasivo
     cuentas_pasivo = movs_pasivos.values("cuenta__id")
     lista_cuentas_pasivo = []
     for i in cuentas_pasivo:
         lista_cuentas_pasivo += get_ruta_cuenta(i["cuenta__id"])
     lista_cuentas_pasivo = sorted(set(lista_cuentas_pasivo))
-    
+    print (lista_cuentas_pasivo)
     #Creacion de libro
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
