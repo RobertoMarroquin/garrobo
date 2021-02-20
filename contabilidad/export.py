@@ -599,7 +599,7 @@ def imprimir_auxiliar_balace_com(libro_id):
     #Creacion de libro
     #Ceacion de objeto Excel
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Anexos_Balance_comprobacion.xlsx",
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.get_mes_display()}_{libro.periodo.ano}_Anexos_Balance_Comprobacion.xlsx",
         engine='xlsxwriter')
     wb = writer.book
     #Creacion de hoja
