@@ -79,7 +79,7 @@ def imprimir_diario_mayor(libro_id):
         "font_size":8,
         'text_wrap': True,
     })
-    body_format.set_align("center")
+    body_format.set_align("left")
     body_format.set_align("vcenter")
     #formato de pie
     foot_format =  wb.add_format({
@@ -196,7 +196,7 @@ def imprimir_auxiliar(libro_id):
         "font_size":8,
         'text_wrap': True,
     })
-    body_format.set_align("center")
+    body_format.set_align("left")
     body_format.set_align("vcenter")
     #formato de pie
     foot_format =  wb.add_format({
@@ -434,7 +434,7 @@ def imprimir_balance(libro_id):
         "font_size":8,
         'text_wrap': True,
     })
-    body_format.set_align("center")
+    body_format.set_align("left")
     body_format.set_align("vcenter")
     #formato de pie
     foot_format =  wb.add_format({
@@ -446,7 +446,7 @@ def imprimir_balance(libro_id):
     foot_format.set_bottom(3)
     #Escritura de cabecera  Activo
     ws.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
-    ws.merge_range("A2:J2",f"BALANCE GENERAL AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
+    ws.merge_range("A2:J2",f"BALANCE DE COMPROBACION AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
     ws.merge_range("A3:J3",f"ACTIVO",header_format)
 
     ws.merge_range("A5:B5","Cuentas",body_format)
@@ -454,7 +454,7 @@ def imprimir_balance(libro_id):
     ws.write("J5","Totales",body_format)
     #Escritura de cabecera  PASIVO
     ws2.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
-    ws2.merge_range("A2:J2",f"BALANCE GENERAL AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
+    ws2.merge_range("A2:J2",f"BALANCE DE COMPROBACION AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
     ws2.merge_range("A3:J3",f"PASIVO",header_format)
 
     ws2.merge_range("A5:B5","Cuentas",body_format)
@@ -627,7 +627,7 @@ def imprimir_auxiliar_balace_com(libro_id):
         "font_size":8,
         'text_wrap': True,
     })
-    body_format.set_align("center")
+    body_format.set_align("left")
     body_format.set_align("vcenter")
     #formato de pie
     foot_format =  wb.add_format({
@@ -639,7 +639,7 @@ def imprimir_auxiliar_balace_com(libro_id):
     foot_format.set_bottom(3)
     #Escritura de cabecera  Activo
     ws.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
-    ws.merge_range("A2:J2",f"BALANCE GENERAL AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
+    ws.merge_range("A2:J2",f"AUXILIAR DEL BALANCE DE COMPROBACION AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
     ws.merge_range("A3:J3",f"ACTIVO",header_format)
 
     ws.merge_range("A5:B5","Cuentas",body_format)
@@ -647,7 +647,7 @@ def imprimir_auxiliar_balace_com(libro_id):
     ws.write("J5","Totales",body_format)
     #Escritura de cabecera  PASIVO
     ws2.merge_range("A1:J1",f"{catalogo.empresa.nombre}",header_format)
-    ws2.merge_range("A2:J2",f"BALANCE GENERAL AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
+    ws2.merge_range("A2:J2",f"AUXILIAR DEL BALANCE DE COMPROBACION AL MES DE {libro.get_mes_display()} DE {libro.periodo.ano}",header_format)
     ws2.merge_range("A3:J3",f"PASIVO",header_format)
 
     ws2.merge_range("A5:B5","Cuentas",body_format)
