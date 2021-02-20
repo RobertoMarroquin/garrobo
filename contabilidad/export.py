@@ -509,7 +509,7 @@ def imprimir_balance(libro_id):
                 ws.write(f"D{row+1}",f"${total}",body_format)
             row +=1
 
-    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="5")
+    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="4")
     activo = activo.aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
     ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
     ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
@@ -701,7 +701,7 @@ def imprimir_auxiliar_balace_com(libro_id):
             ws.write(f"D{row+1}",f"${total}",body_format)
         row +=1
 
-    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="5")
+    activo = movs.filter(cuenta__codigo__startswith="1") | movs.filter(cuenta__codigo__startswith="4")
     activo = activo.aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
     ws.merge_range(f"A{row+2}:J{row+2}","",foot_format)
     ws.merge_range(f"A{row+3}:H{row+3}","Total Activo",foot_format)
