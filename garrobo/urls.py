@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from empresas.views import Home
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('garrobo/admin/', admin.site.urls),
-    path("garrobo/cont/", include('contabilidad.urls',namespace='cont')),
-    path("garrobo/emp/", include('empresas.urls',namespace='emp')),
-    path("garrobo/iva/", include('iva.urls',namespace='iva')),
-    path("garrobo/", Home.as_view(), name="home"),
+    path('admin/', admin.site.urls),
+    path("cont/", include('contabilidad.urls',namespace='cont')),
+    path("emp/", include('empresas.urls',namespace='emp')),
+    path("iva/", include('iva.urls',namespace='iva')),
+    path("", Home.as_view(), name="home"),
     path('searchableselect/', include('searchableselect.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

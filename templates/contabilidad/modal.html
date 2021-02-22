@@ -21,7 +21,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
+                    <button id="enviar" type="submit" class="btn btn-primary">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
                 </div>
             </form>
     </div>
@@ -34,3 +34,30 @@
     })
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script>
+if ( $("#id_codigo").length && $("#id_catalogo").length ) {
+    $("#enviar").prop('disabled', true);
+    $('#id_codigo').change((event) => {
+        event.preventDefault();
+        let codigo = $('#id_codigo').val()
+        let catalogo = $('#id_catalogo').val()
+        var dinamyc = '/cont/json/subcuenta/'+ catalogo +'/' + codigo + "/"
+        console.log(dinamyc)
+        $.ajax({
+            url: dinamyc,
+            type: 'get',
+            datatype: 'json',
+            success: function(response) {
+                console.log(response)
+                $("#enviar").prop('disabled', true);
+                alert("Cuenta Ya existe!") 
+            },
+            error: function(error) {
+                console.log(error)
+                $("#enviar").prop('disabled', false);
+            }
+        })
+    })
+}
+</script>
