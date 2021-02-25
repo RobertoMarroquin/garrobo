@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block title %} Partidas {{libro.get_mes_display}}/{{libro.periodo.ano}} {% endblock title %} {% block css %}
+{% extends 'base.html' %} {% load contabilidad_tags %}
+{% block title %} Partidas {{libro.get_mes_display}}/{{libro.periodo.ano}} {% endblock title %} {% block css %}
 <!-- Data Table Css-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.css" /> {% endblock css %} {% block content %}
 <h3 class='text-center'>{{libro.get_mes_display}} / {{libro.periodo.ano}} </h3>
@@ -29,7 +30,13 @@
     </thead>
     <tbody>
         {% for partida in partidas %}
+        {% parcu partida.id as cuadrado%}
+        {% if not cuadrado %}
+        <tr class="text-center bg-warning">
+        {% else %}
         <tr class="text-center">
+        {% endif %}
+
             <td>
                 <a class="btn btn-info" role="button" onclick="show_modal('{% url 'cont:act_partida' partida.id %}')"><i style="color:white;" class="fas fa-edit"></i></a>
             </td>
