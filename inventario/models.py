@@ -43,7 +43,7 @@ class CatalogoProducto(models.Model):
 class Producto(models.Model):
     codigo = models.CharField(("Codigo"), max_length=50)
     nombre = models.CharField(("Nombre"), max_length=150)
-    catalogo = models.ForeignKey("inventario.Catalogo", verbose_name=("Catalogo"),related_name="produtos",on_delete=models.CASCADE)
+    catalogo = models.ForeignKey("inventario.CatalogoProducto", verbose_name=("Catalogo"),related_name="produtos",on_delete=models.CASCADE)
     creado = models.DateTimeField(("Creado"), auto_now=False, auto_now_add=True)
 
     class Meta:

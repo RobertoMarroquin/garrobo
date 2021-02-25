@@ -13,8 +13,8 @@ class Empresa(models.Model):
     giro3 = models.CharField(("Actividad Economica 3"), max_length=200, blank=True, null=True)
     telefono = models.CharField(("Telefono"), max_length=50, blank=True, null=True)
     contabilidad = models.BooleanField(("Contabilidad"),default=False)
+    inventario = models.BooleanField(("Inventario"),default=False)
     creado = models.DateTimeField("Creado", auto_now=False, auto_now_add=True)
-
     class Meta:
         verbose_name = 'Empresa'
         verbose_name_plural = 'Empresas'
