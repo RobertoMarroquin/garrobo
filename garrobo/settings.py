@@ -27,7 +27,7 @@ SECRET_KEY = '2ckl(csmue+hyx2103-=#^dctjn3qcau7rjf6vhq__t#l)-u!5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in']
+ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in','despaogo.pythonanywhere.com/']
 
 
 # Application definition
@@ -90,11 +90,16 @@ WSGI_APPLICATION = 'garrobo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'contabilidad',
-        'USER': 'roma',
-        'PASSWORD': '986753421',
-        'HOST': '127.0.0.1',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE':'django.db.backends.postgresql',
+        #'NAME': 'despaogo$contabilidad',
+        'NAME':'contabilidad',
+        #'USER': 'despaogo',
+        'USER':'roma',
+        #'PASSWORD': '986753421R',
+        'PASSWORD':'986753421',
+        #'HOST': 'despaogo.mysql.pythonanywhere-services.com',
+        'HOST':'127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -143,6 +148,7 @@ THOUSAND_SEPARATOR = ","
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+#STATIC_ROOT = "/home/despaogo/garrobo/static"
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     ]

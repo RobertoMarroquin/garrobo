@@ -1,6 +1,6 @@
 #python libs
 from contabilidad.cierre import cierre
-from datetime import date
+from datetime import date, datetime, timedelta
 import datetime
 #django libs
 from contabilidad.forms import *
@@ -8,28 +8,57 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
 from django.urls import reverse
 from django.db.models import Sum
-from django.http.response import FileResponse
+from django.http.response import FileResponse, HttpResponse
+from django.core.serializers import serialize
 #self libs
 from .models import *
 from empresas.models import Empresa
 from .export import *
 
 #Vistas Exportacion
+class AuxiliarBalanceComprobacion(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_auxiliar_balace_com(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
+class BalanceComprobacion(View):
+    def get(self, request, *args, **kwargs):
+        id_libro = self.kwargs.get('id_libro')
+        libroEx = imprimir_balance(id_libro)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
+class PartidaE(View):
+    def get(self, request, *args, **kwargs):
+        id_partida = self.kwargs.get('id_partida')
+        libroEx = imprimir_partida(id_partida)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
+
 class Cierre(View):
     def get(self, request, *args, **kwargs):
         id_periodo = self.kwargs.get('id_periodo')
         cierre(id_periodo)
         libroEx = imprimir_auxiliar_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
-        
+
+
 class Anexos(View):
     def get(self, request, *args, **kwargs):
         id_periodo = self.kwargs.get('id_periodo')
         libroEx = imprimir_auxiliar_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -38,7 +67,7 @@ class Balance(View):
         id_periodo = self.kwargs.get('id_periodo')
         libroEx = imprimir_balance_general(id_periodo)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -56,7 +85,8 @@ class DiarioMayorView(View):
         id_libro = self.kwargs.get('id_libro')
         libroEx = imprimir_diario_mayor(id_libro)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        #print(libroEx.filename['name'])
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -65,7 +95,7 @@ class LibroMayorView(View):
         id_libro = self.kwargs.get('id_libro')
         libroEx = imprimir_mayor(id_libro)
         # create the HttpResponse object ...
-        response = FileResponse(open(libroEx.filename, 'rb'))
+        response = FileResponse(open(libroEx, 'rb'))
         return response
 
 
@@ -76,20 +106,23 @@ class SubCuentaCV(CreateView):
     form_class = SubCuentaF
 
     def get_success_url(self,**kwargs):
-        catalogo = SubCuenta.objects.get(id=self.kwargs["catalogo"]).catalogo.id
+        catalogo = Catalogo.objects.get(id=self.kwargs["catalogo"]).id
         return reverse("cont:detalle_catalogo",args=(catalogo,))
-    
+
     def get_initial(self, **kwargs):
         initial = super(SubCuentaCV,self).get_initial()
         initial["catalogo"] =  Catalogo.objects.get(id=self.kwargs["catalogo"]).id
+        if "cuenta" in self.kwargs:
+            initial["cuenta_padre"] = SubCuenta.objects.get(id=self.kwargs["cuenta"]).id
+            initial["codigo"] = SubCuenta.objects.get(id=self.kwargs["cuenta"]).codigo
         return initial
 
-    
+
     def get_form_kwargs(self):
         kwargs = super(SubCuentaCV,self).get_form_kwargs()
         kwargs['catalogo'] = Catalogo.objects.get(id=self.kwargs["catalogo"])
         return kwargs
-    
+
     def get_context_data(self, **kwargs):
         context = super(SubCuentaCV,self).get_context_data(**kwargs)
         context['catalogo'] = Catalogo.objects.get(id=self.kwargs["catalogo"])
@@ -110,12 +143,21 @@ class SubCuentaUV(UpdateView):
         subcuenta = SubCuenta.objects.get(id=self.kwargs['pk'])
         context['direccion'] = 'cont:act_subcuenta'
         context['titulo'] = f'Actualizar Subcuenta {subcuenta.nombre}'
-        context['parametro'] = self.kwargs['pk'] 
-        context['actualizar'] = True 
+        context['parametro'] = self.kwargs['pk']
+        context['actualizar'] = True
         return context
     def get_success_url(self,**kwargs):
         catalogo = SubCuenta.objects.get(id=self.kwargs["pk"]).catalogo.id
         return reverse("cont:detalle_catalogo",args=(catalogo,))
+
+
+class SubcuentaD(DetailView):
+    model = SubCuenta
+    template_name='contabilidad/subcuentajson.html'
+    def get(self,request,*args, **kwarg ):
+        subcuenta = SubCuenta.objects.get(codigo=self.kwargs['codigo'],catalogo=self.kwargs['catalogo'])
+        subcuenta = serialize('json',[subcuenta,])
+        return HttpResponse(subcuenta,'application/json')
 
 
 #Vistas de Catalogo
@@ -139,7 +181,7 @@ class CatalogoCV(CreateView):
         context['titulo'] = 'Crear Catalogo'
         context["parametro"] = self.kwargs['empresa']
         return context
-    
+
     def get_initial(self, **kwargs):
         initial = super(CatalogoCV,self).get_initial()
         initial['empresa']=self.kwargs['empresa']
@@ -150,15 +192,15 @@ class CatalogoD(DetailView):
     model = Catalogo
     template_name = 'contabilidad/detalle_catalogo.html'
     context_object_name = 'catalogo'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['empresa'] = Catalogo.objects.get(id=self.kwargs['pk']).empresa
         context['catalogo'] =  Catalogo.objects.get(id=self.kwargs['pk'])
-        context["subcuentas"] = SubCuenta.objects.filter(catalogo=Catalogo.objects.get(id=self.kwargs['pk'])) 
+        context["subcuentas"] = SubCuenta.objects.filter(catalogo=Catalogo.objects.get(id=self.kwargs['pk']))
         return context
 
-                
+
 #Vistas de Movimiento
 class MovimientoCV(CreateView):
     model = Movimiento
@@ -183,20 +225,20 @@ class MovimientoCV(CreateView):
         kwargs = super(MovimientoCV,self).get_form_kwargs()
         kwargs['catalogo'] = Partida.objects.get(id=self.kwargs["partida"]).libro.periodo.empresa.catalogo
         return kwargs
-    
+
     def get_context_data(self, **kwargs):
         context = super(MovimientoCV, self).get_context_data(**kwargs)
         context['partida'] = Partida.objects.get(id=self.kwargs["partida"])
-        context["movimientos"] = Movimiento.objects.filter(partida__id=self.kwargs["partida"]) 
+        context["movimientos"] = Movimiento.objects.filter(partida__id=self.kwargs["partida"])
         context["haber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_haber'))["monto_haber__sum"])) if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
         context["deber_total"] = float("{0:.2f}".format(Movimiento.objects.filter(partida__id=self.kwargs["partida"]).aggregate(Sum('monto_deber'))["monto_deber__sum"])) if Movimiento.objects.filter(partida__id=self.kwargs["partida"]).exists() else "0.00"
-        
+
         return context
 
     def get_success_url(self,**kwargs):
         return reverse("cont:movimientos",args=[self.kwargs['partida'],])
-    
-    
+
+
 class MovimientoUV(UpdateView):
     model = Movimiento
     template_name = "contabilidad/modal.html"
@@ -211,8 +253,8 @@ class MovimientoUV(UpdateView):
         movimiento = Movimiento.objects.get(id=self.kwargs['pk'])
         context['direccion'] = 'cont:act_movimiento'
         context['titulo'] = f'Actualizar Movimiento {movimiento.partida.fecha}'
-        context['parametro'] = self.kwargs['pk'] 
-        context['actualizar'] = True 
+        context['parametro'] = self.kwargs['pk']
+        context['actualizar'] = True
         return context
 
     def get_success_url(self,**kwargs):
@@ -228,7 +270,7 @@ class MovimientoDV(DeleteView):
         context["mov"] = self.kwargs["pk"]
         context["partida"] = Movimiento.objects.get(id=self.kwargs["pk"]).partida.id
         return context
-    
+
     def get_object(self):
         id_m = self.kwargs['pk']
         return get_object_or_404(Movimiento,id=id_m)
@@ -247,7 +289,7 @@ class PartidaCV(CreateView):
         ano = Libro.objects.get(id=self.kwargs['libro']).periodo.ano
         initial = super(PartidaCV,self).get_initial()
         initial['libro'] = Libro.objects.get(id=self.kwargs['libro'])
-        initial["fecha"] = (Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + datetime.timedelta(days=1)).strftime('%d/%m/%y') if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else date(day=1,month=mes,year=ano).strftime('%d/%m/%y')
+        initial["fecha"] = (Partida.objects.filter(libro__id=self.kwargs['libro']).order_by('-fecha')[0].fecha + timedelta(days=1)).strftime('%d/%m/%y') if Partida.objects.filter(libro__id=self.kwargs['libro']).exists() else date(day=1,month=mes,year=ano).strftime('%d/%m/%y')
         print(initial["fecha"])
         return initial
 
@@ -273,7 +315,7 @@ class PartidaLV(ListView):
         context = super(PartidaLV, self).get_context_data(**kwargs)
         context["libro"] = Libro.objects.get(id=self.kwargs['libro'])
         return context
-        
+
     def get_queryset(self):
         queryset = super(PartidaLV, self).get_queryset()
         queryset = queryset.filter(libro__id = self.kwargs['libro']).order_by("fecha")
@@ -290,8 +332,8 @@ class PartidaUV(UpdateView):
         partida = Partida.objects.get(id=self.kwargs['pk'])
         context['direccion'] = 'cont:act_partida'
         context['titulo'] = f'Actualizar Partida {partida.descripcion} {partida.fecha}'
-        context['parametro'] = self.kwargs['pk'] 
-        context['actualizar'] = True 
+        context['parametro'] = self.kwargs['pk']
+        context['actualizar'] = True
         return context
 
     def get_success_url(self,**kwargs):
@@ -304,7 +346,7 @@ class LibroCV(CreateView):
     model = Libro
     template_name = "contabilidad/modal.html"
     form_class = LibroF
-    
+
     def get_success_url(self,**kwargs):
         return reverse("cont:lista_libro",args=[self.kwargs['pk'],])
 
@@ -339,7 +381,7 @@ class LibroLV(ListView):
         return queryset
 
 
-#vistas del Periodo 
+#vistas del Periodo
 class PeriodoCV(CreateView):
     model = Periodo
     template_name = "contabilidad/modal.html"
@@ -362,7 +404,7 @@ class PeriodoCV(CreateView):
         return context
 
     def get_initial(self, **kwargs):
-       
+
         initial = super(PeriodoCV,self).get_initial()
         initial['empresa'] = Empresa.objects.get(id=self.kwargs['pk'])
         initial['fecha_inicio'] = "{}".format(date(date.today().year, 1, 1).strftime("%dd/%mm/%yy")) if  not Empresa.objects.get(id=self.kwargs['pk']).periodos.exists() else "01/01/{}".format(str(Empresa.objects.get(id=self.kwargs['pk']).periodos.order_by("-ano")[0].ano+1)[-2:])
@@ -375,13 +417,14 @@ class PeriodoL(ListView):
     model = Periodo
     context_object_name = 'periodos'
     template_name='contabilidad/lperiodo.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["empresa"] = Empresa.objects.get(id=self.kwargs['emp'])
         return context
-    
+
     def get_queryset(self):
         q = super(PeriodoL,self).get_queryset()
         q = q.filter(empresa__id=self.kwargs['emp'])
         return q
+

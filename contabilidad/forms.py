@@ -15,11 +15,11 @@ class PeriodoForm(forms.ModelForm):
     fecha_inicio = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
             widget=forms.DateInput(attrs={"data-mask":"00/00/00"}),
             required=True)
-    
+
     fecha_fin = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
             widget=forms.DateInput(attrs={"data-mask":"00/00/00"}),
             required=True)
-    
+
     class Meta:
         model = Periodo
         fields = (
@@ -34,21 +34,21 @@ class PeriodoForm(forms.ModelForm):
         super(PeriodoForm, self).__init__(*args, **kwargs)
         # restrict the queryset of 'Cuenta'
         self.fields['empresa'].queryset = self.fields['empresa'].queryset.filter(id=empresa.id)
-       
+
 
 
 class CatalogoF(forms.ModelForm):
     class Meta:
         model = Catalogo
         fields = ["empresa",]
-        
+
     def save(self,commit = True, *args, **kwargs):
         cat = super().save(*args, **kwargs)
         if commit:
             cat.save()
             pl(cat)
         return cat
-    
+
     def __init__(self, *args, **kwargs):
         empresa = kwargs.pop('empresa', None)
         super(CatalogoF, self).__init__(*args, **kwargs)
@@ -59,10 +59,10 @@ class CatalogoF(forms.ModelForm):
 class CuentaF(forms.ModelForm):
     class Meta:
         model = Cuenta
-        fields = [ 
-            "catalogo", 
-            "codigo", 
-            "nombre", 
+        fields = [
+            "catalogo",
+            "codigo",
+            "nombre",
         ]
 
 
@@ -70,9 +70,9 @@ class SubCuentaF(forms.ModelForm):
     class Meta:
         model = SubCuenta
         fields = [
-            "catalogo", 
-            "codigo", 
-            "nombre", 
+            "catalogo",
+            "codigo",
+            "nombre",
             "cuenta_padre",
         ]
         widgets = {
@@ -84,7 +84,8 @@ class SubCuentaF(forms.ModelForm):
         super(SubCuentaF, self).__init__(*args, **kwargs)
         # restrict the queryset of 'Cuenta'
         self.fields['catalogo'].queryset = self.fields['catalogo'].queryset.filter(id=catalogo.id)
-       
+        self.fields['cuenta_padre'].queryset = self.fields['cuenta_padre'].queryset.filter(catalogo=catalogo)
+
 
 class LibroF(forms.ModelForm):
     class Meta:
@@ -102,7 +103,7 @@ class PartidaF(forms.ModelForm):
 
 
 class MovimientoF(forms.ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         catalogo = kwargs.pop('catalogo', None)
         partida =  kwargs.pop('partida', None)
@@ -111,7 +112,7 @@ class MovimientoF(forms.ModelForm):
             self.fields[field].label = False
         # restrict the queryset of 'Cuenta'
         self.fields['cuenta'].queryset = self.fields['cuenta'].queryset.filter(catalogo=catalogo,es_mayor=False).annotate(subcuenta_existe=Count('subcuentas')).filter(subcuenta_existe=0).order_by("codigo")
-       
+
 
     def save(self,commit = True, *args, **kwargs):
         mov = super().save(*args, **kwargs)
@@ -120,7 +121,7 @@ class MovimientoF(forms.ModelForm):
             #actualizacion_saldos(movimiento=mov,cuenta=mov.cuenta)
         return mov
 
-    
+
     class Meta:
         model = Movimiento
         fields = ["cuenta","descripcion","monto_haber","monto_deber",]
@@ -128,7 +129,7 @@ class MovimientoF(forms.ModelForm):
         widgets = {
             "cuenta"     :   forms.Select(attrs={"required":"true","autofocus":"true"}),
             "descripcion":  forms.TextInput(attrs={}),
-            "monto_haber":  forms.TextInput(attrs={"class":"money"}),
-            "monto_deber":  forms.TextInput(attrs={"class":"money"}),
+            #"monto_haber":  forms.TextInput(attrs={"class":"money"}),
+            #"monto_deber":  forms.TextInput(attrs={"class":"money"}),
         }
 

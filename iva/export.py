@@ -18,7 +18,7 @@ def export_libroCF(libro_id):
     libro = Libro.objects.get(id=libro_id)
     facturas = FacturaCF.objects.filter(libro=libro).values()
     facturas_limpias = []
-    #Creacion de de lista para dataFrame 
+    #Creacion de de lista para dataFrame
     for fact in facturas:
         factura_dict = {}
         fecha = DateFormat(fact.get("fecha"))
@@ -37,9 +37,9 @@ def export_libroCF(libro_id):
         facturas_limpias.append(factura_dict)
     #Creacion de objeto Excel para posterior salida
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_condumidorFinal.xlsx", 
+        BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_condumidorFinal.xlsx",
         engine='xlsxwriter')
-    
+
     df_facturas = pd.DataFrame(facturas_limpias)
 
     workbook  = writer.book
@@ -56,7 +56,7 @@ def export_libroCF(libro_id):
     elif libro.mes == 10 : mes = "OCTUBRE"
     elif libro.mes == 11 : mes = "NOVIEMBRE"
     elif libro.mes == 12 : mes = "DICIEMBRE"
-            
+
     bandera = 1
     #Si hay mas de 25 registros se creara una hoja por cada 20
     while len(df) >=25:
@@ -72,7 +72,7 @@ def export_libroCF(libro_id):
         'text_wrap': True,
         'valign': 'top',
         'border': 1,
-        "font_size":9, 
+        "font_size":9,
         })
         header_format.set_align("center")
         header_format.set_align("vcenter")
@@ -158,7 +158,7 @@ def export_libroCF(libro_id):
     worksheet.merge_range(f'B{len(df)+9}:D{len(df)+9}','IVA 13%',formato_data)
     worksheet.write(len(df)+7,4,f"{round(resumen[4].get('iva'),2):.2f}")
     writer.save()
-    return writer.book
+    return BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_condumidorFinal.xlsx"
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def export_librocm(libro_id):
@@ -166,7 +166,7 @@ def export_librocm(libro_id):
     facturas = FacturaCm.objects.filter(libro=libro).order_by('fecha').values()
     facturas_limpias = []
     ci = 1
-    #Creacion de de lista para dataFrame 
+    #Creacion de de lista para dataFrame
     for fact in facturas:
         factura_dict = {}
         fecha = DateFormat(fact.get("fecha"))
@@ -193,9 +193,9 @@ def export_librocm(libro_id):
         ci+=1
     #Creacion de objeto Excel para posterior salida
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras.xlsx", 
+        BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras.xlsx",
         engine='xlsxwriter')
-    
+
     df_facturas = pd.DataFrame(facturas_limpias)
 
     workbook  = writer.book
@@ -211,7 +211,7 @@ def export_librocm(libro_id):
     elif libro.mes == 9 : mes = "SEPTIEMBRE"
     elif libro.mes == 10 : mes = "OCTUBRE"
     elif libro.mes == 11 : mes = "NOVIEMBRE"
-    elif libro.mes == 12 : mes = "DICIEMBRE"  
+    elif libro.mes == 12 : mes = "DICIEMBRE"
     bandera = 1
     #Si hay mas de 10 registros se creara una hoja por cada 20
     while len(df) >=15:
@@ -227,7 +227,7 @@ def export_librocm(libro_id):
         'text_wrap': True,
         'valign': 'top',
         'border': 1,
-        "font_size":8, 
+        "font_size":8,
         })
         header_format.set_align("center")
         header_format.set_align("vcenter")
@@ -320,8 +320,8 @@ def export_librocm(libro_id):
     worksheet.write(len(df)+7,4,"Total Compras")
     worksheet.write(len(df)+8,4,"Total N/C")
     compras = FacturaCm.objects.filter(libro=libro,cGravadaInterna__gte=dec(0.00))
-    compras_t = round(compras.aggregate(Sum('cGravadaInterna')).get('cGravadaInterna__sum'),2) 
-    iva_compras_t = round(compras.aggregate(Sum('ivaCdtoFiscal')).get('ivaCdtoFiscal__sum'),2) 
+    compras_t = round(compras.aggregate(Sum('cGravadaInterna')).get('cGravadaInterna__sum'),2)
+    iva_compras_t = round(compras.aggregate(Sum('ivaCdtoFiscal')).get('ivaCdtoFiscal__sum'),2)
     notas_credito = FacturaCm.objects.filter(libro=libro,cGravadaInterna__lt=dec(0.00))
     notas_credito_t = round(notas_credito.aggregate(Sum('cGravadaInterna')).get('cGravadaInterna__sum'),2) if len(notas_credito) > 0 else '0.00'
     iva_notas_credito_t = round(notas_credito.aggregate(Sum('ivaCdtoFiscal')).get('ivaCdtoFiscal__sum'),2) if len(notas_credito) > 0 else '0.00'
@@ -330,7 +330,7 @@ def export_librocm(libro_id):
     worksheet.write(len(df)+8,7,f"{notas_credito_t}")
     worksheet.write(len(df)+8,10,f"{iva_notas_credito_t}")
     writer.save()
-    return writer.book
+    return BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras.xlsx"
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def export_libroct(libro_id):
@@ -338,7 +338,7 @@ def export_libroct(libro_id):
     facturas = FacturaCt.objects.filter(libro=libro).values()
     facturas_limpias = []
     ci = 1
-    #Creacion de de lista para dataFrame 
+    #Creacion de de lista para dataFrame
     for fact in facturas:
         factura_dict = {}
         fecha = DateFormat(fact.get("fecha"))
@@ -364,9 +364,9 @@ def export_libroct(libro_id):
         ci+=1
     #Creacion de objeto Excel para posterior salida
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contribuyente/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente.xlsx", 
+        BASE_DIR/f"libros_contribuyente/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente.xlsx",
         engine='xlsxwriter')
-    
+
     df_facturas = pd.DataFrame(facturas_limpias)
 
     workbook  = writer.book
@@ -382,7 +382,7 @@ def export_libroct(libro_id):
     elif libro.mes == 9 : mes = "SEPTIEMBRE"
     elif libro.mes == 10 : mes = "OCTUBRE"
     elif libro.mes == 11 : mes = "NOVIEMBRE"
-    elif libro.mes == 12 : mes = "DICIEMBRE"  
+    elif libro.mes == 12 : mes = "DICIEMBRE"
     bandera = 1
     #Si hay mas de 10 registros se creara una hoja por cada 20
     while len(df) >=15:
@@ -398,7 +398,7 @@ def export_libroct(libro_id):
         'text_wrap': True,
         'valign': 'top',
         'border': 1,
-        "font_size":8, 
+        "font_size":8,
         })
         header_format.set_align("center")
         header_format.set_align("vcenter")
@@ -475,7 +475,7 @@ def export_libroct(libro_id):
     total_ventas = round(facturas.aggregate(Sum('total')).get("total__sum"),2)
     total_vennsu = round(facturas.aggregate(Sum('ventasNSujetas')).get("ventasNSujetas__sum"),2)
     worksheet.merge_range(f'A{len(df)+7}:B{len(df)+7}','TOTALES',header_format)
-    
+
     worksheet.write(len(df)+6,6,f"{total_venexe}")
     worksheet.write(len(df)+6,7,f"{total_vengra}")
     worksheet.write(len(df)+6,8,f"{total_vennsu}")
@@ -485,12 +485,12 @@ def export_libroct(libro_id):
     worksheet.write(len(df)+6,12,f"{total_ivaret}")
     worksheet.write(len(df)+6,13,f"{total_ventas}")
     ventas = FacturaCt.objects.filter(libro=libro,venGravadas__gte=dec(0.00))
-    ventas_t = round(ventas.aggregate(Sum('venGravadas')).get('venGravadas__sum'),2) 
-    iva_ventas_t = round(ventas.aggregate(Sum('ivaDebFiscal')).get('ivaDebFiscal__sum'),2) 
+    ventas_t = round(ventas.aggregate(Sum('venGravadas')).get('venGravadas__sum'),2)
+    iva_ventas_t = round(ventas.aggregate(Sum('ivaDebFiscal')).get('ivaDebFiscal__sum'),2)
     notas_credito = FacturaCt.objects.filter(libro=libro,venGravadas__lt=dec(0.00))
     notas_credito_t = round(notas_credito.aggregate(Sum('venGravadas')).get('venGravadas__sum'),2) if len(notas_credito) > 0 else '0.00'
     iva_notas_credito_t = round(notas_credito.aggregate(Sum('ivaDebFiscal')).get('ivaDebFiscal__sum'),2) if len(notas_credito) > 0 else '0.00'
-    ventas_positivas = round(ventas.aggregate(Sum('total')).get('total__sum'),2) 
+    ventas_positivas = round(ventas.aggregate(Sum('total')).get('total__sum'),2)
     ventas_negativas = round(notas_credito.aggregate(Sum('total')).get('total__sum'),2) if len(notas_credito) > 0 else '0.00'
     worksheet.write(len(df)+7,7,f"{ventas_t}")
     worksheet.write(len(df)+7,9,f"{iva_ventas_t}")
@@ -501,4 +501,4 @@ def export_libroct(libro_id):
     worksheet.write(len(df)+7,5,"Total Ventas")
     worksheet.write(len(df)+8,5,"Total N/C")
     writer.save()
-    return writer.book
+    return BASE_DIR/f"libros_contribuyente/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente.xlsx"

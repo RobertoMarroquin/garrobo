@@ -21,6 +21,7 @@
         <tr>
             <th>Codigo</th>
             <th>Nombre</th>
+            <th></th>
             <th>Editar</th>
         </tr>
     </thead>
@@ -30,11 +31,12 @@
             <td>{{cuenta.codigo}}</td>
             <td>{{cuenta.nombre}}</td>
             <td></td>
+            <td></td>
         </tr>
         {% for subcuenta in cuenta.subcuentasp.all %}
         <tr>
             <td>{{subcuenta.codigo}}</td>
-            <td>{{subcuenta.nombre}}</td>
+            <td>{{subcuenta.nombre}}</td> <td><a name="" id="" class="btn btn-success" role="button" onclick="show_modal('{% url 'cont:nueva_subcuenta2' catalogo.id subcuenta.id%}')"><i style="color:white;" class="fas fa-plus "></i></a></td>
             <td class="text-center">
                 <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
             </td>
@@ -42,7 +44,7 @@
         {% for subcuenta2 in subcuenta.subcuentas.all %}
         <tr>
             <td>{{subcuenta2.codigo}}</td>
-            <td>{{subcuenta2.nombre}}</td>
+            <td>{{subcuenta2.nombre}}</td> <td><a name="" id="" class="btn btn-success" role="button" onclick="show_modal('{% url 'cont:nueva_subcuenta2' catalogo.id subcuenta2.id%}')"><i style="color:white;" class="fas fa-plus "></i></a></td>
             <td class="text-center">
                 <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta2.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
             </td>
@@ -50,7 +52,7 @@
         {% for subcuenta3 in subcuenta2.subcuentas.all %}
         <tr>
             <td>{{subcuenta3.codigo}}</td>
-            <td>{{subcuenta3.nombre}}</td>
+            <td>{{subcuenta3.nombre}}</td> <td><a name="" id="" class="btn btn-success" role="button" onclick="show_modal('{% url 'cont:nueva_subcuenta2' catalogo.id subcuenta3.id%}')"><i style="color:white;" class="fas fa-plus "></i></a></td>
             <td class="text-center">
                 <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta3.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
             </td>
@@ -58,7 +60,7 @@
         {% for subcuenta4 in subcuenta3.subcuentas.all %}
         <tr>
             <td>{{subcuenta4.codigo}}</td>
-            <td>{{subcuenta4.nombre}}</td>
+            <td>{{subcuenta4.nombre}}</td> <td><a name="" id="" class="btn btn-success" role="button" onclick="show_modal('{% url 'cont:nueva_subcuenta2' catalogo.id subcuenta4.id%}')"><i style="color:white;" class="fas fa-plus "></i></a></td>
             <td class="text-center">
                 <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta4.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
             </td>
@@ -66,13 +68,22 @@
         {% for subcuenta5 in subcuenta4.subcuentas.all %}
         <tr>
             <td>{{subcuenta5.codigo}}</td>
-            <td>{{subcuenta5.nombre}}</td>
+            <td>{{subcuenta5.nombre}}</td> <td><a name="" id="" class="btn btn-success" role="button" onclick="show_modal('{% url 'cont:nueva_subcuenta2' catalogo.id subcuenta5.id%}')"><i style="color:white;" class="fas fa-plus "></i></a></td>
             <td class="text-center">
                 <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta5.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
             </td>
         </tr>
+        {% for subcuenta6 in subcuenta5.subcuentas.all %}
+        <tr>
+            <td>{{subcuenta6.codigo}}</td>
+            <td>{{subcuenta6.nombre}}</td>
+            <td></td>
+            <td class="text-center">
+                <a name="" id="" class="btn btn-primary" role="button" onclick="show_modal('{% url 'cont:act_subcuenta' subcuenta6.id%}')"><i style="color:white;" class="fas fa-edit "></i></a>
+            </td>
+        </tr>
 
-        {% endfor %} {% endfor %} {% endfor %} {% endfor %} {% endfor %} {% endfor %}
+        {% endfor %} {% endfor %} {% endfor %} {% endfor %} {% endfor %} {% endfor %} {% endfor %}
     </tbody>
 </table>
 
