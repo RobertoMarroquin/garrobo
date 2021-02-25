@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'contabilidad',
     'searchableselect',
     'iva',
+    'inventario',
 ]
 
 MIDDLEWARE = [
