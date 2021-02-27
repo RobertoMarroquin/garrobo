@@ -15,21 +15,21 @@ class PeriodoAdmin(admin.ModelAdmin):
         "id",
         "cerrado",
     )
-    search_fields = ("fecha_inicio",
+    search_fields = ["fecha_inicio",
         "fecha_fin",
         "ano",
-        "empresa",
+        "empresa__nombre",
         "creado",
         "id",
-        "cerrado",)
+        "cerrado",]
 
 
 class CatalogoAdmin(admin.ModelAdmin):
     list_display = ("empresa",
         "creado","id"
     )
-    search_fields = ("empresa",
-        "creado","id")
+    search_fields = ["empresa__nombre",
+        "creado","id"]
 
 admin.site.register(Catalogo, CatalogoAdmin)
 
@@ -42,11 +42,11 @@ class CuentaAdmin(admin.ModelAdmin):
         "creado",
         "saldo",
     )
-    search_fields = ("catalogo",
+    search_fields = ["catalogo__empresa__nombre",
         "codigo",
         "nombre",
         "creado",
-        "saldo",)
+        "saldo",]
 
 
 @admin.register(SubCuenta)
@@ -61,15 +61,15 @@ class SubCuentaAdmin(admin.ModelAdmin):
         "saldo",
         "es_mayor",
     )
-    search_fields = ("id","catalogo",
+    search_fields = ["id","catalogo__empresa__nombre",
         "codigo",
         "nombre",
-        "cuenta_padre",
-        "cuenta_principal",
+        "cuenta_padre__nombre",
+        "cuenta_principal__nombre",
         "creado",
         "saldo",
         "es_mayor",
-    )
+    ]
 
 
 @admin.register(Libro)
@@ -89,17 +89,27 @@ class MovimientoInline(admin.TabularInline):
     max_num = 20
     extra = 1
     raw_id_fields = ["partida",]
-    
+
 
 
 @admin.register(Partida)
 class PartidaAdmin(admin.ModelAdmin):
     '''Admin View for Partida'''
     list_display = ("fecha",
+        'get_nombre_empresa',
         "libro",
         "descripcion",
         "id",
     )
+    search_fields = ["fecha",
+        "libro__mes",
+        "descripcion",
+        "libro__periodo__empresa__nombre",
+        ]
+
+    def get_nombre_empresa(self, obj):
+        return obj.libro.periodo.empresa.nombre
+    get_nombre_empresa.short_description = 'Empresa'
     inlines = [MovimientoInline,]
 
 
@@ -114,15 +124,17 @@ class MovimientoAdmin(admin.ModelAdmin):
         "get_catalogo",
         "descripcion",
     )
-    search_fields = ("id",
-        "partida",
+    search_fields = ["id",
+        "partida__fecha",
         "monto_deber",
         "monto_haber",
-        "cuenta",
+        "cuenta__nombre",
+        "cuenta__codigo",
         "get_catalogo",
         "descripcion",
-    )
+    ]
     def get_catalogo(self, obj):
         return obj.cuenta.catalogo
     get_catalogo.short_description = "Catalogo"
     get_catalogo.admin_order_field = "cuenta"
+
