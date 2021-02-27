@@ -15,12 +15,21 @@ class PeriodoAdmin(admin.ModelAdmin):
         "id",
         "cerrado",
     )
+    search_fields = ("fecha_inicio",
+        "fecha_fin",
+        "ano",
+        "empresa",
+        "creado",
+        "id",
+        "cerrado",)
 
 
 class CatalogoAdmin(admin.ModelAdmin):
     list_display = ("empresa",
         "creado","id"
     )
+    search_fields = ("empresa",
+        "creado","id")
 
 admin.site.register(Catalogo, CatalogoAdmin)
 
@@ -33,12 +42,26 @@ class CuentaAdmin(admin.ModelAdmin):
         "creado",
         "saldo",
     )
+    search_fields = ("catalogo",
+        "codigo",
+        "nombre",
+        "creado",
+        "saldo",)
 
 
 @admin.register(SubCuenta)
 class SubCuentaAdmin(admin.ModelAdmin):
     '''Admin View for SubCuenta'''
     list_display = ("id","catalogo",
+        "codigo",
+        "nombre",
+        "cuenta_padre",
+        "cuenta_principal",
+        "creado",
+        "saldo",
+        "es_mayor",
+    )
+    search_fields = ("id","catalogo",
         "codigo",
         "nombre",
         "cuenta_padre",
@@ -84,6 +107,14 @@ class PartidaAdmin(admin.ModelAdmin):
 class MovimientoAdmin(admin.ModelAdmin):
     '''Admin View for Movimiento'''
     list_display = ("id",
+        "partida",
+        "monto_deber",
+        "monto_haber",
+        "cuenta",
+        "get_catalogo",
+        "descripcion",
+    )
+    search_fields = ("id",
         "partida",
         "monto_deber",
         "monto_haber",

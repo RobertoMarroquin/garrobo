@@ -858,6 +858,7 @@ def imprimir_balance_general(periodo_id):
             row+=1
     ws.merge_range("A1:G1",f"{catalogo.empresa.nombre}",header_format)
     ws.merge_range("A2:G2",f"BALANCE GENERAL AL 31 DE DICIEMBRE DE {periodo.ano}",header_format)
+    
     writer.save()
     return BASE_DIR/f"libros_contables/{periodo.empresa.nombre}_{periodo.ano}_Balance_General.xlsx"
 

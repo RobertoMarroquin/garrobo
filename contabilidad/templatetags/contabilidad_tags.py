@@ -11,5 +11,5 @@ register = template.Library()
 def partida_cuadrada(partida_id):
     partida = Partida.objects.get(id=partida_id)
     diferencia = partida.movimientos.all().aggregate(dif=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["dif"]
-    return True if diferencia == 0 else False
+    return True if diferencia >= -0.0099 and diferencia <= 0.0099  else False
     
