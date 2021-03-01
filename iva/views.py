@@ -179,6 +179,10 @@ class EmpresaCV(CreateView):
         context['titulo'] = 'Crear Empresa'
         return context
 
+    def get_success_url(self,**kwargs):
+        context = super(EmpresaCV,self).get_context_data(**kwargs)
+        return reverse("iva:nueva_empresa")
+
 
 class EmpresaDetail(DetailView):
     model = Empresa
