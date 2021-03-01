@@ -15,6 +15,7 @@ class PeriodoAdmin(admin.ModelAdmin):
         "id",
         "cerrado",
     )
+
     search_fields = ["fecha_inicio",
         "fecha_fin",
         "ano",
@@ -61,6 +62,7 @@ class SubCuentaAdmin(admin.ModelAdmin):
         "saldo",
         "es_mayor",
     )
+
     search_fields = ["id","catalogo__empresa__nombre",
         "codigo",
         "nombre",
@@ -79,6 +81,7 @@ class LibroAdmin(admin.ModelAdmin):
         "mes",
         "periodo",
     )
+
     search_fields = ["mes","periodo__empresa__nombre","periodo__empresa__num_registro"]
 
 class MovimientoInline(admin.TabularInline):
@@ -101,6 +104,7 @@ class PartidaAdmin(admin.ModelAdmin):
         "descripcion",
         "id",
     )
+
     search_fields = ["fecha",
         "libro__mes",
         "descripcion",
@@ -124,6 +128,7 @@ class MovimientoAdmin(admin.ModelAdmin):
         "get_catalogo",
         "descripcion",
     )
+
     search_fields = ["id",
         "partida__fecha",
         "monto_deber",
@@ -133,6 +138,7 @@ class MovimientoAdmin(admin.ModelAdmin):
         "get_catalogo",
         "descripcion",
     ]
+    
     def get_catalogo(self, obj):
         return obj.cuenta.catalogo
     get_catalogo.short_description = "Catalogo"

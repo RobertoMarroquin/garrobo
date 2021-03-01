@@ -12,7 +12,7 @@ class LibroAdmin(admin.ModelAdmin):
         "tipo",
         "cliente",
     )
-    search_fields = ["id","fecha","mes","ano","cliente",]
+    search_fields = ["id","fecha","mes","ano","cliente__nombre",]
 
 @admin.register(FacturaCF)
 class FacturaCFAdmin(admin.ModelAdmin):
@@ -50,7 +50,7 @@ class FacturaCtAdmin(admin.ModelAdmin):
         "libro",
         "ventasNSujetas",
     )
-    search_fields = ["id","correlativo","fecha","contribuyente",]
+    search_fields = ["id","correlativo","fecha","contribuyente__nombre","contribuyente__nit","contribuyente__nRegistro"]
     
 
 @admin.register(FacturaCm)
@@ -71,7 +71,7 @@ class FacturaCmAdmin(admin.ModelAdmin):
         "comprasNSujetas",
         "libro",
     )
-    search_fields = ["correlativo","fecha","empresa","id"]
+    search_fields = ["correlativo","fecha","empresa__nit","empresa__nombre","empresa__nRegistro","id"]
 
 
 @admin.register(Empresa)
