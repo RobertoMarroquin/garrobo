@@ -36,7 +36,6 @@ class PeriodoForm(forms.ModelForm):
         self.fields['empresa'].queryset = self.fields['empresa'].queryset.filter(id=empresa.id)
 
 
-
 class CatalogoF(forms.ModelForm):
     class Meta:
         model = Catalogo

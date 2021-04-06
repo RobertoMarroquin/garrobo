@@ -1,0 +1,28 @@
+{% load static %} {% load crispy_forms_tags %}
+
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-tittle">{{titulo}}</h2>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        {% if parametro %}
+        <form method="POST" action="{% url direccion parametro %}">
+
+            {% else %}
+            <form method="POST" action="{% url direccion %}">
+
+                {% endif %}
+
+
+                <div class="modal-body">
+                    {% csrf_token %} {{form|crispy}}
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                    <button id="enviar" type="submit" class="btn btn-primary">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
+                </div>
+            </form>
+    </div>
+</div>

@@ -26,5 +26,6 @@ urlpatterns = [
     path("emp/", include('empresas.urls',namespace='emp')),
     path("iva/", include('iva.urls',namespace='iva')),
     path("", Home.as_view(), name="home"),
+    path("control/", include('control.urls',namespace="control")),
     path('searchableselect/', include('searchableselect.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

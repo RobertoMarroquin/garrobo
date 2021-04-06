@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'searchableselect',
     'iva',
     'inventario',
+    'control',
 ]
 
 MIDDLEWARE = [
