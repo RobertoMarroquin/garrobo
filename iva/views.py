@@ -182,6 +182,28 @@ class EmpresaCV(CreateView):
         context['titulo'] = 'Crear Empresa'
         return context
 
+class EmpresaCV2(CreateView):
+    model = Empresa
+    template_name = "iva/empresa.html"
+    form_class = EmpresaF
+
+    def get_context_data(self, **kwargs):
+        context = super(EmpresaCV,self).get_context_data(**kwargs)
+        context['libro'] = self.kwargs["libro"]
+        context['direccion'] = 'cont:nuevo_empresa'
+        context['titulo'] = 'Crear Empresa'
+        return context
+    
+    def get_success_url(self,**kwargs):
+        libro = Libro. objects.get(id=self.kwargs["libro"])
+        if libro.tipo == 1:
+            return reverse("iva:haciendacf",args=[self.kwargs["libro"],])
+        elif libro.tipo == 2:
+            return reverse("iva:haciendact",args=[self.kwargs["libro"],])
+        else:
+            return reverse("iva:haciendacm",args=[self.kwargs["libro"],])
+    
+
 
 class EmpresaDetail(DetailView):
     model = Empresa

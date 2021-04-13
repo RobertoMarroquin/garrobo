@@ -16,8 +16,9 @@ urlpatterns = [
     path("libro/<int:libro>/compra/", FacturaCmCV.as_view(), name="nueva_fcm"),
     #---------------------------------------------------------------------------#
     #--------------------------------Empresa------------------------------------# 
-    path("nueva/empresa/", EmpresaCV.as_view(), name="nueva_empresa"), 
-    path("empresa/<slug:nReg>/", EmpresaDetail.as_view(), name="detalle"),  
+    path("nueva/empresa/", EmpresaCV.as_view(), name="nueva_empresa"),
+    path("nueva/empresa/<int:libro>", EmpresaCV.as_view(), name="nueva_empresa2"),
+    path("empresa/<slug:nReg>/", EmpresaDetail.as_view(), name="detalle"), 
     #---------------------------------------------------------------------------#
     #--------------------------------Cliente------------------------------------# 
     path("iva/detalle/empresa/<int:pk>/", EmpresaDV.as_view(), name="detalle_cliente"),
