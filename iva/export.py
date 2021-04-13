@@ -729,7 +729,6 @@ def contribuyente(libro):
 #------------------------------------------------------------------------------------------#
 def interno_compras(libro):
     facturas = FacturaCm.objects.filter(libro=libro)
-    libro = Libro.objects.get(id=libro)
     direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras_mh.xlsx"
     writer = pd.ExcelWriter(
         direccion,
