@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load humanize %} {% load static %} {% load crispy_forms_tags %}
+
+{% block content %}
+<h5 class="text-center">{{libro.cliente.nombre}}</h5>
+<h5 class="text-center">Facturas de Consumidor Final {{libro.get_mes_display}}/{{libro.ano}}</h5>
+<hr>
+<!------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------->
+
+<div class="row">
+    <div class="col-md-2">
+        <a name="" id="" class="btn btn-primary" href="{% url 'iva:lista_libro' libro.cliente.id libro.tipo %}"
+            role="button">Libros</a>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+</div>
+<br>
+<!------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------->
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                {{form.fecha|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.claseDocumento|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.tipoDocumento|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.numeroResolucion|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.numeroSerie|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.numeroControlInterno|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.correlativoInicial|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.correlativoFinal|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.numeroRegistradora|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.exento|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.ventasInternasExentas|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.ventasNSujetas|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.locales|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.exportacionesCA|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.exportacionesNoCA|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.ventasZonasFrancas|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.ventaTotal|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.ventaCtaTerceros|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------->
+<div class="container">
+    <div class="table-responsive">
+        <table id="tabla1" class="table table-striped table-sm">
+            <caption>Facturas Registradas</caption>
+            <thead class="thead-dark">
+                <tr class="text-center">
+                <th class="align-middle">Fecha</th>
+                <th class="align-middle">Clase de Documento</th>
+                <th class="align-middle">Tipo de Documento</th>
+                <th class="align-middle">Numero de Resolucion</th>
+                <th class="align-middle">Numero de Serie</th>
+                <th class="align-middle">Numero Control Interno</th>
+                <th class="align-middle">Correlativo Inicial</th>
+                <th class="align-middle">Correlativo Final</th>
+                <th class="align-middle">Maquina Registradora</th>
+                <th class="align-middle">Ventas Exentas</th>
+                <th class="align-middle">Ventas Internas Exentas no Sujetas a Proporcionalidad</th>
+                <th class="align-middle">Ventas No Sujetas</th>
+                <th class="align-middle">Ventas Gravadas Locales</th>
+                <th class="align-middle">Exportaciones Dentro del Area Centroamericana</th>
+                <th class="align-middle">Exportaciones Fuera del Area Centroamericana</th>
+                <th class="align-middle">Ventas a Zonas Francas y DPA(Tasa Cero)</th>
+                <th class="align-middle">Venta Total</th>
+                <th class="align-middle">Venta Cta Terceros</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for factura in facturas.all|dictsort:"fecha"  %}
+                    <tr class="text-center">
+                        <td class="align-middle">{{factura.fecha}}</td>
+                        <td class="align-middle">{{factura.get_claseDocumento_display}}</td>
+                        <td class="align-middle">{{factura.get_tipoDocumento_display}}</td>
+                        <td class="align-middle">{{factura.numeroResolucion}}</td>
+                        <td class="align-middle">{{factura.numeroSerie}}</td>
+                        <td class="align-middle">{{factura.numeroControlInterno}}</td>
+                        <td class="align-middle">{{factura.correlativoInicial}}</td>
+                        <td class="align-middle">{{factura.correlativoFinal}}</td>
+                        <td class="align-middle">{{factura.numeroRegistradora}}</td>
+                        <td class="align-middle">{{factura.exento}}</td>
+                        <td class="align-middle">{{factura.ventasInternasExentas}}</td>
+                        <td class="align-middle">{{factura.ventasNSujetas}}</td>
+                        <td class="align-middle">{{factura.locales}}</td>
+                        <td class="align-middle">{{factura.exportacionesCA}}</td>
+                        <td class="align-middle">{{factura.exportacionesNoCA}}</td>
+                        <td class="align-middle">{{factura.ventasZonasFrancas}}</td>
+                        <td class="align-middle">{{factura.ventaTotal}}</td>
+                        <td class="align-middle">{{factura.ventaCtaTerceros}}</td>
+                    </tr>
+                {% empty %}
+                <tr class="text-center">
+                    <td colspan=18 class="align-middle">No hay registros</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock content %}

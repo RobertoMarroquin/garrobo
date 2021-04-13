@@ -9,6 +9,7 @@ from decimal import Decimal as dec
 
 from django.utils.dateformat import DateFormat
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 from .models import *
 from empresas.models import Empresa as Cliente
@@ -502,3 +503,449 @@ def export_libroct(libro_id):
     worksheet.write(len(df)+8,5,"Total N/C")
     writer.save()
     return BASE_DIR/f"libros_contribuyente/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente.xlsx"
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def formato_hacienda(libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    
+    if libro.tipo == 1:
+        direccion = consumidor(libro)
+    elif libro.tipo == 2:
+        direccion = contribuyente(libro)
+    elif libro.tipo == 3:
+        direccion = compras(libro)
+
+    return direccion
+
+
+def formato_interno(libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    
+    if libro.tipo == 1:
+        direccion = interno_consumidor(libro)
+    elif libro.tipo == 2:
+        direccion = interno_contribuyente(libro)
+    elif libro.tipo == 3:
+        direccion = interno_compras(libro)
+
+    return direccion
+    
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def compras(libro):
+    facturas = FacturaCm.objects.filter(libro=libro)
+    direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+    row = 0
+    for factura in facturas:
+        ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1,f"{factura.claseDocumento}",body_format)
+        ws.write(row,2,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,4,f"{factura.empresa.nit}",body_format)
+        ws.write(row,5,f"{factura.empresa.nombre}",body_format)
+        ws.write(row,6,f"{factura.cExenteInterna}",body_format)
+        ws.write(row,7,f"{factura.cExenteInternaciones}",body_format)
+        ws.write(row,8,f"{factura.cExenteImportaciones}",body_format)
+        ws.write(row,9,f"{factura.cGravadaInterna}",body_format)
+        ws.write(row,10,f"{factura.cGravadaInternaciones}",body_format)
+        ws.write(row,11,f"{factura.cGravadaImportaciones}",body_format)
+        ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
+        ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
+        ws.write(row,14,f"{factura.totalCompra}",body_format)
+        ws.write(row,15,f"3",body_format)
+        row+=1
+    
+    writer.save()
+    return direccion
+
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def consumidor(libro):
+    facturas = FacturaCF.objects.filter(libro=libro)
+    direccion = BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_condumidorFinal_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+    row = 0
+    for factura in facturas:
+        ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1,f"{factura.claseDocumento}",body_format)
+        ws.write(row,2,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3,f"{factura.numeroResolucion}",body_format)
+        ws.write(row,4,f"{factura.numeroSerie}",body_format)
+        ws.write(row,5,f"{factura.numeroControlInterno}",body_format)
+        ws.write(row,6,f"{factura.correlativoInicial}",body_format)
+        ws.write(row,7,f"{factura.correlativoFinal}",body_format)
+        ws.write(row,8,f"{factura.numeroRegistradora}",body_format)
+        ws.write(row,9,f"{factura.exento}",body_format)
+        ws.write(row,10,f"{factura.ventasInternasExentas}",body_format)
+        ws.write(row,11,f"{factura.ventasNSujetas}",body_format)
+        ws.write(row,12,f"{factura.locales}",body_format)
+        ws.write(row,13,f"{factura.exportacionesCA}",body_format)
+        ws.write(row,14,f"{factura.exportacionesNoCA}",body_format)
+        ws.write(row,15,f"{factura.ventasZonasFrancas}",body_format)
+        ws.write(row,16,f"{factura.ventaTotal}",body_format)
+        ws.write(row,17,f"2",body_format)
+        row+=1
+
+    writer.save()
+    return direccion
+    
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def contribuyente(libro):
+    facturas = FacturaCt.objects.filter(libro=libro)
+    direccion = BASE_DIR/f"libros_contribuyente/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+    row = 0
+    for factura in facturas:
+        ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1,f"{factura.claseDocumento}",body_format)
+        ws.write(row,2,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3,f"{factura.numeroResolucion}",body_format)
+        ws.write(row,4,f"{factura.numeroSerie}",body_format)
+        ws.write(row,5,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,6,f"{factura.numeroControlInterno}",body_format)
+        ws.write(row,7,f"{factura.contribuyente.nit}",body_format)
+        ws.write(row,8,f"{factura.contribuyente.nombre}",body_format)
+        ws.write(row,9,f"{factura.venExentas}",body_format)
+        ws.write(row,10,f"{factura.ventasNSujetas}",body_format)
+        ws.write(row,11,f"{factura.venGravadas}",body_format)
+        ws.write(row,12,f"{factura.ivaDebFiscal}",body_format)
+        ws.write(row,13,f"{factura.vtVentas}",body_format)
+        ws.write(row,14,f"{factura.vtIVA}",body_format)
+        ws.write(row,15,f"{factura.total}",body_format)
+        ws.write(row,16,f"1",body_format)
+        row+=1
+
+    writer.save()
+    return direccion
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def interno_compras(libro):
+    facturas = FacturaCm.objects.filter(libro=libro)
+    libro = Libro.objects.get(id=libro)
+    direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def interno_consumidor(libro):
+    facturas = FacturaCF.objects.filter(libro=libro)
+    direccion = BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_consumidor_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+    ws.write(0,0,f"Fecha",body_format)
+    ws.write(0,1,f"Clas de Doc",body_format)
+    ws.write(0,2,f"Tipo de Doc",body_format)
+    ws.write(0,3,f"N de Res",body_format)
+    ws.write(0,4,f"N de Ser",body_format)
+    ws.write(0,5,f"N Con Inter",body_format)
+    ws.write(0,6,f"Corr Ini",body_format)
+    ws.write(0,7,f"Corr Fin",body_format)
+    ws.write(0,8,f"N Maq Regis",body_format)
+    ws.write(0,9,f"Ven Exe",body_format)
+    ws.write(0,10,f"Ven Inter Exen No Suj",body_format)
+    ws.write(0,11,f"Ven no Suj",body_format)
+    ws.write(0,12,f"Ven Grav Loc",body_format)
+    ws.write(0,13,f"Expor CA",body_format)
+    ws.write(0,14,f"Expor No CA",body_format)
+    ws.write(0,15,f"Zona Franc",body_format)
+    ws.write(0,16,f"Total",body_format)
+    row = 1
+    for factura in facturas:
+        ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1,f"{factura.claseDocumento}",body_format)
+        ws.write(row,2,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3,f"{factura.numeroResolucion}",body_format)
+        ws.write(row,4,f"{factura.numeroSerie}",body_format)
+        ws.write(row,5,f"{factura.numeroControlInterno}",body_format)
+        ws.write(row,6,f"{factura.correlativoInicial}",body_format)
+        ws.write(row,7,f"{factura.correlativoFinal}",body_format)
+        ws.write(row,8,f"{factura.numeroRegistradora}",body_format)
+        ws.write(row,9 ,f"{factura.exento}",body_format)
+        ws.write(row,10,f"{factura.ventasInternasExentas}",body_format)
+        ws.write(row,11,f"{factura.ventasNSujetas}",body_format)
+        ws.write(row,12,f"{factura.locales}",body_format)
+        ws.write(row,13,f"{factura.exportacionesCA}",body_format)
+        ws.write(row,14,f"{factura.exportacionesNoCA}",body_format)
+        ws.write(row,15,f"{factura.ventasZonasFrancas}",body_format)
+        ws.write(row,16,f"{factura.ventaTotal}",body_format)
+        row+=1
+    ws.merge_range(f"A{row+3}:I{row+3}","Totales",body_format)
+    ws.write(row+2,9 ,f"{facturas.aggregate(total=Coalesce(Sum('exento'),0))['total']}",body_format)
+    ws.write(row+2,10,f"{facturas.aggregate(total=Coalesce(Sum('ventasInternasExentas'),0))['total']}",body_format)
+    ws.write(row+2,11,f"{facturas.aggregate(total=Coalesce(Sum('ventasNSujetas'),0))['total']}",body_format)
+    ws.write(row+2,12,f"{facturas.aggregate(total=Coalesce(Sum('locales'),0))['total']}",body_format)
+    ws.write(row+2,13,f"{facturas.aggregate(total=Coalesce(Sum('exportacionesCA'),0))['total']}",body_format)
+    ws.write(row+2,14,f"{facturas.aggregate(total=Coalesce(Sum('exportacionesNoCA'),0))['total']}",body_format)
+    ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('ventasZonasFrancas'),0))['total']}",body_format)
+    ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('ventaTotal'),0))['total']}",body_format)
+
+    writer.save()
+    return direccion
+
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def interno_contribuyente(libro):
+    facturas = FacturaCt.objects.filter(libro=libro)
+    direccion = BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente_mh.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #tabla de facturas
+    ws.write(0,0,f"Fecha",body_format)
+    ws.write(0,1,f"Clase de Doc",body_format)
+    ws.write(0,2,f"Tipo de Doc",body_format)
+    ws.write(0,3,f"N de Res",body_format)
+    ws.write(0,4,f"N de Ser",body_format)
+    ws.write(0,5,f"N de Doc",body_format)
+    ws.write(0,6,f"N Cont Intr",body_format)
+    ws.write(0,7,f"NIT Contr",body_format)
+    ws.write(0,8,f"Nombre Contr",body_format)
+    ws.write(0,9,f" Ven Exen",body_format)
+    ws.write(0,10,f"Ven No Suje",body_format)
+    ws.write(0,11,f"Ven Grav",body_format)
+    ws.write(0,12,f"IVA",body_format)
+    ws.write(0,13,f"Ven 3ros",body_format)
+    ws.write(0,14,f"IVA 3ros",body_format)
+    ws.write(0,15,f"Total",body_format)
+    ws.write(0,16,f"IVA Ret",body_format)
+    
+    row = 1
+    for factura in facturas:
+        ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1,f"{factura.get_claseDocumento_display()}",body_format)
+        ws.write(row,2,f"{factura.get_tipoDocumento_display()}",body_format)
+        ws.write(row,3,f"{factura.numeroResolucion}",body_format)
+        ws.write(row,4,f"{factura.numeroSerie}",body_format)
+        ws.write(row,5,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,6,f"{factura.numeroControlInterno}",body_format)
+        ws.write(row,7,f"{factura.contribuyente.nit}",body_format)
+        ws.write(row,8,f"{factura.contribuyente.nombre}",body_format)
+        ws.write(row,9,f"{factura.venExentas}",body_format)
+        ws.write(row,10,f"{factura.ventasNSujetas}",body_format)
+        ws.write(row,11,f"{factura.venGravadas}",body_format)
+        ws.write(row,12,f"{factura.ivaDebFiscal}",body_format)
+        ws.write(row,13,f"{factura.vtVentas}",body_format)
+        ws.write(row,14,f"{factura.vtIVA}",body_format)
+        ws.write(row,15,f"{factura.total}",body_format)
+        ws.write(row,16,f"{factura.ivaRetenido}",body_format)
+        row+=1
+
+    ws.merge_range(f"A{row+3}:I{row+3}","Totales",body_format)
+    ws.write(row+2,9 ,f"{facturas.aggregate(total=Coalesce(Sum('venExentas'),0))['total']}",body_format)
+    ws.write(row+2,10,f"{facturas.aggregate(total=Coalesce(Sum('ventasNSujetas'),0))['total']}",body_format)
+    ws.write(row+2,11,f"{facturas.aggregate(total=Coalesce(Sum('venGravadas'),0))['total']}",body_format)
+    ws.write(row+2,12,f"{facturas.aggregate(total=Coalesce(Sum('ivaDebFiscal'),0))['total']}",body_format)
+    ws.write(row+2,13,f"{facturas.aggregate(total=Coalesce(Sum('vtVentas'),0))['total']}",body_format)
+    ws.write(row+2,14,f"{facturas.aggregate(total=Coalesce(Sum('vtIVA'),0))['total']}",body_format)
+    ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('total'),0))['total']}",body_format)
+    ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('ivaRetenido'),0))['total']}",body_format)
+
+    writer.save()
+    return direccion

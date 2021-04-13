@@ -131,3 +131,138 @@ class ComprasForm(forms.ModelForm):
         "comprasNSujetas"      : forms.NumberInput(attrs={"value":"0.00"}),
         "libro"                : forms.HiddenInput(attrs={"":""}),
         }
+#------------------------------------------------------------------------------------#
+#-----------------------------Formatos de Hacienda-----------------------------------#
+class FacturaComprasF(forms.ModelForm):
+    fecha = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
+            widget=forms.DateInput(attrs={"data-mask":"00/00/00"}),
+            required=True)
+    empresa = forms.Select(attrs={"required":"true","autofocus":"true"}),
+
+    class Meta:
+        model = FacturaCm
+        fields = [
+            "fecha",
+            "claseDocumento",
+            "tipoDocumento",
+            "numeroDocumento",
+            "empresa",
+            "cExenteInterna",
+            "cExenteInternaciones",
+            "cExenteImportaciones",
+            "cGravadaInterna",
+            "cGravadaInternaciones",
+            "cGravadaImportaciones",
+            "cGravadaImportacionesServicios",
+            "ivaCdtoFiscal",
+            "totalCompra",
+            "retencionPretencion",
+            "anticipoCtaIva",
+            "ivaTerceros",
+            "comprasNSujetas",
+            "retencionPretencion",
+            "anticipoCtaIva",
+            "ivaTerceros",
+        ]
+        widgets = {
+            "cExenteInterna"            : forms.NumberInput(attrs={"value":"0.00"}),
+            "cExenteInternaciones"      : forms.NumberInput(attrs={"value":"0.00"}),
+            "cExenteImportaciones"      : forms.NumberInput(attrs={"value":"0.00"}),
+            "cGravadaInterna"           : forms.NumberInput(attrs={"value":"0.00"}),
+            "cGravadaInternaciones"     : forms.NumberInput(attrs={"value":"0.00"}),
+            "cGravadaImportaciones"     : forms.NumberInput(attrs={"value":"0.00"}),
+            "cGravadaImportacionesServicios": forms.NumberInput(attrs={"value":"0.00"}),
+            "ivaCdtoFiscal"             : forms.NumberInput(attrs={"value":"0.00"}),
+            "totalCompra"               : forms.NumberInput(attrs={"value":"0.00"}),
+            "retencionPretencion"       : forms.NumberInput(attrs={"value":"0.00"}),
+            "anticipoCtaIva"            : forms.NumberInput(attrs={"value":"0.00"}),
+            "ivaTerceros"               : forms.NumberInput(attrs={"value":"0.00"}),
+            "comprasNSujetas"           : forms.NumberInput(attrs={"value":"0.00"}),
+            "retencionPretencion"       : forms.NumberInput(attrs={"value":"0.00"}),
+            "anticipoCtaIva"            : forms.NumberInput(attrs={"value":"0.00"}),
+            "ivaTerceros"               : forms.NumberInput(attrs={"value":"0.00"}),
+        }
+
+
+class FacturaConsumidorF(forms.ModelForm):
+    fecha = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
+            widget=forms.DateInput(attrs={"data-mask":"00/00/00","autofocus":"true"}),
+            required=True)
+
+    class Meta:
+        model = FacturaCF
+        exclude = ("libro",)
+        fields = [
+            "fecha",
+            "claseDocumento",
+            "tipoDocumento",
+            "numeroResolucion",
+            "numeroSerie",
+            "numeroControlInterno",
+            "correlativoInicial",
+            "correlativoFinal",
+            "numeroRegistradora",
+            "exento",
+            "ventasInternasExentas",
+            "ventasNSujetas",
+            "locales",
+            "exportacionesCA",
+            "exportacionesNoCA",
+            "ventasZonasFrancas",
+            "ventaTotal",
+            "ventaCtaTerceros",
+        ]
+        widgets = {
+            "numeroResolucion"      : forms.TextInput(attrs={}),
+            "numeroSerie"           : forms.TextInput(attrs={}),
+            "numeroControlInterno"  : forms.TextInput(attrs={}),
+            "correlativoInicial"    : forms.TextInput(attrs={}),
+            "correlativoFinal"      : forms.TextInput(attrs={}),
+            "numeroRegistradora"    : forms.TextInput(attrs={}),
+            "exento"                : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventasInternasExentas" : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventasNSujetas"        : forms.NumberInput(attrs={"value":"0.00"}),
+            "locales"               : forms.NumberInput(attrs={"value":"0.00"}),
+            "exportacionesCA"       : forms.NumberInput(attrs={"value":"0.00"}),
+            "exportacionesNoCA"     : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventasZonasFrancas"    : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventaTotal"            : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventaCtaTerceros"      : forms.NumberInput(attrs={"value":"0.00"}),
+        }
+
+
+class FacturaContribuyenteF(forms.ModelForm):
+    fecha = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
+            widget=forms.DateInput(attrs={"data-mask":"00/00/00","autofocus":"true"}),
+            required=True)
+
+    class Meta:
+        model = FacturaCt
+        fields = (
+            "contribuyente",
+            "fecha",
+            "claseDocumento",
+            "tipoDocumento",
+            "numeroResolucion",
+            "numeroSerie",
+            "numeroDocumento",
+            "numeroControlInterno",
+            "venExentas",
+            "ventasNSujetas",
+            "venGravadas",
+            "ivaDebFiscal",
+            "vtVentas",
+            "vtIVA",
+            "total",
+            "ivaRetenido",
+        )
+        widgets = {
+            "venExentas"        : forms.NumberInput(attrs={"value":"0.00"}),
+            "ventasNSujetas"    : forms.NumberInput(attrs={"value":"0.00"}),
+            "venGravadas"       : forms.NumberInput(attrs={"value":"0.00"}),
+            "ivaDebFiscal"      : forms.NumberInput(attrs={"value":"0.00"}),
+            "vtVentas"          : forms.NumberInput(attrs={"value":"0.00"}),
+            "vtIVA"             : forms.NumberInput(attrs={"value":"0.00"}),
+            "total"             : forms.NumberInput(attrs={"value":"0.00"}),
+            "ivaRetenido"       : forms.NumberInput(attrs={"value":"0.00"}),
+        }

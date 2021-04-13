@@ -31,17 +31,45 @@
             <td>{{libro.ano}}</td>
             <td>
                 {% if libro.facturact.all|length > 0 or libro.facturacm.all|length > 0 or libro.facturacf.all|length > 0 %}
-                <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:export' libro.id libro.tipo %}" role="button"><i class="fas fa-download"></i></a> 
-                
+                    {% if libro.mes >= 3 and libro.ano == 2021 %}
+                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-warning" href="{% url 'iva:iva_hacienda' libro.id %}" role="button"><i class="fas fa-download"></i></a>   
+                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-download"></i></a>   
+                    {% elif  libro.ano > 2021%}
+                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-warning" href="{% url 'iva:iva_hacienda' libro.id %}" role="button"><i class="fas fa-download"></i></a>   
+                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-download"></i></a>   
+                    {% else %}
+                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:export' libro.id libro.tipo %}" role="button"><i class="fas fa-download"></i></a>   
+                    {% endif %}
                 {% else %}
                 <button type="button" class="btn btn-primary" disabled><i class="fas fa-download"></i></button> 
                 {% endif %}
             </td>
             <td>
                 <a name="" id="" class="btn btn-primary" role="button" 
-                {% if libro.tipo == 1 %} href="{% url 'iva:nueva_fcf' libro.id %}" 
-                {% elif libro.tipo == 2 %} href="{% url 'iva:nueva_fct' libro.id %}" 
-                {% elif libro.tipo == 3 %} href="{% url 'iva:nueva_fcm' libro.id %}"
+                {% if  libro.tipo == 1  %} 
+                    {% if libro.ano < 2021 %}
+                        href="{% url 'iva:nueva_fcf' libro.id %}"
+                    {% elif  libro.ano == 2021 and libro.mes < 3%}
+                        href="{% url 'iva:nueva_fcf' libro.id %}"
+                    {% else %}
+                        href="{% url 'iva:haciendacf' libro.id %}"
+                    {% endif %}
+                {% elif  libro.tipo == 2  %} 
+                    {% if libro.ano < 2021 %}
+                        href="{% url 'iva:nueva_fct' libro.id %}" 
+                    {% elif  libro.ano == 2021 and libro.mes < 3%}
+                        href="{% url 'iva:nueva_fct' libro.id %}" 
+                    {% else %}
+                        href="{% url 'iva:haciendact' libro.id %}"
+                    {% endif %}
+                {% elif  libro.tipo == 3  %} 
+                    {% if libro.ano < 2021 %}
+                        href="{% url 'iva:nueva_fcm' libro.id %}" 
+                    {% elif  libro.ano == 2021 and libro.mes < 3%}
+                        href="{% url 'iva:nueva_fcm' libro.id %}" 
+                    {% else %}
+                        href="{% url 'iva:haciendacm' libro.id %}"
+                    {% endif %}
                 {% endif %}><i class="fas fa-file-invoice-dollar"></i></a>
             </td>
         </tr>

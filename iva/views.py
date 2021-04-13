@@ -8,7 +8,10 @@ from django.core.serializers import serialize
 
 
 #Self Libs
-from .forms import ComprasForm, ConsumidorFinalForm, ContribuyenteForm, EmpresaF, LibroForm
+from .forms import (ComprasForm, ConsumidorFinalForm, 
+                    ContribuyenteForm, EmpresaF, 
+                    LibroForm, FacturaConsumidorF, 
+                    FacturaComprasF, FacturaContribuyenteF)
 from .models import *
 from empresas.models import Empresa as Cliente
 from .export import *
@@ -194,7 +197,6 @@ class ExportarView(View):
         tipo = self.kwargs.get('tipo')
         id_libro = self.kwargs.get('id_libro')
         libro = Libro.objects.get(id=id_libro)
-
         if tipo == 1:
             tipol = "Consumidor"
             libroEx = export_libroCF(id_libro)
@@ -204,7 +206,93 @@ class ExportarView(View):
         elif tipo == 3:
             tipol = "Compras"
             libroEx = export_librocm(id_libro)
-        print(libro)
         # create the HttpResponse object ...
         response = FileResponse(open(libroEx, 'rb'))
         return response
+
+
+#Exportciones de Libros de IVA Segun formato de Hacienda
+class IvaLibros(View):
+    def get(self, request, *args, **kwargs):
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = formato_hacienda(libro.id)
+        response = FileResponse(open(direccion, 'rb'))
+        return response
+
+
+class IvaInterno(View):
+    def get(self, request, *args, **kwargs):
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = formato_interno(libro.id)
+        response = FileResponse(open(direccion, 'rb'))
+        return response
+
+#Iva Libros Pantallas de usuario y formularios
+#Contribuyente
+class FacturasContribuyenteCV(CreateView):
+    model = FacturaCt
+    template_name = "iva/haciendact.html"
+    form_class = FacturaContribuyenteF
+
+    def form_valid(self, form):
+        form.instance.libro_id = self.kwargs["libro"]
+        valid_data = super(FacturasContribuyenteCV, self).form_valid(form)
+        return valid_data
+
+    def get_success_url(self,**kwargs):
+        libro=Libro.objects.get(id=self.kwargs["libro"])
+        return reverse("iva:haciendact",args=[libro.id])
+
+    def get_context_data(self, **kwargs):
+        context = super(FacturasContribuyenteCV,self).get_context_data(**kwargs)
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        context["libro"] = Libro.objects.get(id=libro.id)
+        context["facturas"] = FacturaCt.objects.filter(libro=libro.id)
+        return context
+
+
+#Consumidor Final
+class FacturasConsudmidorCV(CreateView):
+    model = FacturaCF
+    template_name = "iva/haciendacf.html"
+    form_class = FacturaConsumidorF
+    
+    def form_valid(self, form):
+        form.instance.libro_id = self.kwargs["libro"]
+        valid_data = super(FacturasConsudmidorCV, self).form_valid(form)
+        return valid_data
+
+    def get_success_url(self,**kwargs):
+        libro=Libro.objects.get(id=self.kwargs["libro"])
+        return reverse("iva:haciendacf",args=[libro.id])
+
+    def get_context_data(self, **kwargs):
+        context = super(FacturasConsudmidorCV,self).get_context_data(**kwargs)
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        context["libro"] = Libro.objects.get(id=libro.id)
+        context["facturas"] = FacturaCF.objects.filter(libro=libro.id)
+        return context
+    
+
+#Compras
+class FacturaComprasCV(CreateView):
+    model = FacturaCm
+    template_name = "iva/haciendacm.html"
+    form_class = FacturaComprasF
+
+    def form_valid(self, form):
+        form.instance.libro_id = self.kwargs["libro"]
+        valid_data = super(FacturaComprasCV, self).form_valid(form)
+        return valid_data
+
+    def get_success_url(self,**kwargs):
+        libro=Libro.objects.get(id=self.kwargs["libro"])
+        return reverse("iva:haciendacm",args=[libro.id])
+
+    def get_context_data(self, **kwargs):
+        context = super(FacturaComprasCV,self).get_context_data(**kwargs)
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        context["libro"] = Libro.objects.get(id=libro.id)
+        context["facturas"] = FacturaCm.objects.filter(libro=libro.id)
+        return context
+#----------------------------------------------#
