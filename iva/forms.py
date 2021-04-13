@@ -162,7 +162,6 @@ class FacturaComprasF(forms.ModelForm):
             "comprasNSujetas",
             "retencionPretencion",
             "anticipoCtaIva",
-            "ivaTerceros",
         ]
         widgets = {
             "cExenteInterna"            : forms.NumberInput(attrs={"value":"0.00"}),
@@ -180,7 +179,6 @@ class FacturaComprasF(forms.ModelForm):
             "comprasNSujetas"           : forms.NumberInput(attrs={"value":"0.00"}),
             "retencionPretencion"       : forms.NumberInput(attrs={"value":"0.00"}),
             "anticipoCtaIva"            : forms.NumberInput(attrs={"value":"0.00"}),
-            "ivaTerceros"               : forms.NumberInput(attrs={"value":"0.00"}),
         }
 
 

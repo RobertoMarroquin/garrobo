@@ -766,6 +766,64 @@ def interno_compras(libro):
     foot_format.set_align("vcenter")
     foot_format.set_bottom(3)
     #tabla de facturas
+    ws.write(0,0 ,"Fecha",body_format)
+    ws.write(0,1 ,"Clase de Doc",body_format)
+    ws.write(0,2 ,"Tipo de Doc",body_format)
+    ws.write(0,3 ,"N de Doc",body_format)
+    ws.write(0,4 ,"Nit",body_format)
+    ws.write(0,5 ,"Nombre",body_format)
+    ws.write(0,6 ,"Comp Loc Exen",body_format)
+    ws.write(0,7 ,"Inter Exen",body_format)
+    ws.write(0,8 ,"Impor Exen",body_format)
+    ws.write(0,9 ,"Comp Loc Grav",body_format)
+    ws.write(0,10 ,"Inter Grav Bienes",body_format)
+    ws.write(0,11,"Impor Grav Bienes",body_format)
+    ws.write(0,12,"Impor Grav Servicios",body_format)
+    ws.write(0,13,"Crdto Fiscal",body_format)
+    ws.write(0,14,"Total Compra",body_format)
+    ws.write(0,15,"Retencion/Pretencion",body_format)
+    ws.write(0,16,"Anticipo Cta Iva",body_format)
+    ws.write(0,17,"IVA Terceros",body_format)
+
+    row = 1
+    for factura in facturas:
+        ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
+        ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3)}",body_format)
+        ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
+        ws.write(row,6 ,f"{factura.cExenteInterna}",body_format)
+        ws.write(row,7 ,f"{factura.cExenteInternaciones}",body_format)
+        ws.write(row,8 ,f"{factura.cExenteImportaciones}",body_format)
+        ws.write(row,9 ,f"{factura.cGravadaInterna}",body_format)
+        ws.write(row,10,f"{factura.cGravadaInternaciones}",body_format)
+        ws.write(row,11,f"{factura.cGravadaImportaciones}",body_format)
+        ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
+        ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
+        ws.write(row,14,f"{factura.totalCompra}",body_format)
+        ws.write(row,15,f"{factura.retencionPretencion}",body_format)
+        ws.write(row,16,f"{factura.anticipoCtaIva}",body_format)
+        ws.write(row,17,f"{factura.ivaTerceros}",body_format)
+        
+        row+=1
+    ws.merge_range(f"A{row+3}:F{row+3}","Totales",body_format)
+    ws.write(row+2,6,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,7,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,8,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,9 ,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,10,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,11,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,12,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,13,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,14,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+    ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum(''),0))['total']}",body_format)
+
+    
+    writer.save()
+    return direccion
+
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def interno_consumidor(libro):
