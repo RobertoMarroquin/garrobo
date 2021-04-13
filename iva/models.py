@@ -50,9 +50,9 @@ class FacturaCF(models.Model):
     exportacionesCA = models.DecimalField(("Exportaciones Dentro del Area Centroamericana"),blank=True, null=True,max_digits=8, decimal_places=2)
     exportacionesNoCA = models.DecimalField(("Exportaciones Fuera del Area Centroamericana"),blank=True, null=True,max_digits=8, decimal_places=2)
     ventasZonasFrancas = models.DecimalField(("Ventas a Zonas Francas y DPA(Tasa Cero)"),blank=True, null=True,max_digits=8, decimal_places=2)
+    ventaCtaTerceros = models.DecimalField(("Venta Cta Terceros No Domiciliados"),blank=True, null=True,max_digits=8, decimal_places=2)
     ventaTotal = models.DecimalField(("Venta Total"),blank=True, null=True,max_digits=8, decimal_places=2)
 
-    ventaCtaTerceros = models.DecimalField(("Venta Cta Terceros"),blank=True, null=True,max_digits=8, decimal_places=2)
     libro = models.ForeignKey("iva.Libro",related_name="facturacf", verbose_name=("Libro"),blank=True, null=True, on_delete=models.CASCADE)
     exportaciones = models.DecimalField(("Exportaciones"),blank=True, null=True, max_digits=8, decimal_places=2)
     

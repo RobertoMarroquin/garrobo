@@ -653,8 +653,9 @@ def consumidor(libro):
         ws.write(row,13,f"{factura.exportacionesCA}",body_format)
         ws.write(row,14,f"{factura.exportacionesNoCA}",body_format)
         ws.write(row,15,f"{factura.ventasZonasFrancas}",body_format)
-        ws.write(row,16,f"{factura.ventaTotal}",body_format)
-        ws.write(row,17,f"2",body_format)
+        ws.write(row,16,f"{factura.ventaCtaTerceros}",body_format)
+        ws.write(row,17,f"{factura.ventaTotal}",body_format)
+        ws.write(row,18,f"2",body_format)
         row+=1
 
     writer.save()
