@@ -169,12 +169,12 @@
         })
 
         $(document).change(()=>{
-            $("#id_ivaCdtoFiscal").val((
+            $("#id_ivaCdtoFiscal").val(((
                 parseFloat($("#id_cGravadaInterna").val()) +
                 parseFloat($("#id_cGravadaInternaciones").val()) +
                 parseFloat($("#id_cGravadaImportaciones").val()) +
                 parseFloat($("#id_cGravadaImportacionesServicios").val()) 
-            ).toFixed(2) * 0.13)
+            ) * 0.13).toFixed(2))
 
             $("#id_totalCompra").val((
                 parseFloat($("#id_cExenteInterna").val()) +

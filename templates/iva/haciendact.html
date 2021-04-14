@@ -178,7 +178,7 @@
 
         $("#id_venGravadas").change(()=>{
             $("#id_ivaDebFiscal").val(
-                parseFloat($("#id_venGravadas").val()).toFixed(2) * 0.13
+                (parseFloat($("#id_venGravadas").val()) * 0.13).toFixed(2)
             )
         })
 
