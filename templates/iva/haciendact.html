@@ -165,9 +165,23 @@
 
     <script>
         function totalizado() {
-            suma = parseFloat($("#id_vtIVA").val()) + parseFloat($("#id_ivaDebFiscal").val()) + parseFloat($("#id_venExentas").val()) + parseFloat($("#id_venGravadas").val()) + parseFloat($("#id_ventasNSujetas").val()) + parseFloat($("#id_vtVentas").val()) - parseFloat($("#id_ivaRetenido").val())
-            $('#id_total').val(suma.toFixed(2))
+            $('#id_total').val((
+                parseFloat($("#id_venExentas").val()) + 
+                parseFloat($("#id_ventasNSujetas").val()) + 
+                parseFloat($("#id_venGravadas").val()) + 
+                parseFloat($("#id_ivaDebFiscal").val()) + 
+                parseFloat($("#id_vtVentas").val()) + 
+                parseFloat($("#id_vtIVA").val()) -
+                parseFloat($("#ivaRetenido").val())
+            ).toFixed(2));
         }
+        
+        $("#id_venGravadas").change(()=>{
+            $("#id_ivaDebFiscal").val(
+                parseFloat($("#id_venGravadas").val()).toFixed(2) * 0.13
+            )
+        })
+
 
         $(document).change(()=>{
             totalizado()
