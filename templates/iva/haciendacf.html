@@ -43,55 +43,62 @@
                 {{form.numeroSerie|as_crispy_field}}
             </div>
             <div class="col-md-4">
-                {{form.numeroControlInterno|as_crispy_field}}
+                {{form.numeroControlInternoDel|as_crispy_field}}
             </div>
+            
         </div>
         <div class="row">
+            <div class="col-md-4">
+                {{form.numeroControlInternoAl|as_crispy_field}}
+            </div>
             <div class="col-md-4">
                 {{form.correlativoInicial|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.correlativoFinal|as_crispy_field}}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 {{form.numeroRegistradora|as_crispy_field}}
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-4">
                 {{form.exento|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.ventasInternasExentas|as_crispy_field}}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 {{form.ventasNSujetas|as_crispy_field}}
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-4">
                 {{form.locales|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.exportacionesCA|as_crispy_field}}
             </div>
-            <div class="col-md-4">
-                {{form.exportacionesNoCA|as_crispy_field}}
-            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
+                {{form.exportacionesNoCA|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.exportacionesServicios|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
                 {{form.ventasZonasFrancas|as_crispy_field}}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 {{form.ventaTotal|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.ventaCtaTerceros|as_crispy_field}}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-4 text-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </div>
@@ -110,7 +117,8 @@
                 <th class="align-middle">Tipo de Documento</th>
                 <th class="align-middle">Numero de Resolucion</th>
                 <th class="align-middle">Numero de Serie</th>
-                <th class="align-middle">Numero Control Interno</th>
+                <th class="align-middle">Numero Control Interno Del</th>
+                <th class="align-middle">Numero Control Interno Al</th>
                 <th class="align-middle">Correlativo Inicial</th>
                 <th class="align-middle">Correlativo Final</th>
                 <th class="align-middle">Maquina Registradora</th>
@@ -120,6 +128,7 @@
                 <th class="align-middle">Ventas Gravadas Locales</th>
                 <th class="align-middle">Exportaciones Dentro del Area Centroamericana</th>
                 <th class="align-middle">Exportaciones Fuera del Area Centroamericana</th>
+                <th class="align-middle">Exportaciones de Servicios</th>
                 <th class="align-middle">Ventas a Zonas Francas y DPA(Tasa Cero)</th>
                 <th class="align-middle">Venta Total</th>
                 <th class="align-middle">Venta Cta Terceros</th>
@@ -133,7 +142,8 @@
                         <td class="align-middle">{{factura.get_tipoDocumento_display}}</td>
                         <td class="align-middle">{{factura.numeroResolucion}}</td>
                         <td class="align-middle">{{factura.numeroSerie}}</td>
-                        <td class="align-middle">{{factura.numeroControlInterno}}</td>
+                        <td class="align-middle">{{factura.numeroControlInternoDel}}</td>
+                        <td class="align-middle">{{factura.numeroControlInternoAl}}</td>
                         <td class="align-middle">{{factura.correlativoInicial}}</td>
                         <td class="align-middle">{{factura.correlativoFinal}}</td>
                         <td class="align-middle">{{factura.numeroRegistradora}}</td>
@@ -143,6 +153,7 @@
                         <td class="align-middle">{{factura.locales}}</td>
                         <td class="align-middle">{{factura.exportacionesCA}}</td>
                         <td class="align-middle">{{factura.exportacionesNoCA}}</td>
+                        <td class="align-middle">{{factura.exportacionesServicios}}</td>
                         <td class="align-middle">{{factura.ventasZonasFrancas}}</td>
                         <td class="align-middle">{{factura.ventaTotal}}</td>
                         <td class="align-middle">{{factura.ventaCtaTerceros}}</td>
@@ -160,3 +171,18 @@
 
 
 {% endblock content %}
+
+{% block extrajs %}
+
+<script type="text/javascript">
+    $(document).change(()=>{
+        $("#id_ventaTotal").val(parseFloat($("#id_exento").val()) + parseFloat($("#id_ventasInternasExentas").val()) + 
+        parseFloat($("#id_ventasNSujetas").val()) + parseFloat($("#id_locales").val()) + 
+        parseFloat($("#id_exportacionesCA").val()) + parseFloat($("#id_exportacionesNoCA").val()) + 
+        parseFloat($("#id_ventasZonasFrancas").val()) + parseFloat($("#id_ventaCtaTerceros").val()))
+    })
+
+</script>
+    
+{% endblock extrajs %}
+    
