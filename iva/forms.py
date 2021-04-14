@@ -213,12 +213,6 @@ class FacturaConsumidorF(forms.ModelForm):
             "ventaCtaTerceros",
         ]
         widgets = {
-            "numeroResolucion"      : forms.TextInput(attrs={}),
-            "numeroSerie"           : forms.TextInput(attrs={}),
-            "numeroControlInterno"  : forms.TextInput(attrs={}),
-            "correlativoInicial"    : forms.TextInput(attrs={}),
-            "correlativoFinal"      : forms.TextInput(attrs={}),
-            "numeroRegistradora"    : forms.TextInput(attrs={}),
             "exento"                : forms.NumberInput(attrs={"value":"0.00"}),
             "ventasInternasExentas" : forms.NumberInput(attrs={"value":"0.00"}),
             "ventasNSujetas"        : forms.NumberInput(attrs={"value":"0.00"}),
@@ -266,4 +260,4 @@ class FacturaContribuyenteF(forms.ModelForm):
             "vtIVA"             : forms.NumberInput(attrs={"value":"0.00"}),
             "total"             : forms.NumberInput(attrs={"value":"0.00"}),
             "ivaRetenido"       : forms.NumberInput(attrs={"value":"0.00"}),
-        }
+        }    

@@ -271,6 +271,20 @@ class FacturasContribuyenteCV(CreateView):
         context["libro"] = Libro.objects.get(id=libro.id)
         context["facturas"] = FacturaCt.objects.filter(libro=libro.id)
         return context
+    
+    def get_initial(self, **kwargs):
+        initial = super(FacturasContribuyenteCV,self).get_initial()
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+
+        if libro.facturacf.all().exists() :
+            factura = libro.facturact.all()[-1]
+            initial["numeroResolucion"] = factura.numeroResolucion
+            initial["numeroSerie"] = factura.numeroSerie
+        else:
+            initial["numeroResolucion"] = ""
+            initial["numeroSerie"] = ""
+
+        return initial
 
 
 #Consumidor Final
@@ -294,6 +308,20 @@ class FacturasConsudmidorCV(CreateView):
         context["libro"] = Libro.objects.get(id=libro.id)
         context["facturas"] = FacturaCF.objects.filter(libro=libro.id)
         return context
+    
+    def get_initial(self, **kwargs):
+        initial = super(FacturasConsudmidorCV,self).get_initial()
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        
+        if libro.facturacf.all().exists() :
+            factura = libro.facturacf.all()[-1]
+            initial["numeroResolucion"] = factura.numeroResolucion
+            initial["numeroSerie"] = factura.numeroSerie
+        else:
+            initial["numeroResolucion"] = ""
+            initial["numeroSerie"] = ""
+
+        return initial
     
 
 #Compras
