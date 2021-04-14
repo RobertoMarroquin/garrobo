@@ -169,25 +169,25 @@
         })
 
         $(document).change(()=>{
-            $("#ivaCdtoFiscal").val((
-                parseFloat($("#cGravadaInterna").val()) +
-                parseFloat($("#cGravadaInternaciones").val()) +
-                parseFloat($("#cGravadaImportaciones").val()) +
-                parseFloat($("#cGravadaImportacionesServicios").val()) 
+            $("#id_ivaCdtoFiscal").val((
+                parseFloat($("#id_cGravadaInterna").val()) +
+                parseFloat($("#id_cGravadaInternaciones").val()) +
+                parseFloat($("#id_cGravadaImportaciones").val()) +
+                parseFloat($("#id_cGravadaImportacionesServicios").val()) 
             ).toFixed(2) * 0.13)
 
-            $("#totalCompra").val((
-                parseFloat($("#cExenteInterna").val()) +
-                parseFloat($("#cExenteInternaciones").val()) +
-                parseFloat($("#cExenteImportaciones").val()) +
-                parseFloat($("#cGravadaInterna").val()) +
-                parseFloat($("#cGravadaInternaciones").val()) +
-                parseFloat($("#cGravadaImportaciones").val()) +
-                parseFloat($("#cGravadaImportacionesServicios").val()) +
-                parseFloat($("#ivaCdtoFiscal").val()) +
-                parseFloat($("#retencionPretencion").val()) +
-                parseFloat($("#anticipoCtaIva").val()) +
-                parseFloat($("#ivaTerceros").val())
+            $("#id_totalCompra").val((
+                parseFloat($("#id_cExenteInterna").val()) +
+                parseFloat($("#id_cExenteInternaciones").val()) +
+                parseFloat($("#id_cExenteImportaciones").val()) +
+                parseFloat($("#id_cGravadaInterna").val()) +
+                parseFloat($("#id_cGravadaInternaciones").val()) +
+                parseFloat($("#id_cGravadaImportaciones").val()) +
+                parseFloat($("#id_cGravadaImportacionesServicios").val()) +
+                parseFloat($("#id_ivaCdtoFiscal").val()) +
+                parseFloat($("#id_retencionPretencion").val()) +
+                parseFloat($("#id_anticipoCtaIva").val()) +
+                parseFloat($("#id_ivaTerceros").val())
             ).toFixed(2))
         })
        

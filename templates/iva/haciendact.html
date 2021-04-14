@@ -172,10 +172,10 @@
                 parseFloat($("#id_ivaDebFiscal").val()) + 
                 parseFloat($("#id_vtVentas").val()) + 
                 parseFloat($("#id_vtIVA").val()) -
-                parseFloat($("#ivaRetenido").val())
+                parseFloat($("#id_ivaRetenido").val())
             ).toFixed(2));
         }
-        
+
         $("#id_venGravadas").change(()=>{
             $("#id_ivaDebFiscal").val(
                 parseFloat($("#id_venGravadas").val()).toFixed(2) * 0.13
