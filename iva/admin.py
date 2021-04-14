@@ -17,16 +17,27 @@ class LibroAdmin(admin.ModelAdmin):
 @admin.register(FacturaCF)
 class FacturaCFAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
+        "fecha",
+        "numeroControlInternoDel",
+        "numeroControlInternoAl",
+        "claseDocumento",
+        "tipoDocumento",
+        "numeroResolucion",
+        "numeroSerie",
         "correlativoInicial",
         "correlativoFinal",
-        "fecha",
+        "numeroRegistradora",
         "exento",
-        "locales",
-        "ventaTotal",
-        "ventaCtaTerceros",
-        "libro",
-        "exportaciones",
+        "ventasInternasExentas",
         "ventasNSujetas",
+        "locales",
+        "exportacionesCA",
+        "exportacionesNoCA",
+        "exportacionesServicios",
+        "ventasZonasFrancas",
+        "ventaCtaTerceros",
+        "ventaTotal",
     )
     search_fields = ["id","correlativoInicial","correlativoFinal","fecha",]
 
@@ -34,44 +45,52 @@ class FacturaCFAdmin(admin.ModelAdmin):
 @admin.register(FacturaCt)
 class FacturaCtAdmin(admin.ModelAdmin):
     list_display = (
-        "correlativo",
-        "fecha",
-        "nComprobacion",
-        "serie",
-        "corrIntUni",
+        "id",
         "contribuyente",
+        "fecha",
+        "numeroDocumento",
+        "claseDocumento",
+        "tipoDocumento",
+        "numeroResolucion",
+        "numeroSerie",
+        "numeroControlInterno",
         "venExentas",
+        "ventasNSujetas",
         "venGravadas",
         "ivaDebFiscal",
         "vtVentas",
         "vtIVA",
-        "ivaRetenido",
         "total",
-        "libro",
-        "ventasNSujetas",
+        "ivaRetenido",
+        "correlativo"
     )
-    search_fields = ["id","correlativo","fecha","contribuyente__nombre","contribuyente__nit","contribuyente__nRegistro"]
+    search_fields = ["id","fecha","contribuyente__nombre","contribuyente__nit","contribuyente__nRegistro"]
     
 
 @admin.register(FacturaCm)
 class FacturaCmAdmin(admin.ModelAdmin):
     list_display = (
-        "correlativo",
-        "fecha",
+        "id",
         "empresa",
+        "fecha",
+        "numeroDocumento",
+        "claseDocumento",
+        "tipoDocumento",
         "cExenteInterna",
+        "cExenteInternaciones",
         "cExenteImportaciones",
         "cGravadaInterna",
+        "cGravadaInternaciones",
         "cGravadaImportaciones",
+        "cGravadaImportacionesServicios",
         "ivaCdtoFiscal",
         "totalCompra",
         "retencionPretencion",
         "anticipoCtaIva",
         "ivaTerceros",
-        "comprasNSujetas",
-        "libro",
+        "correlativo",
     )
-    search_fields = ["correlativo","fecha","empresa__nit","empresa__nombre","empresa__nRegistro","id"]
+    search_fields = ["id","numeroDocumento","correlativo","fecha","empresa__nit","empresa__nombre","empresa__nRegistro","id"]
 
 
 @admin.register(Empresa)
