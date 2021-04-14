@@ -276,8 +276,8 @@ class FacturasContribuyenteCV(CreateView):
         initial = super(FacturasContribuyenteCV,self).get_initial()
         libro = Libro.objects.get(id=self.kwargs["libro"])
 
-        if libro.facturacf.all().exists() :
-            factura = libro.facturact.all()[-1]
+        if libro.facturact.last() :
+            factura = libro.facturact.last()
             initial["numeroResolucion"] = factura.numeroResolucion
             initial["numeroSerie"] = factura.numeroSerie
         else:
@@ -313,8 +313,8 @@ class FacturasConsudmidorCV(CreateView):
         initial = super(FacturasConsudmidorCV,self).get_initial()
         libro = Libro.objects.get(id=self.kwargs["libro"])
         
-        if libro.facturacf.all().exists() :
-            factura = libro.facturacf.all()[-1]
+        if libro.facturacf.last() :
+            factura = libro.facturacf.last()
             initial["numeroResolucion"] = factura.numeroResolucion
             initial["numeroSerie"] = factura.numeroSerie
         else:
