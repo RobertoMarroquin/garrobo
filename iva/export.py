@@ -727,10 +727,11 @@ def contribuyente(libro):
 
     writer.save()
     return direccion
+
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def interno_compras(libro):
-    facturas = FacturaCm.objects.filter(libro=libro)
+    facturas = FacturaCm.objects.filter(libro=libro).order_by('fecha')
     direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_compras_mh.xlsx"
     writer = pd.ExcelWriter(
         direccion,
@@ -830,7 +831,7 @@ def interno_compras(libro):
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def interno_consumidor(libro):
-    facturas = FacturaCF.objects.filter(libro=libro)
+    facturas = FacturaCF.objects.filter(libro=libro).order_by("correlativoInicial")
     direccion = BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_consumidor_mh.xlsx"
     writer = pd.ExcelWriter(
         direccion,
@@ -921,7 +922,7 @@ def interno_consumidor(libro):
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def interno_contribuyente(libro):
-    facturas = FacturaCt.objects.filter(libro=libro)
+    facturas = FacturaCt.objects.filter(libro=libro).order_by('numeroDocumento')
     direccion = BASE_DIR/f"libros_consumidor/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_contribuyente_mh.xlsx"
     writer = pd.ExcelWriter(
         direccion,
