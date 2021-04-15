@@ -573,12 +573,12 @@ def compras(libro):
     #tabla de facturas
     row = 0
     for factura in facturas:
-        if factura.empresa.nit is not None:
+        if factura.empresa.nit not in ("0-0","0-2","00-0"):
             ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
             ws.write(row,1,f"{factura.claseDocumento}",body_format)
             ws.write(row,2,f"{factura.tipoDocumento}",body_format)
             ws.write(row,3,f"{factura.numeroDocumento}",body_format)
-            ws.write(row,4,f"{factura.empresa.nit.replace('-','',3)}",body_format)
+            ws.write(row,4,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
             ws.write(row,5,f"{factura.empresa.nombre}",body_format)
             ws.write(row,6,f"{factura.cExenteInterna}",body_format)
             ws.write(row,7,f"{factura.cExenteInternaciones}",body_format)
@@ -707,7 +707,7 @@ def contribuyente(libro):
     #tabla de facturas
     row = 0
     for factura in facturas:
-        if factura.contribuyente.nit is not None:
+        if factura.contribuyente.nRegistro not in ("0-0","0-2","00-0") :
             ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
             ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
             ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
@@ -715,7 +715,7 @@ def contribuyente(libro):
             ws.write(row,4 ,f"{factura.numeroSerie}",body_format)
             ws.write(row,5 ,f"{factura.numeroDocumento}",body_format)
             ws.write(row,6 ,f"{factura.numeroControlInterno}",body_format)
-            ws.write(row,7 ,f"{factura.contribuyente.nit.replace('-','',3)}",body_format)
+            ws.write(row,7 ,f"{factura.contribuyente.nit.replace('-','',3) if factura.contribuyente.nit is not None else factura.contribuyente.nRegistro}",body_format)
             ws.write(row,8 ,f"{factura.contribuyente.nombre}",body_format)
             ws.write(row,9 ,f"{factura.venExentas}",body_format)
             ws.write(row,10,f"{factura.ventasNSujetas}",body_format)
@@ -796,7 +796,7 @@ def interno_compras(libro):
         ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
         ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
         ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
-        ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else ''}",body_format)
+        ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
         ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
         ws.write(row,6 ,f"{factura.cExenteInterna}",body_format)
         ws.write(row,7 ,f"{factura.cExenteInternaciones}",body_format)
@@ -991,7 +991,7 @@ def interno_contribuyente(libro):
         ws.write(row,4 ,f"{factura.numeroSerie}",body_format)
         ws.write(row,5 ,f"{factura.numeroDocumento}",body_format)
         ws.write(row,6 ,f"{factura.numeroControlInterno}",body_format)
-        ws.write(row,7 ,f"{factura.contribuyente.nit if factura.contribuyente.nit is not None else ''}",body_format)
+        ws.write(row,7 ,f"{factura.contribuyente.nit if factura.contribuyente.nit is not None else factura.contribuyente.nRegistro}",body_format)
         ws.write(row,8 ,f"{factura.contribuyente.nombre}",body_format)
         ws.write(row,9 ,f"{factura.venExentas}",body_format)
         ws.write(row,10,f"{factura.ventasNSujetas}",body_format)
