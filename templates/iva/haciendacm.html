@@ -109,6 +109,7 @@
             <thead class="thead-dark">
                 <tr class="text-center">
                 <th class="align-middle">Empresa</th>
+                <th class="align-middle">NIT</th>
                 <th class="align-middle">Fecha</th>
                 <th class="align-middle">Clase de Doc</th>
                 <th class="align-middle">Tipo de Doc</th>
@@ -132,6 +133,7 @@
                 {% for factura in facturas.all|dictsort:"fecha"  %}
                     <tr class="text-center">
                         <td class="align-middle">{{factura.empresa}}</td>
+                        <td class="align-middle">{{factura.empresa.nit}}</td>
                         <td class="align-middle">{{factura.fecha}}</td>
                         <td class="align-middle">{{factura.claseDocumento}}</td>
                         <td class="align-middle">{{factura.tipoDocumento}}</td>
