@@ -176,10 +176,10 @@
 
 <script type="text/javascript">
     $(document).change(()=>{
-        $("#id_ventaTotal").val(parseFloat($("#id_exento").val()) + parseFloat($("#id_ventasInternasExentas").val()) + 
+        $("#id_ventaTotal").val((parseFloat($("#id_exento").val()) + parseFloat($("#id_ventasInternasExentas").val()) + 
         parseFloat($("#id_ventasNSujetas").val()) + parseFloat($("#id_locales").val()) + 
         parseFloat($("#id_exportacionesCA").val()) + parseFloat($("#id_exportacionesNoCA").val()) + 
-        parseFloat($("#id_ventasZonasFrancas").val()) + parseFloat($("#id_ventaCtaTerceros").val()))
+        parseFloat($("#id_ventasZonasFrancas").val()) + parseFloat($("#id_ventaCtaTerceros").val())).toFixed(2))
     })
 
 </script>

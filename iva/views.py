@@ -196,12 +196,14 @@ class EmpresaCV2(CreateView):
     
     def get_success_url(self,**kwargs):
         libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = ""
         if libro.tipo == 1:
-            return reverse("iva:haciendacf",args=[self.kwargs["libro"],])
+            direccion = reverse("iva:haciendacf",args=[self.kwargs["libro"],])
         elif libro.tipo == 2:
-            return reverse("iva:haciendact",args=[self.kwargs["libro"],])
+            direccion = reverse("iva:haciendact",args=[self.kwargs["libro"],])
         else:
-            return reverse("iva:haciendacm",args=[self.kwargs["libro"],])
+            direccion = reverse("iva:haciendacm",args=[self.kwargs["libro"],])
+        return direccion
     
 
 
