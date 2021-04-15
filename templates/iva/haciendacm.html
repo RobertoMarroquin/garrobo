@@ -131,7 +131,12 @@
             </thead>
             <tbody>
                 {% for factura in facturas.all|dictsort:"fecha"  %}
-                    <tr class="text-center">
+                
+                {% if factura.empresa.nit is None %}
+                <tr class="text-center table-warning">    
+                {% else %}
+                <tr class="text-center">                    
+                {% endif %}
                         <td class="align-middle">{{factura.empresa}}</td>
                         <td class="align-middle">{{factura.empresa.nit}}</td>
                         <td class="align-middle">{{factura.fecha}}</td>
