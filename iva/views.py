@@ -182,6 +182,7 @@ class EmpresaCV(CreateView):
         context['titulo'] = 'Crear Empresa'
         return context
 
+
 class EmpresaCV2(CreateView):
     model = Empresa
     template_name = "iva/empresa.html"
@@ -205,7 +206,6 @@ class EmpresaCV2(CreateView):
             direccion = reverse("iva:haciendacm",args=[self.kwargs["libro"],])
         return direccion
     
-
 
 class EmpresaDetail(DetailView):
     model = Empresa
@@ -348,3 +348,13 @@ class FacturaComprasCV(CreateView):
         context["facturas"] = FacturaCm.objects.filter(libro=libro.id)
         return context
 #----------------------------------------------#
+#----------------------------------------------#
+#Anticipo a cuenta
+class AnticipoCta(View):
+    def get(self, request, *args, **kwargs):
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = anticipo_cuenta(libro.id)
+        response = FileResponse(open(direccion, 'rb'))
+        return response
+
+    

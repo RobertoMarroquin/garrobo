@@ -742,7 +742,7 @@ def interno_compras(libro):
     wb = writer.book
     ws = wb.add_worksheet("detalle_consumidor")
     #configuraciones de pagina
-    ws.set_portrait()
+    ws.set_landscape()
     ws.set_paper(1)
     ws.set_margins(0.26,0.26,0.75,0.75)
     #formato de cabecera
@@ -770,46 +770,54 @@ def interno_compras(libro):
     foot_format.set_align("center")
     foot_format.set_align("vcenter")
     foot_format.set_bottom(3)
+    #Cabecera
+    ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
+    ws.merge_range("A2:R2",f"Registro  {libro.cliente.nRegistro}",header_format)
+    ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
+    ws.merge_range("A4:R4",f"Libro de Compras del mes de {libro.mes}/{libro.ano}",header_format)
+    
     #tabla de facturas
-    ws.write(0,0 ,"Fecha",body_format)
-    ws.write(0,1 ,"Clase de Doc",body_format)
-    ws.write(0,2 ,"Tipo de Doc",body_format)
-    ws.write(0,3 ,"N de Doc",body_format)
-    ws.write(0,4 ,"Nit",body_format)
-    ws.write(0,5 ,"Nombre",body_format)
-    ws.write(0,6 ,"Comp Loc Exen",body_format)
-    ws.write(0,7 ,"Inter Exen",body_format)
-    ws.write(0,8 ,"Impor Exen",body_format)
-    ws.write(0,9 ,"Comp Loc Grav",body_format)
-    ws.write(0,10 ,"Inter Grav Bienes",body_format)
-    ws.write(0,11,"Impor Grav Bienes",body_format)
-    ws.write(0,12,"Impor Grav Servicios",body_format)
-    ws.write(0,13,"Crdto Fiscal",body_format)
-    ws.write(0,14,"Total Compra",body_format)
-    ws.write(0,15,"Retencion/Pretencion",body_format)
-    ws.write(0,16,"Anticipo Cta Iva",body_format)
-    ws.write(0,17,"IVA Terceros",body_format)
-
-    row = 1
+    ws.write(4,0 ,"Correlativo",body_format)
+    ws.write(4,1 ,"Fecha",body_format)
+    ws.write(4,2 ,"Clase de Doc",body_format)
+    ws.write(4,3 ,"Tipo de Doc",body_format)
+    ws.write(4,4 ,"N de Doc",body_format)
+    ws.write(4,5 ,"Nit",body_format)
+    ws.write(4,6 ,"Nombre",body_format)
+    ws.write(4,7 ,"Comp Loc Exen",body_format)
+    ws.write(4,8 ,"Inter Exen",body_format)
+    ws.write(4,9 ,"Impor Exen",body_format)
+    ws.write(4,10 ,"Comp Loc Grav",body_format)
+    ws.write(4,11 ,"Inter Grav Bienes",body_format)
+    ws.write(4,12,"Impor Grav Bienes",body_format)
+    ws.write(4,13,"Impor Grav Servicios",body_format)
+    ws.write(4,14,"Crdto Fiscal",body_format)
+    ws.write(4,15,"Total Compra",body_format)
+    ws.write(4,16,"Retencion/Pretencion",body_format)
+    ws.write(4,17,"Anticipo Cta Iva",body_format)
+    ws.write(4,18,"IVA Terceros",body_format)
+    
+    row = 5
     for factura in facturas:
-        ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
-        ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
-        ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
-        ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
-        ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
-        ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
-        ws.write(row,6 ,f"{factura.cExenteInterna}",body_format)
-        ws.write(row,7 ,f"{factura.cExenteInternaciones}",body_format)
-        ws.write(row,8 ,f"{factura.cExenteImportaciones}",body_format)
-        ws.write(row,9 ,f"{factura.cGravadaInterna}",body_format)
-        ws.write(row,10,f"{factura.cGravadaInternaciones}",body_format)
-        ws.write(row,11,f"{factura.cGravadaImportaciones}",body_format)
-        ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
-        ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
-        ws.write(row,14,f"{factura.totalCompra}",body_format)
-        ws.write(row,15,f"{factura.retencionPretencion}",body_format)
-        ws.write(row,16,f"{factura.anticipoCtaIva}",body_format)
-        ws.write(row,17,f"{factura.ivaTerceros}",body_format)
+        ws.write(row,0 ,f"{row}",body_format)
+        ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,2 ,f"{factura.claseDocumento}",body_format)
+        ws.write(row,3 ,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,4 ,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,5 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+        ws.write(row,6 ,f"{factura.empresa.nombre}",body_format)
+        ws.write(row,7 ,f"{factura.cExenteInterna}",body_format)
+        ws.write(row,8 ,f"{factura.cExenteInternaciones}",body_format)
+        ws.write(row,9 ,f"{factura.cExenteImportaciones}",body_format)
+        ws.write(row,10 ,f"{factura.cGravadaInterna}",body_format)
+        ws.write(row,11,f"{factura.cGravadaInternaciones}",body_format)
+        ws.write(row,12,f"{factura.cGravadaImportaciones}",body_format)
+        ws.write(row,13,f"{factura.cGravadaImportacionesServicios}",body_format)
+        ws.write(row,14,f"{factura.ivaCdtoFiscal}",body_format)
+        ws.write(row,15,f"{factura.totalCompra}",body_format)
+        ws.write(row,16,f"{factura.retencionPretencion}",body_format)
+        ws.write(row,17,f"{factura.anticipoCtaIva}",body_format)
+        ws.write(row,18,f"{factura.ivaTerceros}",body_format)
         
         row+=1
     ws.merge_range(f"A{row+3}:F{row+3}","Totales",body_format)
@@ -870,26 +878,31 @@ def interno_consumidor(libro):
     foot_format.set_align("center")
     foot_format.set_align("vcenter")
     foot_format.set_bottom(3)
+    #Cabecera
+    ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
+    ws.merge_range("A2:R2",f"Registro  {libro.cliente.nRegistro}",header_format)
+    ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
+    ws.merge_range("A4:R4",f"Libro de Consumidor Final del Mes de {libro.mes.get_mes_display()}/{libro.ano}",header_format)
     #tabla de facturas
-    ws.write(0,0,f"Fecha",body_format)
-    ws.write(0,1,f"Clas de Doc",body_format)
-    ws.write(0,2,f"Tipo de Doc",body_format)
-    ws.write(0,3,f"N de Res",body_format)
-    ws.write(0,4,f"N de Ser",body_format)
-    ws.write(0,5,f"N Con Inter",body_format)
-    ws.write(0,6,f"N Con Inter",body_format)
-    ws.write(0,7 ,f"Corr Ini",body_format)
-    ws.write(0,8 ,f"Corr Fin",body_format)
-    ws.write(0,9 ,f"N Maq Regis",body_format)
-    ws.write(0,10 ,f"Ven Exe",body_format)
-    ws.write(0,11,f"Ven Inter Exen No Suj",body_format)
-    ws.write(0,12,f"Ven no Suj",body_format)
-    ws.write(0,13,f"Ven Grav Loc",body_format)
-    ws.write(0,14,f"Expor CA",body_format)
-    ws.write(0,15,f"Expor No CA",body_format)
-    ws.write(0,16,f"Zona Franc",body_format)
-    ws.write(0,17,f"Total",body_format)
-    row = 1
+    ws.write(4,0,f"Fecha",body_format)
+    ws.write(4,1,f"Clas de Doc",body_format)
+    ws.write(4,2,f"Tipo de Doc",body_format)
+    ws.write(4,3,f"N de Res",body_format)
+    ws.write(4,4,f"N de Ser",body_format)
+    ws.write(4,5,f"N Con Inter",body_format)
+    ws.write(4,6,f"N Con Inter",body_format)
+    ws.write(4,7 ,f"Corr Ini",body_format)
+    ws.write(4,8 ,f"Corr Fin",body_format)
+    ws.write(4,9 ,f"N Maq Regis",body_format)
+    ws.write(4,10 ,f"Ven Exe",body_format)
+    ws.write(4,11,f"Ven Inter Exen No Suj",body_format)
+    ws.write(4,12,f"Ven no Suj",body_format)
+    ws.write(4,13,f"Ven Grav Loc",body_format)
+    ws.write(4,14,f"Expor CA",body_format)
+    ws.write(4,15,f"Expor No CA",body_format)
+    ws.write(4,16,f"Zona Franc",body_format)
+    ws.write(4,17,f"Total",body_format)
+    row = 5
     for factura in facturas:
         ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
         ws.write(row,1,f"{factura.claseDocumento}",body_format)
@@ -964,25 +977,30 @@ def interno_contribuyente(libro):
     foot_format.set_align("vcenter")
     foot_format.set_bottom(3)
     #tabla de facturas
-    ws.write(0,0,f"Fecha",body_format)
-    ws.write(0,1,f"Clase de Doc",body_format)
-    ws.write(0,2,f"Tipo de Doc",body_format)
-    ws.write(0,3,f"N de Res",body_format)
-    ws.write(0,4,f"N de Ser",body_format)
-    ws.write(0,5,f"N de Doc",body_format)
-    ws.write(0,6,f"N Cont Intr",body_format)
-    ws.write(0,7,f"NIT Contr",body_format)
-    ws.write(0,8,f"Nombre Contr",body_format)
-    ws.write(0,9,f" Ven Exen",body_format)
-    ws.write(0,10,f"Ven No Suje",body_format)
-    ws.write(0,11,f"Ven Grav",body_format)
-    ws.write(0,12,f"IVA",body_format)
-    ws.write(0,13,f"Ven 3ros",body_format)
-    ws.write(0,14,f"IVA 3ros",body_format)
-    ws.write(0,15,f"Total",body_format)
-    ws.write(0,16,f"IVA Ret",body_format)
+    ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
+    ws.merge_range("A2:R2",f"Registro  {libro.cliente.nRegistro}",header_format)
+    ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
+    ws.merge_range("A4:R4",f"Libro de Contribuyente del Mes de {libro.mes.get_mes_display()}/{libro.ano}",header_format)
+
+    ws.write(4,0,f"Fecha",body_format)
+    ws.write(4,1,f"Clase de Doc",body_format)
+    ws.write(4,2,f"Tipo de Doc",body_format)
+    ws.write(4,3,f"N de Res",body_format)
+    ws.write(4,4,f"N de Ser",body_format)
+    ws.write(4,5,f"N de Doc",body_format)
+    ws.write(4,6,f"N Cont Intr",body_format)
+    ws.write(4,7,f"NIT Contr",body_format)
+    ws.write(4,8,f"Nombre Contr",body_format)
+    ws.write(4,9,f" Ven Exen",body_format)
+    ws.write(4,10,f"Ven No Suje",body_format)
+    ws.write(4,11,f"Ven Grav",body_format)
+    ws.write(4,12,f"IVA",body_format)
+    ws.write(4,13,f"Ven 3ros",body_format)
+    ws.write(4,14,f"IVA 3ros",body_format)
+    ws.write(4,15,f"Total",body_format)
+    ws.write(4,16,f"IVA Ret",body_format)
     
-    row = 1
+    row = 5
     for factura in facturas:
         ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
         ws.write(row,1 ,f"{factura.get_claseDocumento_display()}",body_format)
@@ -1013,5 +1031,42 @@ def interno_contribuyente(libro):
     ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('total'),0))['total']}",body_format)
     ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('ivaRetenido'),0))['total']}",body_format)
 
+    writer.save()
+    return direccion
+
+
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+def anticipo_cuenta(libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    facturas = FacturaCm.objects.filter(libro=libro).exclude(numeroSerie="").order_by('fecha')
+    direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_anticipo_a_cuenta.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    wb = writer.book
+    ws = wb.add_worksheet("detalle_consumidor")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #tabla de facturas
+    row = 0
+    for factura in facturas:
+        ws.write(row,0 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+        ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,2 ,f"{factura.numeroSerie}",body_format)
+        ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,4 ,f"{factura.cGravadaInterna + factura.cGravadaInternaciones + factura.cGravadaImportaciones + factura.cGravadaImportacionesServicios}",body_format)
+        ws.write(row,5 ,f"{factura.anticipoCtaIva}",body_format)
+        ws.write(row,6 ,f"6",body_format)
+        row+=1
     writer.save()
     return direccion

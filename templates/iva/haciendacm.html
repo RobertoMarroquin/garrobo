@@ -94,9 +94,14 @@
                 {{form.ivaTerceros|as_crispy_field}}
             </div>
             <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                {{form.numeroSerie|as_crispy_field}}
             </div>
         </div> 
+        <div class="row text center">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
         
     </form>
 </div>
@@ -125,6 +130,7 @@
                 <th class="align-middle">Total Compra</th>
                 <th class="align-middle">Retencion/Pretencion</th>
                 <th class="align-middle">Anticipo Cta Iva</th>
+                <th class="align-middle">Numero de Serie</th>
                 <th class="align-middle">IVA Terceros</th>
 
             </tr>
@@ -154,6 +160,7 @@
                         <td class="align-middle">{{factura.totalCompra}}</td>
                         <td class="align-middle">{{factura.retencionPretencion}}</td>
                         <td class="align-middle">{{factura.anticipoCtaIva}}</td>
+                        <th class="align-middle">{{factura.numeroSerie}}</th>
                         <td class="align-middle">{{factura.ivaTerceros}}</td>
                     </tr>
                 {% empty %}

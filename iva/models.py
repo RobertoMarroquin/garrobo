@@ -123,6 +123,7 @@ class FacturaCm(models.Model):
     cGravadaImportacionesServicios = models.DecimalField(("Importaciones Gravadas de Servicios"),blank=True, null=True,max_digits=8, decimal_places=2)
     ivaCdtoFiscal = models.DecimalField(("Credito Fiscal"),blank=True, null=True,max_digits=8, decimal_places=2)
     totalCompra = models.DecimalField(("Total Compra"),blank=True, null=True,max_digits=8, decimal_places=2)
+    numeroSerie =  models.CharField("Numero de Serie", max_length=14,blank=True, null=True, default="")
     
     correlativo = models.IntegerField(("Correlativo"),blank=True, null=True)
     retencionPretencion = models.DecimalField(("Retencion Pretencion"),blank=True, null=True,max_digits=8, decimal_places=2)

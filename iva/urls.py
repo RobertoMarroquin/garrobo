@@ -33,5 +33,5 @@ urlpatterns = [
     path("empresa/libro/contribuyente/<int:libro>/", FacturasContribuyenteCV.as_view(), name="haciendact"),
     path("empresa/libro/consumidor/<int:libro>/", FacturasConsudmidorCV.as_view(), name="haciendacf"),
     path("empresa/libro/compras/<int:libro>/", FacturaComprasCV.as_view(), name="haciendacm"),
-
+    path("empresa/libro/anticipo/<int:libro>/", AnticipoCta.as_view(), name="anticipo"),
 ]
