@@ -880,9 +880,9 @@ def interno_consumidor(libro):
     foot_format.set_bottom(3)
     #Cabecera
     ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
-    ws.merge_range("A2:R2",f"Registro  {libro.cliente.nRegistro}",header_format)
+    ws.merge_range("A2:R2",f"Registro  {libro.cliente.num_registro}",header_format)
     ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
-    ws.merge_range("A4:R4",f"Libro de Consumidor Final del Mes de {libro.mes.get_mes_display()}/{libro.ano}",header_format)
+    ws.merge_range("A4:R4",f"Libro de Consumidor Final del Mes de {libro.get_mes_display()}/{libro.ano}",header_format)
     #tabla de facturas
     ws.write(4,0,f"Fecha",body_format)
     ws.write(4,1,f"Clas de Doc",body_format)
@@ -980,7 +980,7 @@ def interno_contribuyente(libro):
     ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
     ws.merge_range("A2:R2",f"Registro  {libro.cliente.num_registro}",header_format)
     ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
-    ws.merge_range("A4:R4",f"Libro de Contribuyente del Mes de {libro.mes.get_mes_display()}/{libro.ano}",header_format)
+    ws.merge_range("A4:R4",f"Libro de Contribuyente del Mes de {libro.get_mes_display()}/{libro.ano}",header_format)
 
     ws.write(4,0,f"Fecha",body_format)
     ws.write(4,1,f"Clase de Doc",body_format)
