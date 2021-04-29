@@ -978,7 +978,7 @@ def interno_contribuyente(libro):
     foot_format.set_bottom(3)
     #tabla de facturas
     ws.merge_range("A1:R1",f"{libro.cliente.nombre}",header_format)
-    ws.merge_range("A2:R2",f"Registro  {libro.cliente.nRegistro}",header_format)
+    ws.merge_range("A2:R2",f"Registro  {libro.cliente.num_registro}",header_format)
     ws.merge_range("A3:R3",f"NIT  {libro.cliente.nit}",header_format)
     ws.merge_range("A4:R4",f"Libro de Contribuyente del Mes de {libro.mes.get_mes_display()}/{libro.ano}",header_format)
 
