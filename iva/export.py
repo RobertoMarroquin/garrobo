@@ -574,21 +574,21 @@ def compras(libro):
     row = 0
     for factura in facturas:
         if factura.empresa.nit not in ("0-0","0-2","00-0"):
-            ws.write(row,0,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
-            ws.write(row,1,f"{factura.claseDocumento}",body_format)
-            ws.write(row,2,f"{factura.tipoDocumento}",body_format)
-            ws.write(row,3,f"{factura.numeroDocumento}",body_format)
-            ws.write(row,4,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
-            ws.write(row,5,f"{factura.empresa.nombre}",body_format)
-            ws.write(row,6,f"{factura.cExenteInterna}",body_format)
-            ws.write(row,7,f"{factura.cExenteInternaciones}",body_format)
-            ws.write(row,8,f"{factura.cExenteImportaciones}",body_format)
-            ws.write(row,9,f"{factura.cGravadaInterna}",body_format)
-            ws.write(row,10,f"{factura.cGravadaInternaciones}",body_format)
-            ws.write(row,11,f"{factura.cGravadaImportaciones}",body_format)
-            ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
-            ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
-            ws.write(row,14,f"{factura.totalCompra}",body_format)
+            ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
+            ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
+            ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
+            ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+            ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
+            ws.write(row,6 ,f"{ajuste_numeros(factura.cExenteInterna)}",body_format)
+            ws.write(row,7 ,f"{ajuste_numeros(factura.cExenteInternaciones)}",body_format)
+            ws.write(row,8 ,f"{ajuste_numeros(factura.cExenteImportaciones)}",body_format)
+            ws.write(row,9 ,f"{ajuste_numeros(factura.cGravadaInterna)}",body_format)
+            ws.write(row,10,f"{ajuste_numeros(factura.cGravadaInternaciones)}",body_format)
+            ws.write(row,11,f"{ajuste_numeros(factura.cGravadaImportaciones)}",body_format)
+            ws.write(row,12,f"{ajuste_numeros(factura.cGravadaImportacionesServicios)}",body_format)
+            ws.write(row,13,f"{ajuste_numeros(factura.ivaCdtoFiscal)}",body_format)
+            ws.write(row,14,f"{ajuste_numeros(factura.totalCompra)}",body_format)
             ws.write(row,15,f"3",body_format)
             row+=1
     
@@ -648,16 +648,16 @@ def consumidor(libro):
         ws.write(row,7, f"{factura.correlativoInicial}",body_format)
         ws.write(row,8, f"{factura.correlativoFinal}",body_format)
         ws.write(row,9 ,f"{factura.numeroRegistradora if factura.numeroRegistradora is not None else ''}",body_format)
-        ws.write(row,10,f"{factura.exento}",body_format)
-        ws.write(row,11,f"{factura.ventasInternasExentas}",body_format)
-        ws.write(row,12,f"{factura.ventasNSujetas}",body_format)
-        ws.write(row,13,f"{factura.locales}",body_format)
-        ws.write(row,14,f"{factura.exportacionesCA}",body_format)
-        ws.write(row,15,f"{factura.exportacionesNoCA}",body_format)
-        ws.write(row,16,f"{factura.exportacionesServicios}",body_format)
-        ws.write(row,17,f"{factura.ventasZonasFrancas}",body_format)
-        ws.write(row,18,f"{factura.ventaCtaTerceros}",body_format)
-        ws.write(row,19,f"{factura.ventaTotal}",body_format)
+        ws.write(row,10,f"{ajuste_numeros(factura.exento)}",body_format)
+        ws.write(row,11,f"{ajuste_numeros(factura.ventasInternasExentas)}",body_format)
+        ws.write(row,12,f"{ajuste_numeros(factura.ventasNSujetas)}",body_format)
+        ws.write(row,13,f"{ajuste_numeros(factura.locales)}",body_format)
+        ws.write(row,14,f"{ajuste_numeros(factura.exportacionesCA)}",body_format)
+        ws.write(row,15,f"{ajuste_numeros(factura.exportacionesNoCA)}",body_format)
+        ws.write(row,16,f"{ajuste_numeros(factura.exportacionesServicios)}",body_format)
+        ws.write(row,17,f"{ajuste_numeros(factura.ventasZonasFrancas)}",body_format)
+        ws.write(row,18,f"{ajuste_numeros(factura.ventaCtaTerceros)}",body_format)
+        ws.write(row,19,f"{ajuste_numeros(factura.ventaTotal)}",body_format)
         ws.write(row,20,f"2",body_format)
         row+=1
 
@@ -717,13 +717,13 @@ def contribuyente(libro):
             ws.write(row,6 ,f"{factura.numeroControlInterno}",body_format)
             ws.write(row,7 ,f"{factura.contribuyente.nit.replace('-','',3) if factura.contribuyente.nit is not None else factura.contribuyente.nRegistro}",body_format)
             ws.write(row,8 ,f"{factura.contribuyente.nombre}",body_format)
-            ws.write(row,9 ,f"{factura.venExentas}",body_format)
-            ws.write(row,10,f"{factura.ventasNSujetas}",body_format)
-            ws.write(row,11,f"{factura.venGravadas}",body_format)
-            ws.write(row,12,f"{factura.ivaDebFiscal}",body_format)
-            ws.write(row,13,f"{factura.vtVentas}",body_format)
-            ws.write(row,14,f"{factura.vtIVA}",body_format)
-            ws.write(row,15,f"{factura.total}",body_format)
+            ws.write(row,9 ,f"{ajuste_numeros(factura.venExentas)}",body_format)
+            ws.write(row,10,f"{ajuste_numeros(factura.ventasNSujetas)}",body_format)
+            ws.write(row,11,f"{ajuste_numeros(factura.venGravadas)}",body_format)
+            ws.write(row,12,f"{ajuste_numeros(factura.ivaDebFiscal)}",body_format)
+            ws.write(row,13,f"{ajuste_numeros(factura.vtVentas)}",body_format)
+            ws.write(row,14,f"{ajuste_numeros(factura.vtIVA)}",body_format)
+            ws.write(row,15,f"{ajuste_numeros(factura.total)}",body_format)
             ws.write(row,16,f"1",body_format)
             row+=1
 
@@ -1034,7 +1034,6 @@ def interno_contribuyente(libro):
     writer.save()
     return direccion
 
-
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#
 def anticipo_cuenta(libro_id):
@@ -1070,3 +1069,12 @@ def anticipo_cuenta(libro_id):
         row+=1
     writer.save()
     return direccion
+
+#------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------------#
+#ajuste de numeros decimales a 10 caracteres Hacienda cagandose en la gente
+def ajuste_numeros(numero):
+    cadena = str(numero)
+    while len(cadena) < 10 :
+        cadena = "0" + cadena
+    return cadena
