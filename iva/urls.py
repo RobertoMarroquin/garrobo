@@ -27,11 +27,12 @@ urlpatterns = [
     path("libro/<int:id_libro>/<int:tipo>/", ExportarView.as_view(), name="export"),
     path("libro/<int:libro>/", IvaLibros.as_view(), name="iva_hacienda"),
     path("libro/interno/<int:libro>/", IvaInterno.as_view(), name="iva_interno"),
-    
+    path("empresa/libro/anticipo/<int:libro>/", AnticipoCta.as_view(), name="anticipo"),
     #---------------------------------------------------------------------------#
     #---------------------------Facturas Hacienda-------------------------------# 
     path("empresa/libro/contribuyente/<int:libro>/", FacturasContribuyenteCV.as_view(), name="haciendact"),
     path("empresa/libro/consumidor/<int:libro>/", FacturasConsudmidorCV.as_view(), name="haciendacf"),
     path("empresa/libro/compras/<int:libro>/", FacturaComprasCV.as_view(), name="haciendacm"),
-    path("empresa/libro/anticipo/<int:libro>/", AnticipoCta.as_view(), name="anticipo"),
+    path("empresa/libro/compras/retencion/<int:libro>/", RetencionCompraCV.as_view(), name="retencion"),
+    
 ]

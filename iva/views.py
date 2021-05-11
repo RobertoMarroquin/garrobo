@@ -10,8 +10,9 @@ from django.core.serializers import serialize
 #Self Libs
 from .forms import (ComprasForm, ConsumidorFinalForm, 
                     ContribuyenteForm, EmpresaF, 
-                    LibroForm, FacturaConsumidorF, 
-                    FacturaComprasF, FacturaContribuyenteF)
+                    LibroForm, FacturaConsumidorF,
+                    RetencionF,FacturaComprasF,
+                    FacturaContribuyenteF)
 from .models import *
 from empresas.models import Empresa as Cliente
 from .export import *
@@ -350,6 +351,31 @@ class FacturaComprasCV(CreateView):
 #----------------------------------------------#
 #----------------------------------------------#
 #Anticipo a cuenta
+class RetencionCompraCV(CreateView):
+    model = RetencionCompra
+    form_class = RetencionF
+    template_name = "iva/.html"
+
+    def form_valid(self, form):
+        form.instance.libro_id = self.kwargs["libro"]
+        valid_data = super(RetencionCompraCV, self).form_valid(form)
+        return valid_data
+
+    def get_context_data(self, **kwargs):
+        libro=Libro.objects.get(id=self.kwargs["libro"])
+        context = super(RetencionCompraCV, self).get_context_data(**kwargs)
+        context["retenciones"] = RetencionCompra.objects.filter(libro=libro.id)
+        return context
+
+    def get_success_url(self,**kwargs):
+        libro=Libro.objects.get(id=self.kwargs["libro"])
+        return reverse("iva:retencion",args=[libro.id])
+    
+    def get_initial(self, **kwargs):
+        initial = super(RetencionCompraCV,self).get_initial()
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+
+
 class AnticipoCta(View):
     def get(self, request, *args, **kwargs):
         libro = Libro.objects.get(id=self.kwargs["libro"])

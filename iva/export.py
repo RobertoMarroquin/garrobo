@@ -580,15 +580,15 @@ def compras(libro):
             ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
             ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
             ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
-            ws.write(row,6 ,f"{ajuste_numeros(factura.cExenteInterna)}",body_format)
-            ws.write(row,7 ,f"{ajuste_numeros(factura.cExenteInternaciones)}",body_format)
-            ws.write(row,8 ,f"{ajuste_numeros(factura.cExenteImportaciones)}",body_format)
-            ws.write(row,9 ,f"{ajuste_numeros(factura.cGravadaInterna)}",body_format)
-            ws.write(row,10,f"{ajuste_numeros(factura.cGravadaInternaciones)}",body_format)
-            ws.write(row,11,f"{ajuste_numeros(factura.cGravadaImportaciones)}",body_format)
-            ws.write(row,12,f"{ajuste_numeros(factura.cGravadaImportacionesServicios)}",body_format)
-            ws.write(row,13,f"{ajuste_numeros(factura.ivaCdtoFiscal)}",body_format)
-            ws.write(row,14,f"{ajuste_numeros(factura.totalCompra)}",body_format)
+            ws.write(row,6 ,f"{factura.cExenteInterna}",body_format)
+            ws.write(row,7 ,f"{factura.cExenteInternaciones}",body_format)
+            ws.write(row,8 ,f"{factura.cExenteImportaciones}",body_format)
+            ws.write(row,9 ,f"{factura.cGravadaInterna}",body_format)
+            ws.write(row,10,f"{factura.cGravadaInternaciones}",body_format)
+            ws.write(row,11,f"{factura.cGravadaImportaciones}",body_format)
+            ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
+            ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
+            ws.write(row,14,f"{factura.totalCompra}",body_format)
             ws.write(row,15,f"3",body_format)
             row+=1
     
@@ -799,7 +799,7 @@ def interno_compras(libro):
     
     row = 5
     for factura in facturas:
-        ws.write(row,0 ,f"{row}",body_format)
+        ws.write(row,0 ,f"{row-4}",body_format)
         ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
         ws.write(row,2 ,f"{factura.claseDocumento}",body_format)
         ws.write(row,3 ,f"{factura.tipoDocumento}",body_format)
@@ -1038,7 +1038,7 @@ def interno_contribuyente(libro):
 #------------------------------------------------------------------------------------------#
 def anticipo_cuenta(libro_id):
     libro = Libro.objects.get(id=libro_id)
-    facturas = FacturaCm.objects.filter(libro=libro).exclude(numeroSerie="").order_by('fecha')
+    facturas = RetencionCompra.objects.filter(libro=libro).exclude(numeroSerie="").order_by('fecha')
     direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_anticipo_a_cuenta.xlsx"
     writer = pd.ExcelWriter(
         direccion,
@@ -1063,8 +1063,8 @@ def anticipo_cuenta(libro_id):
         ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
         ws.write(row,2 ,f"{factura.numeroSerie}",body_format)
         ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
-        ws.write(row,4 ,f"{factura.cGravadaInterna + factura.cGravadaInternaciones + factura.cGravadaImportaciones + factura.cGravadaImportacionesServicios}",body_format)
-        ws.write(row,5 ,f"{factura.anticipoCtaIva}",body_format)
+        ws.write(row,4 ,f"{factura.monto_sujeto}",body_format)
+        ws.write(row,5 ,f"{factura.retencion}",body_format)
         ws.write(row,6 ,f"6",body_format)
         row+=1
     writer.save()

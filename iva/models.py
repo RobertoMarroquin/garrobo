@@ -133,3 +133,19 @@ class FacturaCm(models.Model):
     libro = models.ForeignKey("iva.Libro",related_name="facturacm", on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.fecha} : {self.correlativo} : {self.empresa}"
+
+
+class RetencionCompra(models.Model):
+    libro = models.ForeignKey("iva.Libro",related_name="retenciones")
+    fecha = models.DateField(("Fecha"), auto_now=False, auto_now_add=False)
+    numeroDocumento = models.CharField("Numero de Documento", max_length=50,blank=True, null=True)
+    numeroSerie =  models.CharField("Numero de Serie", max_length=14,blank=True, null=True, default="")
+    retencion = models.DecimalField(("Retencion"), decimal_places=2, null=True, blank=True, max_digits=9)
+    monto_sujeto = models.DecimalField(("Monto Sujeto"), decimal_places=2, null=True, blank=True, max_digits=9)
+
+    def __str__(self):
+            return f"{self.libro} Retenciones"
+
+    class Meta:
+        verbose_name = 'RetencionCompra'
+        verbose_name_plural = 'Retenciones Compras'

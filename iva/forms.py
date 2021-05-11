@@ -262,3 +262,22 @@ class FacturaContribuyenteF(forms.ModelForm):
             "total"             : forms.NumberInput(attrs={"value":"0.00"}),
             "ivaRetenido"       : forms.NumberInput(attrs={"value":"0.00"}),
         }    
+
+
+class RetencionF(forms.ModelForm):
+    fecha = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],
+            widget=forms.DateInput(attrs={"data-mask":"00/00/00","autofocus":"true"}),
+            required=True)
+    class Meta:
+        model = FacturaCt
+        fields = (
+            "fecha",
+            "numeroDocumento",
+            "numeroSerie",
+            "retencion",
+            "monto_sujeto",
+        )
+        widgets = { 
+            "retencion"     :   forms.NumberInput(attrs={"value":"0.00"}),
+            "monto_sujeto"  :   forms.NumberInput(attrs={"value":"0.00"}),
+        }
