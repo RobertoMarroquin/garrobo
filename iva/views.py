@@ -374,6 +374,13 @@ class RetencionCompraCV(CreateView):
     def get_initial(self, **kwargs):
         initial = super(RetencionCompraCV,self).get_initial()
         libro = Libro.objects.get(id=self.kwargs["libro"])
+        if libro.facturacf.last() :
+            factura = libro.retenciones.last()
+            initial["numeroResolucion"] = factura.numeroResolucion
+        else:
+            initial["numeroResolucion"] = ""
+
+        return initial
 
 
 class AnticipoCta(View):

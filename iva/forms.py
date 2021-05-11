@@ -269,7 +269,7 @@ class RetencionF(forms.ModelForm):
             widget=forms.DateInput(attrs={"data-mask":"00/00/00","autofocus":"true"}),
             required=True)
     class Meta:
-        model = FacturaCt
+        model = RetencionCompra
         fields = (
             "fecha",
             "numeroDocumento",

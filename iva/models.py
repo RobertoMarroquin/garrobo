@@ -136,7 +136,7 @@ class FacturaCm(models.Model):
 
 
 class RetencionCompra(models.Model):
-    libro = models.ForeignKey("iva.Libro",related_name="retenciones")
+    libro = models.ForeignKey("iva.Libro",related_name="retenciones", on_delete=models.CASCADE)
     fecha = models.DateField(("Fecha"), auto_now=False, auto_now_add=False)
     numeroDocumento = models.CharField("Numero de Documento", max_length=50,blank=True, null=True)
     numeroSerie =  models.CharField("Numero de Serie", max_length=14,blank=True, null=True, default="")
