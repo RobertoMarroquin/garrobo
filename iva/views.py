@@ -354,7 +354,7 @@ class FacturaComprasCV(CreateView):
 class RetencionCompraCV(CreateView):
     model = RetencionCompra
     form_class = RetencionF
-    template_name = "iva/.html"
+    template_name = "iva/retencion.html"
 
     def form_valid(self, form):
         form.instance.libro_id = self.kwargs["libro"]
