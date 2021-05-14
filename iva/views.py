@@ -365,6 +365,7 @@ class RetencionCompraCV(CreateView):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         context = super(RetencionCompraCV, self).get_context_data(**kwargs)
         context["retenciones"] = RetencionCompra.objects.filter(libro=libro.id)
+        context["libro"] = libro
         return context
 
     def get_success_url(self,**kwargs):
