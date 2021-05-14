@@ -573,12 +573,12 @@ def compras(libro):
     #tabla de facturas
     row = 0
     for factura in facturas:
-        if factura.empresa.nit not in ("0-0","0-2","00-0"):
+        if factura.empresa.nRegistro not in ("0-0","0-2","00-0"):
             ws.write(row,0 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
             ws.write(row,1 ,f"{factura.claseDocumento}",body_format)
             ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
             ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
-            ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+            ws.write(row,4 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro.replace('-','')}",body_format)
             ws.write(row,5 ,f"{factura.empresa.nombre}",body_format)
             ws.write(row,6 ,f"{factura.cExenteInterna}",body_format)
             ws.write(row,7 ,f"{factura.cExenteInternaciones}",body_format)
@@ -804,7 +804,7 @@ def interno_compras(libro):
         ws.write(row,2 ,f"{factura.claseDocumento}",body_format)
         ws.write(row,3 ,f"{factura.tipoDocumento}",body_format)
         ws.write(row,4 ,f"{factura.numeroDocumento}",body_format)
-        ws.write(row,5 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+        ws.write(row,5 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro.replace('-','')}",body_format)
         ws.write(row,6 ,f"{factura.empresa.nombre}",body_format)
         ws.write(row,7 ,f"{factura.cExenteInterna}",body_format)
         ws.write(row,8 ,f"{factura.cExenteInternaciones}",body_format)
@@ -1059,7 +1059,7 @@ def anticipo_cuenta(libro_id):
     #tabla de facturas
     row = 0
     for factura in facturas:
-        ws.write(row,0 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro}",body_format)
+        ws.write(row,0 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro.replace('-','')}",body_format)
         ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
         ws.write(row,2 ,f"{factura.numeroSerie}",body_format)
         ws.write(row,3 ,f"{factura.numeroDocumento}",body_format)
