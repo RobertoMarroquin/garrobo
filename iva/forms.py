@@ -271,6 +271,7 @@ class RetencionF(forms.ModelForm):
     class Meta:
         model = RetencionCompra
         fields = (
+            "empresa",
             "fecha",
             "numeroDocumento",
             "numeroSerie",

@@ -142,7 +142,7 @@ class RetencionCompra(models.Model):
     numeroSerie =  models.CharField("Numero de Serie", max_length=14,blank=True, null=True, default="")
     retencion = models.DecimalField(("Retencion"), decimal_places=2, null=True, blank=True, max_digits=9)
     monto_sujeto = models.DecimalField(("Monto Sujeto"), decimal_places=2, null=True, blank=True, max_digits=9)
-
+    empresa = models.ForeignKey("iva.Empresa",blank=True, null=True, verbose_name=("Empresa"), on_delete=models.CASCADE)
     def __str__(self):
             return f"{self.libro} Retenciones"
 

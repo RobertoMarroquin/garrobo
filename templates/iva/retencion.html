@@ -27,16 +27,19 @@
         {% csrf_token %}
         <div class="row">
             <div class="col-md-4">
+                {{form.empresa|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
                 {{form.fecha|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.numeroDocumento|as_crispy_field}}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 {{form.numeroSerie|as_crispy_field}}
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-4">
                 {{form.retencion|as_crispy_field}}
             </div>
@@ -59,6 +62,7 @@
             <caption>Retenciones</caption>
             <thead class="thead-dark">
                 <tr class="text-center">
+                <th class="align-middle">Empresa</th>    
                 <th class="align-middle">Fecha</th>
                 <th class="align-middle">Numero de Documento</th>
                 <th class="align-middle">Numero Serie</th>
@@ -69,6 +73,7 @@
             <tbody>
                 {% for retencion in retenciones.all|dictsort:"fecha"  %}
                     <tr class="text-center">
+                        <td class="align-middle">{{retencion.empresa}}</td>
                         <td class="align-middle">{{retencion.fecha}}</td>
                         <td class="align-middle">{{retencion.numeroDocumento}}</td>
                         <td class="align-middle">{{retencion.numeroSerie}}</td>
@@ -88,3 +93,12 @@
 
 
 {% endblock content %}
+{% block extrajs %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#id_empresa").select2();
+        $('#id_empresa').show().focus().click();
+    })
+</script>
+{% endblock extrajs %}
