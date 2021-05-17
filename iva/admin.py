@@ -99,4 +99,26 @@ class EmpresaAdmin(admin.ModelAdmin):
 
     list_display = ('id','nombre','nRegistro','nit')
     search_fields = list_display
+
+
+@admin.register(RetencionCompra)
+class RetencionCompraAdmin(admin.ModelAdmin):
+    '''Admin View for RetencionCompra'''
+
+    list_display = ("libro",
+            "fecha",
+            "numeroDocumento",
+            "numeroSerie",
+            "retencion",
+            "monto_sujeto",
+            "empresa",)
+    list_filter = ('fecha',)
+    search_fields = (
+        "fecha",
+        "numeroDocumento",
+        "numeroSerie",
+        "retencion",
+        "monto_sujeto",
+        "empresa__nit"
+    )
     
