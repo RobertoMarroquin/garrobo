@@ -391,4 +391,11 @@ class AnticipoCta(View):
         response = FileResponse(open(direccion, 'rb'))
         return response
 
+class RetencionEx(View):
+    def get(self, request, *args, **kwargs):
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = retencion_compra(libro.id)
+        response = FileResponse(open(direccion, 'rb'))
+        return response
+
     

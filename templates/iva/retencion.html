@@ -37,21 +37,27 @@
                 {{form.fecha|as_crispy_field}}
             </div>
             <div class="col-md-4">
-                {{form.numeroDocumento|as_crispy_field}}
+                {{form.tipoDocumento|as_crispy_field}}
             </div>
+            
         </div>
         <div class="row">
+            <div class="col-md-4">
+                {{form.numeroDocumento|as_crispy_field}}
+            </div>
             <div class="col-md-4">
                 {{form.numeroSerie|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.retencion|as_crispy_field}}
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 {{form.monto_sujeto|as_crispy_field}}
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-4 text-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
@@ -68,6 +74,7 @@
                 <tr class="text-center">
                 <th class="align-middle">Empresa</th>    
                 <th class="align-middle">Fecha</th>
+                <th class="align-middle">Tipo de Documento</th>
                 <th class="align-middle">Numero de Documento</th>
                 <th class="align-middle">Numero Serie</th>
                 <th class="align-middle">Retencion</th>
@@ -79,6 +86,7 @@
                     <tr class="text-center">
                         <td class="align-middle">{{retencion.empresa}}</td>
                         <td class="align-middle">{{retencion.fecha}}</td>
+                        <td class="align-middle">{{retencion.get_tipoDocumento_display}}</td>
                         <td class="align-middle">{{retencion.numeroDocumento}}</td>
                         <td class="align-middle">{{retencion.numeroSerie}}</td>
                         <td class="align-middle">{{retencion.retencion}}</td>

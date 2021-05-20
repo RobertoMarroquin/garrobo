@@ -272,6 +272,7 @@ class RetencionF(forms.ModelForm):
         model = RetencionCompra
         fields = (
             "empresa",
+            "tipoDocumento",
             "fecha",
             "numeroDocumento",
             "numeroSerie",

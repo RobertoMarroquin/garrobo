@@ -111,14 +111,16 @@ class RetencionCompraAdmin(admin.ModelAdmin):
             "numeroSerie",
             "retencion",
             "monto_sujeto",
-            "empresa",)
-    list_filter = ('fecha',)
+            "empresa",
+            "tipoDocumento")
+    list_filter = ('fecha',"tipoDocumento")
     search_fields = (
         "fecha",
         "numeroDocumento",
         "numeroSerie",
         "retencion",
         "monto_sujeto",
-        "empresa__nit"
+        "empresa__nit",
+        "tipoDocumento"
     )
     

@@ -143,6 +143,12 @@ class RetencionCompra(models.Model):
     retencion = models.DecimalField(("Retencion"), decimal_places=2, null=True, blank=True, max_digits=9)
     monto_sujeto = models.DecimalField(("Monto Sujeto"), decimal_places=2, null=True, blank=True, max_digits=9)
     empresa = models.ForeignKey("iva.Empresa",blank=True, null=True, verbose_name=("Empresa"), on_delete=models.CASCADE)
+    tipoDocumento = models.CharField("Tipo de Documetno",choices=(
+        ("07","COMPROBANTE DE Retencion"),
+        ("05","NOTA DE CREDITO"),
+        ("06","NOTA DE DEBITO"),
+        ("2%","ANTICIPO CUENTA IVA")
+    ),max_length=2,default="05",blank=True, null=True)    
     def __str__(self):
             return f"{self.libro} Retenciones"
 
