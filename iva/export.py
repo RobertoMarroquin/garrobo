@@ -715,7 +715,7 @@ def contribuyente(libro):
             ws.write(row,4 ,f"{factura.numeroSerie}",body_format)
             ws.write(row,5 ,f"{factura.numeroDocumento}",body_format)
             ws.write(row,6 ,f"{factura.numeroControlInterno}",body_format)
-            ws.write(row,7 ,f"{factura.contribuyente.nit.replace('-','',3) if factura.contribuyente.nit is not None else factura.contribuyente.nRegistro}",body_format)
+            ws.write(row,7 ,f"{factura.contribuyente.nit.replace('-','',3) if factura.contribuyente.nit is not None else factura.contribuyente.nRegistro.replace('-','')}",body_format)
             ws.write(row,8 ,f"{factura.contribuyente.nombre}",body_format)
             ws.write(row,9 ,f"{ajuste_numeros(factura.venExentas)}",body_format)
             ws.write(row,10,f"{ajuste_numeros(factura.ventasNSujetas)}",body_format)
