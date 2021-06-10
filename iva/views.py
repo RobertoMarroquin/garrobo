@@ -44,7 +44,7 @@ class FacturaCFCV(CreateView):
         initial["libro"] = Libro.objects.get(id=self.kwargs["libro"]).id
         return initial
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:nueva_fcf",args=[libro.id])
 
@@ -79,7 +79,7 @@ class FacturaCtCV(CreateView):
         initial["libro"] = Libro.objects.get(id=self.kwargs["libro"]).id
         return initial
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:nueva_fct",args=[libro.id])
 
@@ -116,7 +116,7 @@ class FacturaCmCV(CreateView):
         initial["libro"] = Libro.objects.get(id=self.kwargs["libro"]).id
         return initial
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:nueva_fcm",args=[libro.id])
 
@@ -144,7 +144,7 @@ class LibroCV(CreateView):
         initial["tipo"] = self.kwargs["tipo"]
         return initial
 
-    def get_success_url(self,):
+    def get_success_url(self):
         return reverse("iva:lista_libro",args=[self.kwargs["empresa"],self.kwargs["tipo"]])
 
 
@@ -181,6 +181,7 @@ class EmpresaCV(CreateView):
         context = super(EmpresaCV,self).get_context_data(**kwargs)
         context['direccion'] = 'cont:nuevo_empresa'
         context['titulo'] = 'Crear Empresa'
+        print("not OK")
         return context
 
 
@@ -189,24 +190,22 @@ class EmpresaCV2(CreateView):
     template_name = "iva/empresa.html"
     form_class = EmpresaF
 
-    def get_context_data(self, **kwargs):
-        context = super(EmpresaCV,self).get_context_data(**kwargs)
-        context['libro'] = self.kwargs["libro"]
-        context['direccion'] = 'cont:nuevo_empresa'
-        context['titulo'] = 'Crear Empresa'
-        return context
-    
-    def get_success_url(self,):
+    def get_success_url(self):
         libro = Libro.objects.get(id=self.kwargs["libro"])
-        direccion = ""
         if libro.tipo == 1:
-            return reverse("iva:haciendacf",args=[self.kwargs["libro"],])
+            return reverse_lazy("iva:haciendacf",args=[libro.id,])
         elif libro.tipo == 2:
-            return reverse("iva:haciendact",args=[self.kwargs["libro"],])
+            return reverse_lazy("iva:haciendact",args=[libro.id,])
         else:
-            return reverse("iva:haciendacm",args=[self.kwargs["libro"],])
-         
-    
+            return reverse_lazy("iva:haciendacm",args=[libro.id,])
+
+    def get_context_data(self, **kwargs):
+        context = super(EmpresaCV2,self).get_context_data(**kwargs)
+        context['libro'] = self.kwargs["libro"]
+        context['titulo'] = 'Crear Empresa'
+        print("ok-----------------------")
+        return context
+
 
 class EmpresaDetail(DetailView):
     model = Empresa
@@ -264,7 +263,7 @@ class FacturasContribuyenteCV(CreateView):
         valid_data = super(FacturasContribuyenteCV, self).form_valid(form)
         return valid_data
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:haciendact",args=[libro.id])
 
@@ -301,7 +300,7 @@ class FacturasConsudmidorCV(CreateView):
         valid_data = super(FacturasConsudmidorCV, self).form_valid(form)
         return valid_data
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:haciendacf",args=[libro.id])
 
@@ -338,7 +337,7 @@ class FacturaComprasCV(CreateView):
         valid_data = super(FacturaComprasCV, self).form_valid(form)
         return valid_data
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:haciendacm",args=[libro.id])
 
@@ -368,7 +367,7 @@ class RetencionCompraCV(CreateView):
         context["libro"] = libro
         return context
 
-    def get_success_url(self,):
+    def get_success_url(self):
         libro=Libro.objects.get(id=self.kwargs["libro"])
         return reverse("iva:retencion",args=[libro.id])
     

@@ -17,7 +17,7 @@ urlpatterns = [
     #---------------------------------------------------------------------------#
     #--------------------------------Empresa------------------------------------# 
     path("nueva/empresa/", EmpresaCV.as_view(), name="nueva_empresa"),
-    path("nueva/empresa/<int:libro>", EmpresaCV.as_view(), name="nueva_empresa2"),
+    path("nueva/empresa/<int:libro>", EmpresaCV2.as_view(), name="nueva_empresa2"),
     path("empresa/<slug:nReg>/", EmpresaDetail.as_view(), name="detalle"), 
     #---------------------------------------------------------------------------#
     #--------------------------------Cliente------------------------------------# 
