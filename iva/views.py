@@ -200,12 +200,12 @@ class EmpresaCV2(CreateView):
         libro = Libro.objects.get(id=self.kwargs["libro"])
         direccion = ""
         if libro.tipo == 1:
-            direccion = reverse_lazy("iva:haciendacf",args=[self.kwargs["libro"],])
+            return reverse("iva:haciendacf",args=[self.kwargs["libro"],])
         elif libro.tipo == 2:
-            direccion = reverse_lazy("iva:haciendact",args=[self.kwargs["libro"],])
+            return reverse("iva:haciendact",args=[self.kwargs["libro"],])
         else:
-            direccion = reverse_lazy("iva:haciendacm",args=[self.kwargs["libro"],])
-        return direccion
+            return reverse("iva:haciendacm",args=[self.kwargs["libro"],])
+         
     
 
 class EmpresaDetail(DetailView):
