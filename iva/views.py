@@ -1,7 +1,7 @@
 #Django Libs
 from django.http.response import FileResponse, HttpResponse
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.views.generic import View, CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
 from django.db.models import Sum
 from django.core.serializers import serialize
@@ -200,11 +200,11 @@ class EmpresaCV2(CreateView):
         libro = Libro.objects.get(id=self.kwargs["libro"])
         direccion = ""
         if libro.tipo == 1:
-            direccion = reverse("iva:haciendacf",args=[self.kwargs["libro"],])
+            direccion = reverse_lazy("iva:haciendacf",args=[self.kwargs["libro"],])
         elif libro.tipo == 2:
-            direccion = reverse("iva:haciendact",args=[self.kwargs["libro"],])
+            direccion = reverse_lazy("iva:haciendact",args=[self.kwargs["libro"],])
         else:
-            direccion = reverse("iva:haciendacm",args=[self.kwargs["libro"],])
+            direccion = reverse_lazy("iva:haciendacm",args=[self.kwargs["libro"],])
         return direccion
     
 
