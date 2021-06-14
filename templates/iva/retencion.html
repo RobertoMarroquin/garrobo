@@ -37,24 +37,28 @@
                 {{form.fecha|as_crispy_field}}
             </div>
             <div class="col-md-4">
-                {{form.tipoDocumento|as_crispy_field}}
+                {{form.es_percepcion|as_crispy_field}}
             </div>
             
         </div>
         <div class="row">
+            <div class="col-md-4">
+                {{form.tipoDocumento|as_crispy_field}}
+            </div>
             <div class="col-md-4">
                 {{form.numeroDocumento|as_crispy_field}}
             </div>
             <div class="col-md-4">
                 {{form.numeroSerie|as_crispy_field}}
             </div>
-            <div class="col-md-4">
-                {{form.retencion|as_crispy_field}}
-            </div>
+            
         </div>
         <div class="row">
             <div class="col-md-4">
                 {{form.monto_sujeto|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.retencion|as_crispy_field}}
             </div>
         </div>
         <div class="row justify-content-center">
