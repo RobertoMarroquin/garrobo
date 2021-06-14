@@ -35,5 +35,6 @@ urlpatterns = [
     path("empresa/libro/consumidor/<int:libro>/", FacturasConsudmidorCV.as_view(), name="haciendacf"),
     path("empresa/libro/compras/<int:libro>/", FacturaComprasCV.as_view(), name="haciendacm"),
     path("empresa/libro/compras/anticipo/<int:libro>/", RetencionCompraCV.as_view(), name="retencion"),
+    path("empresa/libro/compras/percepcion/<int:libro>/", PercepcionEx.as_view(), name="percepcion"),
     
 ]

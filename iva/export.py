@@ -1073,7 +1073,7 @@ def anticipo_cuenta(libro_id):
 
 def retencion_compra(libro_id):
     libro = Libro.objects.get(id=libro_id)
-    facturas = RetencionCompra.objects.filter(libro=libro).exclude(tipoDocumento="2%").order_by('fecha')
+    facturas = RetencionCompra.objects.filter(libro=libro).exclude(tipoDocumento="2%").exclude(es_percepcion=True).order_by('fecha')
     direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_retencion_compra.xlsx"
     writer = pd.ExcelWriter(
         direccion,
@@ -1107,9 +1107,41 @@ def retencion_compra(libro_id):
     return direccion
     
 
-
-
-    
+def percepcion_compra(libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    facturas = RetencionCompra.objects.filter(libro=libro,es_percepcion=True).order_by('fecha')
+    direccion = BASE_DIR/f"libros_compras/{libro.cliente.nombre}_{libro.mes}_{libro.ano}_percepcion_compra.xlsx"
+    writer = pd.ExcelWriter(
+        direccion,
+        engine='xlsxwriter')
+    wb = writer.book
+    ws = wb.add_worksheet("Percepciones")
+    #configuraciones de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #tabla de facturas
+    row = 0
+    for factura in facturas:
+        ws.write(row,0 ,f"{factura.empresa.nit.replace('-','',3) if factura.empresa.nit is not None else factura.empresa.nRegistro.replace('-','')}",body_format)
+        ws.write(row,1 ,f"{factura.fecha.strftime('%d/%m/%Y')}",body_format)
+        ws.write(row,2 ,f"{factura.tipoDocumento}",body_format)
+        ws.write(row,3 ,f"{factura.numeroSerie}",body_format)
+        ws.write(row,4 ,f"{factura.numeroDocumento}",body_format)
+        ws.write(row,5 ,f"{factura.monto_sujeto}",body_format)
+        ws.write(row,6 ,f"{factura.retencion}",body_format)
+        ws.write(row,7 ,f"8",body_format)
+        row+=1
+    writer.save()
+    return direccion
+   
 
 #------------------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------------------#

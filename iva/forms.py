@@ -9,7 +9,6 @@ class EmpresaF(forms.ModelForm):
         fields = ['nRegistro','nombre','nit',]
         
 
-
 class LibroForm(forms.ModelForm):
     
     class Meta:
@@ -272,6 +271,7 @@ class RetencionF(forms.ModelForm):
         model = RetencionCompra
         fields = (
             "empresa",
+            "es_percepcion",
             "tipoDocumento",
             "fecha",
             "numeroDocumento",

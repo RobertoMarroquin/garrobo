@@ -203,7 +203,6 @@ class EmpresaCV2(CreateView):
         context = super(EmpresaCV2,self).get_context_data(**kwargs)
         context['libro'] = self.kwargs["libro"]
         context['titulo'] = 'Crear Empresa'
-        print("ok-----------------------")
         return context
 
 
@@ -397,4 +396,11 @@ class RetencionEx(View):
         response = FileResponse(open(direccion, 'rb'))
         return response
 
+
+class PercepcionEx(View):
+    def get(self, request, *args, **kwargs):
+        libro = Libro.objects.get(id=self.kwargs["libro"])
+        direccion = percepcion_compra(libro.id)
+        response = FileResponse(open(direccion, 'rb'))
+        return response
     

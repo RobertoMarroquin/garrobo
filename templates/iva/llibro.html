@@ -36,14 +36,16 @@
                     <a name="exportLibr{{libro.id}}" id="exportLibr{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-home"></i></a>   
                     {% if libro.tipo == 3 %}
                     <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:anticipo' libro.id %}" role="button"><i class="fas fa-download">161</i></a>
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>      
+                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>
+                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:percepcion' libro.id %}" role="button"><i class="fas fa-download">163</i></a>
                     {% endif %}
                     {% elif  libro.ano > 2021%}
                     <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-warning" href="{% url 'iva:iva_hacienda' libro.id %}" role="button"><i class="fas fa-file-invoice-dollar"></i></a>   
                     <a name="exportLibr{{libro.id}}" id="exportLibr{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-home"></i></a>   
                     {% if libro.tipo == 3 %}
                     <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:anticipo' libro.id %}" role="button"><i class="fas fa-download">161</i></a>   
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>      
+                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>
+                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:percepcion' libro.id %}" role="button"><i class="fas fa-download">163</i></a>  
                     {% endif %}
                     {% else %}
                     <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:export' libro.id libro.tipo %}" role="button"><i class="fas fa-download"></i></a>   

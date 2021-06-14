@@ -145,10 +145,12 @@ class RetencionCompra(models.Model):
     empresa = models.ForeignKey("iva.Empresa",blank=True, null=True, verbose_name=("Empresa"), on_delete=models.CASCADE)
     tipoDocumento = models.CharField("Tipo de Documetno",choices=(
         ("07","COMPROBANTE DE Retencion"),
+        ("03","COMPROBANTE DE CREDITO FISCAL"),
         ("05","NOTA DE CREDITO"),
         ("06","NOTA DE DEBITO"),
         ("2%","ANTICIPO CUENTA IVA")
-    ),max_length=2,default="05",blank=True, null=True)    
+    ),max_length=2,default="05",blank=True, null=True)  
+    es_percepcion = models.BooleanField(("Es percepcion 1%"))
     def __str__(self):
             return f"{self.libro} Retenciones"
 
