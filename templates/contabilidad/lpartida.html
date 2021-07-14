@@ -11,7 +11,10 @@
         <a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_libro' libro.periodo.id %}" role="button">Libros</a>
     </div>
     <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <a name="" id="" class="btn btn-primary" href="{% url 'cont:exp_partidas' libro.id %}" role="button">Imprimir Partidas</a>
+    </div>
     <div class="col-md-2 align-items-right text-right">
         <button class="btn btn-success" onclick="show_modal('{% url 'cont:nueva_partida' libro.id%}')">Nuevo Partida</button>
     </div>

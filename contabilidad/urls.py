@@ -44,6 +44,7 @@ urlpatterns = [
     path("balance/<int:id_periodo>/", Balance.as_view(), name="balance"),#Balance General
     path("balance_comprobacion/<int:id_libro>/", BalanceComprobacion.as_view(), name="comprobacion"),
     path("auxiliar_balance_comprobacion/<int:id_libro>/", AuxiliarBalanceComprobacion.as_view(), name="acomprobacion"),
+    path("exportar/partidas/<int:libro_id>/", PartidasE.as_view(), name="exp_partidas"),
     #----------------------------------------------------------------------------------#
     #----------------------------------------------------------------------------------#
 ]

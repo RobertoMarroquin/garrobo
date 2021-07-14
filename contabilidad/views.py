@@ -42,6 +42,14 @@ class PartidaE(View):
         response = FileResponse(open(libroEx, 'rb'))
         return response
 
+class PartidasE(View):
+    def get(self, request, *args, **kwargs):
+        libro_id = self.kwargs.get('libro_id')
+        libroEx = imprimir_partidas_mes(libro_id)
+        # create the HttpResponse object ...
+        response = FileResponse(open(libroEx, 'rb'))
+        return response
+
 
 class Cierre(View):
     def get(self, request, *args, **kwargs):
