@@ -1109,7 +1109,7 @@ def imprimir_partidas_mes(libro_id):
     #partidas = Partida.objects.filter(libro=libro_id)
     libro = Libro.objects.get(id=libro_id)
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx",
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx",
         engine='xlsxwriter')
     wb = writer.book
 
@@ -1210,6 +1210,6 @@ def imprimir_partidas_mes(libro_id):
         ws.write(row,4,"${0:.2f}".format(total_deber),tbody)
         ws.write(row,5,"${0:.2f}".format(total_haber),tbody)
     writer.save()
-    return BASE_DIR/f"libros_contables/{libro.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx"
+    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx"
 
 
