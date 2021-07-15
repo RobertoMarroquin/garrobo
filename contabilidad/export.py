@@ -1112,7 +1112,7 @@ def imprimir_partidas_mes(libro_id):
         BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx",
         engine='xlsxwriter')
     wb = writer.book
-
+    correlativo = 1
     for partida in libro.partidas.all().order_by("fecha","id"):
         movimientos = partida.movimientos.all()
         catalogo = partida.libro.periodo.empresa.catalogo
@@ -1150,7 +1150,9 @@ def imprimir_partidas_mes(libro_id):
         body.set_align("vcenter")
         #Escritura de cuerpo del Archivo
         ws.merge_range("A1:F1",f"{partida.libro.periodo.empresa.nombre}",header_format)
-        ws.merge_range("A2:F2",f"Fecha {partida.fecha.strftime('%d/%m/%Y')}",header_format)
+        ws.merge_range("A2:E2",f"Fecha {partida.fecha.strftime('%d/%m/%Y')}",header_format)
+        ws.write("F2","Partida #{correlativo}",header_format)
+        correlativo += 1
         ws.merge_range("A3:F3",f"{partida.descripcion.upper()}",header_format)
         ws.merge_range("A5:B5","CUENTA",body)
         ws.write("E5","DEBER",body)
