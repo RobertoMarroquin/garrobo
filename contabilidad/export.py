@@ -1150,8 +1150,7 @@ def imprimir_partidas_mes(libro_id):
         body.set_align("vcenter")
         #Escritura de cuerpo del Archivo
         ws.merge_range("A1:F1",f"{partida.libro.periodo.empresa.nombre}",header_format)
-        ws.merge_range("A2:E2",f"Fecha {partida.fecha.strftime('%d/%m/%Y')}",header_format)
-        ws.write("F2","Partida #{correlativo}",header_format)
+        ws.merge_range("A2:F2",f"Fecha {partida.fecha.strftime('%d/%m/%Y')}, Partida #{correlativo}",header_format)
         correlativo += 1
         ws.merge_range("A3:F3",f"{partida.descripcion.upper()}",header_format)
         ws.merge_range("A5:B5","CUENTA",body)
