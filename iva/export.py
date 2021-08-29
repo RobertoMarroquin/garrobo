@@ -821,18 +821,18 @@ def interno_compras(libro):
         
         row+=1
     ws.merge_range(f"A{row+3}:F{row+3}","Totales",body_format)
-    ws.write(row+2,6,f"{facturas.aggregate(total= Coalesce(Sum('cExenteInterna'),0))['total']}",body_format)
-    ws.write(row+2,7,f"{facturas.aggregate(total= Coalesce(Sum('cExenteInternaciones'),0))['total']}",body_format)
-    ws.write(row+2,8,f"{facturas.aggregate(total= Coalesce(Sum('cExenteImportaciones'),0))['total']}",body_format)
-    ws.write(row+2,9 ,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaInterna'),0))['total']}",body_format)
-    ws.write(row+2,10,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaInternaciones'),0))['total']}",body_format)
-    ws.write(row+2,11,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaImportaciones'),0))['total']}",body_format)
-    ws.write(row+2,12,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaImportacionesServicios'),0))['total']}",body_format)
-    ws.write(row+2,13,f"{facturas.aggregate(total=Coalesce(Sum('ivaCdtoFiscal'),0))['total']}",body_format)
-    ws.write(row+2,14,f"{facturas.aggregate(total=Coalesce(Sum('totalCompra'),0))['total']}",body_format)
-    ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('retencionPretencion'),0))['total']}",body_format)
-    ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('anticipoCtaIva'),0))['total']}",body_format)
-    ws.write(row+2,17,f"{facturas.aggregate(total=Coalesce(Sum('ivaTerceros'),0))['total']}",body_format)
+    ws.write(row+2,7,f"{facturas.aggregate(total= Coalesce(Sum('cExenteInterna'),0))['total']}",body_format)
+    ws.write(row+2,8,f"{facturas.aggregate(total= Coalesce(Sum('cExenteInternaciones'),0))['total']}",body_format)
+    ws.write(row+2,9,f"{facturas.aggregate(total= Coalesce(Sum('cExenteImportaciones'),0))['total']}",body_format)
+    ws.write(row+2,10 ,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaInterna'),0))['total']}",body_format)
+    ws.write(row+2,11,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaInternaciones'),0))['total']}",body_format)
+    ws.write(row+2,12,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaImportaciones'),0))['total']}",body_format)
+    ws.write(row+2,13,f"{facturas.aggregate(total=Coalesce(Sum('cGravadaImportacionesServicios'),0))['total']}",body_format)
+    ws.write(row+2,14,f"{facturas.aggregate(total=Coalesce(Sum('ivaCdtoFiscal'),0))['total']}",body_format)
+    ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('totalCompra'),0))['total']}",body_format)
+    ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('retencionPretencion'),0))['total']}",body_format)
+    ws.write(row+2,17,f"{facturas.aggregate(total=Coalesce(Sum('anticipoCtaIva'),0))['total']}",body_format)
+    ws.write(row+2,18,f"{facturas.aggregate(total=Coalesce(Sum('ivaTerceros'),0))['total']}",body_format)
 
     
     writer.save()
@@ -932,7 +932,8 @@ def interno_consumidor(libro):
     ws.write(row+2,15,f"{facturas.aggregate(total=Coalesce(Sum('exportacionesNoCA'),0))['total']}",body_format)
     ws.write(row+2,16,f"{facturas.aggregate(total=Coalesce(Sum('ventasZonasFrancas'),0))['total']}",body_format)
     ws.write(row+2,17,f"{facturas.aggregate(total=Coalesce(Sum('ventaTotal'),0))['total']}",body_format)
-
+    ws.write(row+3,15,f"IVA TOTAL:",body_format)
+    ws.write(row+3,17,f"{facturas.aggregate(iva=Coalesce(Sum('locales'),0)/1.13)['iva']}",body_format)
     writer.save()
     return direccion
 

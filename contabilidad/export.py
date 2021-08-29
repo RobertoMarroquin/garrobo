@@ -1105,6 +1105,7 @@ def imprimir_partida(partida_id):
     writer.save()
     return BASE_DIR/f"libros_contables/{catalogo.empresa.nombre}_Partida_{partida.fecha.strftime('%d-%m-%Y')}.xlsx"
 
+
 def imprimir_partidas_mes(libro_id):
     #partidas = Partida.objects.filter(libro=libro_id)
     libro = Libro.objects.get(id=libro_id)
@@ -1212,5 +1213,3 @@ def imprimir_partidas_mes(libro_id):
         ws.write(row,5,"${0:.2f}".format(total_haber),tbody)
     writer.save()
     return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_Partidas_{libro.get_mes_display()}.xlsx"
-
-
