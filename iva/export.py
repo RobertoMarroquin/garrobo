@@ -838,6 +838,8 @@ def interno_compras(libro):
     anticipos = RetencionCompra.objects.filter(libro=libro,tipoDocumento="2%").exclude(numeroSerie="").order_by('fecha')
     if anticipos.exists(): 
         row+=4
+        ws.merge_range("A1:G1",f"Anticipo a Cuenta",header_format)
+        row+=1
         ws.write(row,0,'NIT',body_format)
         ws.write(row,1,'Nombre',body_format)
         ws.write(row,2,'Fecha',body_format)
@@ -861,6 +863,8 @@ def interno_compras(libro):
     retenciones = RetencionCompra.objects.filter(libro=libro).exclude(tipoDocumento="2%").exclude(es_percepcion=True).order_by('fecha')
     if retenciones.exists():
         row+=4
+        ws.merge_range("A1:H1",f"Retenciones",header_format)
+        row+=1
         ws.write(row,0,'NIT',body_format)
         ws.write(row,1,'Nombre',body_format)
         ws.write(row,2,'Fecha',body_format)
@@ -885,6 +889,8 @@ def interno_compras(libro):
     percepciones = RetencionCompra.objects.filter(libro=libro,es_percepcion=True).order_by('fecha')
     if percepciones.exists():
         row+=4
+        ws.merge_range("A1:H1",f"Retenciones",header_format)
+        row+=1
         ws.write(row,0,'NIT',body_format)
         ws.write(row,1,'Nombre',body_format)
         ws.write(row,2,'Fecha',body_format)
