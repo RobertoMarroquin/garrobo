@@ -834,7 +834,77 @@ def interno_compras(libro):
     ws.write(row+2,17,f"{facturas.aggregate(total=Coalesce(Sum('anticipoCtaIva'),0))['total']}",body_format)
     ws.write(row+2,18,f"{facturas.aggregate(total=Coalesce(Sum('ivaTerceros'),0))['total']}",body_format)
 
-    
+    ##Anticipo a Cuenta
+    anticipos = RetencionCompra.objects.filter(libro=libro,tipoDocumento="2%").exclude(numeroSerie="").order_by('fecha')
+    if anticipos.exists(): 
+        row+=4
+        ws.write(row,0,'NIT',body_format)
+        ws.write(row,1,'Nombre',body_format)
+        ws.write(row,2,'Fecha',body_format)
+        ws.write(row,3,'Numero de Serie',body_format)
+        ws.write(row,4,'Numero de Documento',body_format)
+        ws.write(row,5,'Monto Sujeto',body_format)
+        ws.write(row,6,'Anticipo a Cuenta',body_format)
+        row+=1
+
+        for anticipo in anticipos:
+            ws.write(row,0 ,f"{anticipo.empresa.nit}",body_format)
+            ws.write(row,1 ,f'{anticipo.empresa.nombre}',body_format)
+            ws.write(row,2 ,f"{anticipo.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,3 ,f"{anticipo.numeroSerie}",body_format)
+            ws.write(row,4 ,f"{anticipo.numeroDocumento}",body_format)
+            ws.write(row,5 ,f"{anticipo.monto_sujeto}",body_format)
+            ws.write(row,6 ,f"{anticipo.retencion}",body_format)
+            row+=1
+
+    ##Retenciones
+    retenciones = RetencionCompra.objects.filter(libro=libro).exclude(tipoDocumento="2%").exclude(es_percepcion=True).order_by('fecha')
+    if retenciones.exists():
+        row+=4
+        ws.write(row,0,'NIT',body_format)
+        ws.write(row,1,'Nombre',body_format)
+        ws.write(row,2,'Fecha',body_format)
+        ws.write(row,3,'Tipo de Documento',body_format)
+        ws.write(row,4,'Numero de Serie',body_format)
+        ws.write(row,5,'Numero de Documento',body_format)
+        ws.write(row,6,'Monto Sujeto',body_format)
+        ws.write(row,7,'Retencion',body_format)
+        row+=1
+        for retencion in retenciones:   
+            ws.write(row,0,f"{retencion.empresa.nit}",body_format)
+            ws.write(row,1,f"{retencion.empresa.nit}",body_format)
+            ws.write(row,2,f"{retencion.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,3,f"{retencion.get_tipoDocumento_display()}",body_format)
+            ws.write(row,4,f"{retencion.numeroSerie}",body_format)
+            ws.write(row,5,f"{retencion.numeroDocumento}",body_format)
+            ws.write(row,6,f"{retencion.monto_sujeto}",body_format)
+            ws.write(row,7,f"{retencion.retencion}",body_format)
+        row+=1
+
+    ##Percepciones
+    percepciones = RetencionCompra.objects.filter(libro=libro,es_percepcion=True).order_by('fecha')
+    if percepciones.exists():
+        row+=4
+        ws.write(row,0,'NIT',body_format)
+        ws.write(row,1,'Nombre',body_format)
+        ws.write(row,2,'Fecha',body_format)
+        ws.write(row,3,'Tipo de Documento',body_format)
+        ws.write(row,4,'Numero de Serie',body_format)
+        ws.write(row,5,'Nuemro de Documento',body_format)
+        ws.write(row,6,'Monto Sujeto',body_format)
+        ws.write(row,7,'Percepcion',body_format)
+
+        for percepcion in percepciones:
+            ws.write(row,0 ,f"{percepcion.empresa.nit}",body_format)
+            ws.write(row,1 ,f"{percepcion.empresa.nombre}",body_format)
+            ws.write(row,2 ,f"{percepcion.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,3 ,f"{percepcion.tipoDocumento}",body_format)
+            ws.write(row,4 ,f"{percepcion.numeroSerie}",body_format)
+            ws.write(row,5 ,f"{percepcion.numeroDocumento}",body_format)
+            ws.write(row,6 ,f"{percepcion.monto_sujeto}",body_format)
+            ws.write(row,7 ,f"{percepcion.retencion}",body_format)
+            row+=1
+
     writer.save()
     return direccion
 
