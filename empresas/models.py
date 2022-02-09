@@ -4,6 +4,7 @@ from django.db import models
 
 class Empresa(models.Model):
     nombre = models.CharField('Nombre', max_length=200)
+    dui = models.CharField('DUI', max_length=10, unique=True, null=True, blank=True)
     razon_social = models.CharField('Razon Social', max_length=200, blank=True, null=True)
     num_registro = models.CharField(("Registro"), max_length=12,unique=True)
     nit = models.CharField("NIT", max_length=17, unique=True)
@@ -22,3 +23,5 @@ class Empresa(models.Model):
 
     def __str__(self):
         return f"{self.num_registro} | {self.nombre}"
+
+

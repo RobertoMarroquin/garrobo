@@ -589,7 +589,9 @@ def compras(libro):
             ws.write(row,12,f"{factura.cGravadaImportacionesServicios}",body_format)
             ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
             ws.write(row,14,f"{factura.totalCompra}",body_format)
-            ws.write(row,15,f"3",body_format)
+            #ingresar DUI de la empresa cuando se tenga
+            ws.write(row,15,"",body_format)
+            ws.write(row,16,f"3",body_format)
             row+=1
     
     writer.save()
@@ -724,7 +726,9 @@ def contribuyente(libro):
             ws.write(row,13,f"{ajuste_numeros(factura.vtVentas)}",body_format)
             ws.write(row,14,f"{ajuste_numeros(factura.vtIVA)}",body_format)
             ws.write(row,15,f"{ajuste_numeros(factura.total)}",body_format)
-            ws.write(row,16,f"1",body_format)
+            #Agregar DUI cuando se tenga
+            ws.write(row,16,"",body_format)
+            ws.write(row,17,f"1",body_format)
             row+=1
 
     writer.save()
