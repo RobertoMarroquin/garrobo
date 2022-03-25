@@ -259,9 +259,8 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
         #Resumen de cuentas
         row+=1
         for fecha in fechas:
-            print(fecha)
             if largo != 1:
-                movs_fecha = movs.filter(partida__libro=libro,cuenta__codigo=c,partida__fecha=fecha.strftime("%Y-%m-%d"))
+                movs_fecha = movs.filter(partida__libro=libro,cuenta__codigo=c,partida__fecha=fecha['partida__fecha'].strftime("%Y-%m-%d"))
                 if movs_fecha.exists():    
                     ws.set_row(row,20)
                     ws.write(row,1,f"{fecha.strftime('%d/%m/%Y')}",body_format)
