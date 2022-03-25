@@ -166,7 +166,6 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     #Listado de cuentas involucradas
     cuentas = movs.values("cuenta__id").distinct()
     fechas = list(movs.values("partida__fecha").distinct())
-    print(fechas)
     lista_cuentas = []
     for i in cuentas:
         lista_cuentas += get_ruta_cuenta(i["cuenta__id"])
@@ -259,13 +258,19 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
         ws.write(row,7, "${0:.2f}".format(total_actual),bordes)
         #Resumen de cuentas
         row+=1
-        
-        for movimiento in movs.filter(partida__libro=libro,cuenta__codigo=c):
+        for fecha in fechas:
+            movs_fecha = movs.filter(partida__libro=libro,cuenta__codigo=c,partida_fecha=fecha)
             ws.set_row(row,20)
-            ws.write(row,1,f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}",body_format)
-            ws.write(row,6,"${0:.2f}".format(movimiento.monto_haber),body_format)
-            ws.write(row,5,"${0:.2f}".format(movimiento.monto_deber),body_format)
+            ws.write(row,1,f"{fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,5,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),body_format)
+            ws.write(row,6,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_daber"),0))["total"]),body_format)
             row+=1
+        #for movimiento in movs.filter(partida__libro=libro,cuenta__codigo=c):
+        #    ws.set_row(row,20)
+        #    ws.write(row,1,f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}",body_format)
+        #    ws.write(row,6,"${0:.2f}".format(movimiento.monto_haber),body_format)
+        #    ws.write(row,5,"${0:.2f}".format(movimiento.monto_deber),body_format)
+        #    row+=1
     writer.save()
     return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_AUXILIAR_DIARIO_MAYOR.xlsx"
     
