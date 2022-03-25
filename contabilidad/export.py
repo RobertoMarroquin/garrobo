@@ -165,7 +165,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     movs =  Movimiento.objects.filter(partida__libro=libro)
     #Listado de cuentas involucradas
     cuentas = movs.values("cuenta__id").distinct()
-    fechas = list(set(movs.values_list("partida__fecha",flat=True)))
+    fechas = list(movs.values("partida__fecha",flat=True).distinct())
     print(fechas)
     lista_cuentas = []
     for i in cuentas:
