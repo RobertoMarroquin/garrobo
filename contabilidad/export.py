@@ -133,7 +133,7 @@ def imprimir_diario_mayor(libro_id):
             
             ws.write(row,6,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
             ws.write(row,5,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)
-            if i[0] in ("1",'4','6'):
+            if [0] in ("1",'4','6'):
                 total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
                 total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
             else:
@@ -164,7 +164,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     catalogo = libro.periodo.empresa.catalogo
     movs =  Movimiento.objects.filter(partida__libro=libro)
     #Listado de cuentas involucradas
-    cuentas = movs.values("cuenta__id")
+    cuentas = movs.values("cuenta__id").distinct()
     fechas = list(set(movs.values_list("partida__fecha",flat=True)))
     print(fechas)
     lista_cuentas = []
@@ -248,7 +248,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
         ws.write(row,6,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
         ws.write(row,5,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)  
         #Totales anteriores y Actuales
-        if i[0] in ("1",'4','6'):
+        if c[0] in ("1",'4','6'):
             total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
             total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
         else:
