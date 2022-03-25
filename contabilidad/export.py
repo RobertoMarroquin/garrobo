@@ -32,6 +32,8 @@ def get_ruta_cuenta(cuenta_id):
         cuenta = cuenta.cuenta_padre
     if cuenta.es_mayor:
         cuentas.append(cuenta.cuenta_principal.codigo)
+    if cuenta.cuenta_principal is not None:
+        cuentas.append(cuenta.cuenta_principal.codigo)
     return cuentas
 
 
