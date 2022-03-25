@@ -46,7 +46,7 @@ def imprimir_resumen_diario_mayor(libro_id):
     libro = Libro.objects.get(id=libro_id)
     catalogo = libro.periodo.empresa.catalogo
     #Listado de movimientos
-    movs =  Movimiento.objects.filter(partida_libro=libro).order_by('partida__fecha')
+    movs =  Movimiento.objects.filter(partida__libro=libro).order_by('partida__fecha')
     #Listado de cuentas involucradas
     cuentas = movs.values("cuenta__id").distinct()
     lista_cuentas = []
