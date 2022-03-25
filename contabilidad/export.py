@@ -157,7 +157,118 @@ def imprimir_diario_mayor(libro_id):
         
     writer.save()
     return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_DIARIO_MAYOR.xlsx"
-
+###################################################################################################
+######################25/03/22 Resumen de auxiliar de diario mayor#################################
+def imprimir_resumen_auxiliar_diario_mayor(libro):
+    libro = Libro.objects.get(pk=libro)
+    catalogo = libro.periodo.empresa.catalogo
+    movs =  Movimiento.objects.filter(partida__libro=libro)
+    #Listado de cuentas involucradas
+    cuentas = movs.values("cuenta__id")
+    fechas = list(set(movs.values_list("partida__fecha",flat=True)))
+    print(fechas)
+    lista_cuentas = []
+    for i in cuentas:
+        lista_cuentas += get_ruta_cuenta(i["cuenta__id"])
+    lista_cuentas = sorted(set(lista_cuentas))
+    #Creacion de Libro
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_RESUMEN_AUXILIAR_DIARIO_MAYOR.xlsx",
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet("Diario mayor")
+    #Configuracion de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #formato de cabecera
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #bordes
+    bordes = wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    bordes.set_align("center")
+    bordes.set_align("vcenter") 
+    #Escritura de cabecera
+    ws.merge_range("A1:H1",f"{catalogo.empresa.nombre}",header_format)
+    ws.merge_range("A2:H2",f"Resumen Auxiliar del Diario Mayor del Mes de {libro.get_mes_display()} de {libro.periodo.ano}",header_format)
+    ws.merge_range("A3:H3",f"",header_format)
+    #Estructura de tabla
+    ws.set_column(0,0,10)
+    ws.set_column(1,1,30)
+    ws.set_column(2,2,3)
+    ws.set_column(3,9,10)
+    #Escritura de tabla
+    ws.merge_range("A5:B5","Cuentas",body_format)
+    ws.write("E5","Saldo Anterior",body_format)
+    ws.write("F5","Deber",body_format)
+    ws.write("G5","Haber",body_format)
+    ws.write("H5","Saldo Actual",body_format)
+    #Datos
+    row = 5
+    for c in lista_cuentas:
+        ws.set_row(row,25)
+        largo = len(c)
+        cuenta = Cuenta.objects.get(codigo=c,catalog=catalogo) if largo == 1 else  SubCuenta.objects.get(codigo=c,catalog=catalogo)
+        if largo == 1:
+            bordes.set_bottom(2)
+        elif largo == 2:
+            bordes.set_bottom(1)
+        elif largo == 4:
+            bordes.set_bottom(3)
+        #Escribir nombre y codigo de cuenta  
+        ws.write(row,0,cuenta.codigo,body_format)
+        ws.write(row,1,cuenta.nombre,body_format)
+        #Escribir montos haber y deber
+        ws.write(row,6,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
+        ws.write(row,5,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)  
+        #Totales anteriores y Actuales
+        if i[0] in ("1",'4','6'):
+            total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+            total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
+        else:
+            total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+            total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
+        ws.write(row,4,"${0:.2f}".format(total_anterior),bordes)
+        ws.write(row,7, "${0:.2f}".format(total_actual),bordes)
+        #Resumen de cuentas
+        row+=1
+        
+        for movimiento in movs.filter(partida__libro=libro,cuenta__codigo=i):
+            ws.set_row(row,20)
+            ws.write(row,1,f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,6,"${0:.2f}".format(movimiento.monto_haber),body_format)
+            ws.write(row,5,"${0:.2f}".format(movimiento.monto_deber),body_format)
+            row+=1
+    writer.save()
+    return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_AUXILIAR_DIARIO_MAYOR.xlsx"
+    
+###################################################################################################
 #Arreglado
 def imprimir_auxiliar(libro_id):
     libro = Libro.objects.get(id=libro_id)
