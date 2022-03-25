@@ -55,7 +55,7 @@ def imprimir_resumen_diario_mayor(libro_id):
     lista_cuentas = sorted(set(lista_cuentas))
     #Creacion de Libro
     writer = pd.ExcelWriter(
-        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_DIARIO_MAYOR.xlsx",
+        BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_RESUMEN_DIARIO_MAYOR.xlsx",
         engine='xlsxwriter')
     wb = writer.book
     #Creacion de hoja
