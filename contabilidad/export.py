@@ -61,7 +61,7 @@ def imprimir_resumen_diario_mayor(libro_id):
         engine='xlsxwriter')
     wb = writer.book
     #Creacion de hoja
-    ws = wb.add_worksheet("Balance-Activos")
+    ws = wb.add_worksheet("diario-mayor")
     #Configuracion de pagina
     ws.set_portrait()
     ws.set_paper(1)
@@ -135,7 +135,7 @@ def imprimir_resumen_diario_mayor(libro_id):
             
             ws.write(row,6,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),bordes)
             ws.write(row,5,"${0:.2f}".format(movs.filter(cuenta__codigo__startswith=i,partida__libro=libro).aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),bordes)
-            if [0] in ("1",'4','6'):
+            if i[0] in ('1','4','6'):
                 total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
                 total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=i,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_deber"),0)-Coalesce(Sum("monto_haber"),0))["total"]
             else:
@@ -154,10 +154,11 @@ def imprimir_resumen_diario_mayor(libro_id):
                     deber = totales_diarios["deber"]
                     ws.set_row(row,20)
                     fecha_valor = fecha["partida__fecha"]
-                    ws.write(row,1,f"{fecha_valor.strftime('%d/%m/%Y')}",body_format)
-                    ws.write(row,6,"${0:.2f}".format(haber),body_format)
-                    ws.write(row,5,"${0:.2f}".format(deber),body_format)
-                    row+=1
+                    if haber > 0 or deber >0:
+                        ws.write(row,1,f"{fecha_valor.strftime('%d/%m/%Y')}",body_format)
+                        ws.write(row,6,"${0:.2f}".format(haber),body_format)
+                        ws.write(row,5,"${0:.2f}".format(deber),body_format)
+                        row+=1
     writer.save()
     return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_RESUMEN_DIARIO_MAYOR.xlsx"
 
