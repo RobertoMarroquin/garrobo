@@ -263,7 +263,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
                 movs_fecha = movs.filter(partida__libro=libro,cuenta__codigo=c,partida__fecha=fecha['partida__fecha'].strftime("%Y-%m-%d"))
                 if movs_fecha.exists():    
                     ws.set_row(row,20)
-                    ws.write(row,1,f"{fecha.strftime('%d/%m/%Y')}",body_format)
+                    ws.write(row,1,f"{fecha['partida__fecha'].strftime('%d/%m/%Y')}",body_format)
                     ws.write(row,5,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),body_format)
                     ws.write(row,6,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_daber"),0))["total"]),body_format)
                     row+=1
