@@ -234,7 +234,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     for c in lista_cuentas:
         ws.set_row(row,25)
         largo = len(c)
-        cuenta = Cuenta.objects.get(codigo=c,catalog=catalogo) if largo == 1 else  SubCuenta.objects.get(codigo=c,catalog=catalogo)
+        cuenta = Cuenta.objects.get(codigo=c,catalogo=catalogo) if largo == 1 else  SubCuenta.objects.get(codigo=c,catalogo=catalogo)
         if largo == 1:
             bordes.set_bottom(2)
         elif largo == 2:
