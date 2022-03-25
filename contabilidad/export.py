@@ -171,6 +171,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     for i in cuentas:
         lista_cuentas += get_ruta_cuenta(i["cuenta__id"])
     lista_cuentas = sorted(set(lista_cuentas))
+    print(lista_cuentas)
     #Creacion de Libro
     writer = pd.ExcelWriter(
         BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_RESUMEN_AUXILIAR_DIARIO_MAYOR.xlsx",
