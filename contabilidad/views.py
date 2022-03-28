@@ -101,7 +101,7 @@ class DiarioMayorView(View):
 class LibroMayorView(View):
     def get(self, request, *args, **kwargs):
         id_libro = self.kwargs.get('id_libro')
-        libroEx = imprimir_mayor(id_libro)
+        libroEx = imprimir_resumen_diario_mayor(id_libro)
         # create the HttpResponse object ...
         response = FileResponse(open(libroEx, 'rb'))
         return response
