@@ -205,28 +205,31 @@ def pl_cuentas2(archivo,empresa_id):
         for linea in documento:
             codigo, nombre = list(linea)
             codigo = str(codigo)
-            if len(codigo) == 1:
-                cuenta = Cuenta.objects.get_or_create(
-                    catalogo_id=catalogo.id,
-                    codigo=codigo,
-                    nombre=nombre
-                    )
-                cuenta[0].save()
-                
-            elif len(codigo) == 2:
-                cuenta = SubCuenta.objects.get_or_create(
-                    catalogo=catalogo,
-                    codigo=codigo,
-                    nombre=nombre,
-                    cuenta_principal=(Cuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0]))
-                    )
-                cuenta[0].save()
+            try:
+                if len(codigo) == 1:
+                    cuenta = Cuenta.objects.get_or_create(
+                        catalogo_id=catalogo.id,
+                        codigo=codigo,
+                        nombre=nombre
+                        )
+                    cuenta[0].save()
+                    
+                elif len(codigo) == 2:
+                    cuenta = SubCuenta.objects.get_or_create(
+                        catalogo=catalogo,
+                        codigo=codigo,
+                        nombre=nombre,
+                        cuenta_principal=(Cuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0]))
+                        )
+                    cuenta[0].save()
 
-            else:
-                cuenta = SubCuenta.objects.get_or_create(
-                    catalogo=catalogo,
-                    codigo=codigo,
-                    nombre=nombre,
-                    cuenta_padre=(SubCuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0:-2]))
-                    )
-                cuenta[0].save()
+                else:
+                    cuenta = SubCuenta.objects.get_or_create(
+                        catalogo=catalogo,
+                        codigo=codigo,
+                        nombre=nombre,
+                        cuenta_padre=(SubCuenta.objects.get(catalogo_id=catalogo.id,codigo=codigo[0:-2]))
+                        )
+                    cuenta[0].save()
+            except:
+                print(codigo)
