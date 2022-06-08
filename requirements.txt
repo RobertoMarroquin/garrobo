@@ -1,3 +1,4 @@
+psycopg2-binary==2.9.3
 bootstrap4==0.1.0
 distlib==0.3.0
 distro==1.4.0

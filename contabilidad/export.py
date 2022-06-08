@@ -342,7 +342,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
     #Estructura de tabla
     ws.set_column(0,0,10)
     ws.set_column(1,1,30)
-    ws.set_column(2,2,3)
+    ws.set_column(2,2,20)
     ws.set_column(3,9,10)
     #Escritura de tabla
     ws.merge_range("A5:B5","Cuentas",body_format)
@@ -377,7 +377,7 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
             total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=c,partida__libro__mes__lte=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
             total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=c,partida__libro__mes__lt=libro.mes,partida__libro__periodo = libro.periodo).aggregate(total=Coalesce(Sum("monto_haber"),0)-Coalesce(Sum("monto_deber"),0))["total"]
         ws.write(row,4,"${0:.2f}".format(total_anterior),bordes)
-        ws.write(row,7, "${0:.2f}".format(total_actual),bordes)
+        ws.write(row,7,"${0:.2f}".format(total_actual),bordes)
         #Resumen de cuentas
         row+=1
         for fecha in fechas:
@@ -386,15 +386,10 @@ def imprimir_resumen_auxiliar_diario_mayor(libro):
                 if movs_fecha.exists():    
                     ws.set_row(row,20)
                     ws.write(row,1,f"{fecha['partida__fecha'].strftime('%d/%m/%Y')}",body_format)
+                    ws.write(row,2,"prueba",body_format)
                     ws.write(row,5,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_haber"),0))["total"]),body_format)
                     ws.write(row,6,"${0:.2f}".format(movs_fecha.aggregate(total=Coalesce(Sum("monto_deber"),0))["total"]),body_format)
                     row+=1
-        #for movimiento in movs.filter(partida__libro=libro,cuenta__codigo=c):
-        #    ws.set_row(row,20)
-        #    ws.write(row,1,f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}",body_format)
-        #    ws.write(row,6,"${0:.2f}".format(movimiento.monto_haber),body_format)
-        #    ws.write(row,5,"${0:.2f}".format(movimiento.monto_deber),body_format)
-        #    row+=1
     writer.save()
     return BASE_DIR/f"libros_contables/{libro.periodo.empresa.nombre}_{libro.mes}_{libro.periodo.ano}_AUXILIAR_DIARIO_MAYOR.xlsx"
     
@@ -449,7 +444,7 @@ def imprimir_auxiliar(libro_id):
     foot_format.set_bottom(3)
     #Escritura de cabecera
     ws.merge_range("A1:H1",f"{catalogo.empresa.nombre}",header_format)
-    ws.merge_range("A2:H2",f"Diario Mayor del Mes de {libro.get_mes_display()} de {libro.periodo.ano}",header_format)
+    ws.merge_range("A2:H2",f"Auxiliar de Diario Mayor del Mes de {libro.get_mes_display()} de {libro.periodo.ano}",header_format)
     ws.merge_range("A3:H3",f"",header_format)
     #Estructura de tabla
     ws.set_column(0,0,10)
