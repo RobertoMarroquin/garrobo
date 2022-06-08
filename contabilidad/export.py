@@ -449,7 +449,7 @@ def imprimir_auxiliar(libro_id):
     #Estructura de tabla
     ws.set_column(0,0,10)
     ws.set_column(1,1,30)
-    ws.set_column(2,2,3)
+    ws.set_column(2,2,20)
     ws.set_column(3,9,10)
     #Escritura de tabla
     ws.merge_range("A5:B5","Cuentas",body_format)
@@ -498,6 +498,7 @@ def imprimir_auxiliar(libro_id):
         for movimiento in movs.filter(partida__libro=libro,cuenta__codigo=i):
             ws.set_row(row,20)
             ws.write(row,1,f"{movimiento.partida.fecha.strftime('%d/%m/%Y')}",body_format)
+            ws.write(row,2,f"{movimiento.descripcion}",body_format)
             ws.write(row,6,"${0:.2f}".format(movimiento.monto_haber),body_format)
             ws.write(row,5,"${0:.2f}".format(movimiento.monto_deber),body_format)
             row+=1
