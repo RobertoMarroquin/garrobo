@@ -14,13 +14,117 @@ import os
 
 #django libs
 from django.utils.dateformat import DateFormat
-from django.db.models import Sum
+from django.db.models import Sum, FloatField
 from django.db.models.functions import Coalesce
 
 #self libs
 from .models import *
 from empresas.models import Empresa
 from garrobo.settings import BASE_DIR
+
+def formatos_hoja(wb):
+    header_format = wb.add_format({
+    'bold': True,
+    'text_wrap': True,
+    'valign': 'top',
+    'border': 1,
+    "font_size":10,
+    })
+    header_format.set_align("center")
+    header_format.set_align("vcenter")
+    #formato de cuerpo
+    body_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    body_format.set_align("left")
+    body_format.set_align("vcenter")
+    #formato de pie
+    foot_format =  wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    foot_format.set_align("center")
+    foot_format.set_align("vcenter")
+    foot_format.set_bottom(3)
+    #bordes
+    bordes = wb.add_format({
+        "font_size":8,
+        'text_wrap': True,
+    })
+    bordes.set_align("center")
+    bordes.set_align("vcenter") 
+    return list([header_format,body_format,foot_format,bordes])
+
+#Reporte de movimientos de cuenta 15-07-2022
+def reporte_cuentas(cuenta,fecha_inicio,fecha_fin):
+    #obtencion de movimientos de cuenta
+    movimientos = Movimiento.objects.filter(cuenta__catalogo=cuenta.catalogo,
+                                            cuenta__codigo__startswith=cuenta.codigo,
+                                            partida__fecha__gte=fecha_inicio,
+                                            partida__fecha__lte=fecha_fin
+    ).order_by('partida__fecha','creado')
+    #Creacion de Libro
+    writer = pd.ExcelWriter(
+        BASE_DIR/f"libros_contables/Reporte_de_Cuenta_{cuenta.nombre}.xlsx",
+        engine='xlsxwriter')
+    wb = writer.book
+    #Creacion de hoja
+    ws = wb.add_worksheet("reporte")
+    #Configuracion de pagina
+    ws.set_portrait()
+    ws.set_paper(1)
+    ws.set_margins(0.26,0.26,0.75,0.75)
+    #obtencion de formatos de fuente
+    cabecera,cuerpo,pie,bordes = formatos_hoja(wb)
+    #Escritura de cabecera
+    ws.merge_range("A1:H1",f"{cuenta.catalogo.empresa.nombre}",cabecera)
+    ws.merge_range("A2:H2",f"Reporte de Movimientos de Cuenta :{cuenta.nombre}",cabecera)
+    ws.merge_range("A3:H3",f"Desde: {fecha_inicio}  Hasta: {fecha_fin}",cabecera)
+    #Estructura de tabla
+    ws.set_column(0,0,10)
+    ws.set_column(1,1,30)
+    ws.set_column(2,2,20)
+    ws.set_column(3,9,10)
+    #Escritura de tabla
+    ws.merge_range("A5:B5","Cuenta",cuerpo)
+    ws.write("E5","Saldo Anterior",cuerpo)
+    ws.write("F5","Deber",cuerpo)
+    ws.write("G5","Haber",cuerpo)
+    ws.write("H5","Saldo Actual",cuerpo)
+    c = cuenta.codigo
+    row=5
+    if c[0] in ("1",'4','6'):
+        #Obtencion de saldos
+        total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=c,
+                                                  cuenta__catalogo=cuenta.catalogo,
+                                                  partida__fecha__lte=fecha_fin,
+        ).aggregate(total=Coalesce(Sum("monto_deber",output_field=FloatField()),0,output_field=FloatField())-Coalesce(Sum("monto_haber",output_field=FloatField()),0,output_field=FloatField()))["total"]
+        total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=c,
+                                                  cuenta__catalogo=cuenta.catalogo,
+                                                  partida__fecha__lt=fecha_inicio,
+        ).aggregate(total=Coalesce(Sum("monto_deber",output_field=FloatField()),0,output_field=FloatField())-Coalesce(Sum("monto_haber",output_field=FloatField()),0,output_field=FloatField()))["total"]
+    else:
+        total_actual =  Movimiento.objects.filter(cuenta__codigo__startswith=c,
+                                                  cuenta__catalogo=cuenta.catalogo,
+                                                  partida__fecha__lte=fecha_fin,
+        ).aggregate(total=Coalesce(Sum("monto_haber",output_field=FloatField()),0,output_field=FloatField())-Coalesce(Sum("monto_deber",output_field=FloatField()),0,output_field=FloatField()))["total"]
+        total_anterior = Movimiento.objects.filter(cuenta__codigo__startswith=c,
+                                                   cuenta__catalogo=cuenta.catalogo,
+                                                   partida__fecha__lt = fecha_inicio,
+        ).aggregate(total=Coalesce(Sum("monto_haber",output_field=FloatField()),0,output_field=FloatField())-Coalesce(Sum("monto_deber",output_field=FloatField()),0,output_field=FloatField()))["total"]
+    ws.write(row,4,"${0:.2f}".format(total_anterior),bordes)
+    ws.write(row,7,"${0:.2f}".format(total_actual),bordes)
+    row+=1
+    for m in movimientos:
+        ws.write(row,0,m.cuenta.codigo,bordes)
+        ws.write(row,1,m.partida.fecha.strftime("%d/%m/%Y"),cuerpo)
+        ws.write(row,2,m.descripcion,cuerpo)
+        ws.write(row,5,m.monto_deber,cuerpo)
+        ws.write(row,6,m.monto_haber,cuerpo)
+        row+=1
+    writer.save()
+    return f"libros_contables/Reporte_de_Cuenta_{cuenta.nombre}.xlsx"
 
 
 def get_ruta_cuenta(cuenta_id):

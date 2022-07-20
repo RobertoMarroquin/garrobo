@@ -24,6 +24,7 @@ urlpatterns = [
     path("empresa/periodo/libro/partida/<int:partida>/", MovimientoCV.as_view(), name="movimientos"),
     path("actualizar/movimiento<int:pk>/", MovimientoUV.as_view(), name="act_movimiento"),
     path("borrar/movimiento/<int:pk>/", MovimientoDV.as_view(), name="del_movimiento"),
+    path("empresa/catalogo/<int:empresa>/", InformeMovimiento.as_view(), name="informe_movimiento"),
     #----------------------------------------------------------------------------------#
     #------------------------------------Catalogo--------------------------------------#
     path("nuevo/catalogo/<int:empresa>/", CatalogoCV.as_view(), name="nuevo_catalogo"),
@@ -45,6 +46,7 @@ urlpatterns = [
     path("balance_comprobacion/<int:id_libro>/", BalanceComprobacion.as_view(), name="comprobacion"),
     path("auxiliar_balance_comprobacion/<int:id_libro>/", AuxiliarBalanceComprobacion.as_view(), name="acomprobacion"),
     path("exportar/partidas/<int:libro_id>/", PartidasE.as_view(), name="exp_partidas"),
+    path("exportar/movimientos/<int:cuenta>/<str:fecha_inicio>/<str:fecha_fin>", ReporteCuentas.as_view(), name="reporte_movimientos"),
     #----------------------------------------------------------------------------------#
     #----------------------------------------------------------------------------------#
 ]

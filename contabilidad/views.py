@@ -1,9 +1,15 @@
 #python libs
-from datetime import date, datetime, timedelta
-import datetime
+from datetime import date, datetime as dt, timedelta 
+
 #django libs
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import View, CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
+from django.views.generic import (View,
+                                  CreateView,
+                                  DeleteView,
+                                  UpdateView,
+                                  DetailView,
+                                  ListView,
+                                  FormView)
 from django.urls import reverse
 from django.db.models import Sum
 from django.http.response import FileResponse, HttpResponse
@@ -16,6 +22,20 @@ from empresas.models import Empresa
 from .export import *
 
 #Vistas Exportacion
+class ReporteCuentas(View):
+    def get(self, request, *args, **kwargs):
+        cuenta = SubCuenta.objects.get(id=kwargs['cuenta'])
+        fecha_inicio = dt.strptime(kwargs['fecha_inicio'], '%Y-%m-%d')
+        fecha_fin = dt.strptime(kwargs['fecha_fin'], '%Y-%m-%d')
+        reporte = reporte_cuentas(cuenta,
+                                  fecha_inicio,
+                                  fecha_fin
+        )
+        # create the HttpResponse object ...
+        response = FileResponse(open(reporte, 'rb'))
+        return response
+    
+    
 class AuxiliarBalanceComprobacion(View):
     def get(self, request, *args, **kwargs):
         id_libro = self.kwargs.get('id_libro')
@@ -41,6 +61,7 @@ class PartidaE(View):
         # create the HttpResponse object ...
         response = FileResponse(open(libroEx, 'rb'))
         return response
+
 
 class PartidasE(View):
     def get(self, request, *args, **kwargs):
@@ -210,6 +231,47 @@ class CatalogoD(DetailView):
 
 
 #Vistas de Movimiento
+class InformeMovimiento(FormView):
+    form_class = ReporteCuentasForm
+    template_name = 'contabilidad/informe_movimiento.html'
+    
+    def get(self, request, *args, **kwargs):
+        
+        form = self.form_class()
+        form.fields['cuenta'].queryset = SubCuenta.objects.filter(catalogo__empresa=self.kwargs['empresa'])
+        empresa = Empresa.objects.get(id=self.kwargs['empresa'])
+        
+        if 'cuenta' in self.request.GET and 'fecha_inicio' in self.request.GET and'fecha_fin' in self.request.GET:
+            print('entro')
+            cuenta,fecha_inicio,fecha_fin = (self.request.GET['cuenta'],
+                                             self.request.GET['fecha_inicio'],
+                                             self.request.GET['fecha_fin'])
+            cuenta = SubCuenta.objects.get(id=cuenta)
+            movimientos = Movimiento.objects.filter(cuenta__codigo__startswith=cuenta.codigo,
+                                                    partida__fecha__range=(fecha_inicio,fecha_fin))
+            context = {'movimientos':movimientos,
+                       'empresa':empresa,
+                       'cuenta':cuenta,
+                       'form':form,
+                       'fecha_inicio':fecha_inicio,
+                       'fecha_fin':fecha_fin
+            }    
+            return render(request, 
+                          'contabilidad/informe_movimiento.html', 
+                          context=context
+            )
+        return render(request, 
+                      'contabilidad/informe_movimiento.html', 
+                      {'form': form, 'empresa':empresa}
+        )
+    
+    def get_form_kwargs(self):
+        print("Entramos en get_form_kwargs")
+        kwargs = super(InformeMovimiento,self).get_form_kwargs()
+        kwargs['request']= self.request
+        return kwargs
+    
+    
 class MovimientoCV(CreateView):
     model = Movimiento
     template_name = "contabilidad/lmovimiento.html"
