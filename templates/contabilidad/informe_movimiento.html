@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %}
+{% block title %} Reporte de Cuentas de {{empresa.nombre}}{%endblock title %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Reporte de Cuentas</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% url 'cont:informe_movimiento' empresa=empresa.id %}" method="GET">
+                    <div class="form-group">
+                        {{form|crispy}}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Generar Reporte</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Reporte de Movimientos</h1>
+
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'cont:reporte_movimientos' cuenta=cuenta.id fecha_inicio=fecha_inicio fecha_fin=fecha_fin %}" class="btn btn-info">Descargar Reporte</a>
+            </div>
+        </div>
+        {% if movimientos %}
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-light table-sm" id="tabla">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Concepto</th>
+                            <th>Monto Haber</th>
+                            <th>Monto Debe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movimiento in movimientos %}
+                            <tr>
+                                <td>{{movimiento.partida.fecha}}</td>
+                                <td>{{movimiento.descripcion}}</td>
+                                <td>{{movimiento.monto_haber}}</td>
+                                <td>{{movimiento.monto_deber}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            No hay registros por mostrar
+        </div>
+        {% endif %}
+    </div>
+{%endblock content %}

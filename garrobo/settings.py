@@ -33,8 +33,8 @@ ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in','despaogo.pythonanywhere.com/']
 # Application definition
 
 INSTALLED_APPS = [
-    'dal',
-    'dal_select2',
+    #'dal',
+    #'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -90,19 +90,19 @@ WSGI_APPLICATION = 'garrobo.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}
         #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE':'django.db.backends.postgresql',
+        #'ENGINE':'django.db.backends.postgresql',
         #'NAME': 'despaogo$contabilidad',
-        'NAME':'contabilidad',
+        #'NAME':'contabilidad',
         #'USER': 'despaogo',
-        'USER':'roma',
+        #'USER':'roma',
         #'PASSWORD': '986753421R',
-        'PASSWORD':'986753421',
+        #'PASSWORD':'986753421',
         #'HOST': 'despaogo.mysql.pythonanywhere-services.com',
-        'HOST':'127.0.0.1',
-        'PORT': '5432',
-    }
+        #'HOST':'127.0.0.1',
+        #'PORT': '5432',
+    #}
 }
 
 

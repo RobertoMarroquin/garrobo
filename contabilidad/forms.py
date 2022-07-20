@@ -2,14 +2,36 @@
 from django import forms
 from django.db.models.aggregates import Count
 from django.db.models import Sum
-from django.forms import widgets
+from django.forms import HiddenInput, widgets
 #self libs
 from .models import *
 from .funciones import actualizacion_saldos
 #other Libs
-from searchableselect.widgets import SearchableSelect
 from .plantillaCuentas import pl_cuentas as pl
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+#reporte de cuentas
+class ReporteCuentasForm(forms.Form):
+    cuenta = forms.ModelChoiceField(queryset=SubCuenta.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    fecha_inicio = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
+    fecha_fin = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
+    def __init__(self, *args, **kwargs):
+        super(ReporteCuentasForm, self).__init__(*args, **kwargs)
+        self.fields['cuenta'].label = 'Cuenta'
+        self.fields['fecha_inicio'].label = 'Fecha Inicio'
+        self.fields['fecha_fin'].label = 'Fecha Fin'
+        
+    def clean(self):
+        cleaned_data = super(ReporteCuentasForm, self).clean()
+        fecha_inicio = cleaned_data.get('fecha_inicio')
+        fecha_fin = cleaned_data.get('fecha_fin')
+        if fecha_inicio > fecha_fin:
+            raise forms.ValidationError('La fecha de inicio no puede ser mayor a la fecha fin')
+        return cleaned_data
+    
 
 class PeriodoForm(forms.ModelForm):
     fecha_inicio = forms.DateField(input_formats=["%d/%m/%Y","%d/%m/%y"],

@@ -6,15 +6,13 @@
             <h2 class="modal-tittle">{{titulo}}</h2>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        {% if parametro %}
-        <form method="POST" action="{% url direccion parametro %}">
+            {% if parametro %}
+            <form method="POST" action="{% url direccion parametro %}">
 
             {% else %}
             <form method="POST" action="{% url direccion %}">
 
-                {% endif %}
-
-
+            {% endif %}
                 <div class="modal-body">
                     {% csrf_token %} {{form|crispy}}
 

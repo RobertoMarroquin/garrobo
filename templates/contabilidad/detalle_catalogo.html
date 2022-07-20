@@ -10,7 +10,10 @@
         <a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_periodo' empresa.id %}" role="button">P. Contables</a>
     </div>
     <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <a name="" id="" class="btn btn-info" href="{% url 'cont:informe_movimiento' empresa=empresa.id %}" role="button">Informe de Cuentas</a>
+    </div>
     <div class="col-md-2">
         <button class="btn btn-success" onclick="show_modal('{% url 'cont:nueva_subcuenta' catalogo.id %}')">Nueva Cuenta</button>
     </div>
