@@ -124,7 +124,7 @@ def reporte_cuentas(cuenta,fecha_inicio,fecha_fin):
         ws.write(row,6,m.monto_haber,cuerpo)
         row+=1
     writer.save()
-    return f"libros_contables/Reporte_de_Cuenta_{cuenta.nombre}.xlsx"
+    return BASE_DIR/f"libros_contables/Reporte_de_Cuenta_{cuenta.nombre}.xlsx"
 
 
 def get_ruta_cuenta(cuenta_id):
