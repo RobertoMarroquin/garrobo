@@ -20,6 +20,7 @@
                 </form>
             </div>
         </div>
+        {% if movimientos %}
         <div class="row">
             <div class="col-md-10">
                 <h1>Reporte de Movimientos</h1>
@@ -29,7 +30,6 @@
                 <a href="{% url 'cont:reporte_movimientos' cuenta=cuenta.id fecha_inicio=fecha_inicio fecha_fin=fecha_fin %}" class="btn btn-info">Descargar Reporte</a>
             </div>
         </div>
-        {% if movimientos %}
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped table-light table-sm" id="tabla">
@@ -56,7 +56,7 @@
         </div>
         {% else %}
         <div class="alert alert-warning" role="alert">
-            No hay registros por mostrar
+            Selecciona una cuenta y un rango de fechas para generar el reporte.
         </div>
         {% endif %}
     </div>
