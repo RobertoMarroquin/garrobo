@@ -131,6 +131,64 @@ class FacturaCm(models.Model):
     ivaTerceros = models.DecimalField(("Iva Terceros"),blank=True, null=True,max_digits=8, decimal_places=2)
     comprasNSujetas = models.DecimalField(("Compras No Sujetas"),blank=True, null=True, max_digits=8, decimal_places=2)
     libro = models.ForeignKey("iva.Libro",related_name="facturacm", on_delete=models.CASCADE)
+    
+    #Modificaciones a base datos por cambios en el modelo de datos 
+    #Modificaciones con base a la resolucion 02-2024
+    
+    #Tipo de Operacion se refiere a la naturalesa de la compra, ya sea como costo o gasto
+    tipo_operacion = models.CharField("Tipo de Operacion",choices=(
+        ("1","Gravada"),
+        ("2","Exenta o No Gravada"),
+        ("3","Excluido o no constituye iva"),
+        ("4","Mixta (2)"),
+        ("0","Periodos tributarios anteriores a 02/2024"),
+    ) ,max_length=1,default="1",blank=True, null=True)
+    
+    #Clasificacion, El contribuyente deberá identificar a qué tipo de erogación corresponden las deducciones
+    #del Impuesto sobre la Renta, respecto de cada compra de bienes o servicios que realice en cada período tributario
+    clasificacion = models.CharField("Clasificacion",choices=(
+        ("1","Costo"),
+        ("2","Gasto"),
+        ("0","Periodos tributarios anteriores a 02/2024"),
+    ),max_length=1,default="1",blank=True, null=True)
+    
+    #Sector: Es el rubro o actividad económica genérica a que se dedica el sujeto pasivo,
+    # según la siguiente codificación:
+    #1: Industria
+    #2: Comercio
+    #3: Agropecuaria
+    #4: Servicios, Profesiones, Artes y Oficios
+    #0: Cuando se trate de periodos tributarios anteriores a febrero de 2024
+    sector = models.CharField("Sector",choices=(
+        ("1","Industria"),
+        ("2","Comercio"),
+        ("3","Agropecuaria"),
+        ("4","Servicios, Profesiones, Artes y Oficios"),
+        ("0","Periodos tributarios anteriores a febrero de 2024"),
+    ),max_length=1,default="1",blank=True, null=True)
+    
+    #Tipo de Costo/Gasto: Según la clasificación que se detalla en el formulario F-11 de Impuesto sobre la Renta, según la siguiente codificación:
+    #1: Gastos de Venta sin Donación
+    #2: Gastos de Administración sin Donación
+    #3: Gastos Financieros sin Donación
+    #4. Costo Articulos Producidos/Comprados Importaciones/Internaciones
+    #5: Costo Articulos Producidos/Comprados Interno
+    #6: Costos Indirectos de Fabricación
+    #7: Mano de obra
+    #0: Cuando se trate de periodos tributarios anteriores a febrero de 2024
+    tipo_compra = models.CharField("Tipo de Costo/Gasto",choices=(
+        ("1","Gastos de Venta sin Donación"),
+        ("2","Gastos de Administración sin Donación"),
+        ("3","Gastos Financieros sin Donación"),
+        ("4","Costo Articulos Producidos/Comprados Importaciones/Internaciones"),
+        ("5","Costo Articulos Producidos/Comprados Interno"),
+        ("6","Costos Indirectos de Fabricación"),
+        ("7","Mano de obra"),
+        ("0","Periodos tributarios anteriores a febrero de 2024"), 
+    ),max_length=1,default="1",blank=True, null=True)
+    #Finaliza modificaciones a base de datos segun resolucion 02-2024
+    ##############################################
+    
     def __str__(self):
         return f"{self.fecha} : {self.correlativo} : {self.empresa}"
 
@@ -143,7 +201,7 @@ class RetencionCompra(models.Model):
     retencion = models.DecimalField(("Retencion"), decimal_places=2, null=True, blank=True, max_digits=9)
     monto_sujeto = models.DecimalField(("Monto Sujeto"), decimal_places=2, null=True, blank=True, max_digits=9)
     empresa = models.ForeignKey("iva.Empresa",blank=True, null=True, verbose_name=("Empresa"), on_delete=models.CASCADE)
-    tipoDocumento = models.CharField("Tipo de Documetno",choices=(
+    tipoDocumento = models.CharField("Tipo de Documento",choices=(
         ("07","COMPROBANTE DE Retencion"),
         ("03","COMPROBANTE DE CREDITO FISCAL"),
         ("05","NOTA DE CREDITO"),

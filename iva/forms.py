@@ -161,7 +161,11 @@ class FacturaComprasF(forms.ModelForm):
             "comprasNSujetas",
             "retencionPretencion",
             "anticipoCtaIva",
-            "numeroSerie"
+            "numeroSerie",
+            "tipo_operacion",
+            "clasificacion",
+            "sector",
+            "tipo_compra"
         ]
         widgets = {
             "cExenteInterna"            : forms.NumberInput(attrs={"value":"0.00"}),
