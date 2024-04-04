@@ -6,7 +6,7 @@ import openpyxl as ox
 from openpyxl.styles.borders import Border, Side
 from openpyxl.styles import Alignment
 import xlsxwriter as xw
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 #python libs
 from decimal import Decimal as dec

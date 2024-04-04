@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
-import django_heroku
+#import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,14 +27,14 @@ SECRET_KEY = '2ckl(csmue+hyx2103-=#^dctjn3qcau7rjf6vhq__t#l)-u!5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in','despaogo.pythonanywhere.com/']
+ALLOWED_HOSTS = ["0.0.0.0",'garrobo.in','despaogo.pythonanywhere.com/','*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'dal',
-    'dal_select2',
+    #'dal',
+    #'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'crispy_forms',
     'django_extensions',
-    'rest_framework',
+    #'rest_framework',
     'empresas',
     'contabilidad',
     'searchableselect',
@@ -91,17 +91,17 @@ WSGI_APPLICATION = 'garrobo.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.mysql',
         'ENGINE':'django.db.backends.postgresql',
-        #'NAME': 'despaogo$contabilidad',
         'NAME':'contabilidad',
-        #'USER': 'despaogo',
         'USER':'roma',
-        #'PASSWORD': '986753421R',
-        'PASSWORD':'986753421',
-        #'HOST': 'despaogo.mysql.pythonanywhere-services.com',
+        'PASSWORD':'986753421Rm',
         'HOST':'127.0.0.1',
         'PORT': '5432',
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'despaogo$contabilidad',
+        #'USER': 'despaogo',
+        #'PASSWORD': '986753421R',
+        #'HOST': 'despaogo.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -148,7 +148,7 @@ THOUSAND_SEPARATOR = ","
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 #STATIC_ROOT = "/home/despaogo/garrobo/static"
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -173,4 +173,4 @@ REST_FRAMEWORK = {
 }
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())

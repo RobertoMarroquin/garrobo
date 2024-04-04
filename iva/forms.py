@@ -4,9 +4,10 @@ from .models import *
 class EmpresaF(forms.ModelForm):
     nit  = forms.CharField(widget=forms.TextInput(attrs={"data-mask":"0000-000000-000-0"}),
             required=False)
+    dui = forms.CharField(widget=forms.TextInput(attrs={"data-mask":"00000000-0"}),required=False)
     class Meta:
         model = Empresa
-        fields = ['nRegistro','nombre','nit',]
+        fields = ['nRegistro','nombre','nit','dui']
         
 
 class LibroForm(forms.ModelForm):

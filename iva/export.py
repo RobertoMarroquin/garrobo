@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import openpyxl as ox
 import xlsxwriter as xw
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os
 
 from decimal import Decimal as dec
@@ -590,11 +590,16 @@ def compras(libro):
             ws.write(row,13,f"{factura.ivaCdtoFiscal}",body_format)
             ws.write(row,14,f"{factura.totalCompra}",body_format)
             #ingresar DUI de la empresa cuando se tenga
-            ws.write(row,15,"",body_format)
-            ws.write(row,16,f"3",body_format)
+            ws.write(row,15,f"{factura.empresa.dui.replace('-','',1) if factura.empresa.dui is not None else ''}",body_format)
+            #Modificaciones resolucion 04-2024
+            ws.write(row,16,f"{factura.tipo_operacion if factura.tipo_operacion is not None else '0' }",body_format)
+            ws.write(row,17,f"{factura.clasificacion if factura.clasificacion is not None else '0'}",body_format)
+            ws.write(row,18,f"{factura.sector if factura.sector is not None else '0'}",body_format)
+            ws.write(row,19,f"{factura.tipo_compra if factura.tipo_compra is not None else '0'}",body_format)
+            ws.write(row,20,f"3",body_format)
             row+=1
     
-    writer.save()
+    writer.close()
     return direccion
 
 #------------------------------------------------------------------------------------------#

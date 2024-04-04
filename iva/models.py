@@ -20,6 +20,7 @@ class Empresa(models.Model):
     nRegistro = models.CharField(("Numero de Regisro"),unique=True, max_length=12)
     nombre = models.CharField(("Nombre"), max_length=100)
     nit = models.CharField(("NIT"), max_length=18,blank=True, null=True,default="")
+    dui = models.CharField(("DUI"), max_length=10,blank=True, null=True,default="")
 
     def __str__(self):
         return f"{self.nRegistro} {self.nombre}"

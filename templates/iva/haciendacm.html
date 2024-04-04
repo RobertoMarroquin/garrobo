@@ -100,7 +100,24 @@
             <div class="col-md-4">
                 {{form.numeroSerie|as_crispy_field}}
             </div>
-        </div> 
+        </div>
+        <!------------------------------------------------------------------------------------------->
+        <!---------------------------------Modificaciones 02/2024------------------------------------>
+        <div class="row">
+            <div class="col-md-3">
+                {{form.tipo_operacion|as_crispy_field}}
+            </div>
+            <div class="col-md-3">
+                {{form.clasificacion|as_crispy_field}}
+            </div>
+            <div class="col-md-3">
+                {{form.sector|as_crispy_field}}
+            </div>
+            <div class="col-md-3">
+                {{form.tipo_compra|as_crispy_field}}
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------------------->
         <div class="row text center">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -136,7 +153,13 @@
                 <th class="align-middle">Anticipo Cta Iva</th>
                 <th class="align-middle">Numero de Serie</th>
                 <th class="align-middle">IVA Terceros</th>
-
+                <!------------------------------------------------------------------------------------------->
+                <!---------------------------------Modificaciones 02/2024------------------------------------>
+                <th class="align-middle">Tipo de Operacion</th>
+                <th class="align-middle">Clasificacion</th>
+                <th class="align-middle">Sector</th>
+                <th class="align-middle">Tipo de Compra</th>
+                <!------------------------------------------------------------------------------------------->
             </tr>
             </thead>
             <tbody>
@@ -166,10 +189,17 @@
                         <td class="align-middle">{{factura.anticipoCtaIva}}</td>
                         <th class="align-middle">{{factura.numeroSerie}}</th>
                         <td class="align-middle">{{factura.ivaTerceros}}</td>
+                        <!------------------------------------------------------------------------------------------->
+                        <!---------------------------------Modificaciones 02/2024------------------------------------>
+                        <td class="align-middle">{{factura.tipo_operacion}}</td>
+                        <td class="align-middle">{{factura.clasificacion}}</td>
+                        <td class="align-middle">{{factura.sector}}</td>
+                        <td class="align-middle">{{factura.tipo_compra}}</td>
+                        <!------------------------------------------------------------------------------------------->
                     </tr>
                 {% empty %}
                 <tr class="text-center">
-                    <td colspan=17 class="align-middle">No hay registros</td>
+                    <td colspan=23 class="align-middle">No hay registros</td>
                 </tr>
                 {% endfor %}
             </tbody>
