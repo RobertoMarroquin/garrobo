@@ -920,7 +920,7 @@ def interno_compras(libro):
             ws.write(row,7 ,f"{percepcion.retencion}",body_format)
             row+=1
 
-    writer.save()
+    writer.close()
     return direccion
 
 #------------------------------------------------------------------------------------------#
