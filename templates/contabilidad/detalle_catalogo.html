@@ -92,9 +92,11 @@
 
 
 
-<div class="modal fade" id="creacion" role="dialog"></div>
+{% endblock content %}
 
-{% endblock content %} {% block datatable %}
+{% block modal %}
+<div class="modal fade" id="creacion" role="dialog"></div>
+{% endblock modal %} {% block datatable %}
 <!--Data  Table JS-->
 <script type="text/javascript " src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.js "></script>
 <script>

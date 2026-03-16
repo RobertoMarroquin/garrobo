@@ -1,106 +1,205 @@
 {% extends "base.html" %} 
-{% block title %} {{cliente.nombre}} {% endblock title %} 
+{% block title %} {{cliente.nombre}} {% endblock title %}
+{% block breadcrumb %}
+<li><a href="{% url 'home' %}">Empresas</a></li>
+<li><a href="{% url 'iva:detalle_cliente' cliente.id %}">{{cliente.nombre}}</a></li>
+<li class="active">{% if tipo == 1 %}Consumidor Final{% elif tipo == 2 %}Contribuyente{% elif tipo == 3 %}Compras{% endif %}</li>
+{% endblock breadcrumb %}
+{% block css %}
+<style>
+    .g-libro-table {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+
+    .g-libro-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border-color);
+        transition: background var(--transition-fast);
+    }
+
+    .g-libro-row:last-child {
+        border-bottom: none;
+    }
+
+    .g-libro-row:hover {
+        background: rgba(59, 130, 246, 0.04);
+    }
+
+    .g-libro-info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .g-libro-month {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-sm);
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--accent-primary);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .g-libro-month-num {
+        font-size: 1.2rem;
+    }
+
+    .g-libro-name {
+        font-weight: 600;
+        color: var(--text-heading);
+        font-size: 0.95rem;
+    }
+
+    .g-libro-year {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+    }
+
+    .g-libro-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .g-export-dropdown .dropdown-toggle {
+        padding: 7px 14px;
+        font-size: 0.82rem;
+    }
+
+    .g-export-dropdown .dropdown-toggle::after {
+        margin-left: 6px;
+    }
+</style>
+{% endblock css %}
+
 {% block content %}
-<h4 class="text-center">{{cliente.nombre}}</h4>
-<h4 class="text-center">Libros de {% if tipo == 1 %} Consumidor Final {% elif tipo == 2 %} Contribuyente {% elif tipo == 3 %} Compras {% endif %}</h4>
-<hr>
-<div class="row">
-    <div class="col-sm-2 text-left">
-        <a name="" id="" class="btn btn-primary" href="{% url 'iva:detalle_cliente' cliente.id %}" role="button">Cliente</a>
+<div class="g-page-header">
+    <div>
+        <h1 class="g-page-title">
+            Libros de {% if tipo == 1 %}Consumidor Final{% elif tipo == 2 %}Contribuyente{% elif tipo == 3 %}Compras{% endif %}
+        </h1>
+        <p class="g-page-subtitle">{{cliente.nombre}}</p>
     </div>
-    <div class="col-sm-8"></div>
-    <div class="col-sm-2 text-right">
-        <button class="btn btn-success" onclick="show_modal('{% url 'iva:nuevo_libro' cliente.id tipo %}')">Nuevo Libro</button>
+    <div style="display:flex; gap:12px;">
+        <a class="btn btn-outline-light" href="{% url 'iva:detalle_cliente' cliente.id %}">
+            <i class="fas fa-arrow-left" style="margin-right:6px;"></i> Regresar
+        </a>
+        <button class="btn btn-success" onclick="show_modal('{% url 'iva:nuevo_libro' cliente.id tipo %}')">
+            <i class="fas fa-plus" style="margin-right:6px;"></i> Nuevo Libro
+        </button>
     </div>
-    <!--{% url 'iva:nuevo_libro' cliente.id tipo %}-->
 </div>
-<br> {% if libros %}
-<table class="table table-striped table-inverse table-sm">
-    <thead class="thead-dark">
-        <tr>
-            <th>Mes</th>
-            <th>Año</th>
-            <th>Exportar</th>
-            <th>Facturas</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for libro in libros %}
-        <tr>
-            <td>{{libro.get_mes_display}}</td>
-            <td>{{libro.ano}}</td>
-            <td>
-                {% if libro.facturact.all|length > 0 or libro.facturacm.all|length > 0 or libro.facturacf.all|length > 0 %}
-                    {% if libro.mes >= 3 and libro.ano == 2021 %}
-                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-warning" href="{% url 'iva:iva_hacienda' libro.id %}" role="button"><i class="fas fa-file-invoice-dollar"></i></a>   
-                    <a name="exportLibr{{libro.id}}" id="exportLibr{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-home"></i></a>   
-                    {% if libro.tipo == 3 %}
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:anticipo' libro.id %}" role="button"><i class="fas fa-download">161</i></a>
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:percepcion' libro.id %}" role="button"><i class="fas fa-download">163</i></a>
-                    {% endif %}
-                    {% elif  libro.ano > 2021%}
-                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-warning" href="{% url 'iva:iva_hacienda' libro.id %}" role="button"><i class="fas fa-file-invoice-dollar"></i></a>   
-                    <a name="exportLibr{{libro.id}}" id="exportLibr{{libro.id}}" class="btn btn-success" href="{% url 'iva:iva_interno' libro.id %}" role="button"><i class="fas fa-home"></i></a>   
-                    {% if libro.tipo == 3 %}
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:anticipo' libro.id %}" role="button"><i class="fas fa-download">161</i></a>   
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:retDoc' libro.id %}" role="button"><i class="fas fa-download">162</i></a>
-                    <a name="exportLib{{libro.id}}" id="exportLib{{libro.id}}" class="btn btn-info" href="{% url 'iva:percepcion' libro.id %}" role="button"><i class="fas fa-download">163</i></a>  
-                    {% endif %}
-                    {% else %}
-                    <a name="exportLibro{{libro.id}}" id="exportLibro{{libro.id}}" class="btn btn-success" href="{% url 'iva:export' libro.id libro.tipo %}" role="button"><i class="fas fa-download"></i></a>   
-                    {% endif %}
+
+{% if libros %}
+<div class="g-libro-table">
+    {% for libro in libros %}
+    <div class="g-libro-row">
+        <div class="g-libro-info">
+            <div class="g-libro-month">
+                <span class="g-libro-month-num">{{libro.mes}}</span>
+            </div>
+            <div>
+                <div class="g-libro-name">{{libro.get_mes_display}}</div>
+                <div class="g-libro-year">{{libro.ano}}</div>
+            </div>
+        </div>
+        <div class="g-libro-actions">
+            <!-- Export buttons -->
+            {% if libro.facturact.all|length > 0 or libro.facturacm.all|length > 0 or libro.facturacf.all|length > 0 %}
+                {% if libro.mes >= 3 and libro.ano == 2021 or libro.ano > 2021 %}
+                <div class="dropdown g-export-dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'iva:iva_hacienda' libro.id %}">
+                            <i class="fas fa-file-invoice-dollar" style="width:20px; margin-right:8px; color:var(--accent-warning);"></i> Formato Hacienda
+                        </a>
+                        <a class="dropdown-item" href="{% url 'iva:iva_interno' libro.id %}">
+                            <i class="fas fa-home" style="width:20px; margin-right:8px; color:var(--accent-success);"></i> Formato Interno
+                        </a>
+                        {% if libro.tipo == 3 %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'iva:anticipo' libro.id %}">
+                            <i class="fas fa-file-alt" style="width:20px; margin-right:8px; color:var(--accent-info);"></i> F-161 Anticipo
+                        </a>
+                        <a class="dropdown-item" href="{% url 'iva:retDoc' libro.id %}">
+                            <i class="fas fa-file-alt" style="width:20px; margin-right:8px; color:var(--accent-info);"></i> F-162 Retención
+                        </a>
+                        <a class="dropdown-item" href="{% url 'iva:percepcion' libro.id %}">
+                            <i class="fas fa-file-alt" style="width:20px; margin-right:8px; color:var(--accent-info);"></i> F-163 Percepción
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
                 {% else %}
-                <button type="button" class="btn btn-primary" disabled><i class="fas fa-download"></i></button> 
+                <a class="btn btn-outline-light" href="{% url 'iva:export' libro.id libro.tipo %}">
+                    <i class="fas fa-download"></i> Exportar
+                </a>
                 {% endif %}
-            </td>
-            <td>
-                <a name="" id="" class="btn btn-primary" role="button" 
-                {% if  libro.tipo == 1  %} 
-                    {% if libro.ano < 2021 %}
-                        href="{% url 'iva:nueva_fcf' libro.id %}"
-                    {% elif  libro.ano == 2021 and libro.mes < 3%}
+            {% else %}
+            <button class="btn btn-outline-light" disabled title="Sin facturas registradas">
+                <i class="fas fa-download"></i> Exportar
+            </button>
+            {% endif %}
+
+            <!-- Facturas button -->
+            <a class="btn btn-primary"
+                {% if libro.tipo == 1 %}
+                    {% if libro.ano < 2021 or libro.ano == 2021 and libro.mes < 3 %}
                         href="{% url 'iva:nueva_fcf' libro.id %}"
                     {% else %}
                         href="{% url 'iva:haciendacf' libro.id %}"
                     {% endif %}
-                {% elif  libro.tipo == 2  %} 
-                    {% if libro.ano < 2021 %}
-                        href="{% url 'iva:nueva_fct' libro.id %}" 
-                    {% elif  libro.ano == 2021 and libro.mes < 3%}
-                        href="{% url 'iva:nueva_fct' libro.id %}" 
+                {% elif libro.tipo == 2 %}
+                    {% if libro.ano < 2021 or libro.ano == 2021 and libro.mes < 3 %}
+                        href="{% url 'iva:nueva_fct' libro.id %}"
                     {% else %}
                         href="{% url 'iva:haciendact' libro.id %}"
                     {% endif %}
-                {% elif  libro.tipo == 3  %} 
-                    {% if libro.ano < 2021 %}
-                        href="{% url 'iva:nueva_fcm' libro.id %}" 
-                    {% elif  libro.ano == 2021 and libro.mes < 3%}
-                        href="{% url 'iva:nueva_fcm' libro.id %}" 
+                {% elif libro.tipo == 3 %}
+                    {% if libro.ano < 2021 or libro.ano == 2021 and libro.mes < 3 %}
+                        href="{% url 'iva:nueva_fcm' libro.id %}"
                     {% else %}
                         href="{% url 'iva:haciendacm' libro.id %}"
                     {% endif %}
-                {% endif %}><i class="fas fa-file-invoice-dollar"></i></a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<div class="alert alert-warning text-center" role="alert">
-    <strong>No hay registros por mostrar</strong>
+                {% endif %}>
+                <i class="fas fa-file-invoice-dollar" style="margin-right:6px;"></i> Facturas
+            </a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endif %} 
-<!--Formulario Modal-->
-<div class="modal fade" id="creacion" role="dialog"></div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+    <i class="fas fa-exclamation-triangle" style="margin-right:8px;"></i>
+    <strong>No hay libros registrados.</strong> Crea un nuevo libro para comenzar.
+</div>
+{% endif %}
 
-{% endblock content %} 
+{% endblock content %}
+
+{% block modal %}
+<!-- Modal -->
+<div class="modal fade" id="creacion" role="dialog"></div>
+{% endblock modal %}
 
 {% block extrajs %}
-<!--Script Muestra Modal-->
 <script>
     function show_modal(url) {
-        console.log(url)
         $('#creacion').load(url, () => {
             $('#creacion').modal('show')
         })

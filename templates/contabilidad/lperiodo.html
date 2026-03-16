@@ -71,10 +71,12 @@
     No hay registros por mostrar
 </div>
 {% endif %} {% endif %}
+{% endblock content %}
+
+{% block modal %}
 <!--Formulario Modal-->
 <div class="modal fade" id="creacion" role="dialog"></div>
-
-{% endblock content %} {% block datatable %}
+{% endblock modal %} {% block datatable %}
 <!--Data  Table JS-->
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.js"></script>
 <script>

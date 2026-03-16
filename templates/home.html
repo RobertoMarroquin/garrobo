@@ -1,60 +1,319 @@
-{% extends "base.html" %} {% block css %}
-<!-- Data Table Css-->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.css" /> {% endblock css %} {% block content %}
-<h4 class="text-center">Empresas</h4>
-<hr>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
-    <div class="col-md-2 align-items-right text-right">
-        <button class="btn btn-success" onclick="show_modal('{% url 'emp:nueva_empresa' %}')">Nueva Empresa</button>
+{% extends "base.html" %}
+{% block breadcrumb %}
+<li class="active">Empresas</li>
+{% endblock breadcrumb %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.css" />
+<style>
+    .g-empresa-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 20px;
+    }
+
+    .g-empresa-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        transition: all var(--transition-normal);
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+    }
+
+    .g-empresa-card:hover {
+        border-color: rgba(59, 130, 246, 0.25);
+        box-shadow: var(--shadow-glow);
+        transform: translateY(-3px);
+        text-decoration: none;
+    }
+
+    .g-empresa-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    .g-empresa-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .g-empresa-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-heading);
+        margin-bottom: 4px;
+    }
+
+    .g-empresa-registro {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+    }
+
+    .g-empresa-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .g-empresa-meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .g-empresa-meta-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+    }
+
+    .g-empresa-meta-value {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .g-empresa-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .g-empresa-actions .btn {
+        flex: 1;
+        font-size: 0.8rem;
+        padding: 7px 12px;
+    }
+
+    /* Color palette for avatars */
+    .g-avatar-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .g-avatar-2 { background: linear-gradient(135deg, #10b981, #059669); }
+    .g-avatar-3 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .g-avatar-4 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .g-avatar-5 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .g-avatar-6 { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+    /* View toggle */
+    .g-view-toggle {
+        display: inline-flex;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+    }
+
+    .g-view-toggle button {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        padding: 8px 14px;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        font-size: 0.9rem;
+    }
+
+    .g-view-toggle button.active {
+        background: var(--accent-primary);
+        color: white;
+    }
+
+    .g-view-toggle button:hover:not(.active) {
+        color: var(--text-primary);
+        background: rgba(255,255,255,0.04);
+    }
+
+    .g-stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    /* Table view hidden by default */
+    .g-table-view { display: none; }
+    .g-cards-view { display: block; }
+</style>
+{% endblock css %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="g-page-header">
+    <div>
+        <h1 class="g-page-title">Empresas</h1>
+        <p class="g-page-subtitle">Gestiona tus clientes y accede a sus módulos</p>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+        <div class="g-view-toggle">
+            <button class="active" onclick="showCards()" id="btnCards" title="Vista tarjetas"><i class="fas fa-th-large"></i></button>
+            <button onclick="showTable()" id="btnTable" title="Vista tabla"><i class="fas fa-list"></i></button>
+        </div>
+        <button class="btn btn-success" onclick="show_modal('{% url 'emp:nueva_empresa' %}')" style="padding: 10px 20px;">
+            <i class="fas fa-plus" style="margin-right:6px;"></i> Nueva Empresa
+        </button>
     </div>
 </div>
-<br/>
-<!--Tabla de Empresas-->
+
+<!-- Stats Row -->
 {% if empresas %}
-<div class="table-responsive">
-    <table class="table table-striped table-light table-sm" id="tabla">
-        <thead class="thead-dark">
-            <tr class="text-center">
-                <th>Editar</th>
-                <th>Nombre</th>
-                <th>N Registro</th>
-                <th>NIT</th>
-                <th>IVA</th>
-                <th>Contabilidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for empresa in empresas|dictsort:"nombre" %}
-            <tr class="text-center">
-                <td class="text-center"><a class="btn btn-info" role="button" onclick="show_modal('{% url 'emp:act_empresa' empresa.id %}')"><i style="color:white;" class="fas fa-edit"></i></a></td>
-                <td>{{empresa.nombre}}</td>
-                <td>{{empresa.num_registro}}</td>
-                <td>{{empresa.nit}}</td>
-                <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'iva:detalle_cliente' empresa.id %}" role="button"><i class="fas fa-chart-line"></i></a></td>
-                {% if empresa.contabilidad %}
-                <td class="text-center"><a name="" id="" class="btn btn-primary" href="{% url 'cont:lista_periodo' empresa.id%}" role="button"><i class="fas fa-chart-bar"></i></a></td>
-                {% else %}
-                <td class="text-center"><button type="button" class="btn btn-outline-primary" disabled><i class="fas fa-chart-bar"></i></button></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-
-{% else %}
-<div class="alert alert-warning" role="alert">
-    No hay registros por mostrar
+<div class="g-stats-row">
+    <div class="g-stat-card">
+        <div class="g-stat-icon blue"><i class="fas fa-building"></i></div>
+        <div>
+            <div class="g-stat-number">{{empresas|length}}</div>
+            <div class="g-stat-label">Empresas Registradas</div>
+        </div>
+    </div>
+    <div class="g-stat-card">
+        <div class="g-stat-icon green"><i class="fas fa-chart-bar"></i></div>
+        <div>
+            <div class="g-stat-number" id="contCount">0</div>
+            <div class="g-stat-label">Con Contabilidad</div>
+        </div>
+    </div>
+    <div class="g-stat-card">
+        <div class="g-stat-icon purple"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div>
+            <div class="g-stat-number">{{empresas|length}}</div>
+            <div class="g-stat-label">Módulos IVA</div>
+        </div>
+    </div>
 </div>
 {% endif %}
-<!--Formulario Modal-->
+
+<!-- Cards View -->
+<div class="g-cards-view" id="cardsView">
+    {% if empresas %}
+    <div class="g-empresa-grid">
+        {% for empresa in empresas|dictsort:"nombre" %}
+        <div class="g-empresa-card" style="animation-delay: {{forloop.counter0|floatformat:0}}00ms;">
+            <div class="g-empresa-card-header">
+                <div>
+                    <div class="g-empresa-name">{{empresa.nombre}}</div>
+                    <div class="g-empresa-registro">{{empresa.num_registro}}</div>
+                </div>
+                <div class="g-empresa-avatar g-avatar-{{forloop.counter|divisibleby:6|yesno:"6,"|default:forloop.counter|divisibleby:5|yesno:"5,"|default:forloop.counter|divisibleby:4|yesno:"4,"|default:forloop.counter|divisibleby:3|yesno:"3,"|default:forloop.counter|divisibleby:2|yesno:"2,"|default:"1"}}">
+                    {{empresa.nombre|first}}
+                </div>
+            </div>
+            <div class="g-empresa-meta">
+                <div class="g-empresa-meta-item">
+                    <span class="g-empresa-meta-label">NIT</span>
+                    <span class="g-empresa-meta-value">{{empresa.nit}}</span>
+                </div>
+                <div class="g-empresa-meta-item">
+                    <span class="g-empresa-meta-label">Estado</span>
+                    <span class="g-empresa-meta-value">
+                        {% if empresa.contabilidad %}
+                        <span class="g-badge g-badge-success"><i class="fas fa-check-circle"></i> Contabilidad</span>
+                        {% else %}
+                        <span class="g-badge g-badge-warning"><i class="fas fa-minus-circle"></i> Solo IVA</span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <div class="g-empresa-actions">
+                <a class="btn btn-outline-light" onclick="event.stopPropagation(); show_modal('{% url 'emp:act_empresa' empresa.id %}');" style="cursor:pointer;">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <a class="btn btn-primary" href="{% url 'iva:detalle_cliente' empresa.id %}">
+                    <i class="fas fa-chart-line"></i> IVA
+                </a>
+                {% if empresa.contabilidad %}
+                <a class="btn btn-info" href="{% url 'cont:lista_periodo' empresa.id %}">
+                    <i class="fas fa-chart-bar"></i> Cont.
+                </a>
+                {% else %}
+                <button class="btn btn-outline-light" disabled title="Contabilidad no activa">
+                    <i class="fas fa-chart-bar"></i>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-exclamation-triangle" style="margin-right:8px;"></i>
+        No hay empresas registradas. Crea una nueva empresa para comenzar.
+    </div>
+    {% endif %}
+</div>
+
+<!-- Table View -->
+<div class="g-table-view" id="tableView">
+    {% if empresas %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover" id="tabla">
+            <thead>
+                <tr class="text-center">
+                    <th>Acciones</th>
+                    <th>Nombre</th>
+                    <th>N° Registro</th>
+                    <th>NIT</th>
+                    <th>IVA</th>
+                    <th>Contabilidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empresa in empresas|dictsort:"nombre" %}
+                <tr class="text-center">
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" role="button" onclick="show_modal('{% url 'emp:act_empresa' empresa.id %}')">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>{{empresa.nombre}}</td>
+                    <td>{{empresa.num_registro}}</td>
+                    <td>{{empresa.nit}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{% url 'iva:detalle_cliente' empresa.id %}">
+                            <i class="fas fa-chart-line"></i>
+                        </a>
+                    </td>
+                    {% if empresa.contabilidad %}
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{% url 'cont:lista_periodo' empresa.id %}">
+                            <i class="fas fa-chart-bar"></i>
+                        </a>
+                    </td>
+                    {% else %}
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-light" disabled>
+                            <i class="fas fa-chart-bar"></i>
+                        </button>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
+
+{% block modal %}
+<!-- Modal -->
 <div class="modal fade" id="creacion" role="dialog"></div>
-{% endblock content %} {% block datatable %}
-<!--Data  Table JS-->
+{% endblock modal %}
+
+{% block datatable %}
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/datatables.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -64,6 +323,10 @@
             "pageLength": 10,
             "order": []
         });
+
+        // Count contabilidad
+        var contCount = $(".g-badge-success").length;
+        $("#contCount").text(contCount);
     });
 
     $.extend(true, $.fn.dataTable.defaults, {
@@ -91,7 +354,6 @@
                 "sortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sortDescending": ": Activar para ordenar la columna de manera descendente"
             },
-            //only works for built-in buttons, not for custom buttons
             "buttons": {
                 "create": "Nuevo",
                 "edit": "Cambiar",
@@ -114,11 +376,26 @@
             }
         }
     });
+
+    function showCards() {
+        document.getElementById('cardsView').style.display = 'block';
+        document.getElementById('tableView').style.display = 'none';
+        document.getElementById('btnCards').classList.add('active');
+        document.getElementById('btnTable').classList.remove('active');
+    }
+
+    function showTable() {
+        document.getElementById('cardsView').style.display = 'none';
+        document.getElementById('tableView').style.display = 'block';
+        document.getElementById('btnCards').classList.remove('active');
+        document.getElementById('btnTable').classList.add('active');
+    }
 </script>
-{% endblock datatable %} {% block extrajs %}
+{% endblock datatable %}
+
+{% block extrajs %}
 <script>
     function show_modal(url) {
-        console.log(url)
         $('#creacion').load(url, () => {
             $('#creacion').modal('show')
         })

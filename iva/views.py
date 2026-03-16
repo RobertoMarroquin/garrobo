@@ -181,7 +181,6 @@ class EmpresaCV(CreateView):
         context = super(EmpresaCV,self).get_context_data(**kwargs)
         context['direccion'] = 'cont:nuevo_empresa'
         context['titulo'] = 'Crear Empresa'
-        print("not OK")
         return context
 
 
